@@ -15,6 +15,8 @@ whether you want to centrally manage your agents. Not sure whether to use
 {beats} or {agent}? Refer to {fleet-guide}/beats-agent-comparison.html[{beats}
 and {agent} capabilities].
 
+include::./diagrams/test.asciidoc[]
+
 To get started, refer to:
 
 * <<deploy-agent-to-send-data>>

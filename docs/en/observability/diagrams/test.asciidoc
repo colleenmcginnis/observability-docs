@@ -1,0 +1,12 @@
+++++
+<div style="width:100%" >
+<svg viewBox="0 0 653 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 0.5H267.5V199.5H0.5V0.5Z" fill="#D9D9D9" stroke="black"/>
+<path d="M385.5 1.5H652.5V200.5H385.5V1.5Z" fill="#D9D9D9" stroke="black"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="24" letter-spacing="0em"><tspan x="25.4375" y="94.2273">I am a test diagram </tspan><tspan x="61.8008" y="123.227">with a </tspan><tspan x="199.52" y="123.227">!</tspan></text>
+<text fill="#0F9AE9" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="24" letter-spacing="0em" text-decoration="underline"><tspan x="137.199" y="123.227"><a href="https://www.elastic.co/guide/index.html">lil link</a></tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="24" letter-spacing="0em"><tspan x="452.355" y="95.2273">Did it work?</tspan></text>
+<path d="M376.061 101.061C376.646 100.475 376.646 99.5251 376.061 98.9393L366.515 89.3934C365.929 88.8076 364.979 88.8076 364.393 89.3934C363.808 89.9792 363.808 90.9289 364.393 91.5147L372.879 100L364.393 108.485C363.808 109.071 363.808 110.021 364.393 110.607C364.979 111.192 365.929 111.192 366.515 110.607L376.061 101.061ZM278 101.5H375V98.5H278V101.5Z" fill="black"/>
+</svg>
+</div>
+++++
