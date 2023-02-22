@@ -37,12 +37,15 @@ image::images/synthetics-settings-alerting.png[Alerting tab on the Synthetics Se
 [[synthetics-settings-private-locations]]
 = Private locations
 
-// to do
-++++
-<div style="background-color:#feedf5;color:#F04E98;height:100px;width:100%;text-align:center;padding-top:35px;margin-top:32px;margin-bottom:32px">
-  To do: Content to be written
-</div>
-++++
+Private locations allow you to run monitors from your own premises.
+In the *Private Locations* tab, you can add and manage private locations.
+
+After you <<synthetics-private-location-fleet-agent>> and <<synthetics-private-location-connect>>,
+this is where you will add the private location so you can specify it as the location for
+a monitor created using the Synthetics UI or projects.
+
+[role="screenshot"]
+image::images/synthetics-settings-private-locations.png[Private locations tab on the Synthetics Settings page in {kib}]
 
 [discrete]
 [[synthetics-settings-global-parameters]]
