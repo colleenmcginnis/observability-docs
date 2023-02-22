@@ -1,20 +1,37 @@
 [[synthetics-settings]]
-= Synthetics settings
+= Adjust Synthetics settings
 
 ++++
-<titleabbrev>Settings</titleabbrev>
+<titleabbrev>Adjust settings</titleabbrev>
 ++++
+
+There are several Synthetics settings you can adjust in {kib}.
 
 [discrete]
 [[synthetics-settings-alerting]]
 = Alerting
 
-// to do
-++++
-<div style="background-color:#feedf5;color:#F04E98;height:100px;width:100%;text-align:center;padding-top:35px;margin-top:32px;margin-bottom:32px">
-  To do: Content to be written
-</div>
-++++
+Alerting enables you to detect complex conditions using *rules* across Observability apps
+and send a notification using *connectors*.
+
+When you create a new synthetic monitor, a new default synthetics rule will be applied.
+To edit the default rule:
+
+. Click *Alerts and rules* in the top bar.
+. Click *Monitor status rule* to open a panel where you can edit the rule's configuration.
+
+To view all existing rules or create new rule:
+
+. Click *Alerts and rules* in the top bar.
+. Click *Manage rules*.
+
+Read more about creating new rules in <<create-alerts-rules>>.
+
+In the *Alerting* tab on the Synthetics Settings page, you can add and configure connectors.
+Read more about all available connectors in <<action-types-duration>>.
+
+[role="screenshot"]
+image::images/synthetics-settings-alerting.png[Alerting tab on the Synthetics Settings page in {kib}]
 
 [discrete]
 [[synthetics-settings-private-locations]]
