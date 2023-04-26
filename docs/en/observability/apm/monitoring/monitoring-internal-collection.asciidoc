@@ -8,6 +8,7 @@
 Use internal collectors to send {beats} monitoring data directly to your
 monitoring cluster.
 ifndef::serverless[]
+
 Or as an alternative to internal collection, use
 <<apm-monitoring-metricbeat-collection>>. The benefit of using internal collection
 instead of {metricbeat} is that you have fewer pieces of software to install
@@ -21,7 +22,7 @@ endif::[]
 
 . Create an API key or user that has appropriate authority to send system-level monitoring
 data to {es}. For example, you can use the built-in +apm_system+ user or
-assign the built-in +apm_system+ role to another user. For more
+assign the built-in `apm_system` role to another user. For more
 information on the required privileges, see <<apm-privileges-to-publish-monitoring>>.
 For more information on how to use API keys, see <<apm-beats-api-keys>>.
 
@@ -54,6 +55,7 @@ monitoring:
 +
 If you
 ifndef::no-output-logstash[]
+
 configured a different output, such as {ls} or you
 endif::[]
 want to send APM Server monitoring events to a separate {es} cluster

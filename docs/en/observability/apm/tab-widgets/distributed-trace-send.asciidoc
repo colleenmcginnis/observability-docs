@@ -51,18 +51,18 @@ The agent will automatically inject trace headers into network requests using `U
 import OpenTelemetryApi
 import OpenTelemetrySdk
 
-struct BasicSetter: Setter { <1>
+struct BasicSetter: Setter {
     func set(carrier: inout [String: String], key: String, value: String) {
         carrier[key] = value
     }
 }
 
-let span : Span = ... <2>
+let span : Span = ...
 let setter = BasicSetter()
 let propagator = W3CTraceContextPropagator()
 var headers = [String:String]()
 
-propagator.inject(spanContext: span.context, carrier: &headers, setter:setter) <3>
+propagator.inject(spanContext: span.context, carrier: &headers, setter:setter)
 
 let request = URLRequest(...)
 request.allHTTPHeaderFields = headers

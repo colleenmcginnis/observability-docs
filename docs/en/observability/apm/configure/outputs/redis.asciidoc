@@ -42,7 +42,7 @@ but are not supported.
 
 === Configuration options
 
-You can specify the following `output.redis` options in the +apm-server.yml+ config file:
+You can specify the following `output.redis` options in the `apm-server.yml` config file:
 
 ==== `enabled`
 
@@ -111,6 +111,7 @@ a new name.
 
 *`when`*:: A condition that must succeed in order to execute the current rule.
 ifndef::no-processors[]
+
 All the <<conditions,conditions>> supported by processors are also supported
 here.
 endif::no-processors[]
@@ -193,6 +194,7 @@ APM Server ignores the `max_retries` setting and retries indefinitely.
 endif::[]
 
 ifndef::ignores_max_retries[]
+
 The number of times to retry publishing an event after a publishing failure.
 After the specified number of retries, the events are typically dropped.
 

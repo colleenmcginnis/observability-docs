@@ -15,7 +15,7 @@ document. There are many online resources available that describe how to create 
 TIP: If you are using {security-features}, you can use the
 {ref}/certutil.html[`elasticsearch-certutil` tool] to generate certificates.
 
-. Configure APM Server to use SSL. In the +apm-server.yml+ config file, specify the following settings under
+. Configure APM Server to use SSL. In the `apm-server.yml` config file, specify the following settings under
 `ssl`:
 +
 * `certificate_authorities`: Configures APM Server to trust any certificates signed by the specified CA. If

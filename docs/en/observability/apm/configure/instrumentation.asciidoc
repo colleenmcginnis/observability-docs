@@ -30,7 +30,7 @@ instrumentation:
 [float]
 == Configuration options
 
-You can specify the following options in the `instrumentation` section of the +apm-server.yml+ config file:
+You can specify the following options in the `instrumentation` section of the `apm-server.yml` config file:
 
 [float]
 === `enabled`

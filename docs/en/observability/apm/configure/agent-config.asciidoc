@@ -29,7 +29,7 @@ apm-server.agent.config.elasticsearch.api_key: TiNAGG4BaaMdaH1tRfuU:KnR6yE41RrSo
 
 The following options are only supported for APM Server binary users.
 You can specify these options in the `apm-server.agent.config` section of the
-+apm-server.yml+ config file:
+`apm-server.yml` config file:
 
 [float]
 [[apm-agent-config-cache]]

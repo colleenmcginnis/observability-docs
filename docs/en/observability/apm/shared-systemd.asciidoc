@@ -67,8 +67,8 @@ override to change the default options.
 |=======================================
 | Variable | Description | Default value
 | `BEAT_LOG_OPTS` | Log options |
-| `BEAT_CONFIG_OPTS` | Flags for configuration file path | +-c /etc/apm-server/apm-server.yml+
-| `BEAT_PATH_OPTS` | Other paths | +-path.home /usr/share/apm-server -path.config /etc/apm-server -path.data /var/lib/apm-server -path.logs /var/log/apm-server+
+| `BEAT_CONFIG_OPTS` | Flags for configuration file path | `-c /etc/apm-server/apm-server.yml`
+| `BEAT_PATH_OPTS` | Other paths | `-path.home /usr/share/apm-server -path.config /etc/apm-server -path.data /var/lib/apm-server -path.logs /var/log/apm-server`
 |=======================================
 
 NOTE: You can use `BEAT_LOG_OPTS` to set debug selectors for logging. However,
@@ -76,10 +76,10 @@ to configure logging behavior, set the logging options described in
 <<apm-configuration-logging,Configure logging>>.
 
 To override these variables, create a drop-in unit file in the
-+/etc/systemd/system/apm-server.service.d+ directory.
+`/etc/systemd/system/apm-server.service.d` directory.
 
 For example a file with the following content placed in
-+/etc/systemd/system/apm-server.service.d/debug.conf+
+`/etc/systemd/system/apm-server.service.d/debug.conf`
 would override `BEAT_LOG_OPTS` to enable debug for {es} output.
 
 ["source", "systemd", subs="attributes"]
@@ -99,6 +99,6 @@ systemctl restart apm-server
 
 NOTE: It is recommended that you use a configuration management tool to
 include drop-in unit files. If you need to add a drop-in manually, use
-+systemctl edit apm-server.service+.
+`systemctl edit apm-server.service`.
 
 include::{observability-docs-root}/docs/en/observability/apm/config-ownership.asciidoc[]

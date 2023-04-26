@@ -76,13 +76,7 @@ Support for span compression is available in these agents:
 | **Node.js agent**
 | {apm-node-ref-v}/configuration.html#span-compression-same-kind-max-duration[`spanCompressionSameKindMaxDuration`]
 | {apm-node-ref-v}/configuration.html#span-compression-exact-match-max-duration[`spanCompressionExactMatchMaxDuration`]
-// | **PHP agent**
-// | {apm-php-ref-v}[``]
-// | {apm-php-ref-v}[``]
 | **Python agent**
 | {apm-py-ref-v}/configuration.html#config-span-compression-same-kind-max-duration[`span_compression_same_kind_max_duration`]
 | {apm-py-ref-v}/configuration.html#config-span-compression-exact-match-max_duration[`span_compression_exact_match_max_duration`]
-// | **Ruby agent**
-// | {apm-ruby-ref-v}[``]
-// | {apm-ruby-ref-v}[``]
 |====

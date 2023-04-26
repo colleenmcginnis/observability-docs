@@ -72,7 +72,6 @@ CA certificates instead of the default list from the OS.
 +
 Here is an example configuration:
 +
---
 ["source","yaml",subs="attributes,callouts"]
 ----------------------------------------------------------------------
 output.elasticsearch:
@@ -87,7 +86,6 @@ output.elasticsearch:
 Authority's certificate. This is needed if you use your own CA to sign your node certificates.
 <2> The path to the certificate for SSL client authentication
 <3> The client certificate key
---
 +
 NOTE: For any given connection, the SSL/TLS certificates must have a subject
 that matches the value specified for `hosts`, or the SSL handshake fails.
@@ -98,6 +96,7 @@ you can associate the IP address with your hostname in `/etc/hosts`
 (on Unix) or `C:\Windows\System32\drivers\etc\hosts` (on Windows).
 
 ifndef::no_dashboards[]
+
 [role="xpack"]
 [float]
 [[apm-securing-communication-kibana]]

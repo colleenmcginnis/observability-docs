@@ -2,8 +2,8 @@
 
 [[apm-release-notes]]
 = Release notes
-:issue: https://github.com/elastic/apm-server/issues/
-:pull: https://github.com/elastic/apm-server/pull/
+
+:root-dir: ../
 
 This section summarizes the changes in each release.
 

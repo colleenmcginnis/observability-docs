@@ -64,7 +64,7 @@ and input the lifetime of the API key in days.
 
 Click **Create API key**. In the dropdown, switch to **{beats}** and copy the API key.
 
-You can now use this API key in your +apm-server.yml+ configuration file:
+You can now use this API key in your `apm-server.yml` configuration file:
 
 ["source","yml",subs="attributes"]
 --------------------
@@ -108,7 +108,7 @@ and input the lifetime of the API key in days.
 
 Click **Create API key**. In the dropdown, switch to **{beats}** and copy the API key.
 
-You can now use this API key in your +apm-server.yml+ configuration file like this:
+You can now use this API key in your `apm-server.yml` configuration file like this:
 
 ["source","yml",subs="attributes"]
 --------------------

@@ -27,6 +27,7 @@ output.console:
 ------------------------------------------------------------------------------
 
 ifdef::apm-server[]
+
 [float]
 === {kib} configuration
 
@@ -35,7 +36,7 @@ endif::[]
 
 === Configuration options
 
-You can specify the following `output.console` options in the +apm-server.yml+ config file:
+You can specify the following `output.console` options in the `apm-server.yml` config file:
 
 ==== `enabled`
 

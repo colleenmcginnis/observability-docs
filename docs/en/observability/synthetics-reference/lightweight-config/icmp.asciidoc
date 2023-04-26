@@ -1,12 +1,11 @@
 :hardbreaks-option:
 
-[%header]
+[options="header",cols="1,3"]
 |===
 | Option (type) | Description
 
 // hosts
-| [[monitor-icmp-hosts]] *`hosts`*
-(<<synthetics-lightweight-data-string,string>>)
+| [[monitor-icmp-hosts]] *`hosts`* (<<synthetics-lightweight-data-string,string>>)
 a| *Required*. The host to ping.
 
 *Example*:
@@ -19,7 +18,7 @@ hosts: "myhost"
 ////////////////////////
 wait
 ////////////////////////
-| [[monitor-icmp-wait]] *`wait`*
+a| [[monitor-icmp-wait]] *`wait`*
 (<<synthetics-lightweight-data-duration,duration>>)
 a| The duration to wait before emitting another ICMP Echo Request if no response is received.
 

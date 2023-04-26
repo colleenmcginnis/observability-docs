@@ -14,7 +14,7 @@ Fleet-managed users should see {fleet-guide}/monitor-elastic-agent.html[View {ag
 to learn how to view logs and change the logging level of {agent}.
 ****
 
-The `logging` section of the +apm-server.yml+ config file contains options
+The `logging` section of the `apm-server.yml` config file contains options
 for configuring the logging output.
 
 The logging system can write logs to the syslog or rotate log files. If logging
@@ -46,9 +46,10 @@ to stderr so it can be captured by journald. Other outputs are disabled. See
 == Configuration options
 
 You can specify the following options in the `logging` section of the
-+apm-server.yml+ config file:
+`apm-server.yml` config file:
 
 ifndef::serverless[]
+
 [float]
 === `logging.to_stderr`
 
@@ -76,6 +77,7 @@ rotated when the log file size limit is reached.
 NOTE: APM Server only creates a log file if there is logging output. For
 example, if you set the log <<apm-level,`level`>> to `error` and there are no
 errors, there will be no log file in the directory specified for logs.
+
 endif::serverless[]
 
 [float]
@@ -124,6 +126,7 @@ logging.selectors: [ harvester, input ]
 ----
 
 ifndef::serverless[]
+
 To override selectors at the command line, use the `-d` global flag (`-d` also
 sets the debug log level). For more information, see <<apm-command-line-options>>.
 endif::serverless[]
@@ -140,9 +143,9 @@ this behavior. The default is true.
 Here is an example log line:
 
 [source,shell]
-----------------------------------------------------------------------------------------------------------------------------------------------------
+----
 2017-12-17T19:17:42.667-0500    INFO    [metrics]       log/log.go:110  Non-zero metrics in the last 30s: beat.info.uptime.ms=30004 beat.memstats.gc_next=5046416
-----------------------------------------------------------------------------------------------------------------------------------------------------
+----
 
 Note that we currently offer no backwards compatible guarantees for the internal
 metrics and for this reason they are also not documented.
@@ -153,6 +156,7 @@ metrics and for this reason they are also not documented.
 The period after which to log the internal metrics. The default is `30s`.
 
 ifndef::serverless[]
+
 [float]
 === `logging.files.path`
 
@@ -211,6 +215,7 @@ writing to a new file instead of appending to the existing one. Defaults to
 true.
 
 ifndef::serverless[]
+
 [float]
 === `logging.files.redirect_stderr` experimental[]
 

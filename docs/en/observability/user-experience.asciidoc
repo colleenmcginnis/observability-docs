@@ -158,13 +158,13 @@ and there will be _no data_ to show in the User Experience app:
 |===
 |
 |*Kibana version ≥{nbsp}8.12*
-|*Kibana version <{nbsp}8.12*
+|*Kibana version \<{nbsp}8.12*
 
 |*RUM agent version ≥{nbsp}5.16.0*
 |INP data will be visible.
 |FID data will be visible.
 
-|*RUM agent version <{nbsp}5.16.0*
+|*RUM agent version \<{nbsp}5.16.0*
 |The INP section will be empty.
 |FID data will be visible.
 

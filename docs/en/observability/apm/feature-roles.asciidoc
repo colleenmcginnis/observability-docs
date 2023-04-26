@@ -134,17 +134,17 @@ Monitoring on {ecloud} is enabled by clicking the *Enable* button in the *Monito
 
 If you're using <<apm-monitoring-internal-collection,internal collection>> to
 collect metrics about APM Server, {security-features} provides
-the +apm_system+ {ref}/built-in-users.html[built-in user] and
-+apm_system+ {ref}/built-in-roles.html[built-in role] to send
+the `apm_system` {ref}/built-in-users.html[built-in user] and
+`apm_system` {ref}/built-in-roles.html[built-in role] to send
 monitoring information. You can use the built-in user, if it's available in your
 environment, or create a user who has the built-in role assigned,
 or create a user and manually assign the privileges needed to send monitoring
 information.
 
-If you use the built-in +apm_system+ user,
+If you use the built-in `apm_system` user,
 make sure you set the password before using it.
 
-If you don't use the +apm_system+ user:
+If you don't use the `apm_system` user:
 
 --
 . Create a *monitoring role*, called something like
@@ -211,7 +211,7 @@ information. Assign the following roles to the *monitoring user*:
 To grant users the required privileges for viewing monitoring data:
 
 . Create a *monitoring role*, called something like
-+apm_monitoring_viewer+, that has the following privileges:
+`apm_monitoring_viewer`, that has the following privileges:
 +
 [options="header"]
 |====

@@ -84,7 +84,7 @@ https://www.elastic.co/downloads/beats/{beatname_lc}[downloads page].
 
 . Extract the contents of the zip file into `C:\Program Files`.
 
-. Rename the +{beatname_lc}-<version>-windows+ directory to +{beatname_uc}+.
+. Rename the `{beatname_lc}-<version>-windows` directory to `{beatname_uc}`.
 
 . Open a PowerShell prompt as an Administrator (right-click the PowerShell icon
 and select *Run As Administrator*).
@@ -101,7 +101,7 @@ PS C:{backslash}Program Files{backslash}{beatname_uc}> .{backslash}install-servi
 NOTE: If script execution is disabled on your system, you need to set the
 execution policy for the current session to allow the script to run. For
 example:
-+PowerShell.exe -ExecutionPolicy UnRestricted -File .\install-service-{beatname_lc}.ps1+.
+`PowerShell.exe -ExecutionPolicy UnRestricted -File .\install-service-{beatname_lc}.ps1`.
 
 endif::[]
 // end::win[]

@@ -13,11 +13,13 @@ This documentation only applies to APM Server binary users.
 ****
 
 ifdef::apm-server[]
+
 NOTE: This page refers to using a separate instance of APM Server with an existing
 {ess-product}[{ess} deployment].
 If you want to use APM on {ess}, see:
 {cloud}/ec-create-deployment.html[Create your deployment] and
 {cloud}/ec-manage-apm-settings.html[Add APM user settings].
+
 endif::apm-server[]
 
 APM Server comes with two settings that simplify the output configuration

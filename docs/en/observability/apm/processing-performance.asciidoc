@@ -27,49 +27,49 @@ specific setup, the size of APM event data, and the exact number of agents.
 |====
 | Profile / Cloud | AWS | Azure | GCP
 
-| *1 GB*
+a| *1 GB*
 (10 agents)
-| 9,000
+a| 9,000
 events/second
-| 6,000
+a| 6,000
 events/second
-| 9,000
+a| 9,000
 events/second
 
-| *4 GB*
+a| *4 GB*
 (30 agents)
-| 25,000
+a| 25,000
 events/second
-| 18,000
+a| 18,000
 events/second
-| 17,000
+a| 17,000
 events/second
 
-| *8 GB*
+a| *8 GB*
 (60 agents)
-| 40,000
+a| 40,000
 events/second
-| 26,000
+a| 26,000
 events/second
-| 25,000
+a| 25,000
 events/second
 
-| *16 GB*
+a| *16 GB*
 (120 agents)
-| 72,000
+a| 72,000
 events/second
-| 51,000
+a| 51,000
 events/second
-| 45,000
+a| 45,000
 events/second
 
-| *32 GB*
+a| *32 GB*
 (240 agents)
-| 135,000
+a| 135,000
 events/second
-| 95,000
+a| 95,000
 events/second
-| 95,000
+a| 95,000
 events/second
 
 |====

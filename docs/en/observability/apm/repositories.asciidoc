@@ -39,7 +39,8 @@ sudo apt-get install apt-transport-https
 --------------------------------------------------
 
 ifeval::["{release-state}"=="prerelease"]
-. Save the repository definition to  +/etc/apt/sources.list.d/elastic-{major-version}-prerelease.list+:
+
+. Save the repository definition to  `/etc/apt/sources.list.d/elastic-{major-version}-prerelease.list`:
 +
 ["source","sh",subs="attributes"]
 --------------------------------------------------
@@ -47,9 +48,10 @@ echo "deb https://artifacts.elastic.co/packages/{major-version}-prerelease/apt s
 --------------------------------------------------
 +
 endif::[]
-
++
 ifeval::["{release-state}"=="released"]
-. Save the repository definition to  +/etc/apt/sources.list.d/elastic-{major-version}.list+:
+
+. Save the repository definition to  `/etc/apt/sources.list.d/elastic-{major-version}.list`:
 +
 ["source","sh",subs="attributes"]
 --------------------------------------------------
@@ -57,6 +59,7 @@ echo "deb https://artifacts.elastic.co/packages/{major-version}/apt stable main"
 --------------------------------------------------
 +
 endif::[]
++
 [WARNING]
 ==================================================
 To add the Elastic repository, make sure that you use the `echo` method  shown
@@ -115,6 +118,7 @@ sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 your `/etc/yum.repos.d/` directory and add the following lines:
 +
 ifeval::["{release-state}"=="prerelease"]
+
 ["source","sh",subs="attributes"]
 --------------------------------------------------
 [elastic-{major-version}-prerelease]
@@ -127,7 +131,9 @@ autorefresh=1
 type=rpm-md
 --------------------------------------------------
 endif::[]
++
 ifeval::["{release-state}"=="released"]
+
 ["source","sh",subs="attributes"]
 --------------------------------------------------
 [elastic-{major-version}]

@@ -1,22 +1,17 @@
 :hardbreaks-option:
 
-[%header]
+[options="header",cols="1,3"]
 |===
 | Option (type) | Description
 
-// type
-| [[monitor-type]] *`type`*
-(`"http"` \| `"icmp"` \| `"tcp"`)
+| [[monitor-type]] *`type`* (`"http"`, `"icmp"`, or `"tcp"`)
 a| *Required*. The type of monitor to run. One of:
 
 * `http`: Connects via HTTP and optionally verifies that the host returns the expected response.
 * `icmp`: Uses an ICMP (v4 and v6) Echo Request to ping the configured hosts. Requires special permissions or root access.
 * `tcp`: Connects via TCP and optionally verifies the endpoint by sending and/or receiving a custom payload.
 
-////////////////////////
-id
-////////////////////////
-| [[monitor-id]] *`id`*
+a| [[monitor-id]] *`id`*
 (<<synthetics-lightweight-data-string,string>>)
 a| *Required*. A unique identifier for this configuration. This should not change with edits to the monitor configuration regardless of changes to any config fields.
 
@@ -42,7 +37,7 @@ If you do not set an `id` explicitly, the monitor's config will be hashed and a 
 ////////////////////////
 name
 ////////////////////////
-| [[monitor-name]] *`name`*
+a| [[monitor-name]] *`name`*
 (<<synthetics-lightweight-data-string,string>>)
 a| Human readable name for this monitor.
 
@@ -61,14 +56,14 @@ name: Example website
 ////////////////////////
 service.name
 ////////////////////////
-| [[monitor-service_name]] *`service.name`*
+a| [[monitor-service_name]] *`service.name`*
 (<<synthetics-lightweight-data-string,string>>)
 a| APM service name for this monitor. Corresponds to the `service.name` ECS field. Set this when monitoring an app that is also using APM to enable integrations between Synthetics and APM data in Kibana.
 
 ////////////////////////
 enabled
 ////////////////////////
-| [[monitor-enabled]] *`enabled`*
+a| [[monitor-enabled]] *`enabled`*
 (<<synthetics-lightweight-data-bool,boolean>>)
 a| Whether the monitor is enabled.
 
@@ -84,7 +79,7 @@ enabled: false
 ////////////////////////
 schedule
 ////////////////////////
-| [[monitor-schedule]] *`schedule`*
+a| [[monitor-schedule]] *`schedule`*
 (<<synthetics-lightweight-data-duration,duration>>)
 a| *Required*. The task schedule.
 
@@ -101,7 +96,7 @@ schedule: @every 5m
 ////////////////////////
 timeout
 ////////////////////////
-| [[monitor-timeout]] *`timeout`*
+a| [[monitor-timeout]] *`timeout`*
 (<<synthetics-lightweight-data-duration,duration>>)
 a| The total running time for each ping test. This is the total time allowed for testing the connection and exchanging data.
 
@@ -117,7 +112,7 @@ timeout: 2m
 ////////////////////////
 tags
 ////////////////////////
-| [[monitor-tags]] *`tags`*
+a| [[monitor-tags]] *`tags`*
 (list of <<synthetics-lightweight-data-string,string>>s)
 a| A list of tags that will be sent with the monitor event.
 
@@ -138,7 +133,7 @@ tags: ["tag one", "tag two"]
 ////////////////////////
 mode
 ////////////////////////
-| [[monitor-mode]] *`mode`*
+a| [[monitor-mode]] *`mode`*
 (`"any"` \| `"all"`)
 a| One of two modes in which to run the monitor:
 
@@ -153,7 +148,7 @@ If you're using a DNS-load balancer and want to ping every IP address for the sp
 ////////////////////////
 ipv4
 ////////////////////////
-| [[monitor-ipv4]] *`ipv4`*
+a| [[monitor-ipv4]] *`ipv4`*
 (<<synthetics-lightweight-data-bool,boolean>>)
 a|  Whether to ping using the ipv4 protocol if hostnames are configured.
 
@@ -169,7 +164,7 @@ ipv4: false
 ////////////////////////
 ipv6
 ////////////////////////
-| [[monitor-ipv6]] *`ipv6`*
+a| [[monitor-ipv6]] *`ipv6`*
 (<<synthetics-lightweight-data-bool,boolean>>)
 a|  Whether to ping using the ipv6 protocol if hostnames are configured.
 
@@ -188,9 +183,6 @@ alert
 | [[monitor-alert]] *`alert`*
 a| Enable or disable alerts on this monitor. Read more about alerts in <<synthetics-settings-alerting>>.
 
-////////////////////////
-status.enabled
-////////////////////////
 *`status.enabled`* (<<synthetics-lightweight-data-bool,boolean>>)::
 Enable monitor status alerts on this monitor.
 +
@@ -203,9 +195,6 @@ Enable monitor status alerts on this monitor.
 alert.status.enabled: true
 ----
 
-////////////////////////
-tls.enabled
-////////////////////////
 *`tls.enabled`* (<<synthetics-lightweight-data-bool,boolean>>)::
 Enable TLS certificate alerts on this monitor.
 +

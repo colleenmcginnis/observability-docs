@@ -30,7 +30,7 @@ apm-server.kibana.host: "http://localhost:5601"
 == {kib} endpoint configuration options
 
 You can specify the following options in the `apm-server.kibana` section of the
-+apm-server.yml+ config file. These options are not required for a Fleet-managed APM Server.
+`apm-server.yml` config file. These options are not required for a Fleet-managed APM Server.
 
 [float]
 [[apm-kibana-enabled]]

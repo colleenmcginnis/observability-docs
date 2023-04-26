@@ -134,6 +134,7 @@ image::./images/fm-ov.png[APM Server fleet overview]
 // |====
 
 [float]
+[[help_me_decide]]
 === Help me decide
 
 Use the decision tree below to help determine which method of configuring and running the APM Server is best for your use case.
@@ -141,7 +142,7 @@ Use the decision tree below to help determine which method of configuring and ru
 [subs=attributes+]
 include::{observability-docs-root}/docs/en/observability/apm/diagrams/apm-decision-tree.asciidoc[APM Server decision tree]
 
-
+[[_apm_server_binary]]
 === APM Server binary
 
 This guide will explain how to set up and configure the APM Server binary.
@@ -180,6 +181,7 @@ If you use `apt` or `yum`, you can <<apm-setup-repositories,install APM Server f
 to update to the newest version more easily.
 
 ifeval::["{release-state}"!="unreleased"]
+
 See our https://www.elastic.co/downloads/apm[download page]
 for other installation options, such as 32-bit images.
 endif::[]
@@ -475,7 +477,7 @@ include::{observability-docs-root}/docs/en/observability/apm/repositories.asciid
 // Shared docker
 include::{observability-docs-root}/docs/en/observability/apm/shared-docker.asciidoc[]
 
-
+[[_fleet_managed_apm_server]]
 === Fleet-managed APM Server
 
 This guide will explain how to set up and configure a Fleet-managed APM Server.
@@ -488,6 +490,7 @@ When setting these components up, you need:
 
 include::{ingest-docs-root}/docs/en/ingest-management/tab-widgets/prereq.asciidoc[tag=self-managed]
 
+[[_step_1_set_up_fleet]]
 ==== Step 1: Set up Fleet
 
 Use {fleet} in {kib} to get APM data into the {stack}.
@@ -498,6 +501,7 @@ include::{ingest-docs-root}/docs/en/ingest-management/tab-widgets/add-fleet-serv
 
 For more information, refer to {fleet-guide}/fleet-server.html[{fleet-server}].
 
+[[_step_2_add_and_configure_the_apm_integration]]
 ==== Step 2: Add and configure the APM integration
 
 include::{observability-docs-root}/docs/en/observability/tab-widgets/add-apm-integration/content.asciidoc[tag=self-managed]
@@ -510,6 +514,7 @@ include::{observability-docs-root}/docs/en/observability/apm/getting-started-apm
 --
 ****
 
+[[_step_3_install_apm_agents]]
 ==== Step 3: Install APM agents
 
 APM agents are written in the same language as your service.
@@ -533,6 +538,7 @@ or secret token to match your APM agents.
 
 include::{observability-docs-root}/docs/en/observability/apm/tab-widgets/install-agents-widget.asciidoc[]
 
+[[_step_4_view_your_data]]
 ==== Step 4: View your data
 
 Back in {kib}, under {observability}, select APM.

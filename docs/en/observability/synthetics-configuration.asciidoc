@@ -179,6 +179,7 @@ Pushes to the "default" space if not specified.
 Default values to be applied to _all_ monitors when using the <<elastic-synthetics-push-command, `@elastic/synthetics` `push` command>>.
 
 // tag::monitor-config-options[]
+
 `id` (`string`)::
 A unique identifier for this monitor.
 `name` (`string`)::
@@ -228,5 +229,5 @@ Using `retestOnFailure` can reduce noise related to transient problems.
 
 For information on configuring monitors individually, refer to:
 
-* <<synthetics-monitor-use>> for browser monitors 
+* <<synthetics-monitor-use>> for browser monitors
 * <<synthetics-lightweight>> for lightweight monitors

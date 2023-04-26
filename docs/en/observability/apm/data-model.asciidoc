@@ -1,6 +1,3 @@
-:span-name-type-sheet: https://docs.google.com/spreadsheets/d/1SmWeX5AeqUcayrArUauS_CxGgsjwRgMYH4ZY8yQsMhQ/edit#gid=644582948
-:span-spec: https://github.com/elastic/apm/blob/main/tests/agents/json-specs/span_types.json
-
 [[apm-data-model]]
 == Data Model
 
@@ -16,6 +13,9 @@ Events can contain additional <<apm-data-model-metadata,metadata>> which further
 
 [[apm-data-model-spans]]
 === Spans
+
+:span-name-type-sheet: https://docs.google.com/spreadsheets/d/1SmWeX5AeqUcayrArUauS_CxGgsjwRgMYH4ZY8yQsMhQ/edit#gid=644582948
+:span-spec: https://github.com/elastic/apm/blob/main/tests/agents/json-specs/span_types.json
 
 *Spans* contain information about the execution of a specific code path.
 They measure from the start to the end of an activity,

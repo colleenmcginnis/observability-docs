@@ -12,7 +12,7 @@ This documentation is only relevant for APM Server binary users.
 Fleet-managed paths are defined in <<apm-directory-layout>>.
 ****
 
-The `path` section of the +apm-server.yml+ config file contains configuration
+The `path` section of the `apm-server.yml` config file contains configuration
 options that define where APM Server looks for its files. For example, APM Server
 looks for the {es} template file in the configuration path and writes
 log files in the logs path.
@@ -37,7 +37,7 @@ Note that it is possible to override these options by using command line flags.
 [float]
 == Configuration options
 
-You can specify the following options in the `path` section of the +apm-server.yml+ config file:
+You can specify the following options in the `path` section of the `apm-server.yml` config file:
 
 [float]
 === `home`

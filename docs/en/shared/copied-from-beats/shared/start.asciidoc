@@ -8,6 +8,7 @@ sudo service {beatname_pkg} start
 ----------------------------------------------------------------------
 
 // tag::initd-note[]
+
 NOTE: If you use an `init.d` script to start {beatname_uc}, you can't specify command
 line flags (see {beatname_url}/command-line-options.html[Command reference]). To specify flags, start {beatname_uc} in
 the foreground.
@@ -15,9 +16,11 @@ the foreground.
 // end::initd-note[]
 
 Also see {beatname_url}/running-with-systemd.html[{beatname_uc} and systemd].
+
 // end::deb[]
 
 // tag::rpm[]
+
 ["source","sh",subs="attributes"]
 ----------------------------------------------------------------------
 sudo service {beatname_pkg} start
@@ -30,7 +33,9 @@ Also see {beatname_url}/running-with-systemd.html[{beatname_uc} and systemd].
 // end::rpm[]
 
 // tag::mac[]
+
 ifndef::has_modules_command[]
+
 ["source","sh",subs="attributes,callouts"]
 ----------------------------------------------------------------------
 sudo chown root {beatname_lc}.yml <1>
@@ -40,8 +45,11 @@ sudo ./{beatname_lc} -e
 of the configuration file, or run {beatname_uc} with `--strict.perms=false`
 specified. See
 {beats-ref}/config-file-permissions.html[Config File Ownership and Permissions].
+
 endif::has_modules_command[]
+
 ifdef::has_modules_command[]
+
 ["source","sh",subs="attributes,callouts"]
 ----------------------------------------------------------------------
 sudo chown root {beatname_lc}.yml <1>
@@ -52,12 +60,15 @@ sudo ./{beatname_lc} -e
 configuration file and any configurations enabled in the `modules.d` directory,
 or run {beatname_uc} with `--strict.perms=false` specified. See
 {beats-ref}/config-file-permissions.html[Config File Ownership and Permissions].
+
 endif::has_modules_command[]
+
 // end::mac[]
 
 // tag::linux[]
 
 ifndef::has_modules_command[]
+
 ["source","sh",subs="attributes,callouts"]
 ----------------------------------------------------------------------
 sudo chown root {beatname_lc}.yml <1>
@@ -67,8 +78,11 @@ sudo ./{beatname_lc} -e
 of the configuration file, or run {beatname_uc} with `--strict.perms=false`
 specified. See
 {beats-ref}/config-file-permissions.html[Config File Ownership and Permissions].
+
 endif::has_modules_command[]
+
 ifdef::has_modules_command[]
+
 ["source","sh",subs="attributes,callouts"]
 ----------------------------------------------------------------------
 sudo chown root {beatname_lc}.yml <1>
@@ -79,21 +93,25 @@ sudo ./{beatname_lc} -e
 configuration file and any configurations enabled in the `modules.d` directory,
 or run {beatname_uc} with `--strict.perms=false` specified. See
 {beats-ref}/config-file-permissions.html[Config File Ownership and Permissions].
+
 endif::has_modules_command[]
 
 // end::linux[]
 
 // tag::win[]
+
 ["source","sh",subs="attributes"]
 ----------------------------------------------------------------------
 PS C:{backslash}Program Files{backslash}{beatname_lc}> Start-Service {beatname_lc}
 ----------------------------------------------------------------------
 
-By default, Windows log files are stored in +C:{backslash}ProgramData{backslash}{beatname_lc}\Logs+.
+By default, Windows log files are stored in `C:{backslash}ProgramData{backslash}{beatname_lc}\Logs`.
 
 ifeval::["{beatname_lc}"=="metricbeat"]
+
 NOTE: On Windows, statistics about system load and swap usage are currently
 not captured
+
 endif::[]
 
 // end::win[]

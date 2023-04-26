@@ -1,18 +1,17 @@
 :hardbreaks-option:
 
-[%header]
+[options="header",cols="1,3"]
 |===
 | Option (type) | Description
 
 // hosts
-| [[monitor-http-hosts]] *`hosts`*
-(<<synthetics-lightweight-data-string,string>>)
+| [[monitor-http-hosts]] *`hosts`* (<<synthetics-lightweight-data-string,string>>)
 a| *Required*. The URL to ping.
 
 ////////////////////////
 max_redirects
 ////////////////////////
-| [[monitor-http-max_redirects]] *`max_redirects`*
+a| [[monitor-http-max_redirects]] *`max_redirects`*
 (<<synthetics-lightweight-data-numbers,number>>)
 a| The total number of redirections Synthetics will follow.
 
@@ -31,7 +30,7 @@ a| Additional headers to send to proxies during `CONNECT` requests.
 ////////////////////////
 proxy_url
 ////////////////////////
-| [[monitor-http-proxy_url]] *`proxy_url`*
+a| [[monitor-http-proxy_url]] *`proxy_url`*
 (<<synthetics-lightweight-data-string,string>>)
 a| The HTTP proxy URL. This setting is optional.
 
@@ -43,7 +42,7 @@ http://proxy.mydomain.com:3128
 ////////////////////////
 username
 ////////////////////////
-| [[monitor-http-username]] *`username`*
+a| [[monitor-http-username]] *`username`*
 (<<synthetics-lightweight-data-string,string>>)
 a| The username for authenticating with the server. The credentials are passed with the request. This setting is optional.
 
@@ -52,14 +51,14 @@ You need to specify credentials when your `check.response` settings require it. 
 ////////////////////////
 password
 ////////////////////////
-| [[monitor-http-password]] *`password`*
+a| [[monitor-http-password]] *`password`*
 (<<synthetics-lightweight-data-string,string>>)
 a| The password for authenticating with the server. This setting is optional.
 
 ////////////////////////
 ssl
 ////////////////////////
-| [[monitor-http-ssl]] *`ssl`*
+a| [[monitor-http-ssl]] *`ssl`*
 ({heartbeat-ref}/configuration-ssl.html[SSL])
 a| The TLS/SSL connection settings for use with the HTTPS endpoint. If you don't specify settings, the system defaults are used.
 
@@ -80,7 +79,7 @@ a| The TLS/SSL connection settings for use with the HTTPS endpoint. If you don't
 ////////////////////////
 headers
 ////////////////////////
-| [[monitor-http-headers]] *`headers`*
+a| [[monitor-http-headers]] *`headers`*
 (<<synthetics-lightweight-data-bool,boolean>>)
 a| Controls the indexing of the HTTP response headers `http.response.body.headers` field. Set `response.include_headers` to `false` to disable.
 
@@ -95,7 +94,7 @@ a| Controls the indexing of the HTTP response body contents to the `http.respons
 ////////////////////////
 response.include_body
 ////////////////////////
-*`include_body`* (`"on_error"` \| `"never"` \| `"always"`)::
+*`include_body`* (`"on_error"`, `"never"`, or `"always"`)::
 Set `response.include_body` to one of the options listed below.
 +
 * `on_error`: Include the body if an error is encountered during the check. This is the default.
@@ -114,7 +113,7 @@ Set `response.include_body_max_bytes` to control the maximum size of the stored 
 check
 ////////////////////////
 | [[monitor-http-check]] *`check`*
-a| 
+a|
 ////////////////////////
 // check.request
 ////////////////////////
@@ -124,7 +123,7 @@ a|
 ////////////////////////
 // check.request.method
 ////////////////////////
-*`method`* (`"HEAD"` \| `"GET"` \| `"POST"` \| `"OPTIONS"`)::: The HTTP method to use.
+*`method`* (`"HEAD"`, `"GET"`, `"POST"`, or `"OPTIONS"`)::: The HTTP method to use.
 
 ////////////////////////
 // check.request.headers

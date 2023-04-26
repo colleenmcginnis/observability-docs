@@ -169,7 +169,7 @@ Matrix].
 === Configuration options
 
 You can specify the following options in the `logstash` section of the
-+apm-server.yml+ config file:
+`apm-server.yml` config file:
 
 ==== `enabled`
 
@@ -274,8 +274,8 @@ that when a proxy is used the name resolution occurs on the proxy server.
 ==== `index`
 
 The index root name to write events to. The default is `apm-server`. For
-example +"apm"+ generates +"[apm-]{version}-YYYY.MM.DD"+
-indices (for example, +"apm-{version}-2017.04.26"+).
+example `"apm"` generates `"[apm-]{version}-YYYY.MM.DD"`
+indices (for example, `"apm-{version}-2017.04.26"`).
 
 NOTE: This parameter's value will be assigned to the `metadata.beat` field. It
 can then be accessed in {ls}'s output section as `%{[@metadata][beat]}`.

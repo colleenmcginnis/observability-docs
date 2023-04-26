@@ -215,7 +215,6 @@ var apm = require('elastic-apm-node').start({
 
 // tag::python[]
 Django::
-+
 *Install the {apm-agent}*
 +
 Install the {apm-agent} for Python as a dependency.
@@ -262,7 +261,6 @@ MIDDLEWARE = (
 ----
 
 Flask::
-+
 *Install the {apm-agent}*
 +
 Install the {apm-agent} for Python as a dependency.
@@ -325,7 +323,6 @@ gem 'elastic-apm'
 *Configure the agent*
 
 Ruby on Rails::
-+
 APM is automatically started when your app boots.
 Configure the agent by creating the config file `config/elastic_apm.yml`:
 +
@@ -349,7 +346,6 @@ server_url: 'http://localhost:8200'
 ----
 
 Rack::
-+
 For Rack or a compatible framework, like Sinatra, include the middleware in your app and start the agent.
 +
 [source,ruby]

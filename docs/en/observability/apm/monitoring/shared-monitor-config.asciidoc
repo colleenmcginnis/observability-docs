@@ -6,7 +6,7 @@ Use the following settings to configure internal collection when you are not
 using {metricbeat} to collect monitoring data.
 
 You specify these settings in the X-Pack monitoring section of the
-+apm-server.yml+ config file:
+`apm-server.yml` config file:
 
 [float]
 ==== `monitoring.enabled`

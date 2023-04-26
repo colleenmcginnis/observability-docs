@@ -33,7 +33,7 @@ To collect and ship monitoring data:
 --
 // tag::enable-http-endpoint[]
 Add the following setting in the APM Server configuration file
-(+apm-server.yml+):
+(`apm-server.yml`):
 
 [source,yaml]
 ----------------------------------
@@ -56,7 +56,7 @@ http.port: 5067
 --
 // tag::disable-beat-collection[]
 Add the following setting in the APM Server configuration file
-(+apm-server.yml+):
+(`apm-server.yml`):
 
 [source,yaml]
 ----------------------------------
@@ -153,9 +153,11 @@ you enabled the HTTP endpoint, update the `hosts` setting.
 
 To monitor multiple
 ifndef::apm-server[]
+
 {beats} agents,
 endif::[]
 ifdef::apm-server[]
+
 APM Server instances,
 endif::[]
 specify a list of hosts, for example:
@@ -178,8 +180,7 @@ ID and password so that {metricbeat} can collect metrics successfully:
 Alternatively, if it's available in your environment, use the
 `remote_monitoring_user` {ref}/built-in-users.html[built-in user].
 
-.. Add the `username` and `password` settings to the beat module configuration
-file.
+.. Add the `username` and `password` settings to the beat module configuration file.
 // end::remote-monitoring-user[]
 --
 

@@ -117,8 +117,7 @@ and password so that {metricbeat} can collect metrics successfully:
 Alternatively, if it's available in your environment, use the
 `remote_monitoring_user` {ref}/built-in-users.html[built-in user].
 
-... Add the `username` and `password` settings to the beat module configuration
-file.
+... Add the `username` and `password` settings to the beat module configuration file.
 --
 
 . Optional: Disable the system module in the {metricbeat}.

@@ -24,5 +24,6 @@ include::monitoring-internal-collection.asciidoc[]
 include::monitoring-local-collection.asciidoc[]
 
 ifndef::serverless[]
+
 include::monitoring-metricbeat.asciidoc[]
 endif::[]

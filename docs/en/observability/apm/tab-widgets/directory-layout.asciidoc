@@ -3,13 +3,14 @@
 [cols="<h,<,<m",options="header",]
 |=======================================================================
 | Type   | Description | Location
-| home   | Home of the APM Server installation. | {extract.path}
-| bin    | The location for the binary files. | {extract.path}
-| config | The location for configuration files. | {extract.path}
-| data   | The location for persistent data files. | {extract.path}/data
-| logs   | The location for the logs created by APM Server. | {extract.path}/logs
+| home   | Home of the APM Server installation. | `{extract.path}`
+| bin    | The location for the binary files. | `{extract.path}`
+| config | The location for configuration files. | `{extract.path}`
+| data   | The location for persistent data files. | `{extract.path}/data`
+| logs   | The location for the logs created by APM Server. | `{extract.path}/logs`
 ifdef::serverless[]
-| pkg    | The location for the binary uploaded to your serverless provider. | {extract.path}/pkg
+
+ pkg    | The location for the binary uploaded to your serverless provider. | `{extract.path}/pkg`
 endif::serverless[]
 |=======================================================================
 

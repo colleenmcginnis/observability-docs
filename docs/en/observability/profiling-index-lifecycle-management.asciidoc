@@ -54,7 +54,7 @@ Complete the following steps to configure a custom index lifecycle policy.
 . Navigate to **{stack-manage-app}** → **Index Lifecycle Policies**.
 
 . Click **Create policy**.
-. Name your new policy, for example `custom-profiling-policy`. 
+. Name your new policy, for example `custom-profiling-policy`.
 . Customize the policy to your liking.
 . Click **Save policy**.
 

@@ -17,7 +17,7 @@ Elastic license levels.
 [float]
 ===== Pull the image
 
-Obtaining APM Server for Docker is as simple as issuing a +docker pull+ command
+Obtaining APM Server for Docker is as simple as issuing a `docker pull` command
 against the Elastic Docker registry and then, optionally, verifying the image.
 
 ifeval::["{release-state}"=="unreleased"]
@@ -79,7 +79,7 @@ curl -L -O https://raw.githubusercontent.com/elastic/apm-server/{branch}/apm-ser
 ====== Volume-mounted configuration
 
 One way to configure APM Server on Docker is to provide +apm-server.docker.yml+ via a volume mount.
-With +docker run+, the volume mount can be specified like this.
+With `docker run`, the volume mount can be specified like this.
 
 ["source", "sh", subs="attributes"]
 --------------------------------------------
@@ -102,7 +102,7 @@ using the syntax shown earlier.
 ====== Customize your configuration
 
 ifdef::has_docker_label_ex[]
-The +apm-server.docker.yml+ file you downloaded earlier is configured to deploy {beats} modules based on the Docker labels applied to your containers.  See <<configuration-autodiscover-hints>> for more details. Add labels to your application Docker containers, and they will be picked up by the {beats} autodiscover feature when they are deployed.  Here is an example command for an Apache HTTP Server container with labels to configure the {filebeat} and {metricbeat} modules for the Apache HTTP Server:
+The `apm-server.docker.yml` file you downloaded earlier is configured to deploy {beats} modules based on the Docker labels applied to your containers.  See <<configuration-autodiscover-hints>> for more details. Add labels to your application Docker containers, and they will be picked up by the {beats} autodiscover feature when they are deployed.  Here is an example command for an Apache HTTP Server container with labels to configure the {filebeat} and {metricbeat} modules for the Apache HTTP Server:
 
 ["source", "sh", subs="attributes"]
 --------------------------------------------
@@ -121,7 +121,7 @@ docker run \
 endif::[]
 
 ifndef::has_docker_label_ex[]
-The +apm-server.docker.yml+ downloaded earlier should be customized for your environment. See <<apm-configuring-howto-apm-server>> for more details. Edit the configuration file and customize it to match your environment then re-deploy your APM Server container.
+The `apm-server.docker.yml` downloaded earlier should be customized for your environment. See <<apm-configuring-howto-apm-server>> for more details. Edit the configuration file and customize it to match your environment then re-deploy your APM Server container.
 endif::[]
 
 [float]

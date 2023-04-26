@@ -103,7 +103,7 @@ See the https://www.openssl.org/docs/manmaster/man1/openssl-s_client.html[OpenSS
 
 [float]
 [[apm-cannot-validate-certificate]]
-==== x509: cannot validate certificate for <IP address> because it doesn't contain any IP SANs
+==== x509: cannot validate certificate for `<IP address>` because it doesn't contain any IP SANs
 
 This happens because your certificate is only valid for the hostname present in the Subject field.
 To resolve this problem, try one of these solutions:

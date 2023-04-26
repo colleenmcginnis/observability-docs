@@ -5,7 +5,7 @@
 <titleabbrev>Monitor {aws} with {beats}</titleabbrev>
 ++++
 
-In this tutorial, you’ll learn how to monitor your {aws} infrastructure using
+In this tutorial, you’ll learn how to monitor your AWS infrastructure using
 Elastic {observability}: Logs and Infrastructure metrics.
 
 [discrete]
