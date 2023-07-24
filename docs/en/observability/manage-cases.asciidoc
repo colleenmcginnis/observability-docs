@@ -46,7 +46,7 @@ When you export cases as {kibana-ref}/managing-saved-objects.html[saved objects]
 [[add-case-notifications]]
 == Add email notifications
 
-include::{kibana-repo-dir}/management/cases/manage-cases.asciidoc[tag=case-notifications]
+include::{kibana-root}/docs/management/cases/manage-cases.asciidoc[tag=case-notifications]
 
 [discrete]
 [[manage-case-observability]]
