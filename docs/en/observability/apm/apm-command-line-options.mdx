@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmCommandLineOptions
 slug: /en/observability/apm-command-line-options
 title: APM Server command reference
 description: Description to be written
@@ -8,7 +7,7 @@ tags: []
 
 import ApikeySubcommands from './command-reference/apikey-subcommands.mdx'
 
-export let global_flags = `Also see <DocLink id="enObservabilityApmCommandLineOptions" section="global-flags">Global flags</DocLink>.`
+export let global_flags = `Also see <DocLink slug="/en/observability/apm-command-line-options" section="global-flags">Global flags</DocLink>.`
 
 export let deploy_command_short_desc = "Deploys the specified function to your serverless environment"
 
@@ -28,7 +27,7 @@ export let export_command_short_desc = "Exports the configuration, index templat
 
 export let help_command_short_desc = "Shows help for any command"
 
-export let keystore_command_short_desc = `Manages the <DocLink id="enObservabilityApmKeystore">secrets keystore</DocLink>`
+export let keystore_command_short_desc = `Manages the <DocLink slug="/en/observability/apm-keystore">secrets keystore</DocLink>`
 
 export let modules_command_short_desc = "Manages configured modules"
 
@@ -55,7 +54,7 @@ These commands only apply to the APM Server binary installation method.
 APM Server provides a command-line interface for starting APM Server and
 performing common tasks, like testing configuration files.
 
-The command-line also supports <DocLink id="enObservabilityApmCommandLineOptions" section="global-flags">global flags</DocLink>
+The command-line also supports <DocLink slug="/en/observability/apm-command-line-options" section="global-flags">global flags</DocLink>
 for controlling global behaviors.
 
 <DocCallOut title="Tip">
@@ -77,7 +76,7 @@ more information, see https://www.elastic.co/subscriptions and
 ]}>
   <DocRow>
     <DocCell>
-      <DocLink id="enObservabilityApmCommandLineOptions" section="apikey-command">`apikey`</DocLink>
+      <DocLink slug="/en/observability/apm-command-line-options" section="apikey-command">`apikey`</DocLink>
     </DocCell>
     <DocCell>
       {apikey_command_short_desc}.
@@ -85,7 +84,7 @@ more information, see https://www.elastic.co/subscriptions and
   </DocRow>
   <DocRow>
     <DocCell>
-      <DocLink id="enObservabilityApmCommandLineOptions" section="export-command">`export`</DocLink>
+      <DocLink slug="/en/observability/apm-command-line-options" section="export-command">`export`</DocLink>
     </DocCell>
     <DocCell>
       {export_command_short_desc}.
@@ -93,7 +92,7 @@ more information, see https://www.elastic.co/subscriptions and
   </DocRow>
   <DocRow>
     <DocCell>
-      <DocLink id="enObservabilityApmCommandLineOptions" section="help-command">`help`</DocLink>
+      <DocLink slug="/en/observability/apm-command-line-options" section="help-command">`help`</DocLink>
     </DocCell>
     <DocCell>
       {help_command_short_desc}.
@@ -102,7 +101,7 @@ more information, see https://www.elastic.co/subscriptions and
   <DocIf condition={ serverless === false }>
     <DocRow>
       <DocCell>
-        <DocLink id="enObservabilityApmCommandLineOptions" section="keystore-command">`keystore`</DocLink>
+        <DocLink slug="/en/observability/apm-command-line-options" section="keystore-command">`keystore`</DocLink>
       </DocCell>
       <DocCell>
         {keystore_command_short_desc}.
@@ -112,7 +111,7 @@ more information, see https://www.elastic.co/subscriptions and
   <DocIf condition={ serverless === false }>
     <DocRow>
       <DocCell>
-        <DocLink id="enObservabilityApmCommandLineOptions" section="run-command">`run`</DocLink>
+        <DocLink slug="/en/observability/apm-command-line-options" section="run-command">`run`</DocLink>
       </DocCell>
       <DocCell>
         {run_command_short_desc}.
@@ -121,21 +120,21 @@ more information, see https://www.elastic.co/subscriptions and
   </DocIf>
   <DocRow>
     <DocCell>
-      <DocLink id="enObservabilityApmCommandLineOptions" section="test-command">`test`</DocLink>
+      <DocLink slug="/en/observability/apm-command-line-options" section="test-command">`test`</DocLink>
     </DocCell>
     <DocCell>
       {test_command_short_desc}.
     </DocCell>
   </DocRow>
   <DocRow>
-    <DocCell><DocLink id="enObservabilityApmCommandLineOptions" section="version-command">`version`</DocLink></DocCell>
+    <DocCell><DocLink slug="/en/observability/apm-command-line-options" section="version-command">`version`</DocLink></DocCell>
     <DocCell>
       {version_command_short_desc}.
     </DocCell>
   </DocRow>
 </DocTable>
 
-Also see <DocLink id="enObservabilityApmCommandLineOptions" section="global-flags">Global flags</DocLink>.
+Also see <DocLink slug="/en/observability/apm-command-line-options" section="global-flags">Global flags</DocLink>.
 
 <div id="apm-apikey-command"></div>
 
@@ -143,11 +142,11 @@ Also see <DocLink id="enObservabilityApmCommandLineOptions" section="global-flag
 
 <DocCallOut template="technical_preview" />
 <DocCallOut title="Deprecated in 8.6.0" color="danger">
-Users should create API Keys through ((kib)) or the ((es)) REST API. See <DocLink id="enObservabilityApmApiKey">API keys</DocLink>.
+Users should create API Keys through ((kib)) or the ((es)) REST API. See <DocLink slug="/en/observability/apm-api-key">API keys</DocLink>.
 </DocCallOut>
 
 Communication between APM agents and APM Server now supports sending an
-<DocLink id="enObservabilityApmApiKey">API Key in the Authorization header</DocLink>.
+<DocLink slug="/en/observability/apm-api-key">API Key in the Authorization header</DocLink>.
 APM Server provides an `apikey` command that can create, verify, invalidate,
 and show information about API Keys for agent/server communication.
 Most operations require the `manage_own_api_key` cluster privilege,
@@ -235,7 +234,7 @@ apm-server apikey info --name example-001 --valid-only
 apm-server apikey invalidate --name example-001
 ```
 
-For more information, see <DocLink id="enObservabilityApmApiKey">API keys</DocLink>.
+For more information, see <DocLink slug="/en/observability/apm-api-key">API keys</DocLink>.
 
 <div id="apm-export-command"></div>
 
@@ -309,9 +308,9 @@ apm-server export SUBCOMMAND [FLAGS]
     **`--es.version VERSION`**
   </DocDefTerm>
   <DocDefDescription>
-    When used with <DocLink id="enObservabilityApmCommandLineOptions" section="apm-template-subcommand">`template`</DocLink>, exports an index
+    When used with <DocLink slug="/en/observability/apm-command-line-options" section="apm-template-subcommand">`template`</DocLink>, exports an index
     template that is compatible with the specified version.
-    When used with <DocLink id="enObservabilityApmCommandLineOptions" section="apm-ilm-policy-subcommand">`ilm-policy`</DocLink>, exports the ((ilm-init)) policy
+    When used with <DocLink slug="/en/observability/apm-command-line-options" section="apm-ilm-policy-subcommand">`ilm-policy`</DocLink>, exports the ((ilm-init)) policy
     if the specified ES version is enabled for ((ilm-init)).
   </DocDefDescription>
 
@@ -324,7 +323,7 @@ apm-server export SUBCOMMAND [FLAGS]
   <DocDefTerm>
     **`--index BASE_NAME`**
   </DocDefTerm>
-    : When used with <DocLink id="enObservabilityApmCommandLineOptions" section="apm-template-subcommand">`template`</DocLink>, sets the base name to use for
+    : When used with <DocLink slug="/en/observability/apm-command-line-options" section="apm-template-subcommand">`template`</DocLink>, sets the base name to use for
     the index template. If this flag is not specified, the default base name is
     `apm-server`.
   </DocDefDescription>
@@ -488,7 +487,7 @@ apm-server keystore remove ES_PWD
 apm-server keystore list
 ```
 
-See <DocLink id="enObservabilityApmKeystore">Secrets keystore for secure settings</DocLink> for more examples.
+See <DocLink slug="/en/observability/apm-keystore">Secrets keystore for secure settings</DocLink> for more examples.
 
 </DocIf>
 
@@ -706,24 +705,24 @@ These global flags are available whenever you run APM Server.
 
   <DocDefTerm>**`--path.config`**</DocDefTerm>
   <DocDefDescription>
-    Sets the path for configuration files. See the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for
+    Sets the path for configuration files. See the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> section for
     details.
   </DocDefDescription>
 
   <DocDefTerm>**`--path.data`**</DocDefTerm>
   <DocDefDescription>
-    Sets the path for data files. See the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for details.
+    Sets the path for data files. See the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> section for details.
   </DocDefDescription>
 
   <DocDefTerm>**`--path.home`**</DocDefTerm>
   <DocDefDescription>
-    Sets the path for miscellaneous files. See the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for
+    Sets the path for miscellaneous files. See the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> section for
     details.
   </DocDefDescription>
 
   <DocDefTerm>**`--path.logs`**</DocDefTerm>
   <DocDefDescription>
-    Sets the path for log files. See the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for details.
+    Sets the path for log files. See the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> section for details.
   </DocDefDescription>
 
   <DocDefTerm>**`--strict.perms`**</DocDefTerm>

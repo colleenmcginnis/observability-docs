@@ -1,5 +1,4 @@
 ---
-id: enObservabilityLogsEcsApplication
 slug: /en/observability/logs-ecs-application
 title: ECS formatted application logs
 description: Description to be written
@@ -16,8 +15,8 @@ Logs formatted in Elastic Common Schema (ECS) don't require manual parsing, and 
 
 You can format your logs in ECS format the following ways:
 
-* <DocLink id="enObservabilityLogsEcsApplication" section="ecs-loggers">ECS loggers</DocLink>: plugins for your logging libraries that reformat your logs into ECS format.
-* <DocLink id="enObservabilityLogsEcsApplication" section="apm-agent-ecs-reformatting">APM agent ECS reformatting</DocLink>: Java, Ruby, and Python ((apm-agent))s automatically reformat application logs to ECS format without a logger.
+* <DocLink slug="/en/observability/logs-ecs-application" section="ecs-loggers">ECS loggers</DocLink>: plugins for your logging libraries that reformat your logs into ECS format.
+* <DocLink slug="/en/observability/logs-ecs-application" section="apm-agent-ecs-reformatting">APM agent ECS reformatting</DocLink>: Java, Ruby, and Python ((apm-agent))s automatically reformat application logs to ECS format without a logger.
 
 <div id="ecs-loggers"></div>
 
@@ -49,9 +48,9 @@ Java, Ruby, and Python ((apm-agent))s can automatically reformat application log
 
 To set up log ECS reformatting:
 
-1. <DocLink id="enObservabilityLogsEcsApplication" section="enable-log-ecs-reformatting">Enable ((apm-agent)) reformatting</DocLink>
-1. <DocLink id="enObservabilityLogsEcsApplication" section="ingest-logs">Ingest logs with ((filebeat)) or ((agent))</DocLink>
-1. <DocLink id="enObservabilityLogsEcsApplication" section="view-logs">View logs in Log Explorer</DocLink>
+1. <DocLink slug="/en/observability/logs-ecs-application" section="enable-log-ecs-reformatting">Enable ((apm-agent)) reformatting</DocLink>
+1. <DocLink slug="/en/observability/logs-ecs-application" section="ingest-logs">Ingest logs with ((filebeat)) or ((agent))</DocLink>
+1. <DocLink slug="/en/observability/logs-ecs-application" section="view-logs">View logs in Log Explorer</DocLink>
 
 <div id="enable-log-ecs-reformatting"></div>
 
@@ -69,8 +68,8 @@ Log ECS reformatting is controlled by the `log_ecs_reformatting` configuration o
 
 After enabling log ECS reformatting, send your application logs to your project using one of the following shipping tools:
 
-* <DocLink id="enObservabilityLogsEcsApplication" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink>: A lightweight data shipper that sends log data to your project.
-* <DocLink id="enObservabilityLogsEcsApplication" section="ingest-logs-with-((agent))">((agent))</DocLink>: A single agent for logs, metrics, security data, and threat prevention. With Fleet, you can centrally manage ((agent)) policies and lifecycles directly from your project.
+* <DocLink slug="/en/observability/logs-ecs-application" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink>: A lightweight data shipper that sends log data to your project.
+* <DocLink slug="/en/observability/logs-ecs-application" section="ingest-logs-with-((agent))">((agent))</DocLink>: A single agent for logs, metrics, security data, and threat prevention. With Fleet, you can centrally manage ((agent)) policies and lifecycles directly from your project.
 
 <div id="ingest-ecs-logs-with-filebeat"></div>
 
@@ -205,4 +204,4 @@ To add the custom logs integration to your project:
 
 ## View logs
 
-Refer to the <DocLink id="enObservabilityLogsFilterAndAggregate">Filter and aggregate logs</DocLink> documentation for more information on viewing and filtering your logs in ((kib)).
+Refer to the <DocLink slug="/en/observability/logs-filter-and-aggregate">Filter and aggregate logs</DocLink> documentation for more information on viewing and filtering your logs in ((kib)).

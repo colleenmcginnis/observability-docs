@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsGetStartedProject
 slug: /en/observability/synthetics-get-started-project
 title: Create monitors with ((project-monitors-cap))
 description: Description to be written
@@ -13,14 +12,14 @@ Projects are the most powerful and sophisticated way to configure synthetic moni
 ![](images/synthetics-get-started-projects.png)
 {/* add text description */}
 
-This is one of <DocLink id="enObservabilitySyntheticsGetStarted">two approaches</DocLink> you can use to set up a synthetic monitor.
+This is one of <DocLink slug="/en/observability/synthetics-get-started">two approaches</DocLink> you can use to set up a synthetic monitor.
 
 <div id="prerequisites"></div>
 
 ## Prerequisites
 
-You must be signed into ((kib)) as a user with at least <DocLink id="enObservabilitySyntheticsRoleWrite">synthetics write permissions</DocLink>,
-and Monitor Management must be enabled by an administrator as described in <DocLink id="enObservabilitySyntheticsRoleSetup">Setup role</DocLink>.
+You must be signed into ((kib)) as a user with at least <DocLink slug="/en/observability/synthetics-role-write">synthetics write permissions</DocLink>,
+and Monitor Management must be enabled by an administrator as described in <DocLink slug="/en/observability/synthetics-role-setup">Setup role</DocLink>.
 
 Working with projects requires working with the Elastic Synthetics CLI tool, which
 can be invoked via the `npx @elastic/synthetics` command. Before getting started
@@ -49,7 +48,7 @@ You can run ((project-monitors)) on one or both of the following:
 
 * **((private-location))s**: ((private-location))s allow you to run monitors from your own premises.
     To use ((private-location))s you must create a ((private-location)) before continuing.
-    For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsPrivateLocation">Monitor resources on private networks</DocLink>.
+    For step-by-step instructions, refer to <DocLink slug="/en/observability/synthetics-private-location">Monitor resources on private networks</DocLink>.
 
 <DocCallOut title="Note">
 
@@ -57,7 +56,7 @@ If you are setting up Synthetics for a deployment configured with
 [traffic filters](((cloud))/ec-traffic-filtering-deployment-configuration.html),
 connections into ((es)) are restricted and results will not be able to be written
 back into ((es)) unless granted.
-For more details, refer to <DocLink id="enObservabilitySyntheticsTrafficFilters">Use Synthetics with traffic filters</DocLink>.
+For more details, refer to <DocLink slug="/en/observability/synthetics-traffic-filters">Use Synthetics with traffic filters</DocLink>.
 
 </DocCallOut>
 
@@ -85,7 +84,7 @@ for authentication with your ((stack)):
 <DocCallOut title="Important" color="warning">
 
 To generate a Project API key, you must be logged in as a user with the privileges
-described in <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink>.
+described in <DocLink slug="/en/observability/synthetics-role-write">Writer role</DocLink>.
 
 </DocCallOut>
 
@@ -97,7 +96,7 @@ To use an API key to push to Elastic's global managed testing infrastructure,
 the _Elastic managed locations enabled_ toggle must be on when generating the API key.
 If the _Elastic managed locations enabled_ toggle is disabled, an administrator has restricted
 access to Elastic's global managed testing infrastructure.
-Read more in the <DocLink id="enObservabilitySyntheticsRoleWrite" section="to-restrict-using-elastics-global-managed-infrastructure">writer role documentation</DocLink>.
+Read more in the <DocLink slug="/en/observability/synthetics-role-write" section="to-restrict-using-elastics-global-managed-infrastructure">writer role documentation</DocLink>.
 
 </DocCallOut>
 
@@ -106,7 +105,7 @@ Read more in the <DocLink id="enObservabilitySyntheticsRoleWrite" section="to-re
     This is done differently in [Powershell](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.2#saving-changes-to-environment-variables) and [Bash](https://unix.stackexchange.com/a/117470).
 
 <DocCallOut title="Note">
-If you are pushing to a <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
+If you are pushing to a <DocLink slug="/en/observability/synthetics-private-location">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
 </DocCallOut>
 
 Then, take a look at key files and directories inside your project:
@@ -119,9 +118,9 @@ Then, take a look at key files and directories inside your project:
 
 The `synthetics.config.ts` in the sample project uses a location on Elastic's global managed testing infrastructure.
 Administrators can restrict access to Elastic's global managed testing infrastructure.
-When you attempt to <DocLink id="enObservabilitySyntheticsGetStartedProject" section="test-and-connect-to-the-((stack))">`push` the sample monitors</DocLink>,
+When you attempt to <DocLink slug="/en/observability/synthetics-get-started-project" section="test-and-connect-to-the-((stack))">`push` the sample monitors</DocLink>,
 if you see an error stating that you don't have permission to use Elastic managed global locations,
-refer to the <DocLink id="enObservabilitySyntheticsTroubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
+refer to the <DocLink slug="/en/observability/synthetics-troubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
 
 </DocCallOut>
 
@@ -146,7 +145,7 @@ heartbeat.monitors:
 ```
 
 For more details on lightweight monitor configuration options,
-refer to <DocLink id="enObservabilitySyntheticsLightweight">Configure lightweight monitors</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-lightweight">Configure lightweight monitors</DocLink>.
 
 Inside the `journeys` directory you'll find sample browser monitors.
 Here's an example of a TypeScript file defining a browser monitor:
@@ -172,7 +171,7 @@ journey('My Example Journey', ({ page, params }) => {
 ```
 
 For more details on writing journeys and configuring browser monitors,
-refer to <DocLink id="enObservabilitySyntheticsJourneys">Scripting browser monitors</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-journeys">Scripting browser monitors</DocLink>.
 
 <div id="synthetics-get-started-project-push"></div>
 
@@ -194,15 +193,15 @@ While inside the project directory you can do two things with the `npx @elastic/
 
 One monitor will appear in the ((synthetics-app)) for each journey or
 lightweight monitor, and you'll manage all monitors from your local environment.
-For more details on using the `push` command, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`@elastic/synthetics push`</DocLink>.
+For more details on using the `push` command, refer to <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-push">`@elastic/synthetics push`</DocLink>.
 
 <DocCallOut title="Note">
 
-If you've <DocLink id="enObservabilitySyntheticsPrivateLocation">added a ((private-location))</DocLink>,
+If you've <DocLink slug="/en/observability/synthetics-private-location">added a ((private-location))</DocLink>,
 you can `push` to that ((private-location)).
 
 To list available ((private-location))s,
-run the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink>
+run the <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink>
 with the ((kib)) URL for the deployment from which to fetch available locations.
 
 </DocCallOut>
@@ -226,7 +225,7 @@ You can also go to the **Management** tab to see the monitors' configuration set
 
 Learn more about:
 
-* <DocLink id="enObservabilitySyntheticsLightweight">Configuring lightweight monitors</DocLink>
-* <DocLink id="enObservabilitySyntheticsCreateTest">Configuring browser monitors</DocLink>
-* <DocLink id="enObservabilitySyntheticsManageMonitors" section="implement-best-practices-for-projects">Implementing best practices for working with ((project-monitors))</DocLink>
+* <DocLink slug="/en/observability/synthetics-lightweight">Configuring lightweight monitors</DocLink>
+* <DocLink slug="/en/observability/synthetics-create-test">Configuring browser monitors</DocLink>
+* <DocLink slug="/en/observability/synthetics-manage-monitors" section="implement-best-practices-for-projects">Implementing best practices for working with ((project-monitors))</DocLink>
 

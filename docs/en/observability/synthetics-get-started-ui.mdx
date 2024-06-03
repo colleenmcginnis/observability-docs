@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsGetStartedUi
 slug: /en/observability/synthetics-get-started-ui
 title: Create monitors in the ((synthetics-app))
 description: Description to be written
@@ -16,14 +15,14 @@ You can create synthetic monitors directly in the ((synthetics-app)) in ((kib)).
 
 {/* add text description */}
 
-This is one of <DocLink id="enObservabilitySyntheticsGetStarted">two approaches</DocLink> you can use to set up a synthetic monitor.
+This is one of <DocLink slug="/en/observability/synthetics-get-started">two approaches</DocLink> you can use to set up a synthetic monitor.
 
 <div id="uptime-set-up-prereq"></div>
 
 ## Prerequisites
 
-You must be signed into ((kib)) as a user with at least <DocLink id="enObservabilitySyntheticsRoleWrite">synthetics write permissions</DocLink>,
-and Monitor Management must be enabled by an administrator as described in <DocLink id="enObservabilitySyntheticsRoleSetup">Setup role</DocLink>.
+You must be signed into ((kib)) as a user with at least <DocLink slug="/en/observability/synthetics-role-write">synthetics write permissions</DocLink>,
+and Monitor Management must be enabled by an administrator as described in <DocLink slug="/en/observability/synthetics-role-setup">Setup role</DocLink>.
 
 <div id="private-locations"></div>
 
@@ -37,7 +36,7 @@ You can run monitors on one or both of the following:
 
 * **((private-location))s**: ((private-location))s allow you to run monitors from your own premises.
     To use ((private-location))s you must create a ((private-location)) before continuing.
-    For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsPrivateLocation">Monitor resources on private networks</DocLink>.
+    For step-by-step instructions, refer to <DocLink slug="/en/observability/synthetics-private-location">Monitor resources on private networks</DocLink>.
 
 <GlobalManagedPaidFor />
 
@@ -47,7 +46,7 @@ If you are setting up Synthetics for a deployment configured with
 [traffic filters](((cloud))/ec-traffic-filtering-deployment-configuration.html),
 connections into ((es)) are restricted and results will not be able to be written
 back into ((es)) unless granted.
-For more details, refer to <DocLink id="enObservabilitySyntheticsTrafficFilters">Use Synthetics with traffic filters</DocLink>.
+For more details, refer to <DocLink slug="/en/observability/synthetics-traffic-filters">Use Synthetics with traffic filters</DocLink>.
 
 </DocCallOut>
 
@@ -65,7 +64,7 @@ To use the ((synthetics-app)) to add a lightweight monitor:
 <DocCallOut title="Note">
 
 If you don't see any locations listed, refer to the
-<DocLink id="enObservabilitySyntheticsTroubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
+<DocLink slug="/en/observability/synthetics-troubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
 
 </DocCallOut>
 
@@ -78,7 +77,7 @@ If you don't see any locations listed, refer to the
 
 <DocCallOut title="Note">
 
-If you've <DocLink id="enObservabilitySyntheticsPrivateLocation">added a ((private-location))</DocLink>,
+If you've <DocLink slug="/en/observability/synthetics-private-location">added a ((private-location))</DocLink>,
 you'll see your new ((private-location)) in the list of _Locations_.
 
 ![Screenshot of Monitor locations options including a ((private-location))](images/private-locations-monitor-locations.png)
@@ -98,7 +97,7 @@ which must be maintained directly in ((kib)).
 
 If you depend on external packages, have your journeys next to your code repository,
 or want to embed and manage more than one journey from a single monitor configuration,
-use <DocLink id="enObservabilitySyntheticsGetStartedProject">((project-monitors))</DocLink> instead.
+use <DocLink slug="/en/observability/synthetics-get-started-project">((project-monitors))</DocLink> instead.
 
 To use the ((synthetics-app)) to add a browser monitor:
 
@@ -109,7 +108,7 @@ To use the ((synthetics-app)) to add a browser monitor:
 <DocCallOut title="Note">
 
 If you don't see any locations listed, refer to the
-<DocLink id="enObservabilitySyntheticsTroubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
+<DocLink slug="/en/observability/synthetics-troubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
 
 </DocCallOut>
 
@@ -126,7 +125,7 @@ Alternatively, you can use the **Script recorder** option.
 You can use the Elastic Synthetics Recorder to interact with a web page,
 export journey code that reflects all the actions you took,
 and upload the results to ((synthetics-app)).
-For more information, refer to <DocLink id="enObservabilitySyntheticsRecorder">Use the Synthetics Recorder</DocLink>.
+For more information, refer to <DocLink slug="/en/observability/synthetics-recorder">Use the Synthetics Recorder</DocLink>.
 
 </DocCallOut>
 
@@ -134,7 +133,7 @@ For more information, refer to <DocLink id="enObservabilitySyntheticsRecorder">U
 
         * Use **Data options** to add context to the data coming from your monitors.
         * Use the **Synthetics agent options** to provide fine-tuned configuration for the synthetics agent.
-            Read more about available options in <DocLink id="enObservabilitySyntheticsCommandReference">Use the Synthetics CLI</DocLink>.
+            Read more about available options in <DocLink slug="/en/observability/synthetics-command-reference">Use the Synthetics CLI</DocLink>.
 
 1. (Optional) Click **Run test** to verify that the test is valid.
 1. Click **Create monitor**.
@@ -154,7 +153,7 @@ set up alerts in case of test failures, and more.
 
 If a test does fail (shown as `down` in the ((synthetics-app))), you'll be able to view the step script that failed,
 any errors, and a stack trace.
-For more information, refer to <DocLink id="enObservabilitySyntheticsAnalyze" section="browser-monitors">Analyze data from synthetic monitors</DocLink>.
+For more information, refer to <DocLink slug="/en/observability/synthetics-analyze" section="browser-monitors">Analyze data from synthetic monitors</DocLink>.
 
 <div id="next_steps"></div>
 
@@ -162,7 +161,7 @@ For more information, refer to <DocLink id="enObservabilitySyntheticsAnalyze" se
 
 Learn more about:
 
-* <DocLink id="enObservabilitySyntheticsCreateTest">Writing user journeys</DocLink> to use as inline scripts
-* Using the <DocLink id="enObservabilitySyntheticsRecorder">Synthetics Recorder</DocLink>
-* <DocLink id="enObservabilitySyntheticsLightweight">Configuring lightweight monitors</DocLink>
+* <DocLink slug="/en/observability/synthetics-create-test">Writing user journeys</DocLink> to use as inline scripts
+* Using the <DocLink slug="/en/observability/synthetics-recorder">Synthetics Recorder</DocLink>
+* <DocLink slug="/en/observability/synthetics-lightweight">Configuring lightweight monitors</DocLink>
 

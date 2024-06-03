@@ -30,14 +30,14 @@ configuration option contains the following fields:
 ##### `api_key`
 
 The detail of the API key to be used to send monitoring information to ((es)).
-See <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink> for more information.
+See <DocLink slug="/en/observability/apm-beats-api-keys">Grant access using API keys</DocLink> for more information.
 
 <div id="`bulk_max_size`"></div>
 
 ##### `bulk_max_size`
 
 The maximum number of metrics to bulk in a single ((es)) bulk API index request.
-The default is `50`. For more information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+The default is `50`. For more information, see <DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>.
 
 <div id="`backoff.init`"></div>
 
@@ -70,7 +70,7 @@ reduces the network usage but increases the CPU usage.
 ##### `headers`
 
 Custom HTTP headers to add to each request. For more information, see
-<DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+<DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>.
 
 <div id="`hosts`"></div>
 
@@ -78,7 +78,7 @@ Custom HTTP headers to add to each request. For more information, see
 
 The list of ((es)) nodes to connect to. Monitoring metrics are distributed to
 these nodes in round robin order. For more information, see
-<DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+<DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>.
 
 <div id="`max_retries`"></div>
 
@@ -86,7 +86,7 @@ these nodes in round robin order. For more information, see
 
 The number of times to retry sending the monitoring metrics after a failure.
 After the specified number of retries, the metrics are typically dropped. The
-default value is `3`. For more information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+default value is `3`. For more information, see <DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>.
 
 <div id="`parameters`"></div>
 
@@ -130,7 +130,7 @@ however, the value of protocol is overridden by the scheme you specify in the UR
 ##### `proxy_url`
 
 The URL of the proxy to use when connecting to the ((es)) cluster. For more
-information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+information, see <DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>.
 
 <div id="`timeout`"></div>
 
@@ -145,7 +145,7 @@ The HTTP request timeout in seconds for the ((es)) request. The default is `90`.
 Configuration options for Transport Layer Security (TLS) or Secure Sockets Layer
 (SSL) parameters like the certificate authority (CA) to use for HTTPS-based
 connections. If the `ssl` section is missing, the host CAs are used for
-HTTPS connections to ((es)). For more information, see <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink>.
+HTTPS connections to ((es)). For more information, see <DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink>.
 
 <div id="`username`"></div>
 

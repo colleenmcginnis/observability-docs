@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmDataSecurity
 slug: /en/observability/apm-data-security
 title: Data security
 description: Description to be written
@@ -19,12 +18,12 @@ or form field data.
 Depending on the type of data, we offer several different ways to filter, manipulate,
 or obfuscate sensitive information during or before ingestion:
 
-* <DocLink id="enObservabilityApmDataSecurity" section="built-in-data-filters">Built-in data filters</DocLink>
-* <DocLink id="enObservabilityApmDataSecurity" section="custom-filters">Custom filters</DocLink>
+* <DocLink slug="/en/observability/apm-data-security" section="built-in-data-filters">Built-in data filters</DocLink>
+* <DocLink slug="/en/observability/apm-data-security" section="custom-filters">Custom filters</DocLink>
 
-In addition to utilizing filters, you should regularly review the <DocLink id="enObservabilityApmDataSecurity" section="sensitive-fields">sensitive fields</DocLink> table to ensure
+In addition to utilizing filters, you should regularly review the <DocLink slug="/en/observability/apm-data-security" section="sensitive-fields">sensitive fields</DocLink> table to ensure
 sensitive data is not being ingested. If it is, it's possible to remove or redact it.
-See <DocLink id="enObservabilityApmDataSecurityDelete">Delete sensitive data</DocLink> for more information.
+See <DocLink slug="/en/observability/apm-data-security-delete">Delete sensitive data</DocLink> for more information.
 
 <div id="apm-built-in-data-filters"></div>
 
@@ -46,14 +45,14 @@ You should review the following fields regularly to ensure sensitive data is not
 
 | Field | Description | Remedy |
 |---|---|---|
-| `client.ip` | The client IP address, as forwarded by proxy. | <DocLink id="enObservabilityApmFiltering" section="personal-data">Personal data</DocLink> |
-| `http.request.body.original` | The body of the monitored HTTP request. | <DocLink id="enObservabilityApmFiltering" section="http-bodies">HTTP bodies</DocLink> |
-| `http.request.headers` | The canonical headers of the monitored HTTP request. | <DocLink id="enObservabilityApmFiltering" section="http-headers">HTTP headers</DocLink> |
-| `http.request.socket.remote_address` | The address of the last proxy or end-user (if no proxy). | <DocLink id="enObservabilityApmCustomFilter">Custom filters</DocLink> |
-| `http.response.headers` | The canonical headers of the monitored HTTP response. | <DocLink id="enObservabilityApmFiltering" section="http-headers">HTTP headers</DocLink> |
-| `process.args` | Process arguments. | <DocLink id="enObservabilityApmFiltering" section="database-statements">Database statements</DocLink> |
-| `span.db.statement` | Database statement. | <DocLink id="enObservabilityApmFiltering" section="database-statements">Database statements</DocLink> |
-| `stacktrace.vars` | A flat mapping of local variables captured in the stack frame | <DocLink id="enObservabilityApmCustomFilter">Custom filters</DocLink> |
-| `url.query` | The query string of the request, e.g. `?pass=hunter2`. | <DocLink id="enObservabilityApmCustomFilter">Custom filters</DocLink> |
-| `user.*` | Logged-in user information. | <DocLink id="enObservabilityApmCustomFilter">Custom filters</DocLink> |
-| `user_agent.*` | Device and version making the network request. | <DocLink id="enObservabilityApmFiltering" section="personal-data">Personal data</DocLink> |
+| `client.ip` | The client IP address, as forwarded by proxy. | <DocLink slug="/en/observability/apm-filtering" section="personal-data">Personal data</DocLink> |
+| `http.request.body.original` | The body of the monitored HTTP request. | <DocLink slug="/en/observability/apm-filtering" section="http-bodies">HTTP bodies</DocLink> |
+| `http.request.headers` | The canonical headers of the monitored HTTP request. | <DocLink slug="/en/observability/apm-filtering" section="http-headers">HTTP headers</DocLink> |
+| `http.request.socket.remote_address` | The address of the last proxy or end-user (if no proxy). | <DocLink slug="/en/observability/apm-custom-filter">Custom filters</DocLink> |
+| `http.response.headers` | The canonical headers of the monitored HTTP response. | <DocLink slug="/en/observability/apm-filtering" section="http-headers">HTTP headers</DocLink> |
+| `process.args` | Process arguments. | <DocLink slug="/en/observability/apm-filtering" section="database-statements">Database statements</DocLink> |
+| `span.db.statement` | Database statement. | <DocLink slug="/en/observability/apm-filtering" section="database-statements">Database statements</DocLink> |
+| `stacktrace.vars` | A flat mapping of local variables captured in the stack frame | <DocLink slug="/en/observability/apm-custom-filter">Custom filters</DocLink> |
+| `url.query` | The query string of the request, e.g. `?pass=hunter2`. | <DocLink slug="/en/observability/apm-custom-filter">Custom filters</DocLink> |
+| `user.*` | Logged-in user information. | <DocLink slug="/en/observability/apm-custom-filter">Custom filters</DocLink> |
+| `user_agent.*` | Device and version making the network request. | <DocLink slug="/en/observability/apm-filtering" section="personal-data">Personal data</DocLink> |

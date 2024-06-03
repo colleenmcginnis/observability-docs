@@ -11,7 +11,7 @@ export default {
         {
           title: "Monitor application performance",
           description: "Learn how to collect and visualize APM data with Elastic.",
-          pageId: "enObservabilityTracesGetStarted",
+          slug: "/en/observability/traces-get-started",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/traces-get-started.png",
             alt: ""
@@ -21,7 +21,7 @@ export default {
         {
           title: "Monitor application logs",
           description: "Correlate application logs and traces for increased visibility into your services.",
-          pageId: "enObservabilityApplicationLogs",
+          slug: "/en/observability/application-logs",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/application-logs.png",
             alt: ""
@@ -48,7 +48,7 @@ export default {
         {
           title: "Get started",
           description: "Learn how to monitor logs and infrastructure metrics from systems and services across your organization.",
-          pageId: "enObservabilityLogsMetricsGetStarted",
+          slug: "/en/observability/logs-metrics-get-started",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/ingest-logs-metrics-uptime.png",
             alt: ""
@@ -58,7 +58,7 @@ export default {
         {
           title: "Integrations",
           description: "Stream in and visualize logs, metrics, traces, content, and more from all the sources in your ecosystem.",
-          pageId: "enObservability",
+          slug: "/en/observability",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/integrations.png",
             alt: ""
@@ -75,7 +75,7 @@ export default {
         {
           title: "User experience",
           description: "Quantify and analyze the perceived performance of your web application.",
-          pageId: "enObservabilityUserExperience",
+          slug: "/en/observability/user-experience",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/user-experience.png",
             alt: ""
@@ -112,7 +112,7 @@ export default {
         {
           title: "Get started",
           description: "Learn how to monitor logs and metrics from systems and services across your organization.",
-          pageId: "enObservabilityLogsMetricsGetStarted",
+          slug: "/en/observability/logs-metrics-get-started",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/ingest-logs-metrics-uptime.png",
             alt: ""
@@ -122,7 +122,7 @@ export default {
         {
           title: "Integrations",
           description: "Stream in and visualize logs, metrics, traces, content, and more from all the sources in your ecosystem.",
-          pageId: "enObservability",
+          slug: "/en/observability",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/integrations.png",
             alt: ""
@@ -148,7 +148,7 @@ export default {
         {
           title: "Get started",
           description: "Choose a method and create your first synthetic monitor.",
-          pageId: "enObservabilitySyntheticsGetStarted",
+          slug: "/en/observability/synthetics-get-started",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/synthetics-get-started.png",
             alt: ""
@@ -158,7 +158,7 @@ export default {
         {
           title: "Write a synthetic test",
           description: "Write a synthetic test to check critical actions that an end-user might make on your site.",
-          pageId: "enObservabilitySyntheticsCreateTest",
+          slug: "/en/observability/synthetics-create-test",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/synthetics-create-test.png",
             alt: ""
@@ -168,7 +168,7 @@ export default {
         {
           title: "Analyze data from synthetic monitors",
           description: "See a high-level overview of your service's availability, and dig into details to diagnose what caused downtime.",
-          pageId: "enObservabilitySyntheticsAnalyze",
+          slug: "/en/observability/synthetics-analyze",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/synthetics-analyze.png",
             alt: ""
@@ -185,7 +185,7 @@ export default {
         {
           title: "Universal Profiling",
           description: "Inspect, filter, and compare your data to gain visibility and optimize performance.",
-          pageId: "enObservabilityUniversalProfiling",
+          slug: "/en/observability/universal-profiling",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/universal-profiling.png",
             alt: ""
@@ -195,7 +195,7 @@ export default {
         {
           title: "Get started",
           description: "Set up Universal Profiling in Elastic Cloud and install your host-agent.",
-          pageId: "enObservabilityProfilingGetStarted",
+          slug: "/en/observability/profiling-get-started",
           image: {
             url: "https://www.elastic.co/guide/en/observability/current/landing-page/images/profiling-get-started.png",
             alt: ""

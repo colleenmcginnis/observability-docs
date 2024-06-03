@@ -1,5 +1,4 @@
 ---
-id: enObservabilityConfigureUptimeSettings
 slug: /en/observability/configure-uptime-settings
 title: Configure settings
 description: Description to be written
@@ -61,12 +60,12 @@ For more information about each connector, see [action types and connectors](((k
 ## Configure certificate thresholds
 
 You can modify certificate thresholds to control how Uptime displays your TLS values in
-the <DocLink id="enObservabilityUptimeIntro" section="tls-certificates">TLS Certificates</DocLink> page. These settings also determine which certificates are
+the <DocLink slug="/en/observability/uptime-intro" section="tls-certificates">TLS Certificates</DocLink> page. These settings also determine which certificates are
 selected by any TLS rule you create.
 
 |  |  |
 |---|---|
-| **Expiration threshold** | The `expiration` threshold specifies when you are notified about certificates that are approaching expiration dates. When the value of a certificate's remaining valid days falls below the `Expiration threshold`, it's considered a warning state. When you define a  <DocLink id="enObservabilityTlsCertificateAlert">TLS rule</DocLink>, you receive a notification about the certificate. |
+| **Expiration threshold** | The `expiration` threshold specifies when you are notified about certificates that are approaching expiration dates. When the value of a certificate's remaining valid days falls below the `Expiration threshold`, it's considered a warning state. When you define a  <DocLink slug="/en/observability/tls-certificate-alert">TLS rule</DocLink>, you receive a notification about the certificate. |
 | **Age limit** | The `age` threshold specifies when you are notified about certificates that have been valid for too long. |
 
 A standard security requirement is to make sure that your TLS certificates have not been

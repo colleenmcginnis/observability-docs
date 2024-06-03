@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmDataModelSpans
 slug: /en/observability/apm-data-model-spans
 title: Spans
 description: Description to be written
@@ -23,7 +22,7 @@ but you can also use the Agent API for custom instrumentation of specific code p
 
 Among other things, spans can contain:
 
-* A `transaction.id` attribute that refers to its parent <DocLink id="enObservabilityApmDataModelTransactions">transaction</DocLink>.
+* A `transaction.id` attribute that refers to its parent <DocLink slug="/en/observability/apm-data-model-transactions">transaction</DocLink>.
 * A `parent.id` attribute that refers to its parent span or transaction.
 * Its start time and duration.
 * A `name`, `type`, `subtype`, and `action`—see the [span name/type alignment]({span_name_type_sheet})
@@ -78,7 +77,7 @@ Spans are stored with transactions in the following data streams:
 
 <TracesDataStreams />
 
-See <DocLink id="enObservabilityApmDataStreams">Data streams</DocLink> to learn more.
+See <DocLink slug="/en/observability/apm-data-streams">Data streams</DocLink> to learn more.
 
 <div id="example_span_document"></div>
 

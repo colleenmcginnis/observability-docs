@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsRoleWrite
 slug: /en/observability/synthetics-role-write
 title: Writer role
 description: Description to be written
@@ -10,18 +9,18 @@ tags: []
 
 <DocCallOut title="Important" color="warning">
 To minimize the privileges required by the writer role, use the
-<DocLink id="enObservabilitySyntheticsRoleSetup">setup role</DocLink> to enable Monitor Management.
+<DocLink slug="/en/observability/synthetics-role-setup">setup role</DocLink> to enable Monitor Management.
 This section assumes another user has already enabled Monitor Management.
 </DocCallOut>
 
 For users who need to create, modify, and delete monitors, provide write access.
 Two types of write access are outlined below:
 
-* **General write access**: For most users, you can use <DocLink id="enObservabilitySyntheticsRoleWrite" section="general-write-access">General write access</DocLink>,
+* **General write access**: For most users, you can use <DocLink slug="/en/observability/synthetics-role-write" section="general-write-access">General write access</DocLink>,
     which grants write access to all ((kib)) apps and requires little configuration.
 
 * **Limited write access**: If you want to limit write access to the ((synthetics-app)) only,
-    you can use <DocLink id="enObservabilitySyntheticsRoleWrite" section="limited-write-access">Limited write access</DocLink>, which requires additional configuration.
+    you can use <DocLink slug="/en/observability/synthetics-role-write" section="limited-write-access">Limited write access</DocLink>, which requires additional configuration.
 
 <div id="synthetics-write-privileges-general"></div>
 
@@ -36,7 +35,7 @@ Create a **writer role**, called something like `synthetics_writer`:
 <DocCallOut title="Note">
 The `editor` [built-in role](((ref))/built-in-roles.html) will grant write access
 to _all_ ((kib)) apps. If you want to limit write access to the ((synthetics-app)) only,
-refer to <DocLink id="enObservabilitySyntheticsRoleWrite" section="limited-write-access">Limited write access</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-role-write" section="limited-write-access">Limited write access</DocLink>.
 </DocCallOut>
 
 1. _If the user should have permission to create, modify, and delete project monitors_,
@@ -96,7 +95,7 @@ The user who is setting up a new Private Location will need the following privil
 ### If using projects
 
 If the user should be able to create and update monitors using
-<DocLink id="enObservabilitySyntheticsGetStarted" section="((project-monitors-cap))">projects</DocLink>, add _at least one_ of following privileges:
+<DocLink slug="/en/observability/synthetics-get-started" section="((project-monitors-cap))">projects</DocLink>, add _at least one_ of following privileges:
 
 | Type | Privilege | Purpose |
 |---|---|---|

@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmManageStorage
 slug: /en/observability/apm-manage-storage
 title: Manage storage
 description: Description to be written
@@ -8,12 +7,12 @@ tags: []
 
 <div id="apm-manage-storage"></div>
 
-((agent)) uses <DocLink id="enObservabilityApmDataStreams">data streams</DocLink> to store time series data across multiple indices.
-Each data stream ships with a customizable <DocLink id="enObservabilityApmIlmHowTo">index lifecycle policy</DocLink> that automates data retention as your indices grow and age.
+((agent)) uses <DocLink slug="/en/observability/apm-data-streams">data streams</DocLink> to store time series data across multiple indices.
+Each data stream ships with a customizable <DocLink slug="/en/observability/apm-ilm-how-to">index lifecycle policy</DocLink> that automates data retention as your indices grow and age.
 
-The <DocLink id="enObservabilityApmStorageGuide">storage and sizing guide</DocLink> attempts to define a "typical" storage reference for Elastic APM,
-and there are additional settings you can tweak to <DocLink id="enObservabilityApmReduceApmStorage">reduce storage</DocLink>,
-or to <DocLink id="enObservabilityApmTuneDataIngestion" section="tune-((es))">tune data ingestion in ((es))</DocLink>.
+The <DocLink slug="/en/observability/apm-storage-guide">storage and sizing guide</DocLink> attempts to define a "typical" storage reference for Elastic APM,
+and there are additional settings you can tweak to <DocLink slug="/en/observability/apm-reduce-apm-storage">reduce storage</DocLink>,
+or to <DocLink slug="/en/observability/apm-tune-data-ingestion" section="tune-((es))">tune data ingestion in ((es))</DocLink>.
 
 In addition, the APM UI makes it easy to visualize your APM data usage with
 [storage explorer](((kibana-ref))/storage-explorer.html).

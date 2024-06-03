@@ -1,5 +1,4 @@
 ---
-id: enObservabilityUptimeIntro
 slug: /en/observability/uptime-intro
 title: Uptime monitoring
 description: Description to be written
@@ -11,20 +10,20 @@ tags: []
 <DocCallOut id="uptime-monitors" title="Important" color="warning">
 
 The ((uptime-app)) is for viewing result data from lightweight monitors running through
-((heartbeat)) and <DocLink id="enObservabilityUptimeGetStarted">configured with a traditional `heartbeat.yml` file</DocLink>.
+((heartbeat)) and <DocLink slug="/en/observability/uptime-get-started">configured with a traditional `heartbeat.yml` file</DocLink>.
 This is for TCP, HTTP or ICMP monitors that you have configured and run from your own
 infrastructure with ((heartbeat)) natively.
 
 For browser-based monitors, a richer management and reporting experience,
 and more capabilities such as triaging and responding to alerts, use the
-<DocLink id="enObservabilityMonitorUptimeSynthetics">((synthetics-app))</DocLink> instead of the ((uptime-app)).
+<DocLink slug="/en/observability/monitor-uptime-synthetics">((synthetics-app))</DocLink> instead of the ((uptime-app)).
 
 Note that the ((uptime-app)) is hidden from the interface when there is no recent ((heartbeat)) data. To see the app, you may need to turn on the **Always show legacy Uptime app** setting (`observability:enableLegacyUptimeApp`) under ((kib)) Advanced Settings. To learn how, refer to [Advanced Settings](((kibana-ref))/advanced-options.html).
 
 </DocCallOut>
 
 The ((uptime-app)) uses ((agent)) to periodically check the status of your services and applications.
-Monitor the availability of network endpoints and services using <DocLink id="enObservabilityMonitorUptimeSynthetics" section="lightweight-https-tcp-and-icmp-monitors">Lightweight HTTP/S, TCP, and ICMP monitors</DocLink>.
+Monitor the availability of network endpoints and services using <DocLink slug="/en/observability/monitor-uptime-synthetics" section="lightweight-https-tcp-and-icmp-monitors">Lightweight HTTP/S, TCP, and ICMP monitors</DocLink>.
 
 <div id="uptime-lightweight"></div>
 
@@ -41,7 +40,7 @@ In the ((uptime-app)), you can monitor the status of network endpoints using the
 
 ![((uptime-app)) in ((kib))](images/uptime-app.png)
 
-To set up your first monitor, refer to <DocLink id="enObservabilityUptimeGetStarted">Get started with Uptime</DocLink>.
+To set up your first monitor, refer to <DocLink slug="/en/observability/uptime-get-started">Get started with Uptime</DocLink>.
 
 <div id="view-certificate-status"></div>
 
@@ -51,7 +50,7 @@ The TLS Certificates page in the ((uptime-app)) lists the TLS certificates that 
 shows the TLS certificate data in your indices.
 
 In addition to the common name, associated monitors, issuer information, and SHA fingerprints,
-an assigned status is derived from the threshold values in the <DocLink id="enObservabilityConfigureUptimeSettings">Settings</DocLink> page.
+an assigned status is derived from the threshold values in the <DocLink slug="/en/observability/configure-uptime-settings">Settings</DocLink> page.
 
 ![TLS certificates](images/tls-certificates.png)
 
@@ -59,4 +58,4 @@ The table entries can be sorted by _status_ and _valid until_. You can use the s
 top of the view to find values in most of the TLS-related fields in your Uptime indices.
 
 Additionally, you can select the **Alerts and rules** dropdown at the top of the page, and create a
-<DocLink id="enObservabilityTlsCertificateAlert">TLS rule</DocLink> to receive an alert when your certificate is about to expire.
+<DocLink slug="/en/observability/tls-certificate-alert">TLS rule</DocLink> to receive an alert when your certificate is about to expire.

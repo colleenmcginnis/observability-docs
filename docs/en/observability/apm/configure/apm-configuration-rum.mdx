@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmConfigurationRum
 slug: /en/observability/apm-configuration-rum
 title: Configure Real User Monitoring (RUM)
 description: Description to be written
@@ -42,8 +41,8 @@ By default this is disabled. (bool)
 
 <DocCallOut title="Note">
 
-If an <DocLink id="enObservabilityApmApiKey">API key</DocLink> or <DocLink id="enObservabilityApmSecretToken">secret token</DocLink> is configured,
-enabling RUM support will automatically enable <DocLink id="enObservabilityApmConfigurationAnonymous">Configure anonymous authentication</DocLink>.
+If an <DocLink slug="/en/observability/apm-api-key">API key</DocLink> or <DocLink slug="/en/observability/apm-secret-token">secret token</DocLink> is configured,
+enabling RUM support will automatically enable <DocLink slug="/en/observability/apm-configuration-anonymous">Configure anonymous authentication</DocLink>.
 Anonymous authentication is required as the RUM agent runs in the browser.
 
 </DocCallOut>
@@ -135,16 +134,16 @@ Default: `"^/webpack"` (excludes stack trace frames that have a filename startin
 <div id="apm-config-sourcemapping-enabled"></div>
 
 ### `source_mapping.enabled`
-Used to enable/disable <DocLink id="enObservabilityApmSourceMapHowTo">source mapping</DocLink> for RUM events.
+Used to enable/disable <DocLink slug="/en/observability/apm-source-map-how-to">source mapping</DocLink> for RUM events.
 When enabled, the APM Server needs additional privileges to read source maps.
-See <DocLink id="enObservabilityApmPrivilegesRumSourceMap" section="apm-server-rum-source-mapping">APM Server RUM source mapping</DocLink> for more details.
+See <DocLink slug="/en/observability/apm-privileges-rum-source-map" section="apm-server-rum-source-mapping">APM Server RUM source mapping</DocLink> for more details.
 
 Default: `true`
 
 <div id="apm-config-sourcemapping-elasticsearch"></div>
 
 ### `source_mapping.elasticsearch`
-Configure the ((es)) source map retrieval location, taking the same options as <DocLink id="enObservabilityApmElasticsearchOutput">output.elasticsearch</DocLink>.
+Configure the ((es)) source map retrieval location, taking the same options as <DocLink slug="/en/observability/apm-elasticsearch-output">output.elasticsearch</DocLink>.
 This must be set when using an output other than ((es)), and that output is writing to ((es)).
 Otherwise leave this section empty.
 
@@ -152,7 +151,7 @@ Otherwise leave this section empty.
 
 ### `source_mapping.cache.expiration`
 If a source map has been uploaded to the APM Server,
-<DocLink id="enObservabilityApmSourceMapHowTo">source mapping</DocLink> is automatically applied to documents sent to the RUM endpoint.
+<DocLink slug="/en/observability/apm-source-map-how-to">source mapping</DocLink> is automatically applied to documents sent to the RUM endpoint.
 Source maps are fetched from ((es)) and then kept in an in-memory cache for the configured time.
 Values configured without a time unit are treated as seconds.
 
@@ -175,7 +174,7 @@ Default: `"apm-*-sourcemap*"`
 ### `event_rate.limit`
 
 <DocCallOut title="Deprecated in 7.15.0" color="danger">
-Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink>.
+Replaced by <DocLink slug="/en/observability/apm-configuration-anonymous" section="event-limit">Event limit</DocLink>.
 </DocCallOut>
 
 The maximum number of events allowed per second, per agent IP address.
@@ -187,11 +186,11 @@ Default: `300`
 ### `event_rate.lru_size`
 
 <DocCallOut title="Deprecated in 7.15.0" color="danger">
-Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="ip-limit">IP limit</DocLink>.
+Replaced by <DocLink slug="/en/observability/apm-configuration-anonymous" section="ip-limit">IP limit</DocLink>.
 </DocCallOut>
 
 The number of unique IP addresses to track in an LRU cache.
-IP addresses in the cache will be rate limited according to the <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink> setting.
+IP addresses in the cache will be rate limited according to the <DocLink slug="/en/observability/apm-configuration-anonymous" section="event-limit">Event limit</DocLink> setting.
 Consider increasing this default if your site has many concurrent clients.
 
 Default: `1000`
@@ -201,7 +200,7 @@ Default: `1000`
 ### `allow_service_names`
 
 <DocCallOut title="Deprecated in 7.15.0" color="danger">
-Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="allowed-services">Allowed services</DocLink>.
+Replaced by <DocLink slug="/en/observability/apm-configuration-anonymous" section="allowed-services">Allowed services</DocLink>.
 </DocCallOut>
 A list of permitted service names for RUM support.
 Names in this list must match the agent's `service.name`.
@@ -215,4 +214,4 @@ Default: Not set (any service name is accepted)
 ## Ingest pipelines
 
 The default APM Server pipeline includes processors that enrich RUM data prior to indexing in ((es)).
-See <DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink> for details on how to locate, edit, or disable this preprocessing.
+See <DocLink slug="/en/observability/apm-ingest-pipelines">Parse data using ingest pipelines</DocLink> for details on how to locate, edit, or disable this preprocessing.

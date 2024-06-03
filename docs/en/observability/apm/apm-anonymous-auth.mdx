@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmAnonymousAuth
 slug: /en/observability/apm-anonymous-auth
 title: Anonymous authentication
 description: Description to be written
@@ -16,7 +15,7 @@ The APM Server's default response to these these requests depends on its configu
 
 | Configuration | Default |
 |---|---|
-| An <DocLink id="enObservabilityApmApiKey">API key</DocLink> or <DocLink id="enObservabilityApmSecretToken">secret token</DocLink> is configured | Anonymous requests are rejected and an authentication error is returned. |
+| An <DocLink slug="/en/observability/apm-api-key">API key</DocLink> or <DocLink slug="/en/observability/apm-secret-token">secret token</DocLink> is configured | Anonymous requests are rejected and an authentication error is returned. |
 | No API key or secret token is configured | Anonymous requests are accepted by the APM Server. |
 
 In some cases, however, it makes sense to allow both authenticated and anonymous requests.
@@ -33,8 +32,8 @@ ingestion of unauthenticated client-side APM data while still requiring authenti
 
 <DocCallOut title="Note">
 
-You can only enable and configure anonymous authentication if an <DocLink id="enObservabilityApmApiKey">API key</DocLink> or
-<DocLink id="enObservabilityApmSecretToken">secret token</DocLink> is configured. If neither are configured, these settings will be ignored.
+You can only enable and configure anonymous authentication if an <DocLink slug="/en/observability/apm-api-key">API key</DocLink> or
+<DocLink slug="/en/observability/apm-secret-token">secret token</DocLink> is configured. If neither are configured, these settings will be ignored.
 
 </DocCallOut>
 

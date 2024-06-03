@@ -1,5 +1,4 @@
 ---
-id: enObservabilityObsAiAssistant
 slug: /en/observability/obs-ai-assistant
 title: Observability AI Assistant
 description: Description to be written
@@ -250,7 +249,7 @@ you must have the `api:observabilityAIAssistant` and `app:observabilityAIAssista
 You can use the [Observability AI Assistant connector](((kibana-ref))/obs-ai-assistant-action-type.html) to add AI-generated insights and custom actions to your alerting workflows.
 To do this:
 
-1. <DocLink id="enObservabilityCreateAlertsRules">Create (or edit) an alerting rule</DocLink> and specify the conditions that must be met for the alert to fire.
+1. <DocLink slug="/en/observability/create-alerts-rules">Create (or edit) an alerting rule</DocLink> and specify the conditions that must be met for the alert to fire.
 1. Under **Actions**, select the **Observability AI Assistant** connector type.
 1. In the **Connector** list, select the AI connector you created when you set up the assistant.
 1. In the **Message** field, specify the message to send to the assistant:
@@ -283,7 +282,7 @@ Conversations created by the AI Assistant are public and accessible to every use
 It might take a minute or two for the AI Assistant to process the message and create the conversation.
 
 Note that overly broad prompts may result in the request exceeding token limits.
-For more information, refer to <DocLink id="enObservabilityObsAiAssistant" section="token-limits">Token limits</DocLink>.
+For more information, refer to <DocLink slug="/en/observability/obs-ai-assistant" section="token-limits">Token limits</DocLink>.
 Also, attempting to analyze several alerts in a single connector execution may cause you to exceed the function call limit.
 If this happens, modify the message specified in the connector configuration to avoid exceeding limits.
 
@@ -299,7 +298,7 @@ or the AI Assistant is unable to generate this link.
 
 The Observability AI Assistant connector is called when the alert fires and when it recovers.
 
-To learn more about alerting, actions, and connectors, refer to <DocLink id="enObservabilityCreateAlerts">Alerting</DocLink>.
+To learn more about alerting, actions, and connectors, refer to <DocLink slug="/en/observability/create-alerts">Alerting</DocLink>.
 
 <div id="obs-ai-known-issues"></div>
 

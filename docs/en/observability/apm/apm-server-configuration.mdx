@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmServerConfiguration
 slug: /en/observability/apm-server-configuration
 title: "Step 2: Set up and configure"
 description: Description to be written
@@ -26,7 +25,7 @@ import Snippet2 from './getting-started-apm-server/install-apm-integration.mdx'
 ## Configure APM
 
 Configure APM by editing the `apm-server.yml` configuration file.
-The location of this file varies by platform--see the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> for help locating it.
+The location of this file varies by platform--see the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> for help locating it.
 
 A minimal configuration file might look like this:
 
@@ -42,7 +41,7 @@ output.elasticsearch:
 [^2]: The ((es)) `host:port` to connect to.
 [^3]: This example uses basic authentication.
 The user provided here needs the privileges required to publish events to ((es)).
-To create a dedicated user for this role, see <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Grant privileges and roles needed for writing events</DocLink>.
+To create a dedicated user for this role, see <DocLink slug="/en/observability/apm-privileges-to-publish-events">Grant privileges and roles needed for writing events</DocLink>.
 
 All available configuration options are outlined in
 [configuring APM Server](((observability-guide))/apm-configuring-howto-apm-server.html).

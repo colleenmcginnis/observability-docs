@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmDataModelMetadata
 slug: /en/observability/apm-data-model-metadata
 title: Metadata
 description: Description to be written
@@ -22,7 +21,7 @@ Add additional key-value pairs to define multiple labels.
 * Indexed: Yes
 * ((es)) type: [object](((ref))/object.html)
 * ((es)) field: `labels`
-* Applies to: <DocLink id="enObservabilityApmDataModelTransactions">Transactions</DocLink> | <DocLink id="enObservabilityApmDataModelSpans">Spans</DocLink> | <DocLink id="enObservabilityApmDataModelErrors">Errors</DocLink>
+* Applies to: <DocLink slug="/en/observability/apm-data-model-transactions">Transactions</DocLink> | <DocLink slug="/en/observability/apm-data-model-spans">Spans</DocLink> | <DocLink slug="/en/observability/apm-data-model-errors">Errors</DocLink>
 
 Label values can be a string, boolean, or number, although some agents only support string values at this time.
 Because labels for a given key, regardless of agent used, are stored in the same place in ((es)),
@@ -65,7 +64,7 @@ quickly debug performance issues or errors.
 * Indexed: No
 * ((es)) type: [object](((ref))/object.html)
 * ((es)) fields: `transaction.custom` | `error.custom`
-* Applies to: <DocLink id="enObservabilityApmDataModelTransactions">Transactions</DocLink> | <DocLink id="enObservabilityApmDataModelErrors">Errors</DocLink>
+* Applies to: <DocLink slug="/en/observability/apm-data-model-transactions">Transactions</DocLink> | <DocLink slug="/en/observability/apm-data-model-errors">Errors</DocLink>
 
 <DocCallOut title="Important" color="warning">
 Setting a circular object, a large object, or a non JSON serializable object can lead to errors.
@@ -94,7 +93,7 @@ Indexed means the data is searchable and aggregatable in ((es)).
 * Indexed: Yes
 * ((es)) type: [keyword](((ref))/keyword.html)
 * ((es)) fields: `user.email` | `user.name` | `user.id`
-* Applies to: <DocLink id="enObservabilityApmDataModelTransactions">Transactions</DocLink> | <DocLink id="enObservabilityApmDataModelErrors">Errors</DocLink>
+* Applies to: <DocLink slug="/en/observability/apm-data-model-transactions">Transactions</DocLink> | <DocLink slug="/en/observability/apm-data-model-errors">Errors</DocLink>
 
 <div id="agent_api_reference"></div>
 ### Agent API reference

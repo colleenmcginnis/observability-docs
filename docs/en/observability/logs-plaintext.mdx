@@ -1,5 +1,4 @@
 ---
-id: enObservabilityLogsPlaintext
 slug: /en/observability/logs-plaintext
 title: Plaintext application logs
 description: Description to be written
@@ -17,13 +16,13 @@ Ingest and parse plaintext logs, including existing logs, from any programming l
 Plaintext logs require some additional setup that structured logs do not require:
 
 * To search, filter, and aggregate effectively, you need to parse plaintext logs using an ingest pipeline to extract structured fields. Parsing is based on log format, so you might have to maintain different settings for different applications.
-* To <DocLink id="enObservabilityLogsPlaintext" section="correlate-logs">correlate plaintext logs</DocLink>, you need to inject IDs into log messages and parse them using an ingest pipeline.
+* To <DocLink slug="/en/observability/logs-plaintext" section="correlate-logs">correlate plaintext logs</DocLink>, you need to inject IDs into log messages and parse them using an ingest pipeline.
 
 To ingest, parse, and correlate plaintext logs:
 
-1. Ingest plaintext logs with <DocLink id="enObservabilityLogsPlaintext" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink> or <DocLink id="enObservabilityLogsPlaintext" section="ingest-logs-with-the-((agent))">((agent))</DocLink> and parse them before indexing with an ingest pipeline.
-1. <DocLink id="enObservabilityLogsPlaintext" section="correlate-logs">Correlate plaintext logs with an ((apm-agent)).</DocLink>
-1. <DocLink id="enObservabilityLogsPlaintext" section="view-logs">View logs in Log Explorer</DocLink>
+1. Ingest plaintext logs with <DocLink slug="/en/observability/logs-plaintext" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink> or <DocLink slug="/en/observability/logs-plaintext" section="ingest-logs-with-the-((agent))">((agent))</DocLink> and parse them before indexing with an ingest pipeline.
+1. <DocLink slug="/en/observability/logs-plaintext" section="correlate-logs">Correlate plaintext logs with an ((apm-agent)).</DocLink>
+1. <DocLink slug="/en/observability/logs-plaintext" section="view-logs">View logs in Log Explorer</DocLink>
 
 <div id="ingest-plaintext-logs"></div>
 
@@ -31,8 +30,8 @@ To ingest, parse, and correlate plaintext logs:
 
 Send application logs to ((es)) using one of the following shipping tools:
 
-* <DocLink id="enObservabilityLogsPlaintext" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink> A lightweight data shipper that sends log data to ((es)).
-* <DocLink id="enObservabilityLogsPlaintext" section="ingest-logs-with-the-((agent))">((agent))</DocLink> A single agent for logs, metrics, security data, and threat prevention. Combined with Fleet, you can centrally manage ((agent)) policies and lifecycles directly from ((kib)).
+* <DocLink slug="/en/observability/logs-plaintext" section="ingest-logs-with-((filebeat))">((filebeat))</DocLink> A lightweight data shipper that sends log data to ((es)).
+* <DocLink slug="/en/observability/logs-plaintext" section="ingest-logs-with-the-((agent))">((agent))</DocLink> A single agent for logs, metrics, security data, and threat prevention. Combined with Fleet, you can centrally manage ((agent)) policies and lifecycles directly from ((kib)).
 
 <div id="ingest-plaintext-logs-with-filebeat"></div>
 
@@ -139,7 +138,7 @@ PUT _ingest/pipeline/filebeat*  [^1]
 [^3]: `field`: The field you're extracting data from, `message` in this case.
 [^4]: `pattern`: The pattern of the elements in your log data. The pattern varies depending on your log format. `%{@timestamp}` is required. `%{log.level}`, `%{host.ip}`, and `%{message}` are common [ECS](((ecs-ref))/ecs-reference.html) fields. This pattern would match a log file in this format: `2023-11-07T09:39:01.012Z ERROR 192.168.1.110 Server hardware failure detected.`
 
-Refer to <DocLink id="enObservabilityLogsParse" section="extract-structured-fields">Extract structured fields</DocLink> for more on using ingest pipelines to parse your log data.
+Refer to <DocLink slug="/en/observability/logs-parse" section="extract-structured-fields">Extract structured fields</DocLink> for more on using ingest pipelines to parse your log data.
 
 After creating your pipeline, specify the pipeline for filebeat in the `filebeat.yml` file:
 
@@ -237,4 +236,4 @@ Learn about correlating plaintext logs in the agent-specific ingestion guides:
 
 To view logs ingested by ((filebeat)), go to **Discover** from the main menu and create a data view based on the `filebeat-*` index pattern. Refer to [Create a data view](((kibana-ref))/data-views.html) for more information.
 
-To view logs ingested by ((agent)), go to Log Explorer by clicking **Explorer** under **Logs** from the ((observability)) main menu. Refer to the <DocLink id="enObservabilityLogsFilterAndAggregate">Filter and aggregate logs</DocLink> documentation for more information on viewing and filtering your logs in ((kib)).
+To view logs ingested by ((agent)), go to Log Explorer by clicking **Explorer** under **Logs** from the ((observability)) main menu. Refer to the <DocLink slug="/en/observability/logs-filter-and-aggregate">Filter and aggregate logs</DocLink> documentation for more information on viewing and filtering your logs in ((kib)).

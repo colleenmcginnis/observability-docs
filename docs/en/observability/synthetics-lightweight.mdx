@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsLightweight
 slug: /en/observability/synthetics-lightweight
 title: Configure lightweight monitors
 description: Description to be written
@@ -26,15 +25,15 @@ In the ((synthetics-app)) you can monitor the status of network endpoints using 
 * **TCP**: Monitor the services running on your hosts. The TCP monitor checks individual ports
     to make sure the service is accessible and running.
 
-Lightweight monitors can be configured using either the <DocLink id="enObservabilitySyntheticsLightweight" section="((synthetics-app))">((synthetics-app))</DocLink>
-or <DocLink id="enObservabilitySyntheticsLightweight" section="((project-monitors-cap))">((project-monitors-cap))</DocLink>.
+Lightweight monitors can be configured using either the <DocLink slug="/en/observability/synthetics-lightweight" section="((synthetics-app))">((synthetics-app))</DocLink>
+or <DocLink slug="/en/observability/synthetics-lightweight" section="((project-monitors-cap))">((project-monitors-cap))</DocLink>.
 
 <div id="synthetics-lightweight-ui"></div>
 
 ## ((synthetics-app))
 
 To use the UI in the ((synthetics-app)), go to the ((synthetics-app)) in ((kib)) to create and configure monitors.
-For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsGetStartedUi">Create monitors in the ((synthetics-app))</DocLink>.
+For step-by-step instructions, refer to <DocLink slug="/en/observability/synthetics-get-started-ui">Create monitors in the ((synthetics-app))</DocLink>.
 
 ![Synthetics Create monitor UI](images/synthetics-get-started-ui-lightweight.png)
 
@@ -42,7 +41,7 @@ For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsGe
 
 ## ((project-monitors-cap))
 
-To use YAML files in to create ((project-monitors)), <DocLink id="enObservabilitySyntheticsGetStartedProject">set up a project</DocLink>
+To use YAML files in to create ((project-monitors)), <DocLink slug="/en/observability/synthetics-get-started-project">set up a project</DocLink>
 and configure monitors in YAML files in the `lightweight` directory.
 
 In each YAML file, define a set of `monitors` to check your remote hosts.
@@ -77,14 +76,14 @@ heartbeat.monitors:
 <div id="synthetics-monitor-options"></div>
 
 There are some common monitor configuration options that are the same for all lightweight monitor types.
-For a complete list, refer to <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">Common options</DocLink>.
+For a complete list, refer to <DocLink slug="/en/observability/synthetics-lightweight" section="common-options">Common options</DocLink>.
 
 Each monitor type also has additional configuration options that are specific to that type.
 Refer to:
 
-* <DocLink id="enObservabilitySyntheticsLightweight" section="http-options">HTTP options</DocLink>
-* <DocLink id="enObservabilitySyntheticsLightweight" section="icmp-options">ICMP options</DocLink>
-* <DocLink id="enObservabilitySyntheticsLightweight" section="tcp-options">TCP options</DocLink>
+* <DocLink slug="/en/observability/synthetics-lightweight" section="http-options">HTTP options</DocLink>
+* <DocLink slug="/en/observability/synthetics-lightweight" section="icmp-options">ICMP options</DocLink>
+* <DocLink slug="/en/observability/synthetics-lightweight" section="tcp-options">TCP options</DocLink>
 
 The `tcp` and `http` monitor types both support SSL/TLS and some proxy settings.
 
@@ -106,7 +105,7 @@ options that are specific to that monitor type.
 The options described here configure Synthetics to connect via HTTP and
 optionally verify that the host returns the expected response.
 
-Valid options for HTTP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
+Valid options for HTTP monitors include <DocLink slug="/en/observability/synthetics-lightweight" section="common-options">all common options</DocLink>
 and the following HTTP-specific options:
 
 {/* Reference table */}
@@ -127,7 +126,7 @@ To grant ping permissions in this way, run `sudo sysctl -w net.ipv4.ping_group_r
 
 Other platforms may require Synthetics to run as root or administrator to execute pings.
 
-Valid options for ICMP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
+Valid options for ICMP monitors include <DocLink slug="/en/observability/synthetics-lightweight" section="common-options">all common options</DocLink>
 and the following ICMP-specific options:
 
 {/* Reference table */}
@@ -140,7 +139,7 @@ and the following ICMP-specific options:
 The options described here configure Synthetics to connect via TCP and
 optionally verify the endpoint by sending and/or receiving a custom payload.
 
-Valid options for TCP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
+Valid options for TCP monitors include <DocLink slug="/en/observability/synthetics-lightweight" section="common-options">all common options</DocLink>
 and the following TCP-specific options:
 
 {/* Reference table */}

@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsCommandReference
 slug: /en/observability/synthetics-command-reference
 title: Use the Synthetics CLI
 description: Description to be written
@@ -53,10 +52,10 @@ However, there are some you may find useful:
   </DocDefTerm>
   <DocDefDescription>
     JSON object that defines any variables your tests require.
-    Read more in <DocLink id="enObservabilitySyntheticsParamsSecrets">Work with params and secrets</DocLink>.
+    Read more in <DocLink slug="/en/observability/synthetics-params-secrets">Work with params and secrets</DocLink>.
 
     Params passed will be merged with params defined in your
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="params">`synthetics.config.js` file</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="params">`synthetics.config.js` file</DocLink>.
     Params defined via the CLI take precedence.
   </DocDefDescription>
 
@@ -66,10 +65,10 @@ However, there are some you may find useful:
   <DocDefDescription>
     JSON object to pass in custom Playwright options for the agent.
     For more details on relevant Playwright options, refer to the
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="playwrightoptions">the configuration docs</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="playwrightoptions">the configuration docs</DocLink>.
 
     Options passed will be merged with Playwright options defined in your
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="playwrightoptions">`synthetics.config.js` file</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="playwrightoptions">`synthetics.config.js` file</DocLink>.
     Options defined via the CLI take precedence.
   </DocDefDescription>
 
@@ -81,7 +80,7 @@ However, there are some you may find useful:
     Options include `'on'`, `'off'`, or `'only-on-failure'`.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.screenshot`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.screenshot`</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -92,7 +91,7 @@ However, there are some you may find useful:
     Path to the configuration file. By default, test runner looks for a
     `synthetics.config.(js|ts)` file in the current directory. Synthetics
     configuration provides options to configure how your tests are run and pushed to
-    ((kib)). Allowed options are described in the <DocLink id="enObservabilitySyntheticsConfiguration" section="synthetics-config-file">configuration file</DocLink>.
+    ((kib)). Allowed options are described in the <DocLink slug="/en/observability/synthetics-configuration" section="synthetics-config-file">configuration file</DocLink>.
   </DocDefDescription>
 
   <DocDefTerm>
@@ -116,7 +115,7 @@ However, there are some you may find useful:
     Does not apply throttling.
 
     Throttling can also be disabled in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.throttling`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.throttling`</DocLink>.
     The value defined via the CLI will take precedence.
 
     <DocCallOut title="Note">
@@ -178,7 +177,7 @@ These files can be edited and then pushed to ((kib)) to create monitors.
 npx @elastic/synthetics init <name-of-project>
 ```
 
-Read more about what's included in a template project in <DocLink id="enObservabilitySyntheticsGetStartedProject" section="create-a-project">Create a project</DocLink>.
+Read more about what's included in a template project in <DocLink slug="/en/observability/synthetics-get-started-project" section="create-a-project">Create a project</DocLink>.
 
 <div id="elastic-synthetics-push-command"></div>
 
@@ -229,10 +228,10 @@ However there are some limitations when using external packages:
   <DocDefDescription>
     API key used for [((kib)) authentication](((kibana-ref))/api-keys.html). You can also set the API key via the `SYNTHETICS_API_KEY` environment variable.
 
-    If you are pushing to a <DocLink id="enObservabilitySyntheticsGetStartedUi" section="private-locations">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
+    If you are pushing to a <DocLink slug="/en/observability/synthetics-get-started-ui" section="private-locations">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
 
     To create an API key, you must be logged into ((kib)) as a user with the privileges described in
-    <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink>.
+    <DocLink slug="/en/observability/synthetics-role-write">Writer role</DocLink>.
   </DocDefDescription>
 
   <DocDefTerm>
@@ -242,10 +241,10 @@ However there are some limitations when using external packages:
     A unique id associated with your project.
     It will be used for logically grouping monitors.
 
-    If you used <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-init">`init` to create a project</DocLink>, this is the `<name-of-project>` you specified.
+    If you used <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-init">`init` to create a project</DocLink>, this is the `<name-of-project>` you specified.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.id`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="project">`project.id`</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -256,7 +255,7 @@ However there are some limitations when using external packages:
     The ((kib)) URL for the deployment to which you want to upload the monitors.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.url`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="project">`project.url`</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -269,7 +268,7 @@ However there are some limitations when using external packages:
     Pushes to the "default" space if not specified.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.space`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="project">`project.space`</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -280,7 +279,7 @@ However there are some limitations when using external packages:
     The interval (in minutes) at which the monitor should run.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.schedule`</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.schedule`</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -290,10 +289,10 @@ However there are some limitations when using external packages:
   <DocDefDescription>
     Where to deploy the monitor. Monitors can be deployed in multiple locations so that you can detect differences in availability and response times across those locations.
 
-    To list available locations, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
+    To list available locations, refer to <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.locations` in the configuration file</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.locations` in the configuration file</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -301,13 +300,13 @@ However there are some limitations when using external packages:
     `--private-locations Array<string>`
   </DocDefTerm>
   <DocDefDescription>
-    The <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))s</DocLink> to which the monitors will be deployed. These ((private-location))s refer to locations hosted and managed by you, whereas
+    The <DocLink slug="/en/observability/synthetics-private-location">((private-location))s</DocLink> to which the monitors will be deployed. These ((private-location))s refer to locations hosted and managed by you, whereas
     `locations` are hosted by Elastic. You can specify a ((private-location)) using the location's name.
 
-    To list available ((private-location))s, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
+    To list available ((private-location))s, refer to <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
 
     This can also be set in the configuration file using
-    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.privateLocations` in the configuration file</DocLink>.
+    <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.privateLocations` in the configuration file</DocLink>.
     The value defined via the CLI will take precedence.
   </DocDefDescription>
 
@@ -357,7 +356,7 @@ tags:
   - env:qa
 ```
 
-To apply tags to all browser and lightweight monitors, configure using <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.tags`</DocLink> field in the `synthetics.config.ts` file.
+To apply tags to all browser and lightweight monitors, configure using <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.tags`</DocLink> field in the `synthetics.config.ts` file.
 
 <div id="filtering_monitors"></div>
 
@@ -415,6 +414,6 @@ If an administrator has disabled Elastic managed locations for the role you are 
 and you do _not_ include `--url` and `--auth`, all global locations managed by Elastic will be listed.
 However, you will not be able to push to these locations with your API key and will see an error:
 _You don't have permission to use Elastic managed global locations_. For more details, refer to the
-<DocLink id="enObservabilitySyntheticsTroubleshooting" section="you-do-not-have-permission-to-use-elastic-managed-locations">troubleshooting docs</DocLink>.
+<DocLink slug="/en/observability/synthetics-troubleshooting" section="you-do-not-have-permission-to-use-elastic-managed-locations">troubleshooting docs</DocLink>.
 </DocCallOut>
 

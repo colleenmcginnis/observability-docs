@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmProcessingAndPerformance
 slug: /en/observability/apm-processing-and-performance
 title: Processing and performance
 description: Description to be written
@@ -18,8 +17,8 @@ We tested several scenarios to help you understand how to size the APM Server so
 * For each hardware template, testing with several sizes: 1 GB, 4 GB, 8 GB, and 32 GB.
 * For each size, using a fixed number of APM agents: 10 agents for 1 GB, 30 agents for 4 GB, 60 agents for 8 GB, and 240 agents for 32 GB.
 * In all scenarios, using medium sized events. Events include
-    <DocLink id="enObservabilityApmDataModelTransactions">transactions</DocLink> and
-    <DocLink id="enObservabilityApmDataModelSpans">spans</DocLink>.
+    <DocLink slug="/en/observability/apm-data-model-transactions">transactions</DocLink> and
+    <DocLink slug="/en/observability/apm-data-model-spans">spans</DocLink>.
 
 <DocCallOut title="Note">
 You will also need to scale up ((es)) accordingly, potentially with an increased number of shards configured.
@@ -141,4 +140,4 @@ RUM deserves special consideration. The RUM agent runs in browsers, and there ca
 </DocCallOut>
 
 Alternatively or in addition to scaling the APM Server, consider
-decreasing the ingestion volume. Read more in <DocLink id="enObservabilityApmReduceApmStorage">Reduce storage</DocLink>.
+decreasing the ingestion volume. Read more in <DocLink slug="/en/observability/apm-reduce-apm-storage">Reduce storage</DocLink>.

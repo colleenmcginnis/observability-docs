@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmMonitoringInternalCollection
 slug: /en/observability/apm-monitoring-internal-collection
 title: Use internal collection to send monitoring data
 description: Description to be written
@@ -17,7 +16,7 @@ export let serverless = false
 export let no_output_logstash = false
 
 <DocIf condition={ serverless === false }>
-Or as an alternative to internal collection, use <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">Use ((metricbeat)) to send monitoring data</DocLink>. The benefit of using internal collection
+Or as an alternative to internal collection, use <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection">Use ((metricbeat)) to send monitoring data</DocLink>. The benefit of using internal collection
 instead of ((metricbeat)) is that you have fewer pieces of software to install
 and maintain.
 </DocIf>
@@ -30,8 +29,8 @@ and maintain.
 1. Create an API key or user that has appropriate authority to send system-level monitoring
     data to ((es)). For example, you can use the built-in `apm_system` user or
     assign the built-in `apm_system` role to another user. For more
-    information on the required privileges, see <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring">Grant privileges and roles needed for monitoring</DocLink>.
-    For more information on how to use API keys, see <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink>.
+    information on the required privileges, see <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring">Grant privileges and roles needed for monitoring</DocLink>.
+    For more information on how to use API keys, see <DocLink slug="/en/observability/apm-beats-api-keys">Grant access using API keys</DocLink>.
 
 2. Add the `monitoring` settings in the APM Server configuration file. If you
     configured the ((es)) output and want to send APM Server monitoring events to
@@ -98,7 +97,7 @@ and maintain.
 
     You must specify the `username` as `""` explicitly so that
     the username from the client certificate (`CN`) is used. See
-    <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information about SSL settings.
+    <DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink> for more information about SSL settings.
 
 <DocIf condition={ serverless === false }>
 3. Start APM Server.

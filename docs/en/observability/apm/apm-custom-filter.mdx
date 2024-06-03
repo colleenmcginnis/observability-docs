@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmCustomFilter
 slug: /en/observability/apm-custom-filter
 title: Custom filters
 description: Description to be written
@@ -25,7 +24,7 @@ Pipelines are a flexible and easy way to filter or obfuscate Elastic APM data.
 
 ### Tutorial: redact sensitive information
 
-Say you decide to <DocLink id="enObservabilityApmFiltering" section="http-bodies">capture HTTP request bodies</DocLink>
+Say you decide to <DocLink slug="/en/observability/apm-filtering" section="http-bodies">capture HTTP request bodies</DocLink>
 but quickly notice that sensitive information is being collected in the
 `http.request.body.original` field:
 
@@ -284,7 +283,7 @@ Use the same naming convention explained previously to ensure your new pipeline 
 
 That's it! Passwords will now be redacted from your APM HTTP body data.
 
-To learn more about ingest pipelines, see <DocLink id="enObservabilityApmCustomIndexTemplate" section="view-the-((es))-index-template">View the ((es)) index template</DocLink>.
+To learn more about ingest pipelines, see <DocLink slug="/en/observability/apm-custom-index-template" section="view-the-((es))-index-template">View the ((es)) index template</DocLink>.
 
 <div id="apm-filters-in-agent"></div>
 

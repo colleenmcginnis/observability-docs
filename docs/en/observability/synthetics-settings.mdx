@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsSettings
 slug: /en/observability/synthetics-settings
 title: Configure Synthetics settings
 description: Description to be written
@@ -46,18 +45,18 @@ disabling rules, deleting rules, and more.
 
 You can enable and disable default alerts for individual monitors in a few ways:
 
-* In the ((synthetics-app)) UI when you <DocLink id="enObservabilitySyntheticsGetStartedUi">create a monitor</DocLink>.
+* In the ((synthetics-app)) UI when you <DocLink slug="/en/observability/synthetics-get-started-ui">create a monitor</DocLink>.
 * In the ((synthetics-app)) UI _after_ a monitor is already created, on the **Monitors** page
     or on the **Edit monitor** page for the monitor.
 
-* In projects when <DocLink id="enObservabilitySyntheticsLightweight">configuring a lightweight monitor</DocLink>.
+* In projects when <DocLink slug="/en/observability/synthetics-lightweight">configuring a lightweight monitor</DocLink>.
 
 </DocCallOut>
 
 In the **Alerting** tab on the Synthetics Settings page, you can add and configure connectors.
 If you are running in Elastic Cloud, then an SMTP connector will automatically be configured,
 allowing you to easily set up email alerts.
-Read more about all available connectors in <DocLink id="enObservabilityDurationAnomalyAlert" section="action-types">Action types</DocLink>.
+Read more about all available connectors in <DocLink slug="/en/observability/duration-anomaly-alert" section="action-types">Action types</DocLink>.
 
 ![Alerting tab on the Synthetics Settings page in ((kib))](images/synthetics-settings-alerting.png)
 
@@ -68,7 +67,7 @@ Read more about all available connectors in <DocLink id="enObservabilityDuration
 ((private-location))s allow you to run monitors from your own premises.
 
 In the **((private-location))s** tab, you can add and manage ((private-location))s.
-After you <DocLink id="enObservabilitySyntheticsPrivateLocation" section="set-up-((fleet-server))-and-((agent))">Set up ((fleet-server)) and ((agent))</DocLink> and <DocLink id="enObservabilitySyntheticsPrivateLocation" section="connect-to-the-((stack))">Connect to the ((stack))</DocLink>,
+After you <DocLink slug="/en/observability/synthetics-private-location" section="set-up-((fleet-server))-and-((agent))">Set up ((fleet-server)) and ((agent))</DocLink> and <DocLink slug="/en/observability/synthetics-private-location" section="connect-to-the-((stack))">Connect to the ((stack))</DocLink>,
 this is where you will add the ((private-location)) so you can specify it as the location for
 a monitor created using the ((synthetics-app)) or projects.
 
@@ -82,7 +81,7 @@ Global parameters can be defined once and used across the configuration of light
 
 In the **Global parameters** tab, you can define variables and parameters.
 This is one of several methods you can use to define variables and parameters.
-To learn more about the other methods and which methods take precedence over others, see <DocLink id="enObservabilitySyntheticsParamsSecrets">Work with params and secrets</DocLink>.
+To learn more about the other methods and which methods take precedence over others, see <DocLink slug="/en/observability/synthetics-params-secrets">Work with params and secrets</DocLink>.
 
 ![Global parameters tab on the Synthetics Settings page in ((kib))](images/synthetics-settings-global-parameters.png)
 
@@ -96,7 +95,7 @@ You can customize how long synthetics data is stored by creating your own index 
 and attaching it to the relevant custom Component Template in Stack Management.
 
 In the **Data retention** tab, use the links to jump to the relevant policy for each data stream.
-Learn more about the data included in each data stream in <DocLink id="enObservabilitySyntheticsManageRetention">Manage data retention</DocLink>.
+Learn more about the data included in each data stream in <DocLink slug="/en/observability/synthetics-manage-retention">Manage data retention</DocLink>.
 
 ![Data retention tab on the Synthetics Settings page in ((kib))](images/synthetics-settings-data-retention.png)
 
@@ -107,12 +106,12 @@ Learn more about the data included in each data stream in <DocLink id="enObserva
 Project API keys are used to push ((project-monitors)) remotely from a CLI or CD pipeline.
 
 In the **Project API keys** tab, you can generate project API keys to use with your projects.
-Learn more about using API keys in <DocLink id="enObservabilitySyntheticsGetStartedProject">Create monitors with ((project-monitors-cap))</DocLink>.
+Learn more about using API keys in <DocLink slug="/en/observability/synthetics-get-started-project">Create monitors with ((project-monitors-cap))</DocLink>.
 
 <DocCallOut title="Important" color="warning">
 
 To create a Project API key, you must be logged into ((kib)) as a user with the privileges described in
-<DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink>.
+<DocLink slug="/en/observability/synthetics-role-write">Writer role</DocLink>.
 
 </DocCallOut>
 

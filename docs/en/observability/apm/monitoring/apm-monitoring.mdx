@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmMonitoring
 slug: /en/observability/apm-monitoring
 title: Monitor the APM Server binary
 description: Description to be written
@@ -12,17 +11,17 @@ There are two methods to monitor the APM Server binary.
 Make sure monitoring is enabled on your ((es)) cluster,
 then configure one of these methods to collect APM Server metrics:
 
-* <DocLink id="enObservabilityApmMonitoringInternalCollection">Internal collection</DocLink> - Internal
+* <DocLink slug="/en/observability/apm-monitoring-internal-collection">Internal collection</DocLink> - Internal
     collectors send monitoring data directly to your monitoring cluster.
 
 export let serverless = false
 
 <DocIf condition={ serverless === false }>
-* <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">((metricbeat)) collection</DocLink> -
+* <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection">((metricbeat)) collection</DocLink> -
     ((metricbeat)) collects monitoring data from your APM Server instance
     and sends it directly to your monitoring cluster.
 
-* <DocLink id="enObservabilityApmMonitoringLocalCollection">Local collection</DocLink> - Local collection sends
+* <DocLink slug="/en/observability/apm-monitoring-local-collection">Local collection</DocLink> - Local collection sends
     select monitoring data directly to the standard indices of your monitoring
     cluster.
 

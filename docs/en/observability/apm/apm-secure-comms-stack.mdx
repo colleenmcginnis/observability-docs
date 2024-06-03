@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmSecureCommsStack
 slug: /en/observability/apm-secure-comms-stack
 title: Secure communication with the ((stack))
 description: Description to be written
@@ -14,17 +13,17 @@ This documentation only applies to the APM Server binary.
 
 Use role-based access control or API keys to grant APM Server users access to secured resources.
 
-* <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink>
-* <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink>.
+* <DocLink slug="/en/observability/apm-secure-comms-stack" section="feature-roles">Feature roles</DocLink>
+* <DocLink slug="/en/observability/apm-beats-api-keys">Grant access using API keys</DocLink>.
 
 After privileged users have been created, use authentication to connect to a secured Elastic cluster.
 
 * \<\<apm-securing-communication-elasticsearch>>
 * \<\<apm-configuring-ssl-logstash>>
 
-For secure communication between APM Server and APM Agents, see <DocLink id="enObservabilityApmSecureAgentCommunication">Secure communication with APM agents</DocLink>.
+For secure communication between APM Server and APM Agents, see <DocLink slug="/en/observability/apm-secure-agent-communication">Secure communication with APM agents</DocLink>.
 
-A reference of all available <DocLink id="enObservabilityApmConfigurationSslLanding">SSL configuration settings</DocLink> is also available.
+A reference of all available <DocLink slug="/en/observability/apm-configuration-ssl-landing">SSL configuration settings</DocLink> is also available.
 
 <div id="apm-security-overview"></div>
 
@@ -44,15 +43,15 @@ requirements and the minimum privileges required to use specific features.
 
 Typically, you need to create the following separate roles:
 
-* <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Writer role</DocLink>: To publish events collected by APM Server.
-* <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring">Monitoring role</DocLink>: One for sending monitoring
+* <DocLink slug="/en/observability/apm-privileges-to-publish-events">Writer role</DocLink>: To publish events collected by APM Server.
+* <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring">Monitoring role</DocLink>: One for sending monitoring
     information, and another for viewing it.
 
-* <DocLink id="enObservabilityApmPrivilegesApiKey">API key role</DocLink>: To create and manage API keys.
-* <DocLink id="enObservabilityApmPrivilegesAgentCentralConfig">Central configuration management role</DocLink>: To view
+* <DocLink slug="/en/observability/apm-privileges-api-key">API key role</DocLink>: To create and manage API keys.
+* <DocLink slug="/en/observability/apm-privileges-agent-central-config">Central configuration management role</DocLink>: To view
     APM Agent central configurations.
 
-* <DocLink id="enObservabilityApmPrivilegesRumSourceMap" section="apm-server-rum-source-mapping">RUM source mapping role</DocLink>: To read RUM source maps.
+* <DocLink slug="/en/observability/apm-privileges-rum-source-map" section="apm-server-rum-source-mapping">RUM source mapping role</DocLink>: To read RUM source maps.
 
 ((es-security-features)) provides [built-in roles](((ref))/built-in-roles.html) that grant a
 subset of the privileges needed by APM users.

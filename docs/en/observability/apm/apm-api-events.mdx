@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmApiEvents
 slug: /en/observability/apm-api-events
 title: Elastic APM events intake API
 description: Description to be written
@@ -29,7 +28,7 @@ as soon as they are recorded in the agent.
 This makes it simple for agents to serialize each event to a stream of newline delimited JSON.
 The APM Server also treats the HTTP body as a compressed stream and thus reads and handles each event independently.
 
-See the <DocLink id="enObservabilityApmDataModel">APM data model</DocLink> to learn more about the different types of events.
+See the <DocLink slug="/en/observability/apm-data-model">APM data model</DocLink> to learn more about the different types of events.
 
 <div id="apm-api-events-endpoint"></div>
 
@@ -70,7 +69,7 @@ service the incoming request, requests that cannot be serviced will receive an i
 `503` "queue is full" error.
 </DocCallOut>
 
-For <DocLink id="enObservabilityApmRum">RUM</DocLink> send an `HTTP POST` request to the APM Server `intake/v3/rum/events` endpoint instead:
+For <DocLink slug="/en/observability/apm-rum">RUM</DocLink> send an `HTTP POST` request to the APM Server `intake/v3/rum/events` endpoint instead:
 
 ```bash
 http(s)://{hostname}:{port}/intake/v3/rum/events
@@ -142,12 +141,12 @@ If you're developing an agent, these errors can be useful for debugging.
 
 The APM Server uses a collection of JSON Schemas for validating requests to the intake API:
 
-* <DocLink id="enObservabilityApmApiMetadata">Metadata</DocLink>
-* <DocLink id="enObservabilityApmApiTransaction">Transactions</DocLink>
-* <DocLink id="enObservabilityApmApiSpan">Spans</DocLink>
-* <DocLink id="enObservabilityApmApiError">Errors</DocLink>
-* <DocLink id="enObservabilityApmApiMetricset">Metrics</DocLink>
-* <DocLink id="enObservabilityApmApiEventExample">Example request body</DocLink>
+* <DocLink slug="/en/observability/apm-api-metadata">Metadata</DocLink>
+* <DocLink slug="/en/observability/apm-api-transaction">Transactions</DocLink>
+* <DocLink slug="/en/observability/apm-api-span">Spans</DocLink>
+* <DocLink slug="/en/observability/apm-api-error">Errors</DocLink>
+* <DocLink slug="/en/observability/apm-api-metricset">Metrics</DocLink>
+* <DocLink slug="/en/observability/apm-api-event-example">Example request body</DocLink>
 
 {/* The include that was here is another page */}
 {/* The include that was here is another page */}

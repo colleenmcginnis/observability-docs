@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsMigrateFromIntegration
 slug: /en/observability/synthetics-migrate-from-integration
 title: Migrate from the Elastic Synthetics integration
 description: Description to be written
@@ -48,7 +47,7 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
   <DocRow>
     <DocCell>
       **Where monitors run**
-      (<DocLink id="enObservabilitySyntheticsMigrateFromIntegration" section="where-monitors-run">read((nbsp))more</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-migrate-from-integration" section="where-monitors-run">read((nbsp))more</DocLink>)
     </DocCell>
     <DocCell>
       You had to run monitors on your infrastructure.
@@ -56,7 +55,7 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
     <DocCell>
       You can run monitors on both:
 
-      * Your infrastructure using <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))s</DocLink>
+      * Your infrastructure using <DocLink slug="/en/observability/synthetics-private-location">((private-location))s</DocLink>
       * Elastic's global managed infrastructure
 
     </DocCell>
@@ -83,7 +82,7 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
   <DocRow>
     <DocCell>
       **How to use projects**
-      (<DocLink id="enObservabilitySyntheticsMigrateFromIntegration" section="how-to-use-projects">read((nbsp))more</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-migrate-from-integration" section="how-to-use-projects">read((nbsp))more</DocLink>)
     </DocCell>
     <DocCell>
       1. Created a project that uses `@elastic/synthetics`.
@@ -103,13 +102,13 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
 
       1. Use the `elastic/synthetics push` command to create monitors.
 
-      Find more details in <DocLink id="enObservabilitySyntheticsGetStartedProject">Create monitors with ((project-monitors-cap))</DocLink>.
+      Find more details in <DocLink slug="/en/observability/synthetics-get-started-project">Create monitors with ((project-monitors-cap))</DocLink>.
     </DocCell>
   </DocRow>
   <DocRow>
     <DocCell>
       **How to use the UI**
-      (<DocLink id="enObservabilitySyntheticsMigrateFromIntegration" section="how-to-use-the-ui">read((nbsp))more</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-migrate-from-integration" section="how-to-use-the-ui">read((nbsp))more</DocLink>)
     </DocCell>
     <DocCell>
       1. Went to the **Integrations** page in ((kib)).
@@ -125,7 +124,7 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
       1. Configure the monitor.
       1. Create the monitor.
 
-      Find more details in <DocLink id="enObservabilitySyntheticsGetStartedUi">Create monitors in the ((synthetics-app))</DocLink>.
+      Find more details in <DocLink slug="/en/observability/synthetics-get-started-ui">Create monitors in the ((synthetics-app))</DocLink>.
     </DocCell>
   </DocRow>
 </DocTable>
@@ -137,10 +136,10 @@ monitors and how you'll use the ((synthetics-app)) or projects to create monitor
 If you want to continue hosting on your infrastructure, you will need to create a
 ((private-location)) before creating monitors.
 If you have already have an ((agent)) running using `elastic-agent-complete`,
-you can <DocLink id="enObservabilitySyntheticsPrivateLocation" section="add-a-((private-location))">add it as a new ((private-location))</DocLink>
+you can <DocLink slug="/en/observability/synthetics-private-location" section="add-a-((private-location))">add it as a new ((private-location))</DocLink>
 in the ((synthetics-app)).
 To create a new ((private-location)) from scratch, follow all instructions in
-<DocLink id="enObservabilitySyntheticsPrivateLocation">Monitor resources on private networks</DocLink>.
+<DocLink slug="/en/observability/synthetics-private-location">Monitor resources on private networks</DocLink>.
 
 Alternatively, you can start hosting on Elastic's global managed infrastructure.
 With Elastic's global managed testing infrastructure, you can create and run monitors in multiple
@@ -202,20 +201,20 @@ to define settings like the name of the monitor and the frequency at which it wi
 There are two ways you can configure monitors using code:
 
 * For individual monitors, use `monitor.use` directly in the journey code.
-    Read more in <DocLink id="enObservabilitySyntheticsMonitorUse">Configure individual browser monitors</DocLink>.
+    Read more in <DocLink slug="/en/observability/synthetics-monitor-use">Configure individual browser monitors</DocLink>.
 
 * To configure all monitors at once, use the synthetics configuration file.
-    Read more in <DocLink id="enObservabilitySyntheticsConfiguration">Configure Synthetics projects</DocLink>.
+    Read more in <DocLink slug="/en/observability/synthetics-configuration">Configure Synthetics projects</DocLink>.
 
 Finally, you'll create monitors using `push` instead of by adding a ZIP URL in
 the Integrations UI. This will require an API token.
-Read more in <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`@elastic/synthetics push`</DocLink>.
+Read more in <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-push">`@elastic/synthetics push`</DocLink>.
 
 Optionally, you can also add lightweight monitors to the project in YAML files.
-Read more about adding lightweight monitors to projects in <DocLink id="enObservabilitySyntheticsLightweight">Configure lightweight monitors</DocLink>.
+Read more about adding lightweight monitors to projects in <DocLink slug="/en/observability/synthetics-lightweight">Configure lightweight monitors</DocLink>.
 
 For more information on getting started with projects,
-refer to <DocLink id="enObservabilitySyntheticsGetStartedProject">Create monitors with ((project-monitors-cap))</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-get-started-project">Create monitors with ((project-monitors-cap))</DocLink>.
 
 <div id="synthetics-migrate-integration-ui"></div>
 
@@ -236,4 +235,4 @@ In the ((synthetics-app)):
     using **Run test** before creating the monitor.
 
 For more information on getting started with the ((synthetics-app)),
-refer to <DocLink id="enObservabilitySyntheticsGetStartedUi">Create monitors in the ((synthetics-app))</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-get-started-ui">Create monitors in the ((synthetics-app))</DocLink>.

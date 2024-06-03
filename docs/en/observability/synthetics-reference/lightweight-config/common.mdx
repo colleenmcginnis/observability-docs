@@ -30,7 +30,7 @@ export let hardbreaks_option = true
       <span id="monitor-id">
         **`id`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       **Required**. A unique identifier for this configuration. This should not change with edits to the monitor configuration regardless of changes to any config fields.
@@ -57,7 +57,7 @@ export let hardbreaks_option = true
       <span id="monitor-name">
         **`name`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       Human readable name for this monitor.
@@ -78,7 +78,7 @@ export let hardbreaks_option = true
       <span id="monitor-service_name">
         **`service.name`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       APM service name for this monitor. Corresponds to the `service.name` ECS field. Set this when monitoring an app that is also using APM to enable integrations between Synthetics and APM data in Kibana.
@@ -89,7 +89,7 @@ export let hardbreaks_option = true
       <span id="monitor-enabled">
         **`enabled`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
     </DocCell>
     <DocCell>
       Whether the monitor is enabled.
@@ -108,7 +108,7 @@ export let hardbreaks_option = true
       <span id="monitor-schedule">
         **`schedule`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="duration">duration</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="duration">duration</DocLink>)
     </DocCell>
     <DocCell>
       **Required**. The task schedule.
@@ -130,7 +130,7 @@ export let hardbreaks_option = true
       <span id="monitor-timeout">
         **`timeout`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="duration">duration</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="duration">duration</DocLink>)
     </DocCell>
     <DocCell>
       The total running time for each ping test. This is the total time allowed for testing the connection and exchanging data.
@@ -149,7 +149,7 @@ export let hardbreaks_option = true
       <span id="monitor-tags">
         **`tags`**
       </span>
-      (list of <DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>s)
+      (list of <DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>s)
     </DocCell>
     <DocCell>
       A list of tags that will be sent with the monitor event.
@@ -192,7 +192,7 @@ export let hardbreaks_option = true
       <span id="monitor-ipv4">
         **`ipv4`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
     </DocCell>
     <DocCell>
       Whether to ping using the ipv4 protocol if hostnames are configured.
@@ -211,7 +211,7 @@ export let hardbreaks_option = true
       <span id="monitor-ipv6">
         **`ipv6`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
     </DocCell>
     <DocCell>
       Whether to ping using the ipv6 protocol if hostnames are configured.
@@ -232,11 +232,11 @@ export let hardbreaks_option = true
       </span>
     </DocCell>
     <DocCell>
-      Enable or disable alerts on this monitor. Read more about alerts in <DocLink id="enObservabilitySyntheticsSettings" section="alerting">Alerting</DocLink>.
+      Enable or disable alerts on this monitor. Read more about alerts in <DocLink slug="/en/observability/synthetics-settings" section="alerting">Alerting</DocLink>.
 
       <DocDefList>
         <DocDefTerm>
-          **`status.enabled`** (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+          **`status.enabled`** (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
         </DocDefTerm>
         <DocDefDescription>
           Enable monitor status alerts on this monitor.
@@ -250,7 +250,7 @@ export let hardbreaks_option = true
           ```
         </DocDefDescription>
         <DocDefTerm>
-          **`tls.enabled`** (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+          **`tls.enabled`** (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
         </DocDefTerm>
         <DocDefDescription>
           Enable TLS certificate alerts on this monitor.
@@ -271,7 +271,7 @@ export let hardbreaks_option = true
       <span id="monitor-retest_on_failure">
         **`retest_on_failure`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
     </DocCell>
     <DocCell>
       Enable or disable retesting when a monitor fails. Default is `true`.
@@ -297,7 +297,7 @@ export let hardbreaks_option = true
 
       To list available locations you can:
 
-      * Run the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink>.
+      * Run the <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink>.
       * Go to **Synthetics** -> **Management** and click **Create monitor**. Locations will be listed in _Locations_.
 
 
@@ -316,8 +316,8 @@ export let hardbreaks_option = true
       <DocCallOut title="Note">
 
       This can also be set using
-      <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.locations` in the project configuration file</DocLink>
-      or via the CLI using the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`--location` flag on `push`</DocLink>.
+      <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.locations` in the project configuration file</DocLink>
+      or via the CLI using the <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-push">`--location` flag on `push`</DocLink>.
 
       The value defined via the CLI takes precedence over the value defined in the lightweight monitor configuration,
       and the value defined in the lightweight monitor configuration takes precedence over the value defined in _project_ configuration file.
@@ -330,14 +330,14 @@ export let hardbreaks_option = true
       <span id="monitor-private_locations">
         **`private_locations`**
       </span>
-      (list of <DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>s)
+      (list of <DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>s)
     </DocCell>
     <DocCell>
-      The <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))s</DocLink> to which the monitors will be deployed. These ((private-location))s refer to locations hosted and managed by you, whereas  `locations` are hosted by Elastic. You can specify a ((private-location)) using the location's name.
+      The <DocLink slug="/en/observability/synthetics-private-location">((private-location))s</DocLink> to which the monitors will be deployed. These ((private-location))s refer to locations hosted and managed by you, whereas  `locations` are hosted by Elastic. You can specify a ((private-location)) using the location's name.
 
       To list available ((private-location))s you can:
 
-      * Run the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink> and specify the ((kib)) URL of the deployment. This will fetch all available private locations associated with the deployment.
+      * Run the <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink> and specify the ((kib)) URL of the deployment. This will fetch all available private locations associated with the deployment.
       * Go to **Synthetics** -> **Management** and click **Create monitor**. ((private-location))s will be listed in _Locations_.
 
 
@@ -355,8 +355,8 @@ export let hardbreaks_option = true
 
       <DocCallOut title="Note">
       This can also be set using
-      <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.privateLocations` in the project configuration file</DocLink>
-      or via the CLI using the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`--privateLocations` flag on `push`</DocLink>.
+      <DocLink slug="/en/observability/synthetics-configuration" section="monitor">`monitor.privateLocations` in the project configuration file</DocLink>
+      or via the CLI using the <DocLink slug="/en/observability/synthetics-command-reference" section="elasticsynthetics-push">`--privateLocations` flag on `push`</DocLink>.
 
       The value defined via the CLI takes precedence over the value defined in the lightweight monitor configuration,
       and the value defined in the lightweight monitor configuration takes precedence over the value defined in _project_ configuration file.

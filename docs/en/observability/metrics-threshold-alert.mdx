@@ -1,5 +1,4 @@
 ---
-id: enObservabilityMetricsThresholdAlert
 slug: /en/observability/metrics-threshold-alert
 title: Create a metric threshold rule
 description: Description to be written
@@ -37,7 +36,7 @@ are automatically populated.
 
 ## Metric conditions
 
-Conditions for each rule can be applied to specific metrics that you select. You can select the aggregation type (refer to <DocLink id="enObservabilityAggregationOptions">Aggregation options</DocLink>),
+Conditions for each rule can be applied to specific metrics that you select. You can select the aggregation type (refer to <DocLink slug="/en/observability/aggregation-options">Aggregation options</DocLink>),
 the metric, and by including a warning threshold value, you can be alerted on multiple threshold values based on severity scores.
 To help you determine which thresholds are meaningful to you, the preview charts provide a visualization.
 
@@ -153,7 +152,7 @@ You an also specify [variables common to all rules](((kibana-ref))/rule-action-v
 ## Settings
 
 With metric threshold rules, it's not possible to set an explicit index pattern as part of the configuration. The index pattern is instead inferred from
-**Metrics indices** on the <DocLink id="enObservabilityConfigureSettings">Settings</DocLink> page of the ((infrastructure-app)).
+**Metrics indices** on the <DocLink slug="/en/observability/configure-settings">Settings</DocLink> page of the ((infrastructure-app)).
 
 With each execution of the rule check, the **Metrics indices** setting is checked, but it is not stored when the rule is created.
 

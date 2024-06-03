@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySloCreate
 slug: /en/observability/slo-create
 title: Create a service-level objective (SLO)
 description: Description to be written
@@ -19,9 +18,9 @@ To create an SLO, go to **Observability → SLOs**:
 
 From here, complete the following steps:
 
-1. <DocLink id="enObservabilitySloCreate" section="define-your-sli">Define your service-level indicator (SLI)</DocLink>.
-1. <DocLink id="enObservabilitySloCreate" section="set-your-objectives">Set your objectives</DocLink>.
-1. <DocLink id="enObservabilitySloCreate" section="describe-your-slo">Describe your SLO</DocLink>.
+1. <DocLink slug="/en/observability/slo-create" section="define-your-sli">Define your service-level indicator (SLI)</DocLink>.
+1. <DocLink slug="/en/observability/slo-create" section="set-your-objectives">Set your objectives</DocLink>.
+1. <DocLink slug="/en/observability/slo-create" section="describe-your-slo">Describe your SLO</DocLink>.
 
 <div id="define-sli"></div>
 
@@ -29,11 +28,11 @@ From here, complete the following steps:
 
 The type of SLI to use depends on the location of your data:
 
-* <DocLink id="enObservabilitySloCreate" section="custom-kql">Custom KQL</DocLink> — create an SLI based on raw logs coming from your services.
-* <DocLink id="enObservabilitySloCreate" section="custom-metric">Custom metric</DocLink> — create an SLI to define custom equations from metric fields in your indices.
-* <DocLink id="enObservabilitySloCreate" section="timeslice-metric">Timeslice metric</DocLink> — create an SLI based on a custom equation that uses multiple aggregations.
-* <DocLink id="enObservabilitySloCreate" section="histogram-metric">Histogram metric</DocLink> — create an SLI based on histogram metrics.
-* <DocLink id="enObservabilitySloCreate" section="apm-latency-and-apm-availability">APM latency and APM availability</DocLink> — create an SLI based on services using application performance monitoring (APM).
+* <DocLink slug="/en/observability/slo-create" section="custom-kql">Custom KQL</DocLink> — create an SLI based on raw logs coming from your services.
+* <DocLink slug="/en/observability/slo-create" section="custom-metric">Custom metric</DocLink> — create an SLI to define custom equations from metric fields in your indices.
+* <DocLink slug="/en/observability/slo-create" section="timeslice-metric">Timeslice metric</DocLink> — create an SLI based on a custom equation that uses multiple aggregations.
+* <DocLink slug="/en/observability/slo-create" section="histogram-metric">Histogram metric</DocLink> — create an SLI based on histogram metrics.
+* <DocLink slug="/en/observability/slo-create" section="apm-latency-and-apm-availability">APM latency and APM availability</DocLink> — create an SLI based on services using application performance monitoring (APM).
 
 <div id="custom-kql-sli"></div>
 
@@ -172,9 +171,9 @@ When defining an APM latency or APM availability SLI, set the following fields:
 ## Set your objectives
 After defining your SLI, you need to set your objectives. To set your objectives, complete the following:
 
-1. <DocLink id="enObservabilitySloCreate" section="select-your-budgeting-method">Select your budgeting method</DocLink>
-1. <DocLink id="enObservabilitySloCreate" section="set-your-time-window">Set your time window</DocLink>
-1. <DocLink id="enObservabilitySloCreate" section="set-your-targetslo-percent">Set your target/SLO percentage</DocLink>
+1. <DocLink slug="/en/observability/slo-create" section="select-your-budgeting-method">Select your budgeting method</DocLink>
+1. <DocLink slug="/en/observability/slo-create" section="set-your-time-window">Set your time window</DocLink>
+1. <DocLink slug="/en/observability/slo-create" section="set-your-targetslo-percent">Set your target/SLO percentage</DocLink>
 
 <div id="slo-budgeting-method"></div>
 
@@ -232,7 +231,7 @@ When you use the UI to create an SLO, a default SLO burn rate alert rule is crea
 The burn rate rule will use the default configuration and no connector.
 You must configure a connector if you want to receive alerts for SLO breaches.
 
-For more information about configuring the rule, see <DocLink id="enObservabilitySloBurnRateAlert">Create an SLO burn rate rule</DocLink>.
+For more information about configuring the rule, see <DocLink slug="/en/observability/slo-burn-rate-alert">Create an SLO burn rate rule</DocLink>.
 
 <div id="slo-dashboard"></div>
 

@@ -1,5 +1,4 @@
 ---
-id: enObservabilityLogsFilterAndAggregate
 slug: /en/observability/logs-filter-and-aggregate
 title: Filter and aggregate logs
 description: Description to be written
@@ -12,14 +11,14 @@ Filter and aggregate your log data to find specific information, gain insight, a
 
 This guide shows you how to:
 
-* <DocLink id="enObservabilityLogsFilterAndAggregate" section="filter-logs">Filter logs</DocLink> — Narrow down your log data by applying specific criteria.
-* <DocLink id="enObservabilityLogsFilterAndAggregate" section="aggregate-logs">Aggregate logs</DocLink> — Analyze and summarize data to find patterns and gain insight.
+* <DocLink slug="/en/observability/logs-filter-and-aggregate" section="filter-logs">Filter logs</DocLink> — Narrow down your log data by applying specific criteria.
+* <DocLink slug="/en/observability/logs-filter-and-aggregate" section="aggregate-logs">Aggregate logs</DocLink> — Analyze and summarize data to find patterns and gain insight.
 
 <div id="logs-filter-and-aggregate-prereq"></div>
 
 ## Before you get started
 
-The examples on this page use the following ingest pipeline and index template, which you can set in **Dev Tools**. If you haven't used ingest pipelines and index templates to parse your log data and extract structured fields yet, start with the <DocLink id="enObservabilityLogsParse">Parse and organize logs</DocLink> documentation.
+The examples on this page use the following ingest pipeline and index template, which you can set in **Dev Tools**. If you haven't used ingest pipelines and index templates to parse your log data and extract structured fields yet, start with the <DocLink slug="/en/observability/logs-parse">Parse and organize logs</DocLink> documentation.
 
 Set the ingest pipeline with the following command:
 
@@ -67,8 +66,8 @@ PUT _index_template/logs-example-default-template
 
 Filter your data using the fields you've extracted so you can focus on log data with specific log levels, timestamp ranges, or host IPs. You can filter your log data in different ways:
 
-- <DocLink id="enObservabilityLogsFilterAndAggregate" section="filter-logs-in-log-explorer">Filter logs in Log Explorer</DocLink> – Filter and visualize log data in ((kib)) using Log Explorer.
-- <DocLink id="enObservabilityLogsFilterAndAggregate" section="filter-logs-with-query-dsl">Filter logs with Query DSL</DocLink> – Filter log data from Dev Tools using Query DSL.
+- <DocLink slug="/en/observability/logs-filter-and-aggregate" section="filter-logs-in-log-explorer">Filter logs in Log Explorer</DocLink> – Filter and visualize log data in ((kib)) using Log Explorer.
+- <DocLink slug="/en/observability/logs-filter-and-aggregate" section="filter-logs-with-query-dsl">Filter logs with Query DSL</DocLink> – Filter log data from Dev Tools using Query DSL.
 
 <div id="logs-filter-logs-explorer"></div>
 

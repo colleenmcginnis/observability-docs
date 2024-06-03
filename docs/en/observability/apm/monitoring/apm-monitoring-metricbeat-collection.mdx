@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmMonitoringMetricbeatCollection
 slug: /en/observability/apm-monitoring-metricbeat-collection
 title: Use ((metricbeat)) to send monitoring data
 description: Description to be written
@@ -23,9 +22,9 @@ APM Server instance dies.
 
 To collect and ship monitoring data:
 
-1. <DocLink id="enObservabilityApmMonitoringMetricbeatCollection" section="configure-the-shipper-you-want-to-monitor">Configure the shipper you want to monitor</DocLink>
+1. <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection" section="configure-the-shipper-you-want-to-monitor">Configure the shipper you want to monitor</DocLink>
 
-1. <DocLink id="enObservabilityApmMonitoringMetricbeatCollection" section="install-and-configure-((metricbeat))-to-collect-monitoring-data">Install and configure ((metricbeat)) to collect monitoring data</DocLink>
+1. <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection" section="install-and-configure-((metricbeat))-to-collect-monitoring-data">Install and configure ((metricbeat)) to collect monitoring data</DocLink>
 
 <div id="apm-configure-shipper"></div>
 
@@ -227,7 +226,7 @@ export let apm_server = false
     <DocCallOut title="Tip">
     If you're using ((ilm)), the remote monitoring user
     requires additional privileges to create and read indices. For more
-    information, see <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink>.
+    information, see <DocLink slug="/en/observability/apm-secure-comms-stack" section="feature-roles">Feature roles</DocLink>.
     </DocCallOut>
 
         1. Add the `username` and `password` settings to the ((es)) output information in

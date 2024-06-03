@@ -1,5 +1,4 @@
 ---
-id: enObservabilityMonitorAwsFirehoseTroubleshooting
 slug: /en/observability/monitor-aws-firehose-troubleshooting
 title: Troubleshooting
 description: Description to be written
@@ -10,7 +9,7 @@ tags: []
 
 You can use the monitoring tab in the Firehose console to ensure there are incoming records and the delivery success rate is 100%. By default Firehose also logs to a Cloudwatch log group with the name `/aws/kinesisfirehose/<delivery stream name>`, which is automatically created when the delivery stream is created. Two log streams, `DestinationDelivery` and `BackupDelivery`, are created in this log group.
 
-The backup settings in the delivery stream specify how failed delivery requests are handled. For more details on how to configure backups to S3, refer to <DocLink id="enObservabilityMonitorAwsFirehose" section="step-3-specify-the-destination-settings-for-your-firehose-stream">Step 3: Specify the destination settings for your Firehose stream</DocLink>.
+The backup settings in the delivery stream specify how failed delivery requests are handled. For more details on how to configure backups to S3, refer to <DocLink slug="/en/observability/monitor-aws-firehose" section="step-3-specify-the-destination-settings-for-your-firehose-stream">Step 3: Specify the destination settings for your Firehose stream</DocLink>.
 
 <div id="aws-firehose-troubleshooting-scaling"></div>
 

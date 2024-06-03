@@ -1,5 +1,4 @@
 ---
-id: enObservabilityUptimeGetStarted
 slug: /en/observability/uptime-get-started
 title: Get started with Uptime
 description: Description to be written
@@ -9,7 +8,7 @@ tags: []
 <div id="uptime-get-started"></div>
 
 <DocCallOut title="Important" color="warning">
-**This approach can only be used to create lightweight monitors.** To create _browser_ monitors, use the <DocLink id="enObservabilitySyntheticsGetStarted">((synthetics-app))</DocLink>.
+**This approach can only be used to create lightweight monitors.** To create _browser_ monitors, use the <DocLink slug="/en/observability/synthetics-get-started">((synthetics-app))</DocLink>.
 </DocCallOut>
 
 ((heartbeat)) is a lightweight daemon that you install on a remote server to periodically
@@ -25,7 +24,7 @@ synthetic monitors that is no longer recommended.
 **Do not use the Elastic Synthetics integration to set up new monitors.**
 
 For details on how to migrate from Elastic Synthetics integration to
-((project-monitors)) or the ((synthetics-app)), refer to <DocLink id="enObservabilitySyntheticsMigrateFromIntegration">Migrate from the Elastic Synthetics integration</DocLink>.
+((project-monitors)) or the ((synthetics-app)), refer to <DocLink slug="/en/observability/synthetics-migrate-from-integration">Migrate from the Elastic Synthetics integration</DocLink>.
 
 If you've used the Elastic Synthetics integration to create monitors in the past
 and need to reference documentation about the integration, go to the
@@ -79,7 +78,7 @@ Read more about configuration options in [Configure ((heartbeat)) monitors](((he
 
 <DocCallOut title="Warning" color="warning">
 
-**Do not use ((heartbeat)) to set up a _new_ `browser` monitor.** Instead, use the <DocLink id="enObservabilitySyntheticsGetStarted">((synthetics-app))</DocLink>.
+**Do not use ((heartbeat)) to set up a _new_ `browser` monitor.** Instead, use the <DocLink slug="/en/observability/synthetics-get-started">((synthetics-app))</DocLink>.
 
 If you previously used ((heartbeat)) to set up **`browser`** monitor, you can find resources in the
 [8.4 ((heartbeat)) documentation](https://www.elastic.co/guide/en/beats/heartbeat/8.4/monitor-browser-options.html).
@@ -162,7 +161,7 @@ set up alerts in case of test failures, and more.
 
 If a test does fail (shown as `down` in the ((uptime-app))), you'll be able to view the step script that failed,
 any errors, and a stack trace.
-For more information, refer to <DocLink id="enObservabilityUptimeAnalyze">Analyze</DocLink>.
+For more information, refer to <DocLink slug="/en/observability/uptime-analyze">Analyze</DocLink>.
 
 <div id="uptime-manage"></div>
 

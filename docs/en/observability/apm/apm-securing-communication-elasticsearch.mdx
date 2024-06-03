@@ -19,7 +19,7 @@ Authentication is specified in the APM Server configuration file:
     password: "((pwd))"
     ```
     [^1]: This user needs the privileges required to publish events to ((es)).
-    To create a user like this, see <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Grant privileges and roles needed for writing events</DocLink>.
+    To create a user like this, see <DocLink slug="/en/observability/apm-privileges-to-publish-events">Grant privileges and roles needed for writing events</DocLink>.
 
 * To use token-based **API key authentication**, specify the `api_key` under `output.elasticsearch`.
     For example:
@@ -30,7 +30,7 @@ Authentication is specified in the APM Server configuration file:
     api_key: "KnR6yE41RrSowb0kQ0HWoA"  [^1]
     ```
     [^1]: This API key must have the privileges required to publish events to ((es)).
-    To create an API key like this, see <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink>.
+    To create an API key like this, see <DocLink slug="/en/observability/apm-beats-api-keys">Grant access using API keys</DocLink>.
 
 <div id="apm-beats-tls"></div>
 
@@ -94,7 +94,7 @@ export let no_dashboards = false
 
 ### Secure communication with the ((kib)) endpoint
 
-If you've configured the <DocLink id="enObservabilityApmSetupKibanaEndpoint">((kib)) endpoint</DocLink>,
+If you've configured the <DocLink slug="/en/observability/apm-setup-kibana-endpoint">((kib)) endpoint</DocLink>,
 you can also specify credentials for authenticating with ((kib)) under `kibana.setup`.
 If no credentials are specified, ((kib)) will use the configured authentication method
 in the ((es)) output.
@@ -116,10 +116,10 @@ setup.kibana:
 
 More information on sending data to a secured cluster is available in the configuration reference:
 
-* <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>
-* <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink>
+* <DocLink slug="/en/observability/apm-elasticsearch-output">Configure the ((es)) output</DocLink>
+* <DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink>
 
 <DocIf condition={ no_dashboards === false }>
-* <DocLink id="enObservabilityApmSetupKibanaEndpoint">Configure the ((kib)) endpoint</DocLink>
+* <DocLink slug="/en/observability/apm-setup-kibana-endpoint">Configure the ((kib)) endpoint</DocLink>
 
 </DocIf>

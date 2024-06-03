@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsMonitorUse
 slug: /en/observability/synthetics-monitor-use
 title: Configure individual browser monitors
 description: Description to be written
@@ -12,11 +11,11 @@ tags: []
 
 This is only relevant for ((project-monitors)).
 For more information on configuring browser monitors added in the ((synthetics-app)),
-refer to <DocLink id="enObservabilitySyntheticsGetStartedUi">Create monitors in the ((synthetics-app))</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-get-started-ui">Create monitors in the ((synthetics-app))</DocLink>.
 
 </DocCallOut>
 
-After <DocLink id="enObservabilitySyntheticsCreateTest">writing synthetic journeys</DocLink>, you can use `monitor.use`
+After <DocLink slug="/en/observability/synthetics-create-test">writing synthetic journeys</DocLink>, you can use `monitor.use`
 to configure the browser monitors that will run your tests.
 
 You'll need to set a few configuration options:
@@ -24,7 +23,7 @@ You'll need to set a few configuration options:
 * **Give your monitor a name.** Provide a human readable name and a unique ID for the monitor. This will appear in ((kib)) where you can view and manage monitors after they're created.
 * **Set the schedule.** Specify the interval at which your tests will run.
 * **Specify where the monitors should run.** You can run monitors on Elastic's global managed testing infrastructure
-    or <DocLink id="enObservabilitySyntheticsPrivateLocation">create a ((private-location))</DocLink> to run monitors from your own premises.
+    or <DocLink slug="/en/observability/synthetics-private-location">create a ((private-location))</DocLink> to run monitors from your own premises.
 
 * **Set other options as needed.** There are several other options you can set to customize your implementation including params, tags, screenshot options, throttling options, and more.
 
@@ -60,4 +59,4 @@ journey('Ensure placeholder is correct', ({ page, params }) => {
 
 For each journey, you can specify its `schedule` and the `locations` in which it runs.
 When those options are not set, Synthetics will use the default values in the global configuration file.
-For more details, refer to <DocLink id="enObservabilitySyntheticsConfiguration">Configure Synthetics projects</DocLink>.
+For more details, refer to <DocLink slug="/en/observability/synthetics-configuration">Configure Synthetics projects</DocLink>.

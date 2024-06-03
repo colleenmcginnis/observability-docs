@@ -16,7 +16,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-hosts">
         **`hosts`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       **Required**. The URL to ping.
@@ -27,7 +27,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-max_redirects">
         **`max_redirects`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="number">number</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="number">number</DocLink>)
     </DocCell>
     <DocCell>
       The total number of redirections Synthetics will follow.
@@ -54,7 +54,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-proxy_url">
         **`proxy_url`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       The HTTP proxy URL. This setting is optional.
@@ -71,7 +71,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-username">
         **`username`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       The username for authenticating with the server. The credentials are passed with the request. This setting is optional.
@@ -84,7 +84,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-password">
         **`password`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
     </DocCell>
     <DocCell>
       The password for authenticating with the server. This setting is optional.
@@ -119,7 +119,7 @@ export let hardbreaks_option = true
       <span id="monitor-http-headers">
         **`headers`**
       </span>
-      (<DocLink id="enObservabilitySyntheticsLightweight" section="boolean">boolean</DocLink>)
+      (<DocLink slug="/en/observability/synthetics-lightweight" section="boolean">boolean</DocLink>)
     </DocCell>
     <DocCell>
       Controls the indexing of the HTTP response headers `http.response.body.headers` field. Set `response.include_headers` to `false` to disable.
@@ -149,7 +149,7 @@ export let hardbreaks_option = true
         </DocDefDescription>
 
         <DocDefTerm>
-          **`include_body_max_bytes`** (<DocLink id="enObservabilitySyntheticsLightweight" section="number">number</DocLink>)
+          **`include_body_max_bytes`** (<DocLink slug="/en/observability/synthetics-lightweight" section="number">number</DocLink>)
         </DocDefTerm>
         <DocDefDescription>
           Set `response.include_body_max_bytes` to control the maximum size of the stored body contents.
@@ -186,7 +186,7 @@ export let hardbreaks_option = true
               A dictionary of additional HTTP headers to send. By default Synthetics will set the 'User-Agent' header to identify itself.
             </DocDefDescription>
             <DocDefTerm>
-              **`body`** (<DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>)
+              **`body`** (<DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>)
             </DocDefTerm>
             <DocDefDescription>
               Optional request body content.
@@ -214,7 +214,7 @@ export let hardbreaks_option = true
 
           <DocDefList>
             <DocDefTerm>
-              **`status`** (list of <DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>s)
+              **`status`** (list of <DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>s)
             </DocDefTerm>
             <DocDefDescription>
               A list of expected status codes. 4xx and 5xx codes are considered `down` by default. Other codes are considered `up`.
@@ -233,7 +233,7 @@ export let hardbreaks_option = true
               The required response headers.
             </DocDefDescription>
             <DocDefTerm>
-              **`body.positive`** (list of <DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>s)
+              **`body.positive`** (list of <DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>s)
             </DocDefTerm>
             <DocDefDescription>
               A list of regular expressions to match the body output. Only a single expression needs to match.
@@ -252,7 +252,7 @@ export let hardbreaks_option = true
               ```
             </DocDefDescription>
             <DocDefTerm>
-              **`body.negative`** (list of <DocLink id="enObservabilitySyntheticsLightweight" section="string">string</DocLink>s)
+              **`body.negative`** (list of <DocLink slug="/en/observability/synthetics-lightweight" section="string">string</DocLink>s)
             </DocDefTerm>
             <DocDefDescription>
               A list of regular expressions to match the body output negatively. Return match failed if single expression matches. HTTP response bodies of up to 100MiB are supported.

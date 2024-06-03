@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmCommonProblems
 slug: /en/observability/apm-common-problems
 title: Common problems
 description: Description to be written
@@ -13,12 +12,12 @@ import InstallApmIntegration from './getting-started-apm-server/install-apm-inte
 
 This section describes common problems you might encounter when using a Fleet-managed APM Server.
 
-* <DocLink id="enObservabilityApmCommonProblems" section="no-data-is-indexed">No data is indexed</DocLink>
-* <DocLink id="enObservabilityApmCommonResponseCodes">APM Server response codes</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="common-ssl-related-problems">Common SSL-related problems</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="io-timeout">I/O Timeout</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="field-limit-exceeded">Field limit exceeded</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="tail-based-sampling-causing-high-system-memory-usage-and-high-disk-io">Tail-based sampling causing high system memory usage and high disk IO</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="no-data-is-indexed">No data is indexed</DocLink>
+* <DocLink slug="/en/observability/apm-common-response-codes">APM Server response codes</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="common-ssl-related-problems">Common SSL-related problems</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="io-timeout">I/O Timeout</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="field-limit-exceeded">Field limit exceeded</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="tail-based-sampling-causing-high-system-memory-usage-and-high-disk-io">Tail-based sampling causing high system memory usage and high disk IO</DocLink>
 
 <div id="apm-no-data-indexed"></div>
 
@@ -78,11 +77,11 @@ GET /_index_template/traces-apm
 
 ## Common SSL-related problems
 
-* <DocLink id="enObservabilityApmCommonProblems" section="ssl-client-fails-to-connect">SSL client fails to connect</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="x509-cannot-validate-certificate-for-lessip-addressgreater-because-it-doesnt-contain-any-ip-sans">x509: cannot validate certificate</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="getsockopt-no-route-to-host">getsockopt: no route to host</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="getsockopt-connection-refused">getsockopt: connection refused</DocLink>
-* <DocLink id="enObservabilityApmCommonProblems" section="no-connection-could-be-made-because-the-target-machine-actively-refused-it">No connection could be made because the target machine actively refused it</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="ssl-client-fails-to-connect">SSL client fails to connect</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="x509-cannot-validate-certificate-for-lessip-addressgreater-because-it-doesnt-contain-any-ip-sans">x509: cannot validate certificate</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="getsockopt-no-route-to-host">getsockopt: no route to host</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="getsockopt-connection-refused">getsockopt: connection refused</DocLink>
+* <DocLink slug="/en/observability/apm-common-problems" section="no-connection-could-be-made-because-the-target-machine-actively-refused-it">No connection could be made because the target machine actively refused it</DocLink>
 
 <div id="apm-ssl-client-fails"></div>
 
@@ -165,7 +164,7 @@ APM agent --> Load Balancer  --> APM Server
 ```
 
 The APM Server timeout can be configured by updating the
-<DocLink id="enObservabilityApmConfigurationProcess" section="read-timeout">maximum duration for reading an entire request</DocLink>.
+<DocLink slug="/en/observability/apm-configuration-process" section="read-timeout">maximum duration for reading an entire request</DocLink>.
 
 <div id="apm-field-limit-exceeded"></div>
 

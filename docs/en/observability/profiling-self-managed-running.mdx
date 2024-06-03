@@ -1,5 +1,4 @@
 ---
-id: enObservabilityProfilingSelfManagedRunning
 slug: /en/observability/profiling-self-managed-running
 title: "Step 4: Run the backend applications"
 description: Description to be written
@@ -10,8 +9,8 @@ tags: []
 
 The next step is to run the backend applications. To do this:
 
-1. <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-api-keys">Create API keys</DocLink> to authenticate the backend applications.
-1. Run the application on <DocLink id="enObservabilityProfilingSelfManagedRunning" section="run-on-linux">Linux</DocLink> or <DocLink id="enObservabilityProfilingSelfManagedRunning" section="run-on-kubernetes">Kubernetes</DocLink>.
+1. <DocLink slug="/en/observability/profiling-self-managed-running" section="create-api-keys">Create API keys</DocLink> to authenticate the backend applications.
+1. Run the application on <DocLink slug="/en/observability/profiling-self-managed-running" section="run-on-linux">Linux</DocLink> or <DocLink slug="/en/observability/profiling-self-managed-running" section="run-on-kubernetes">Kubernetes</DocLink>.
 
 <div id="profiling-self-managed-create-api-keys"></div>
 
@@ -42,20 +41,20 @@ Select a **User API key** and assign the following permissions  under **Control 
 ```
 
 Store the "Encoded" version of the API keys, as you will need them to run the Universal Profiling backend.
-Continue to <DocLink id="enObservabilityProfilingSelfManagedRunning" section="run-on-linux">Run on Linux</DocLink> or <DocLink id="enObservabilityProfilingSelfManagedRunning" section="run-on-kubernetes">Run on Kubernetes</DocLink> for information on running the backend applications.
+Continue to <DocLink slug="/en/observability/profiling-self-managed-running" section="run-on-linux">Run on Linux</DocLink> or <DocLink slug="/en/observability/profiling-self-managed-running" section="run-on-kubernetes">Run on Kubernetes</DocLink> for information on running the backend applications.
 
 <div id="profiling-self-managed-running-linux"></div>
 
 ## Run on Linux
 
-Before running the backend applications on Linux, we recommend creating <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-configuration-files">configuration files</DocLink> to manage the applications.
+Before running the backend applications on Linux, we recommend creating <DocLink slug="/en/observability/profiling-self-managed-running" section="create-configuration-files">configuration files</DocLink> to manage the applications.
 CLI flags are also supported, but they might result in a more complex management of the backend applications.
 
 Install the backend applications using one of the following options:
 
-1. <DocLink id="enObservabilityProfilingSelfManagedRunning" section="os-packages-debrpm">OS packages (DEB/RPM)</DocLink>
-1. <DocLink id="enObservabilityProfilingSelfManagedRunning" section="oci-containers">OCI containers</DocLink>
-1. <DocLink id="enObservabilityProfilingSelfManagedRunning" section="binary">Binary</DocLink>: orchestrated with your configuration management system of choice (Ansible, Puppet, Chef, Salt, etc.)
+1. <DocLink slug="/en/observability/profiling-self-managed-running" section="os-packages-debrpm">OS packages (DEB/RPM)</DocLink>
+1. <DocLink slug="/en/observability/profiling-self-managed-running" section="oci-containers">OCI containers</DocLink>
+1. <DocLink slug="/en/observability/profiling-self-managed-running" section="binary">Binary</DocLink>: orchestrated with your configuration management system of choice (Ansible, Puppet, Chef, Salt, etc.)
 
 <div id="profiling-self-managed-running-linux-configfile"></div>
 
@@ -86,7 +85,7 @@ Customize the content of `pf-elastic-collector.auth.secret_token` with a secret 
 This token will be used by the Universal Profiling Agent to authenticate to the collector; you cannot use an empty string as a token.
 Adjust the `ssl` section if you want to protect the collector's endpoint with TLS.
 
-Customize the content of the `output.elasticsearch` section, using the Elasticsearch endpoint and <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-api-keys">API key</DocLink> to set the `hosts` and `api_key` values, respectively.
+Customize the content of the `output.elasticsearch` section, using the Elasticsearch endpoint and <DocLink slug="/en/observability/profiling-self-managed-running" section="create-api-keys">API key</DocLink> to set the `hosts` and `api_key` values, respectively.
 Adjust the `protocol` value and other TLS related settings as needed.
 
 <DocAccordion buttonContent="Collector configuration file">
@@ -253,7 +252,7 @@ Copy the content of the snippet below in the `/etc/Elastic/universal-profiling/p
 You don't need to customize any values in the `pf-elastic-symbolizer` section.
 Adjust the `ssl` section if you want to protect the symbolizer's endpoint with TLS.
 
-Customize the content of the `output.elasticsearch` section, using the Elasticsearch endpoint and <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-api-keys">API key</DocLink> to set the `hosts` and `api_key` values, respectively.
+Customize the content of the `output.elasticsearch` section, using the Elasticsearch endpoint and <DocLink slug="/en/observability/profiling-self-managed-running" section="create-api-keys">API key</DocLink> to set the `hosts` and `api_key` values, respectively.
 Adjust the `protocol` value and other TLS related settings as needed.
 
 <DocAccordion buttonContent="Symbolizer configuration file">
@@ -476,7 +475,7 @@ sudo journalctl -xu pf-elastic-collector
 sudo journalctl -xu pf-elastic-symbolizer
 ```
 
-Refer to <DocLink id="enObservabilityProfilingSelfManagedTroubleshooting">Troubleshooting Universal Profiling backend</DocLink> for more information on troubleshooting possible errors in the logs.
+Refer to <DocLink slug="/en/observability/profiling-self-managed-troubleshooting">Troubleshooting Universal Profiling backend</DocLink> for more information on troubleshooting possible errors in the logs.
 
 <div id="profiling-self-managed-running-linux-container"></div>
 
@@ -562,7 +561,7 @@ We provide [Helm](https://helm.io) charts to deploy the backend services on Kube
 To install the backend services, you need to add the Elastic Helm repository to your Helm installation and then install the charts.
 
 We recommend creating a `values.yaml` file defining the Kubernetes-specific options of the chart. If you want to stick with the default values provided by the chart, you don't need to create a `values.yaml` file for each chart.
-For the applications' configuration, you can reuse the configuration files detailed in <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-configuration-files">"Create configuration files"</DocLink> and pass them to Helm as a values file (using the `--values` of `-f` flags), or copy them in the `values.yaml` file.
+For the applications' configuration, you can reuse the configuration files detailed in <DocLink slug="/en/observability/profiling-self-managed-running" section="create-configuration-files">"Create configuration files"</DocLink> and pass them to Helm as a values file (using the `--values` of `-f` flags), or copy them in the `values.yaml` file.
 
 In the example below we don't apply any modifications to the Kubernetes configs, so we will use the default values provided by the chart.
 
@@ -587,5 +586,5 @@ In the previous examples, we used the charts' default values to configure Kubern
 If you want to expose the services to an Universal Profiling Agent and symbtool deployment outside the Kubernetes cluster, you need to set up the `ingress` section of each chart.
 </DocCallOut>
 
-Continue to <DocLink id="enObservabilityProfilingSelfManagedInstallNextSteps">Step 5: Next steps</DocLink>.
+Continue to <DocLink slug="/en/observability/profiling-self-managed-install-next-steps">Step 5: Next steps</DocLink>.
 

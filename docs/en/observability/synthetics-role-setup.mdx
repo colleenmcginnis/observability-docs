@@ -1,5 +1,4 @@
 ---
-id: enObservabilitySyntheticsRoleSetup
 slug: /en/observability/synthetics-role-setup
 title: Setup role
 description: Description to be written
@@ -12,8 +11,8 @@ Administrators who set up Synthetics typically need to enable Monitor Management
 
 Monitor Management will be enabled automatically when a user with the required permissions
 loads the Synthetics UI. This must be completed just once by an admin before any users with
-the <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink> can create synthetic monitors. This applies to monitors created
-via both <DocLink id="enObservabilitySyntheticsGetStartedProject">projects</DocLink> and <DocLink id="enObservabilitySyntheticsGetStartedUi">the UI</DocLink>.
+the <DocLink slug="/en/observability/synthetics-role-write">Writer role</DocLink> can create synthetic monitors. This applies to monitors created
+via both <DocLink slug="/en/observability/synthetics-get-started-project">projects</DocLink> and <DocLink slug="/en/observability/synthetics-get-started-ui">the UI</DocLink>.
 
 As a best practice, **grant the setup role to administrators only**, and use a more restrictive
 role for event publishing.
@@ -28,7 +27,7 @@ Create a **setup role**, called something like `synthetics_setup`:
 
 The `editor` [built-in role](((ref))/built-in-roles.html) will grant write access
 to _all_ ((kib)) apps. If you want to limit write access to the ((synthetics-app)) only,
-refer to <DocLink id="enObservabilitySyntheticsRoleWrite" section="limited-write-access">Limited write access</DocLink>.
+refer to <DocLink slug="/en/observability/synthetics-role-write" section="limited-write-access">Limited write access</DocLink>.
 
 If you choose this approach, you will still need to grant the privileges in the next step.
 
@@ -50,6 +49,6 @@ If you choose this approach, you will still need to grant the privileges in the 
 
 <DocCallOut title="Note">
 If users with the setup role also need to create, modify, and delete monitors,
-add the privileges defined in the <DocLink id="enObservabilitySyntheticsRoleWrite">writer role</DocLink>.
+add the privileges defined in the <DocLink slug="/en/observability/synthetics-role-write">writer role</DocLink>.
 </DocCallOut>
 

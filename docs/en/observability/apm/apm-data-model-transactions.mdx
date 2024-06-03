@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmDataModelTransactions
 slug: /en/observability/apm-data-model-transactions
 title: Transactions
 description: Description to be written
@@ -10,7 +9,7 @@ import TracesDataStreams from './data-streams/traces-data-streams.mdx'
 
 <div id="apm-data-model-transactions"></div>
 
-**Transactions** are a special kind of <DocLink id="enObservabilityApmDataModelSpans">span</DocLink> that have additional attributes associated with them.
+**Transactions** are a special kind of <DocLink slug="/en/observability/apm-data-model-spans">span</DocLink> that have additional attributes associated with them.
 They describe an event captured by an Elastic ((apm-agent)) instrumenting a service.
 You can think of transactions as the highest level of work you’re measuring within a service.
 As an example, a transaction might be a:
@@ -22,7 +21,7 @@ As an example, a transaction might be a:
 
 Agents decide whether to sample transactions or not,
 and provide settings to control sampling behavior.
-If sampled, the <DocLink id="enObservabilityApmDataModelSpans">spans</DocLink> of a transaction are sent and stored as separate documents.
+If sampled, the <DocLink slug="/en/observability/apm-data-model-spans">spans</DocLink> of a transaction are sent and stored as separate documents.
 Within one transaction there can be 0, 1, or many spans captured.
 
 A transaction contains:
@@ -34,12 +33,12 @@ A transaction contains:
     * Host - architecture, hostname, IP, etc.
     * Process - args, PID, PPID, etc.
     * URL - full, domain, port, query, etc.
-    * <DocLink id="enObservabilityApmDataModelMetadata" section="user-context">User</DocLink> - (if supplied) email, ID, username, etc.
+    * <DocLink slug="/en/observability/apm-data-model-metadata" section="user-context">User</DocLink> - (if supplied) email, ID, username, etc.
 * Other relevant information depending on the agent. Example: The JavaScript RUM agent captures transaction marks,
     which are points in time relative to the start of the transaction with some label.
 
-In addition, agents provide options for users to capture custom <DocLink id="enObservabilityApmDataModelMetadata">metadata</DocLink>.
-Metadata can be indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="labels">`labels`</DocLink>, or not-indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="custom-context">`custom`</DocLink>.
+In addition, agents provide options for users to capture custom <DocLink slug="/en/observability/apm-data-model-metadata">metadata</DocLink>.
+Metadata can be indexed - <DocLink slug="/en/observability/apm-data-model-metadata" section="labels">`labels`</DocLink>, or not-indexed - <DocLink slug="/en/observability/apm-data-model-metadata" section="custom-context">`custom`</DocLink>.
 
 Transactions are grouped by their `type` and `name` in the APM UI's
 [Transaction overview](((kibana-ref))/transactions.html).
@@ -66,7 +65,7 @@ Transactions are stored with spans in the following data streams:
 
 <TracesDataStreams />
 
-See <DocLink id="enObservabilityApmDataStreams">Data streams</DocLink> to learn more.
+See <DocLink slug="/en/observability/apm-data-streams">Data streams</DocLink> to learn more.
 
 <div id="example_transaction_document"></div>
 

@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmPrivilegesToPublishMonitoring
 slug: /en/observability/apm-privileges-to-publish-monitoring
 title: Grant privileges and roles needed for monitoring
 description: Description to be written
@@ -12,10 +11,10 @@ tags: []
 The privileges and roles needed to publish monitoring data
 depend on the method used to collect that data.
 
-* <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="publish-monitoring-data">Publish monitoring data</DocLink>
-    * <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="internal-collection">Internal collection</DocLink>
-    * <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="((metricbeat))-collection">((metricbeat)) collection</DocLink>
-* <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="view-monitoring-data">View monitoring data</DocLink>
+* <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring" section="publish-monitoring-data">Publish monitoring data</DocLink>
+    * <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring" section="internal-collection">Internal collection</DocLink>
+    * <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring" section="((metricbeat))-collection">((metricbeat)) collection</DocLink>
+* <DocLink slug="/en/observability/apm-privileges-to-publish-monitoring" section="view-monitoring-data">View monitoring data</DocLink>
 
 <div id="apm-privileges-to-publish-monitoring-write"></div>
 
@@ -33,7 +32,7 @@ Monitoring on ((ecloud)) is enabled by clicking the **Enable** button in the **M
 
 ### Internal collection
 
-If you're using <DocLink id="enObservabilityApmMonitoringInternalCollection">internal collection</DocLink> to
+If you're using <DocLink slug="/en/observability/apm-monitoring-internal-collection">internal collection</DocLink> to
 collect metrics about APM Server, ((security-features)) provides
 the `apm_system` [built-in user](((ref))/built-in-users.html) and
 `apm_system` [built-in role](((ref))/built-in-roles.html) to send
@@ -65,11 +64,11 @@ If you don't use the `apm_system` user:
 <DocCallOut title="Note">
 When using ((metricbeat)) to collect metrics,
 no roles or users need to be created with APM Server.
-See <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">Use ((metricbeat)) to send monitoring data</DocLink>
+See <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection">Use ((metricbeat)) to send monitoring data</DocLink>
 for complete details on setting up ((metricbeat)) collection.
 </DocCallOut>
 
-If you're <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">using ((metricbeat))</DocLink> to collect
+If you're <DocLink slug="/en/observability/apm-monitoring-metricbeat-collection">using ((metricbeat))</DocLink> to collect
 metrics about APM Server, ((security-features)) provides the `remote_monitoring_user`
 [built-in user](((ref))/built-in-users.html), and the `remote_monitoring_collector`
 and `remote_monitoring_agent` [built-in roles](((ref))/built-in-roles.html) for

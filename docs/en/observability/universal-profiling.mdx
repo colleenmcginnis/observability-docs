@@ -1,5 +1,4 @@
 ---
-id: enObservabilityUniversalProfiling
 slug: /en/observability/universal-profiling
 title: Universal Profiling
 description: Description to be written
@@ -12,15 +11,15 @@ Elastic Universal Profiling is a whole-system, always-on, continuous profiling s
 
 On this page, you'll find information on:
 
-* inspecting data through <DocLink id="enObservabilityUniversalProfiling" section="stacktraces">stacktraces</DocLink>, <DocLink id="enObservabilityUniversalProfiling" section="flamegraphs">flamegraphs</DocLink>, and <DocLink id="enObservabilityUniversalProfiling" section="functions">functions</DocLink>
-* <DocLink id="enObservabilityUniversalProfiling" section="filtering">filtering</DocLink> your data
-* comparing time ranges through <DocLink id="enObservabilityUniversalProfiling" section="differential-views">differential views</DocLink>
+* inspecting data through <DocLink slug="/en/observability/universal-profiling" section="stacktraces">stacktraces</DocLink>, <DocLink slug="/en/observability/universal-profiling" section="flamegraphs">flamegraphs</DocLink>, and <DocLink slug="/en/observability/universal-profiling" section="functions">functions</DocLink>
+* <DocLink slug="/en/observability/universal-profiling" section="filtering">filtering</DocLink> your data
+* comparing time ranges through <DocLink slug="/en/observability/universal-profiling" section="differential-views">differential views</DocLink>
 
 <div id="profiling-inspecting-data-in-kibana"></div>
 
 ## Inspecting data in ((kib))
 
-You can find Universal Profiling in the **Observability** navigation menu. Clicking **Stacktraces** under **Universal Profiling** opens the <DocLink id="enObservabilityUniversalProfiling" section="stacktraces">stacktraces view</DocLink>.
+You can find Universal Profiling in the **Observability** navigation menu. Clicking **Stacktraces** under **Universal Profiling** opens the <DocLink slug="/en/observability/universal-profiling" section="stacktraces">stacktraces view</DocLink>.
 
 <DocCallOut title="Note">
 Universal Profiling currently only supports CPU profiling through stack sampling.
@@ -29,7 +28,7 @@ Universal Profiling currently only supports CPU profiling through stack sampling
 From the **Stacktraces** view, you get an overview of all of your data. You can also use filtering queries in the search bar to slice your data into more detailed sections of your fleet.
 Time-based filters and property filters allow you to inspect portions of data and drill-down into how much CPU various parts of your infrastructure consume over time.
 
-See <DocLink id="enObservabilityUniversalProfiling" section="filtering">Filtering</DocLink> for more on slicing data and <DocLink id="enObservabilityUniversalProfiling" section="differential-views">Differential views</DocLink> for more on comparing two time ranges to detect performance improvements or regressions.
+See <DocLink slug="/en/observability/universal-profiling" section="filtering">Filtering</DocLink> for more on slicing data and <DocLink slug="/en/observability/universal-profiling" section="differential-views">Differential views</DocLink> for more on comparing two time ranges to detect performance improvements or regressions.
 
 <div id="profiling-debug-symbols-intro"></div>
 
@@ -44,7 +43,7 @@ Your stacktrace can be:
 In the following screenshot, you can see that unsymbolized frames _do not_ show a filename and line number, but a hexadecimal number such as `0x80d2f4`
 or `<unsymbolized>`.
 
-Adding symbols for unsymbolized frames is currently a manual operation. See <DocLink id="enObservabilityProfilingAddSymbols">Add symbols for native frames</DocLink>.
+Adding symbols for unsymbolized frames is currently a manual operation. See <DocLink slug="/en/observability/profiling-add-symbols">Add symbols for native frames</DocLink>.
 
 ![](images/profiling-stacktraces-unsymbolized.png)
 

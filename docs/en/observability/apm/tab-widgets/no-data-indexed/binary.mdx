@@ -12,7 +12,7 @@ apm-server test output
 To see if the agent can connect to the APM Server, send requests to the instrumented service and look for lines
 containing `[request]` in the APM Server logs.
 
-If no requests are logged, it might be that SSL is <DocLink id="enObservabilityApmCommonProblems" section="ssl-client-fails-to-connect">misconfigured</DocLink> or that the host is wrong.
+If no requests are logged, it might be that SSL is <DocLink slug="/en/observability/apm-common-problems" section="ssl-client-fails-to-connect">misconfigured</DocLink> or that the host is wrong.
 Particularly, if you are using Docker, ensure to bind to the right interface (for example, set
 `apm-server.host = 0.0.0.0:8200` to match any IP) and set the `SERVER_URL` setting in the agent accordingly.
 

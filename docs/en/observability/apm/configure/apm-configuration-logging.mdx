@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmConfigurationLogging
 slug: /en/observability/apm-configuration-logging
 title: Configure logging
 description: Description to be written
@@ -35,14 +34,14 @@ logging.files:
 <DocCallOut title="Tip">
 In addition to setting logging options in the config file, you can modify
 the logging output configuration from the command line. See
-<DocLink id="enObservabilityApmCommandLineOptions">APM Server command reference</DocLink>.
+<DocLink slug="/en/observability/apm-command-line-options">APM Server command reference</DocLink>.
 </DocCallOut>
 
 <DocCallOut title="Warning" color="warning">
 When APM Server is running on a Linux system with systemd, it uses
 by default the `-e` command line option, that makes it write all the logging output
 to stderr so it can be captured by journald. Other outputs are disabled. See
-<DocLink id="enObservabilityApmRunningWithSystemd">APM Server and systemd</DocLink> to know more and learn how to change this.
+<DocLink slug="/en/observability/apm-running-with-systemd">APM Server and systemd</DocLink> to know more and learn how to change this.
 </DocCallOut>
 
 <div id="configuration_options"></div>
@@ -88,7 +87,7 @@ rotated when the log file size limit is reached.
 
 <DocCallOut title="Note">
 APM Server only creates a log file if there is logging output. For
-example, if you set the log <DocLink id="enObservabilityApmConfigurationLogging" section="logginglevel">`level`</DocLink> to `error` and there are no
+example, if you set the log <DocLink slug="/en/observability/apm-configuration-logging" section="logginglevel">`level`</DocLink> to `error` and there are no
 errors, there will be no log file in the directory specified for logs.
 </DocCallOut>
 
@@ -107,7 +106,7 @@ log level is `info`.
     Logs debug messages, including a detailed printout of all events
     flushed. Also logs informational messages, warnings, errors, and
     critical errors. When the log level is `debug`, you can specify a list of
-    <DocLink id="enObservabilityApmConfigurationLogging" section="loggingselectors">`selectors`</DocLink> to display debug messages for specific components. If
+    <DocLink slug="/en/observability/apm-configuration-logging" section="loggingselectors">`selectors`</DocLink> to display debug messages for specific components. If
     no selectors are specified, the `*` selector is used to display debug messages
     for all components.
   </DocDefDescription>
@@ -157,7 +156,7 @@ logging.selectors: [ harvester, input ]
 <DocIf condition={ serverless === false }>
 
 To override selectors at the command line, use the `-d` global flag (`-d` also
-sets the debug log level). For more information, see <DocLink id="enObservabilityApmCommandLineOptions">APM Server command reference</DocLink>.
+sets the debug log level). For more information, see <DocLink slug="/en/observability/apm-command-line-options">APM Server command reference</DocLink>.
 
 </DocIf>
 
@@ -193,7 +192,7 @@ The period after which to log the internal metrics. The default is `30s`.
 ### `logging.files.path`
 
 The directory that log files are written to. The default is the logs path. See
-the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for details.
+the <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> section for details.
 
 <div id="`logging.files.name`"></div>
 

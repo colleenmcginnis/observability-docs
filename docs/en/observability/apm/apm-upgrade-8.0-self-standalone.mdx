@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmUpgrade8.0SelfStandalone
 slug: /en/observability/apm-upgrade-8.0-self-standalone
 title: Upgrade a self-installation of APM Server standalone to ((version))
 description: Description to be written
@@ -30,7 +29,7 @@ Only use this guide if both of the following are true:
     * To upgrade APM Server to version 7.17, see
         [upgrade to version 7.17](((apm-guide-7x))/upgrading-to-717.html).
 
-1. Review the APM <DocLink id="enObservabilityApmReleaseNotes">release notes</DocLink>, <DocLink id="enObservabilityApmBreaking">breaking changes</DocLink>,
+1. Review the APM <DocLink slug="/en/observability/apm-release-notes">release notes</DocLink>, <DocLink slug="/en/observability/apm-breaking">breaking changes</DocLink>,
     and ((observability)) [What's new](((observability-guide))/whats-new.html) content.
 
 <div id="upgrade_steps"></div>
@@ -50,7 +49,7 @@ Only use this guide if both of the following are true:
 
 1. **Install the ((version)) APM Server release**
 
-    See <DocLink id="enObservabilityApmInstalling">install</DocLink> to find the command that works with your system.
+    See <DocLink slug="/en/observability/apm-installing">install</DocLink> to find the command that works with your system.
 
     <DocCallOut title="Warning" color="warning">
 
@@ -69,8 +68,8 @@ Only use this guide if both of the following are true:
 
     Some settings have been removed or changed. You may need to update your `apm-server.yml` configuration
     file prior to starting the APM Server.
-    See <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> for help in locating this file,
-    and <DocLink id="enObservabilityApmConfiguringHowtoApmServer">Configure</DocLink> for a list of all available configuration options.
+    See <DocLink slug="/en/observability/apm-directory-layout">Installation layout</DocLink> for help in locating this file,
+    and <DocLink slug="/en/observability/apm-configuring-howto-apm-server">Configure</DocLink> for a list of all available configuration options.
 
 1. **Start the APM Server**
 
@@ -80,12 +79,12 @@ Only use this guide if both of the following are true:
     ./apm-server -e
     ```
 
-    Additional details are available in <DocLink id="enObservabilityApmServerStarting">start the APM Server</DocLink>.
+    Additional details are available in <DocLink slug="/en/observability/apm-server-starting">start the APM Server</DocLink>.
 
 1. **(Optional) Upgrade to the APM integration**
 
     Got time for one more upgrade?
-    See <DocLink id="enObservabilityApmUpgradeToApmIntegration">Switch to the Elastic APM integration</DocLink>.
+    See <DocLink slug="/en/observability/apm-upgrade-to-apm-integration">Switch to the Elastic APM integration</DocLink>.
 
 {/* ******************************************************** */}
 

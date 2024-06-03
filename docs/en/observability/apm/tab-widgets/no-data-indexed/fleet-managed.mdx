@@ -19,12 +19,12 @@ containing `[request]` in the APM Server logs.
 
 If no requests are logged, confirm that:
 
-1. SSL isn't <DocLink id="enObservabilityApmCommonProblems" section="ssl-client-fails-to-connect">misconfigured</DocLink>.
+1. SSL isn't <DocLink slug="/en/observability/apm-common-problems" section="ssl-client-fails-to-connect">misconfigured</DocLink>.
 1. The host is correct. For example, if you're using Docker, ensure a bind to the right interface (for example, set
     `apm-server.host = 0.0.0.0:8200` to match any IP) and set the `SERVER_URL` setting in the ((apm-agent)) accordingly.
 
 If you see requests coming through the APM Server but they are not accepted (a response code other than `202`),
-see <DocLink id="enObservabilityApmCommonResponseCodes">APM Server response codes</DocLink> to narrow down the possible causes.
+see <DocLink slug="/en/observability/apm-common-response-codes">APM Server response codes</DocLink> to narrow down the possible causes.
 
 **Instrumentation gaps**
 

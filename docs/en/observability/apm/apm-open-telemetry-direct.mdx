@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmOpenTelemetryDirect
 slug: /en/observability/apm-open-telemetry-direct
 title: OpenTelemetry native support
 description: Description to be written
@@ -12,8 +11,8 @@ The ((stack)) natively supports the OpenTelemetry protocol (OTLP).
 This means trace data and metrics collected from your applications and infrastructure can
 be sent directly to the ((stack)).
 
-* Send data to the ((stack)) from an <DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-collector">OpenTelemetry collector</DocLink>
-* Send data to the ((stack)) from an <DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-agent">OpenTelemetry agent</DocLink>
+* Send data to the ((stack)) from an <DocLink slug="/en/observability/apm-open-telemetry-direct" section="send-data-from-an-opentelemetry-collector">OpenTelemetry collector</DocLink>
+* Send data to the ((stack)) from an <DocLink slug="/en/observability/apm-open-telemetry-direct" section="send-data-from-an-opentelemetry-agent">OpenTelemetry agent</DocLink>
 
 <div id="apm-connect-open-telemetry-collector"></div>
 
@@ -66,7 +65,7 @@ To learn more about these exporters, see the OpenTelemetry Collector documentati
 [OTLP/HTTP Exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlphttpexporter) or
 [OTLP/gRPC exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlpexporter).
 [^5]: Hostname and port of the APM Server endpoint. For example, `elastic-apm-server:8200`.
-[^6]: Credential for Elastic APM <DocLink id="enObservabilityApmSecretToken">secret token authorization</DocLink> (`Authorization: "Bearer a_secret_token"`) or <DocLink id="enObservabilityApmApiKey">API key authorization</DocLink> (`Authorization: "ApiKey an_api_key"`).
+[^6]: Credential for Elastic APM <DocLink slug="/en/observability/apm-secret-token">secret token authorization</DocLink> (`Authorization: "Bearer a_secret_token"`) or <DocLink slug="/en/observability/apm-api-key">API key authorization</DocLink> (`Authorization: "ApiKey an_api_key"`).
 [^7]: Environment-specific configuration parameters can be conveniently passed in as environment variables documented [here](https://opentelemetry.io/docs/collector/configuration/#environment-variables) (e.g. `ELASTIC_APM_SERVER_ENDPOINT` and `ELASTIC_APM_SECRET_TOKEN`).
 [^8]:  <DocBadge template="technical preview" />  To send OpenTelemetry logs to ((stack)) version 8.0+, declare a `logs` pipeline.
 
@@ -110,7 +109,7 @@ java -javaagent:/path/to/opentelemetry-javaagent-all.jar \
 ]}>
   <DocRow>
     <DocCell>`OTEL_RESOURCE_ATTRIBUTES`</DocCell>
-    <DocCell>Fields that describe the service and the environment that the service runs in. See <DocLink id="enObservabilityApmOpenTelemetryResourceAttributes">resource attributes</DocLink> for more information.</DocCell>
+    <DocCell>Fields that describe the service and the environment that the service runs in. See <DocLink slug="/en/observability/apm-open-telemetry-resource-attributes">resource attributes</DocLink> for more information.</DocCell>
   </DocRow>
   <DocRow>
     <DocCell>`OTEL_EXPORTER_OTLP_ENDPOINT`</DocCell>
@@ -135,8 +134,8 @@ java -javaagent:/path/to/opentelemetry-javaagent-all.jar \
   </DocRow>
 </DocTable>
 
-You are now ready to collect traces and <DocLink id="enObservabilityApmOpenTelemetryCollectMetrics">metrics</DocLink> before <DocLink id="enObservabilityApmOpenTelemetryCollectMetrics" section="verify-opentelemetry-metrics-data">verifying metrics</DocLink>
-and <DocLink id="enObservabilityApmOpenTelemetryCollectMetrics" section="visualize-in-((kib))">visualizing metrics</DocLink> in ((kib)).
+You are now ready to collect traces and <DocLink slug="/en/observability/apm-open-telemetry-collect-metrics">metrics</DocLink> before <DocLink slug="/en/observability/apm-open-telemetry-collect-metrics" section="verify-opentelemetry-metrics-data">verifying metrics</DocLink>
+and <DocLink slug="/en/observability/apm-open-telemetry-collect-metrics" section="visualize-in-((kib))">visualizing metrics</DocLink> in ((kib)).
 
 <div id="apm-open-telemetry-proxy-apm"></div>
 
@@ -158,6 +157,6 @@ For more information on how APM Server services gRPC requests, see
 
 ## Next steps
 
-* <DocLink id="enObservabilityApmOpenTelemetryCollectMetrics">Collect metrics</DocLink>
-* Learn about the <DocLink id="enObservabilityApmOpenTelemetryKnownLimitations">limitations of this integration</DocLink>
+* <DocLink slug="/en/observability/apm-open-telemetry-collect-metrics">Collect metrics</DocLink>
+* Learn about the <DocLink slug="/en/observability/apm-open-telemetry-known-limitations">limitations of this integration</DocLink>
 

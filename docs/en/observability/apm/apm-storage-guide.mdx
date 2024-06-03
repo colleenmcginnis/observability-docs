@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmStorageGuide
 slug: /en/observability/apm-storage-guide
 title: Storage and sizing guide
 description: Description to be written
@@ -10,10 +9,10 @@ tags: []
 
 APM processing and storage costs are largely dominated by transactions, spans, and stack frames.
 
-* <DocLink id="enObservabilityApmDataModelTransactions">**Transactions**</DocLink> describe an event captured by an Elastic ((apm-agent)) instrumenting a service.
+* <DocLink slug="/en/observability/apm-data-model-transactions">**Transactions**</DocLink> describe an event captured by an Elastic ((apm-agent)) instrumenting a service.
     They are the highest level of work being measuring within a service.
 
-* <DocLink id="enObservabilityApmDataModelSpans">**Spans**</DocLink> belong to transactions. They measure from the start to end of an activity,
+* <DocLink slug="/en/observability/apm-data-model-spans">**Spans**</DocLink> belong to transactions. They measure from the start to end of an activity,
     and contain information about a specific code path that has been executed.
 
 * **Stack frames** belong to spans. Stack frames represent a function call on the call stack,

@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmDataModelErrors
 slug: /en/observability/apm-data-model-errors
 title: Errors
 description: Description to be written
@@ -21,7 +20,7 @@ An Error contains:
     which is helpful for debugging.
 
 * The `culprit` of an error indicates where it originated.
-* An error might relate to the <DocLink id="enObservabilityApmDataModelTransactions">transaction</DocLink> during which it happened,
+* An error might relate to the <DocLink slug="/en/observability/apm-data-model-transactions">transaction</DocLink> during which it happened,
     via the `transaction.id`.
 
 * Data about the environment in which the event is recorded:
@@ -29,10 +28,10 @@ An Error contains:
     * Host - architecture, hostname, IP, etc.
     * Process - args, PID, PPID, etc.
     * URL - full, domain, port, query, etc.
-    * <DocLink id="enObservabilityApmDataModelMetadata" section="user-context">User</DocLink> - (if supplied) email, ID, username, etc.
+    * <DocLink slug="/en/observability/apm-data-model-metadata" section="user-context">User</DocLink> - (if supplied) email, ID, username, etc.
 
-In addition, agents provide options for users to capture custom <DocLink id="enObservabilityApmDataModelMetadata">metadata</DocLink>.
-Metadata can be indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="labels">`labels`</DocLink>, or not-indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="custom-context">`custom`</DocLink>.
+In addition, agents provide options for users to capture custom <DocLink slug="/en/observability/apm-data-model-metadata">metadata</DocLink>.
+Metadata can be indexed - <DocLink slug="/en/observability/apm-data-model-metadata" section="labels">`labels`</DocLink>, or not-indexed - <DocLink slug="/en/observability/apm-data-model-metadata" section="custom-context">`custom`</DocLink>.
 
 <DocCallOut title="Tip">
 Most agents limit keyword fields (e.g. `error.id`) to 1024 characters,
@@ -49,7 +48,7 @@ Errors are stored in the following data streams:
 
 <LogsDataStreams />
 
-See <DocLink id="enObservabilityApmDataStreams">Data streams</DocLink> to learn more.
+See <DocLink slug="/en/observability/apm-data-streams">Data streams</DocLink> to learn more.
 
 <div id="example_error_document"></div>
 

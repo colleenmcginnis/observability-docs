@@ -1,5 +1,4 @@
 ---
-id: enObservabilityLogsChecklist
 slug: /en/observability/logs-checklist
 title: Log monitoring
 description: Description to be written
@@ -16,13 +15,13 @@ On this page, you'll find resources for sending log data to ((es)), configuring 
 
 ## Get started with logs
 
-For a high-level overview on ingesting, viewing, and analyzing logs with Elastic, refer to <DocLink id="enObservabilityLogsMetricsGetStarted">Get started with logs and metrics</DocLink>.
+For a high-level overview on ingesting, viewing, and analyzing logs with Elastic, refer to <DocLink slug="/en/observability/logs-metrics-get-started">Get started with logs and metrics</DocLink>.
 
 To get started ingesting, parsing, and filtering your own data, refer to these pages:
 
-* **<DocLink id="enObservabilityLogsStream">Stream any log file</DocLink>**: send log files from your system to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
-* **<DocLink id="enObservabilityLogsParse">Parse and organize logs</DocLink>**: break your log messages into meaningful fields that you can use to filter and analyze your data.
-* **<DocLink id="enObservabilityLogsFilterAndAggregate">Filter and aggregate logs</DocLink>**: find specific information in your log data to gain insight and monitor your systems.
+* **<DocLink slug="/en/observability/logs-stream">Stream any log file</DocLink>**: send log files from your system to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
+* **<DocLink slug="/en/observability/logs-parse">Parse and organize logs</DocLink>**: break your log messages into meaningful fields that you can use to filter and analyze your data.
+* **<DocLink slug="/en/observability/logs-filter-and-aggregate">Filter and aggregate logs</DocLink>**: find specific information in your log data to gain insight and monitor your systems.
 
 The following sections provide resources to important concepts or advanced use cases for working with your logs.
 
@@ -49,7 +48,7 @@ The following pages detail installing and managing the ((agent)) in different mo
     Install an ((agent)) and manually configure it locally on the system where it's installed.
     You are responsible for managing and upgrading the agents.
 
-    Refer to <DocLink id="enObservabilityLogsStream">Stream any log file</DocLink> to learn how to send a log file to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
+    Refer to <DocLink slug="/en/observability/logs-stream">Stream any log file</DocLink> to learn how to send a log file to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
 
 * **((fleet))-managed ((agent))**
 
@@ -79,7 +78,7 @@ either to [((es))](((ref))) or
 
 ## Parse and organize your logs
 
-To get started parsing and organizing your logs, refer to <DocLink id="enObservabilityLogsParse">Parse and organize logs</DocLink> for information on breaking unstructured log data into meaningful fields you can use to filter and aggregate your data.
+To get started parsing and organizing your logs, refer to <DocLink slug="/en/observability/logs-parse">Parse and organize logs</DocLink> for information on breaking unstructured log data into meaningful fields you can use to filter and aggregate your data.
 
 The following resources provide information on important concepts related to parsing and organizing your logs:
 
@@ -97,17 +96,17 @@ With the ((logs-app)) in ((kib)) you can search, filter, and tail all your logs 
 
 The following resources provide information on viewing and monitoring your logs:
 
-- <DocLink id="enObservabilityTailLogs">Tail log files</DocLink>: monitor all of the log events flowing in from your servers, virtual machines, and containers in a centralized view.
-- <DocLink id="enObservabilityInspectLogAnomalies">Inspect log anomalies</DocLink>: use ((ml)) to detect log anomalies automatically.
-- <DocLink id="enObservabilityCategorizeLogs">Categorize log entries</DocLink>: use ((ml)) to categorize log messages to quickly identify patterns in your log events.
-- <DocLink id="enObservabilityConfigureDataSources">Configure data sources</DocLink>: Specify the source configuration for logs in the Logs app settings in the Kibana configuration file.
+- <DocLink slug="/en/observability/tail-logs">Tail log files</DocLink>: monitor all of the log events flowing in from your servers, virtual machines, and containers in a centralized view.
+- <DocLink slug="/en/observability/inspect-log-anomalies">Inspect log anomalies</DocLink>: use ((ml)) to detect log anomalies automatically.
+- <DocLink slug="/en/observability/categorize-logs">Categorize log entries</DocLink>: use ((ml)) to categorize log messages to quickly identify patterns in your log events.
+- <DocLink slug="/en/observability/configure-data-sources">Configure data sources</DocLink>: Specify the source configuration for logs in the Logs app settings in the Kibana configuration file.
 
 <div id="logs-checklist-k8s"></div>
 
 ## Monitor Kubernetes logs
 
 You can use the ((agent)) with the Kubernetes integration to collect and parse Kubernetes logs.
-Refer to <DocLink id="enObservabilityMonitorKubernetes">Monitor Kubernetes: Observe the health and performance of your Kubernetes deployments</DocLink>.
+Refer to <DocLink slug="/en/observability/monitor-kubernetes">Monitor Kubernetes: Observe the health and performance of your Kubernetes deployments</DocLink>.
 
 <div id="logs-app-checklist"></div>
 
@@ -115,11 +114,11 @@ Refer to <DocLink id="enObservabilityMonitorKubernetes">Monitor Kubernetes: Obse
 
 Application logs provide valuable insight into events that have occurred within your services and applications.
 
-Refer to <DocLink id="enObservabilityApplicationLogs">Stream application logs</DocLink>.
+Refer to <DocLink slug="/en/observability/application-logs">Stream application logs</DocLink>.
 
 <div id="logs-alerts-checklist"></div>
 
 ## Create a log threshold alert
 
 You can create a rule to send an alert when the log aggregation exceeds a threshold.
-See <DocLink id="enObservabilityLogsThresholdAlert">Create a log threshold rule</DocLink>.
+See <DocLink slug="/en/observability/logs-threshold-alert">Create a log threshold rule</DocLink>.

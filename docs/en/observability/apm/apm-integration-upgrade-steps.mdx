@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmIntegrationUpgradeSteps
 slug: /en/observability/apm-integration-upgrade-steps
 title: Switch a self-installation to the APM integration
 description: Description to be written
@@ -8,11 +7,11 @@ tags: []
 
 <div id="apm-integration-upgrade-steps"></div>
 
-1. <DocLink id="enObservabilityApmIntegrationUpgradeSteps" section="upgrade-the-((stack))">Upgrade the ((stack))</DocLink>
-1. <DocLink id="enObservabilityApmIntegrationUpgradeSteps" section="add-a-((fleet))-server">Add a ((fleet)) Server</DocLink>
-1. <DocLink id="enObservabilityApmIntegrationUpgradeSteps" section="install-a-((fleet))-managed-((agent))">Install a ((fleet))-managed ((agent))</DocLink>
-1. <DocLink id="enObservabilityApmIntegrationUpgradeSteps" section="add-the-apm-integration">Add the APM integration</DocLink>
-1. <DocLink id="enObservabilityApmIntegrationUpgradeSteps" section="stop-the-apm-server">Stop the APM Server</DocLink>
+1. <DocLink slug="/en/observability/apm-integration-upgrade-steps" section="upgrade-the-((stack))">Upgrade the ((stack))</DocLink>
+1. <DocLink slug="/en/observability/apm-integration-upgrade-steps" section="add-a-((fleet))-server">Add a ((fleet)) Server</DocLink>
+1. <DocLink slug="/en/observability/apm-integration-upgrade-steps" section="install-a-((fleet))-managed-((agent))">Install a ((fleet))-managed ((agent))</DocLink>
+1. <DocLink slug="/en/observability/apm-integration-upgrade-steps" section="add-the-apm-integration">Add the APM integration</DocLink>
+1. <DocLink slug="/en/observability/apm-integration-upgrade-steps" section="stop-the-apm-server">Stop the APM Server</DocLink>
 
 <div id="apm-integration-upgrade-1"></div>
 
@@ -21,7 +20,7 @@ tags: []
 The ((stack)) (((es)) and ((kib))) must be upgraded to version 7.14 or higher.
 See the [((stack)) Installation and Upgrade Guide](((stack-ref))/upgrading-elastic-stack.html) for guidance.
 
-Review the APM <DocLink id="enObservabilityApmReleaseNotes">release notes</DocLink>, <DocLink id="enObservabilityApmBreaking">breaking changes</DocLink>,
+Review the APM <DocLink slug="/en/observability/apm-release-notes">release notes</DocLink>, <DocLink slug="/en/observability/apm-breaking">breaking changes</DocLink>,
 and ((observability)) [What's new](((observability-guide))/whats-new.html) content for important changes between
 your current APM version and this one.
 
@@ -63,14 +62,14 @@ To install a ((fleet))-managed ((agent)), follow [this guide](((fleet-guide))/in
 The APM integration receives performance data from your APM agents,
 validates and processes it, and then transforms the data into ((es)) documents.
 
-To add the APM integration, see <DocLink id="enObservabilityTracesGetStarted" section="step-1-configure-the-apm-integration">Step 1: Configure the APM integration</DocLink>.
+To add the APM integration, see <DocLink slug="/en/observability/traces-get-started" section="step-1-configure-the-apm-integration">Step 1: Configure the APM integration</DocLink>.
 Only complete the linked step (not the entire quick start guide).
 If you're adding the APM integration to a ((fleet))-managed ((agent)), you can use the default policy.
 If you're adding the APM integration to the ((fleet-server)), use the policy that the ((fleet-server)) is running on.
 
 <DocCallOut title="Tip">
 You'll configure the APM integration in this step.
-See <DocLink id="enObservabilityApmConfiguringHowtoApmServer">Configure</DocLink> for a reference of all available settings.
+See <DocLink slug="/en/observability/apm-configuring-howto-apm-server">Configure</DocLink> for a reference of all available settings.
 As long as the APM integration is configured with the same secret token or you have API keys enabled on the same host,
 no reconfiguration is required in your APM agents.
 </DocCallOut>

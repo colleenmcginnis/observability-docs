@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmRedisOutput
 slug: /en/observability/apm-redis-output
 title: Configure the Redis output
 description: Description to be written
@@ -100,7 +99,7 @@ output.redis:
   key: "%{[fields.list]:fallback}"
 ```
 
-See the <DocLink id="enObservabilityApmRedisOutput" section="keys">`keys`</DocLink> setting for other ways to set the key
+See the <DocLink slug="/en/observability/apm-redis-output" section="keys">`keys`</DocLink> setting for other ways to set the key
 dynamically.
 
 <div id="apm-keys-option-redis"></div>
@@ -111,7 +110,7 @@ An array of key selector rules. Each rule specifies the `key` to use for events
 that match the rule. During publishing, APM Server uses the first matching
 rule in the array. Rules can contain conditionals, format string-based fields,
 and name mappings. If the `keys` setting is missing or no rule matches, the
-<DocLink id="enObservabilityApmRedisOutput" section="key">`key`</DocLink> setting is used.
+<DocLink slug="/en/observability/apm-redis-output" section="key">`key`</DocLink> setting is used.
 
 Rule settings:
 
@@ -269,7 +268,7 @@ number of events to be contained in a batch.
 
 Configuration options for SSL parameters like the root CA for Redis connections
 guarded by SSL proxies (for example [stunnel](https://www.stunnel.org)). See
-<DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information.
+<DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink> for more information.
 
 <div id="proxy_url"></div>
 
@@ -284,7 +283,7 @@ a username and password in the URL.
 
 When using a proxy, hostnames are resolved on the proxy server instead of on the
 client. You can change this behavior by setting the
-<DocLink id="enObservabilityApmRedisOutput" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
+<DocLink slug="/en/observability/apm-redis-output" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
 
 <div id="apm-redis-proxy-use-local-resolver"></div>
 

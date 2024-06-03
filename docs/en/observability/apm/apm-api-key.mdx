@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmApiKey
 slug: /en/observability/apm-api-key
 title: API keys
 description: Description to be written
@@ -13,7 +12,7 @@ import ApikeySubcommands from './command-reference/apikey-subcommands.mdx'
 
 <DocCallOut title="Important" color="warning">
 API keys are sent as plain-text,
-so they only provide security when used in combination with <DocLink id="enObservabilityApmAgentTls">TLS</DocLink>.
+so they only provide security when used in combination with <DocLink slug="/en/observability/apm-agent-tls">TLS</DocLink>.
 </DocCallOut>
 
 When enabled, API keys are used to authorize requests to the APM Server.
@@ -28,12 +27,12 @@ You can assign one or more unique privileges to each API key:
 * **Ingest** (`event:write`): Required for ingesting agent events.
 
 To secure the communication between APM Agents and the APM Server with API keys,
-make sure <DocLink id="enObservabilityApmAgentTls">TLS</DocLink> is enabled, then complete these steps:
+make sure <DocLink slug="/en/observability/apm-agent-tls">TLS</DocLink> is enabled, then complete these steps:
 
-1. <DocLink id="enObservabilityApmApiKey" section="enable-api-keys">Enable API keys</DocLink>
-1. <DocLink id="enObservabilityApmApiKey" section="create-an-api-key-user-in-((kib))">Create an API key user</DocLink>
-1. <DocLink id="enObservabilityApmApiKey" section="create-an-api-key-in-the-((apm-app))">Create an API key in ((kib))</DocLink>
-1. <DocLink id="enObservabilityApmApiKey" section="set-the-api-key-in-your-apm-agents">Set the API key in your APM agents</DocLink>
+1. <DocLink slug="/en/observability/apm-api-key" section="enable-api-keys">Enable API keys</DocLink>
+1. <DocLink slug="/en/observability/apm-api-key" section="create-an-api-key-user-in-((kib))">Create an API key user</DocLink>
+1. <DocLink slug="/en/observability/apm-api-key" section="create-an-api-key-in-the-((apm-app))">Create an API key in ((kib))</DocLink>
+1. <DocLink slug="/en/observability/apm-api-key" section="set-the-api-key-in-your-apm-agents">Set the API key in your APM agents</DocLink>
 
 <div id="apm-enable-api-key"></div>
 
@@ -126,8 +125,8 @@ See the relevant agent documentation for additional information:
 
 API keys can also be created and validated outside of ((kib)):
 
-* <DocLink id="enObservabilityApmApiKey" section="apm-server-api-key-workflow">APM Server API key workflow</DocLink>
-* <DocLink id="enObservabilityApmApiKey" section="((es))-api-key-workflow">((es)) API key workflow</DocLink>
+* <DocLink slug="/en/observability/apm-api-key" section="apm-server-api-key-workflow">APM Server API key workflow</DocLink>
+* <DocLink slug="/en/observability/apm-api-key" section="((es))-api-key-workflow">((es)) API key workflow</DocLink>
 
 <div id="apm-create-api-key-workflow-apm-server"></div>
 
@@ -213,7 +212,7 @@ Invalidated keys ... qT4tz28B1g59zC3uAXfW
 Error count ........ 0
 ```
 
-A full list of `apikey` subcommands and flags is available in the <DocLink id="enObservabilityApmCommandLineOptions" section="apikey-command">API key command reference</DocLink>.
+A full list of `apikey` subcommands and flags is available in the <DocLink slug="/en/observability/apm-command-line-options" section="apikey-command">API key command reference</DocLink>.
 
 <div id="apm-create-api-key-workflow-es"></div>
 

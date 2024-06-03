@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmConfigureAgentConfig
 slug: /en/observability/apm-configure-agent-config
 title: Configure APM agent configuration
 description: Description to be written
@@ -45,7 +44,7 @@ Specify the cache expiration time via this setting. Defaults to `30s` (30 second
 
 ### `apm-server.agent.config.elasticsearch`
 
-Takes the same options as <DocLink id="enObservabilityApmElasticsearchOutput">output.elasticsearch</DocLink>.
+Takes the same options as <DocLink slug="/en/observability/apm-elasticsearch-output">output.elasticsearch</DocLink>.
 
 For APM Server binary users and Elastic Agent standalone-managed APM Server,
 APM agent configuration is automatically fetched from ((es)) using the `output.elasticsearch`
@@ -73,4 +72,4 @@ rejecting fetch request: no valid elasticsearch config
 This occurs because the user or API key set in either `apm-server.agent.config.elasticsearch` or `output.elasticsearch`
 (if `apm-server.agent.config.elasticsearch` is not set) does not have adequate permissions to read source maps from ((es)).
 
-To fix this error, ensure that APM Server has all the required privileges. See <DocLink id="enObservabilityApmPrivilegesAgentCentralConfig" section="apm-server-agent-central-configuration-management">APM Server agent central configuration management</DocLink> for more details.
+To fix this error, ensure that APM Server has all the required privileges. See <DocLink slug="/en/observability/apm-privileges-agent-central-config" section="apm-server-agent-central-configuration-management">APM Server agent central configuration management</DocLink> for more details.

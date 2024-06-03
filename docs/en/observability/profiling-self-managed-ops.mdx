@@ -1,5 +1,4 @@
 ---
-id: enObservabilityProfilingSelfManagedOps
 slug: /en/observability/profiling-self-managed-ops
 title: Operate the Universal Profiling backend
 description: Description to be written
@@ -10,11 +9,11 @@ tags: []
 
 This page outlines operating the backend when running Universal Profiling on a self-managed version of the ((stack)). Here you'll find information on:
 
-* <DocLink id="enObservabilityProfilingSelfManagedOps" section="resource-guide">Resource sizing</DocLink>
-* <DocLink id="enObservabilityProfilingSelfManagedOps" section="configure-the-collector-and-symbolizer">Configuring your collector and symbolizer</DocLink>
-* <DocLink id="enObservabilityProfilingSelfManagedOps" section="monitoring">Monitoring your collector and symbolizer</DocLink>
-* <DocLink id="enObservabilityProfilingSelfManagedOps" section="scale-resources">Scaling your resources</DocLink>
-* <DocLink id="enObservabilityProfilingSelfManagedOps" section="upgrade-a-self-hosted-stack">Upgrading backend binaries</DocLink>
+* <DocLink slug="/en/observability/profiling-self-managed-ops" section="resource-guide">Resource sizing</DocLink>
+* <DocLink slug="/en/observability/profiling-self-managed-ops" section="configure-the-collector-and-symbolizer">Configuring your collector and symbolizer</DocLink>
+* <DocLink slug="/en/observability/profiling-self-managed-ops" section="monitoring">Monitoring your collector and symbolizer</DocLink>
+* <DocLink slug="/en/observability/profiling-self-managed-ops" section="scale-resources">Scaling your resources</DocLink>
+* <DocLink slug="/en/observability/profiling-self-managed-ops" section="upgrade-a-self-hosted-stack">Upgrading backend binaries</DocLink>
 
 <div id="profiling-self-managed-ops-sizing-guidance"></div>
 
@@ -50,14 +49,14 @@ When calculating, consider the following:
 
 Storage considerations: the Elasticsearch disks' bandwidth and latency will affect the latency of ingesting and querying the profiling data.
 Allocate data to hot nodes for best performance and user experience.
-If storage becomes a concern, tune the data retention by customizing the Universal Profiling <DocLink id="enObservabilityProfilingIndexLifecycleManagement" section="configure-a-custom-index-lifecycle-policy">index lifecycle management policy</DocLink>.
+If storage becomes a concern, tune the data retention by customizing the Universal Profiling <DocLink slug="/en/observability/profiling-index-lifecycle-management" section="configure-a-custom-index-lifecycle-policy">index lifecycle management policy</DocLink>.
 
 <div id="profiling-self-managed-ops-configuration"></div>
 
 ## Configure the collector and symbolizer
 
 You can configure the collector and symbolizer using the YAML file and CLI flags, with the CLI flags taking precedence over the YAML file.
-The configuration files are created during the installation process, as seen in <DocLink id="enObservabilityProfilingSelfManagedRunning" section="create-configuration-files">Create configuration files section</DocLink>.
+The configuration files are created during the installation process, as seen in <DocLink slug="/en/observability/profiling-self-managed-running" section="create-configuration-files">Create configuration files section</DocLink>.
 Comments in the configuration files explain the purpose of each configuration option.
 
 Restart the backend binaries after modifying the configuration files for changes to take effect.
@@ -76,7 +75,7 @@ This will override the `ssl.enabled` option found in the YAML configuration file
 
 ## Monitoring
 
-Monitor the collector and symbolizer through <DocLink id="enObservabilityProfilingSelfManagedOps" section="logs">Logs</DocLink> and <DocLink id="enObservabilityProfilingSelfManagedOps" section="metrics">Metrics</DocLink> to ensure the services are running and healthy.
+Monitor the collector and symbolizer through <DocLink slug="/en/observability/profiling-self-managed-ops" section="logs">Logs</DocLink> and <DocLink slug="/en/observability/profiling-self-managed-ops" section="metrics">Metrics</DocLink> to ensure the services are running and healthy.
 Without both services running, profiling data will not be ingested and symbolized,
 and querying Kibana won't return data.
 
@@ -176,7 +175,7 @@ For example, if the collector is configured with the default value `host: 0.0.0.
 
 ## Scale resources
 
-In the <DocLink id="enObservabilityProfilingSelfManagedOps" section="resource-guide">resource guidance table</DocLink>, no options use more than one replica for the symbolizer.
+In the <DocLink slug="/en/observability/profiling-self-managed-ops" section="resource-guide">resource guidance table</DocLink>, no options use more than one replica for the symbolizer.
 We do not recommend scaling the number of symbolizer replicas because of the technical limitations of the current implementation.
 We recommend scaling the symbolizer vertically, by increasing the memory and CPU cores it uses to process data.
 
@@ -265,7 +264,7 @@ so you may need to restart the service manually or through any other automation 
 
 ### Binaries
 
-Download the corresponding binary version and replace the existing one, using the command seen in the <DocLink id="enObservabilityProfilingSelfManagedRunning" section="binary">Binary</DocLink> section of the setup guide.
+Download the corresponding binary version and replace the existing one, using the command seen in the <DocLink slug="/en/observability/profiling-self-managed-running" section="binary">Binary</DocLink> section of the setup guide.
 Replace the old binary and restart the services.
 
 You will find the links to the new binaries in the "Add Data" page, under the "Binary" tab.

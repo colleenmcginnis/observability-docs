@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmKafkaOutput
 slug: /en/observability/apm-kafka-output
 title: Configure the Kafka output
 description: Description to be written
@@ -39,7 +38,7 @@ output.kafka:
 ```
 
 <DocCallOut title="Note">
-Events bigger than <DocLink id="enObservabilityApmKafkaOutput" section="max_message_bytes">`max_message_bytes`</DocLink> will be dropped. To avoid this problem, make sure APM Server does not generate events bigger than <DocLink id="enObservabilityApmKafkaOutput" section="max_message_bytes">`max_message_bytes`</DocLink>.
+Events bigger than <DocLink slug="/en/observability/apm-kafka-output" section="max_message_bytes">`max_message_bytes`</DocLink> will be dropped. To avoid this problem, make sure APM Server does not generate events bigger than <DocLink slug="/en/observability/apm-kafka-output" section="max_message_bytes">`max_message_bytes`</DocLink>.
 </DocCallOut>
 
 <div id="((kib))_configuration"></div>
@@ -87,7 +86,7 @@ Event timestamps will be added, if version 0.10.0.0+ is enabled.
 
 Valid values are all Kafka releases in between `0.8.2.0` and `2.0.0`.
 
-See <DocLink id="enObservabilityApmKafkaOutput" section="compatibility">Compatibility</DocLink> for information on supported versions.
+See <DocLink slug="/en/observability/apm-kafka-output" section="compatibility">Compatibility</DocLink> for information on supported versions.
 
 <div id="`username`"></div>
 
@@ -130,7 +129,7 @@ event field. For example, this configuration uses a custom field,
 topic: '%{[fields.log_topic]}'
 ```
 
-See the <DocLink id="enObservabilityApmKafkaOutput" section="topics">`topics`</DocLink> setting for other ways to set the
+See the <DocLink slug="/en/observability/apm-kafka-output" section="topics">`topics`</DocLink> setting for other ways to set the
 topic dynamically.
 
 <div id="apm-topics-option-kafka"></div>
@@ -142,7 +141,7 @@ events that match the rule. During publishing, APM Server sets the `topic`
 for each event based on the first matching rule in the array. Rules
 can contain conditionals, format string-based fields, and name mappings. If the
 `topics` setting is missing or no rule matches, the
-<DocLink id="enObservabilityApmKafkaOutput" section="topic">`topic`</DocLink> field is used.
+<DocLink slug="/en/observability/apm-kafka-output" section="topic">`topic`</DocLink> field is used.
 
 Rule settings:
 
@@ -390,4 +389,4 @@ Configuration options for SSL parameters like the root CA for Kafka connections.
  The Kafka host keystore should be created with the
 `-keyalg RSA` argument to ensure it uses a cipher supported by
 [((filebeat))'s Kafka library](https://github.com/Shopify/sarama/wiki/Frequently-Asked-Questions#why-cant-sarama-connect-to-my-kafka-cluster-using-ssl).
-See <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information.
+See <DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink> for more information.

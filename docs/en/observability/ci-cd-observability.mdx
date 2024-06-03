@@ -1,5 +1,4 @@
 ---
-id: enObservabilityCiCdObservability
 slug: /en/observability/ci-cd-observability
 title: CI/CD observability
 description: Description to be written
@@ -199,11 +198,11 @@ To store pipeline logs in Elastic:
 
     * **Store pipeline logs in Elastic and visualize logs both in Elastic and through Jenkins**,
         which means you can view logs stored in Elastic on demand in the Jenkins UI.
-        Read more in <DocLink id="enObservabilityCiCdObservability" section="visualize-logs-in-both-((kib))-and-jenkins">Visualize logs in both ((kib)) and Jenkins</DocLink> below.
+        Read more in <DocLink slug="/en/observability/ci-cd-observability" section="visualize-logs-in-both-((kib))-and-jenkins">Visualize logs in both ((kib)) and Jenkins</DocLink> below.
 
     * **Store pipeline logs in Elastic and visualize logs exclusively in Elastic**,
         which means logs will no longer be visible through the Jenkins UI.
-        Read more in <DocLink id="enObservabilityCiCdObservability" section="visualize-logs-exclusively-in-((kib))">Visualize logs exclusively in ((kib))</DocLink> below.
+        Read more in <DocLink slug="/en/observability/ci-cd-observability" section="visualize-logs-exclusively-in-((kib))">Visualize logs exclusively in ((kib))</DocLink> below.
 
 Visualizing logs both in Elastic and through Jenkins is recommended because it provides a more seamless user experience
 by continuing to render the logs in the Jenkins UI while allowing you to verify the ((es)) setup.
@@ -387,7 +386,7 @@ pipeline and the Maven build.
 
 When invoking Maven builds with Jenkins, it’s unnecessary to use environment variables
 to configure the Maven build (`OTEL_EXPORTER_OTLP_ENDPOINT…`) to rely on the Jenkins capability
-to inject OpenTelemetry configuration as environment variables. For more details, refer to <DocLink id="enObservabilityCiCdObservability" section="install-the-opentelemetry-plugin">Install the OpenTelemetry plugin</DocLink>.
+to inject OpenTelemetry configuration as environment variables. For more details, refer to <DocLink slug="/en/observability/ci-cd-observability" section="install-the-opentelemetry-plugin">Install the OpenTelemetry plugin</DocLink>.
 
 .A Jenkins pipeline executing Maven builds
 ![Maven builds in Jenkins](images/jenkins-maven-pipeline.png)

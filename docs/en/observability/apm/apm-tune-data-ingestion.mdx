@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmTuneDataIngestion
 slug: /en/observability/apm-tune-data-ingestion
 title: Tune data ingestion
 description: Description to be written
@@ -14,9 +13,9 @@ This section explains how to adapt data ingestion according to your needs.
 
 ## Tune APM Server
 
-* <DocLink id="enObservabilityApmTuneDataIngestion" section="add-apm-server-or-((agent))-instances">Add APM Server or ((agent)) instances</DocLink>
-* <DocLink id="enObservabilityApmTuneDataIngestion" section="reduce-the-payload-size">Reduce the payload size</DocLink>
-* <DocLink id="enObservabilityApmTuneDataIngestion" section="adjust-anonymous-auth-rate-limit">Adjust anonymous auth rate limit</DocLink>
+* <DocLink slug="/en/observability/apm-tune-data-ingestion" section="add-apm-server-or-((agent))-instances">Add APM Server or ((agent)) instances</DocLink>
+* <DocLink slug="/en/observability/apm-tune-data-ingestion" section="reduce-the-payload-size">Reduce the payload size</DocLink>
+* <DocLink slug="/en/observability/apm-tune-data-ingestion" section="adjust-anonymous-auth-rate-limit">Adjust anonymous auth rate limit</DocLink>
 
 <div id="apm-add-apm-server-instances"></div>
 
@@ -28,7 +27,7 @@ One way to solve this problem is to increase processing power.
 
 Increase processing power by either migrating to a more powerful machine
 or adding more APM Server/Elastic Agent instances.
-Having several instances will also increase <DocLink id="enObservabilityApmHighAvailability">availability</DocLink>.
+Having several instances will also increase <DocLink slug="/en/observability/apm-high-availability">availability</DocLink>.
 
 <div id="apm-reduce-payload-size"></div>
 
@@ -38,7 +37,7 @@ Large payloads may result in request timeouts.
 You can reduce the payload size by decreasing the flush interval in the agents.
 This will cause agents to send smaller and more frequent requests.
 
-Optionally you can also <DocLink id="enObservabilityApmReduceApmStorage" section="reduce-the-sample-rate">reduce the sample rate</DocLink> or <DocLink id="enObservabilityApmReduceApmStorage" section="reduce-collected-stack-trace-information">reduce the amount of stack traces</DocLink>.
+Optionally you can also <DocLink slug="/en/observability/apm-reduce-apm-storage" section="reduce-the-sample-rate">reduce the sample rate</DocLink> or <DocLink slug="/en/observability/apm-reduce-apm-storage" section="reduce-collected-stack-trace-information">reduce the amount of stack traces</DocLink>.
 
 Read more in the [agents documentation](((apm-agents-ref))/index.html).
 
@@ -55,7 +54,7 @@ Increasing the default value for the following configuration variable will help 
 
 |  |  |
 |---|---|
-| APM Server binary | <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">`rate_limit.event_limit`</DocLink> |
+| APM Server binary | <DocLink slug="/en/observability/apm-configuration-anonymous" section="event-limit">`rate_limit.event_limit`</DocLink> |
 | Fleet-managed     | `Anonymous Event rate limit (event limit)` |
 
 <div id="apm-tune-elasticsearch"></div>

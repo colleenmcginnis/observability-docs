@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmLogstashOutput
 slug: /en/observability/apm-logstash-output
 title: Configure the ((ls)) output
 description: Description to be written
@@ -26,9 +25,9 @@ protocol, which runs over TCP.
 
 To send events to ((ls)), you must:
 
-1. <DocLink id="enObservabilityApmLogstashOutput" section="((ls))-output-configuration">Enable the ((ls)) output in APM Server</DocLink>
-1. <DocLink id="enObservabilityApmLogstashOutput" section="((kib))-endpoint-configuration">Enable the ((kib)) endpoint in APM Server</DocLink>
-1. <DocLink id="enObservabilityApmLogstashOutput" section="((ls))-configuration-pipeline">Create a ((ls)) configuration pipeline in ((ls))</DocLink>
+1. <DocLink slug="/en/observability/apm-logstash-output" section="((ls))-output-configuration">Enable the ((ls)) output in APM Server</DocLink>
+1. <DocLink slug="/en/observability/apm-logstash-output" section="((kib))-endpoint-configuration">Enable the ((kib)) endpoint in APM Server</DocLink>
+1. <DocLink slug="/en/observability/apm-logstash-output" section="((ls))-configuration-pipeline">Create a ((ls)) configuration pipeline in ((ls))</DocLink>
 
 <div id="apm-ls-output-config"></div>
 
@@ -124,7 +123,7 @@ APM Server sends the following `@metadata` to ((ls)):
 }
 ```
 [^1]: To change the default `apm-server` value, set the
-<DocLink id="enObservabilityApmLogstashOutput" section="index">`index`</DocLink> option in the APM Server config file.
+<DocLink slug="/en/observability/apm-logstash-output" section="index">`index`</DocLink> option in the APM Server config file.
 [^2]: The current version of APM Server.
 
 In addition to `@metadata`, APM Server provides other potentially useful fields, like the
@@ -276,7 +275,7 @@ password can be embedded in the URL as shown in the example.
 
 When using a proxy, hostnames are resolved on the proxy server instead of on the
 client. You can change this behavior by setting the
-<DocLink id="enObservabilityApmLogstashOutput" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
+<DocLink slug="/en/observability/apm-logstash-output" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
 
 ```yaml
 output.logstash:
@@ -310,7 +309,7 @@ can then be accessed in ((ls))'s output section as `%{[@metadata][beat]}`.
 #### `ssl`
 
 Configuration options for SSL parameters like the root CA for ((ls)) connections. See
-<DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information. To use SSL, you must also configure the
+<DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink> for more information. To use SSL, you must also configure the
 [((beats)) input plugin for ((ls))](((logstash-ref))/plugins-inputs-beats.html) to use SSL/TLS.
 
 <div id="timeout"></div>

@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmJaegerIntegration
 slug: /en/observability/apm-jaeger-integration
 title: Jaeger integration
 description: Description to be written
@@ -29,7 +28,7 @@ supports communication with **Jaeger agents** via gRPC.
     SSL settings will automatically be applied to the APM integration's Jaeger gRPC endpoint.
 
 * The gRPC endpoint supports probabilistic sampling.
-    Sampling decisions can be configured <DocLink id="enObservabilityApmJaegerIntegration" section="((apm-agent))-central-configuration-default">centrally</DocLink> with ((apm-agent)) central configuration, or <DocLink id="enObservabilityApmJaegerIntegration" section="local-sampling-in-each-jaeger-client">locally</DocLink> in each Jaeger client.
+    Sampling decisions can be configured <DocLink slug="/en/observability/apm-jaeger-integration" section="((apm-agent))-central-configuration-default">centrally</DocLink> with ((apm-agent)) central configuration, or <DocLink slug="/en/observability/apm-jaeger-integration" section="local-sampling-in-each-jaeger-client">locally</DocLink> in each Jaeger client.
 
 See the [Jaeger docs](https://www.jaegertracing.io/docs/1.27/architecture)
 for more information on Jaeger architecture.
@@ -40,12 +39,12 @@ for more information on Jaeger architecture.
 
 Connect your preexisting Jaeger setup to Elastic APM in three steps:
 
-* <DocLink id="enObservabilityApmJaegerIntegration" section="configure-jaeger-agents">Configure Jaeger agents</DocLink>
-* <DocLink id="enObservabilityApmJaegerIntegration" section="configure-sampling">Configure Sampling</DocLink>
-* <DocLink id="enObservabilityApmJaegerIntegration" section="start-sending-data">Start sending data</DocLink>
+* <DocLink slug="/en/observability/apm-jaeger-integration" section="configure-jaeger-agents">Configure Jaeger agents</DocLink>
+* <DocLink slug="/en/observability/apm-jaeger-integration" section="configure-sampling">Configure Sampling</DocLink>
+* <DocLink slug="/en/observability/apm-jaeger-integration" section="start-sending-data">Start sending data</DocLink>
 
 <DocCallOut title="Important" color="warning">
-There are <DocLink id="enObservabilityApmJaegerIntegration" section="caveats">caveats</DocLink> to this integration.
+There are <DocLink slug="/en/observability/apm-jaeger-integration" section="caveats">caveats</DocLink> to this integration.
 </DocCallOut>
 
 <div id="apm-configure-agent-client-jaeger"></div>
@@ -66,8 +65,8 @@ For example, a value of `.2` means that 20% of traces will be sampled.
 
 There are two different ways to configure the sampling rate of your Jaeger agents:
 
-* <DocLink id="enObservabilityApmJaegerIntegration" section="((apm-agent))-central-configuration-default">((apm-agent)) central configuration (default)</DocLink>
-* <DocLink id="enObservabilityApmJaegerIntegration" section="local-sampling-in-each-jaeger-client">Local sampling in each Jaeger client</DocLink>
+* <DocLink slug="/en/observability/apm-jaeger-integration" section="((apm-agent))-central-configuration-default">((apm-agent)) central configuration (default)</DocLink>
+* <DocLink slug="/en/observability/apm-jaeger-integration" section="local-sampling-in-each-jaeger-client">Local sampling in each Jaeger client</DocLink>
 
 <div id="apm-configure-sampling-central-jaeger"></div>
 
@@ -114,10 +113,10 @@ There are some limitations and differences between Elastic APM and Jaeger that y
     multiple types of metrics, and application breakdown charts.
     When using Jaeger, features like this will not be available in the ((apm-app)).
 
-* Elastic APM's <DocLink id="enObservabilityApmDataModel">Data Model</DocLink> is different than Jaegers.
+* Elastic APM's <DocLink slug="/en/observability/apm-data-model">Data Model</DocLink> is different than Jaegers.
     For Jaeger trace data to work with Elastic's data model, we rely on spans being tagged with the appropriate
     [`span.kind`](https://github.com/opentracing/specification/blob/master/semantic_conventions.md).
 
-    * Server Jaeger spans are mapped to Elastic APM <DocLink id="enObservabilityApmDataModelTransactions">Transactions</DocLink>.
-    * Client Jaeger spans are mapped to Elastic APM <DocLink id="enObservabilityApmDataModelSpans">Spans</DocLink> -- unless the span is the root, in which case it is mapped to an Elastic APM <DocLink id="enObservabilityApmDataModelTransactions">Transactions</DocLink>.
+    * Server Jaeger spans are mapped to Elastic APM <DocLink slug="/en/observability/apm-data-model-transactions">Transactions</DocLink>.
+    * Client Jaeger spans are mapped to Elastic APM <DocLink slug="/en/observability/apm-data-model-spans">Spans</DocLink> -- unless the span is the root, in which case it is mapped to an Elastic APM <DocLink slug="/en/observability/apm-data-model-transactions">Transactions</DocLink>.
 

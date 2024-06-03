@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmServerStarting
 slug: /en/observability/apm-server-starting
 title: "Step 3: Start"
 description: Description to be written
@@ -20,9 +19,9 @@ To start APM Server, run:
 ```
 
 <DocCallOut title="Note">
-The `-e` <DocLink id="enObservabilityApmCommandLineOptions" section="global-flags">global flag</DocLink> enables logging to stderr and disables syslog/file output.
+The `-e` <DocLink slug="/en/observability/apm-command-line-options" section="global-flags">global flag</DocLink> enables logging to stderr and disables syslog/file output.
 Remove this flag if you've enabled logging in the configuration file.
-For Linux systems, see <DocLink id="enObservabilityApmRunningWithSystemd">APM Server status and logs</DocLink>.
+For Linux systems, see <DocLink slug="/en/observability/apm-running-with-systemd">APM Server status and logs</DocLink>.
 </DocCallOut>
 
 You should see APM Server start up.
@@ -49,7 +48,7 @@ sudo -u apm-server apm-server [<argument...>]
 ```
 
 By default, APM Server loads its configuration file from `/etc/apm-server/apm-server.yml`.
-See the <DocLink id="enObservabilityApmDirectoryLayout">deb & rpm default paths</DocLink> for a full directory layout.
+See the <DocLink slug="/en/observability/apm-directory-layout">deb & rpm default paths</DocLink> for a full directory layout.
 
 {/* ******************************************************* */}
 {/* STEP 4 */}

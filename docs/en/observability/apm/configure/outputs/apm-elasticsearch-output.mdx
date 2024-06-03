@@ -1,5 +1,4 @@
 ---
-id: enObservabilityApmElasticsearchOutput
 slug: /en/observability/apm-elasticsearch-output
 title: Configure the ((es)) output
 description: Description to be written
@@ -97,7 +96,7 @@ If no port is specified, `9200` is used.
 
 <DocCallOut title="Note">
 When a node is defined as an `IP:PORT`, the _scheme_ and _path_ are taken from the
-<DocLink id="enObservabilityApmElasticsearchOutput" section="protocol">`protocol`</DocLink> and <DocLink id="enObservabilityApmElasticsearchOutput" section="path">`path`</DocLink> config options.
+<DocLink slug="/en/observability/apm-elasticsearch-output" section="protocol">`protocol`</DocLink> and <DocLink slug="/en/observability/apm-elasticsearch-output" section="path">`path`</DocLink> config options.
 </DocCallOut>
 
 ```yaml
@@ -136,7 +135,7 @@ The default value is `false`.
 Instead of using a username and password, you can use API keys to secure communication
 with ((es)). The value must be the ID of the API key and the API key joined by a colon: `id:api_key`.
 
-See <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink> for more information.
+See <DocLink slug="/en/observability/apm-beats-api-keys">Grant access using API keys</DocLink> for more information.
 
 <div id="`username`"></div>
 
@@ -145,7 +144,7 @@ See <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</Do
 The basic authentication username for connecting to ((es)).
 
 This user needs the privileges required to publish events to ((es)).
-To create a user like this, see <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Grant privileges and roles needed for writing events</DocLink>.
+To create a user like this, see <DocLink slug="/en/observability/apm-privileges-to-publish-events">Grant privileges and roles needed for writing events</DocLink>.
 
 <div id="`password`"></div>
 
@@ -165,7 +164,7 @@ Dictionary of HTTP parameters to pass within the URL with index operations.
 
 The name of the protocol ((es)) is reachable on. The options are:
 `http` or `https`. The default is `http`. However, if you specify a URL for
-<DocLink id="enObservabilityApmElasticsearchOutput" section="hosts">`hosts`</DocLink>, the value of `protocol` is overridden by whatever scheme you
+<DocLink slug="/en/observability/apm-elasticsearch-output" section="hosts">`hosts`</DocLink>, the value of `protocol` is overridden by whatever scheme you
 specify in the URL.
 
 <div id="apm-path-option"></div>
@@ -229,7 +228,7 @@ output.elasticsearch:
   pipeline: my_pipeline_id
 ```
 
-For more information, see <DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink>.
+For more information, see <DocLink slug="/en/observability/apm-ingest-pipelines">Parse data using ingest pipelines</DocLink>.
 
 You can set the ingest node pipeline dynamically by using a format string to
 access any event field. For example, this configuration uses a custom field,
@@ -250,7 +249,7 @@ To learn how to add custom fields to events, see the
 \<\<libbeat-configuration-fields,`fields`>> option.
 </DocCallOut>
 
-See the <DocLink id="enObservabilityApmElasticsearchOutput" section="pipelines">`pipelines`</DocLink> setting for other ways to set the
+See the <DocLink slug="/en/observability/apm-elasticsearch-output" section="pipelines">`pipelines`</DocLink> setting for other ways to set the
 ingest node pipeline dynamically.
 
 <div id="apm-pipelines-option-es"></div>
@@ -261,7 +260,7 @@ An array of pipeline selector rules. Each rule specifies the ingest node
 pipeline to use for events that match the rule. During publishing, APM Server
 uses the first matching rule in the array. Rules can contain conditionals,
 format string-based fields, and name mappings. If the `pipelines` setting is
-missing or no rule matches, the <DocLink id="enObservabilityApmElasticsearchOutput" section="pipeline">`pipeline`</DocLink> setting is
+missing or no rule matches, the <DocLink slug="/en/observability/apm-elasticsearch-output" section="pipeline">`pipeline`</DocLink> setting is
 used.
 
 Rule settings:
@@ -325,7 +324,7 @@ With this configuration, all events with `log_type: critical` are sent to
 `sev2_pipeline`, and all other events are sent to `sev3_pipeline`.
 
 For more information about ingest node pipelines, see
-<DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink>.
+<DocLink slug="/en/observability/apm-ingest-pipelines">Parse data using ingest pipelines</DocLink>.
 
 </DocIf>
 
@@ -395,7 +394,7 @@ for HTTPS-based connections. If the `ssl` section is missing, the host CAs are u
 ((es)).
 
 See the \<\<apm-securing-communication-elasticsearch,secure communication with ((es))>> guide
-or <DocLink id="enObservabilityApmConfigurationSsl">SSL configuration reference</DocLink> for more information.
+or <DocLink slug="/en/observability/apm-configuration-ssl">SSL configuration reference</DocLink> for more information.
 
 {/* Elasticsearch security */}
 

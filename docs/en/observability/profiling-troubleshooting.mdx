@@ -1,5 +1,4 @@
 ---
-id: enObservabilityProfilingTroubleshooting
 slug: /en/observability/profiling-troubleshooting
 title: Troubleshoot your Universal Profiling agent deployment
 description: Description to be written
@@ -79,7 +78,7 @@ If running this command outputs error-level logs, the following are possible cau
     Failed to report hostinfo (retrying...): rpc error: code = Unimplemented desc = unknown service collectionagent.CollectionAgent"
     ```
 
-    This typically means that your ((ecloud)) cluster has not been configured for Universal Profiling. To configure your ((ecloud)) cluster, follow the steps in <DocLink id="enObservabilityProfilingGetStarted" section="configure-data-ingestion">configure data ingestion</DocLink>.
+    This typically means that your ((ecloud)) cluster has not been configured for Universal Profiling. To configure your ((ecloud)) cluster, follow the steps in <DocLink slug="/en/observability/profiling-get-started" section="configure-data-ingestion">configure data ingestion</DocLink>.
 
 * The collector (part of the backend in ((ecloud)) that receives data from the Universal Profiling Agent) ran out of memory. In this case, a similar message to the following is logged:
 

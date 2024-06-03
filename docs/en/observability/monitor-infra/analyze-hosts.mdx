@@ -1,5 +1,4 @@
 ---
-id: enObservabilityAnalyzeHosts
 slug: /en/observability/analyze-hosts
 title: Analyze and compare hosts
 description: Description to be written
@@ -32,7 +31,7 @@ To access this page from the main ((kib)) menu, go to
 ![Screenshot of the Hosts page](../images/hosts.png)
 
 To learn more about the metrics shown on this page, refer to the
-<DocLink id="enObservabilityMetricsReference">Metrics reference</DocLink> documentation.
+<DocLink slug="/en/observability/metrics-reference">Metrics reference</DocLink> documentation.
 
 <ViewInfrastructureMetricsAddMetricsTip />
 
@@ -51,7 +50,7 @@ The **Hosts** page provides several ways to view host metrics:
     for any hosts with active alerts. You may need to page through the list
     or change the number of rows displayed on each page to see all of your hosts.
 
-* Each host name is an active link to a <DocLink id="enObservabilityAnalyzeHosts" section="view-host-details">host details</DocLink> page,
+* Each host name is an active link to a <DocLink slug="/en/observability/analyze-hosts" section="view-host-details">host details</DocLink> page,
     where you can explore enhanced metrics and other observability data related to the selected host.
     You can optionally open the host details in an overlay.
 
@@ -62,7 +61,7 @@ The **Hosts** page provides several ways to view host metrics:
     and alerts for all hosts returned by your search.
 
 <DocCallOut title="Tip">
-For more information about creating and viewing alerts, refer to <DocLink id="enObservabilityCreateAlerts">Alerting</DocLink>.
+For more information about creating and viewing alerts, refer to <DocLink slug="/en/observability/create-alerts">Alerting</DocLink>.
 </DocCallOut>
 
 <div id="analyze-hosts-filter-view"></div>
@@ -113,7 +112,7 @@ normalized load, memory usage, disk usage, and other metrics related to disk IOP
 Place your cursor over a line to view metrics at a specific
 point in time. From within each visualization, you can choose to open the visualization in Lens.
 
-To see metrics for a specific host, refer to <DocLink id="enObservabilityAnalyzeHosts" section="view-host-details">View host details</DocLink>.
+To see metrics for a specific host, refer to <DocLink slug="/en/observability/analyze-hosts" section="view-host-details">View host details</DocLink>.
 
 {/* TODO: Uncomment this section if/when the inspect option feature is added back in. */}
 
@@ -172,13 +171,13 @@ the current query.
 <DocCallOut title="Tip">
 This view uses the log sources and column settings specified in the
 Logs app. To add log sources or columns (such as host name), refer to
-<DocLink id="enObservabilityConfigureDataSources">Configure data sources</DocLink>.
+<DocLink slug="/en/observability/configure-data-sources">Configure data sources</DocLink>.
 </DocCallOut>
 
 Click **Open in Logs** to tail your log files. For more information, refer to
-<DocLink id="enObservabilityTailLogs">Tail log files</DocLink>.
+<DocLink slug="/en/observability/tail-logs">Tail log files</DocLink>.
 
-To see logs for a specific host, refer to <DocLink id="enObservabilityAnalyzeHosts" section="view-host-details">View host details</DocLink>.
+To see logs for a specific host, refer to <DocLink slug="/en/observability/analyze-hosts" section="view-host-details">View host details</DocLink>.
 
 <div id="analyze-hosts-view-alerts"></div>
 
@@ -196,7 +195,7 @@ From the **Actions** menu, you can choose to:
 
 ![Screenshot showing Alerts view](../images/hosts-view-alerts.png)
 
-To see alerts for a specific host, refer to <DocLink id="enObservabilityAnalyzeHosts" section="view-host-details">View host details</DocLink>.
+To see alerts for a specific host, refer to <DocLink slug="/en/observability/analyze-hosts" section="view-host-details">View host details</DocLink>.
 
 <DocCallOut>
 
@@ -208,7 +207,7 @@ edit the rules and make sure they are correctly configured to associate the host
 * For Metric threshold or Custom threshold rules, select `host.name` in the **Group alerts by** field.
 * For Inventory rules, select **Host** for the node type under **Conditions**.
 
-To learn more about creating and managing rules, refer to <DocLink id="enObservabilityCreateAlerts">Alerting</DocLink>.
+To learn more about creating and managing rules, refer to <DocLink slug="/en/observability/create-alerts">Alerting</DocLink>.
 
 </DocCallOut>
 
@@ -239,9 +238,9 @@ The metrics shown on the **Hosts** page are also available when viewing hosts on
 
 There are a few reasons why you may see dashed lines in your charts.
 
-* <DocLink id="enObservabilityAnalyzeHosts" section="the-chart-interval-is-too-short">The chart interval is too short</DocLink>
-* <DocLink id="enObservabilityAnalyzeHosts" section="data-is-missing">Data is missing</DocLink>
-* <DocLink id="enObservabilityAnalyzeHosts" section="the-chart-interval-is-too-short-and-data-is-missing">The chart interval is too short and data is missing</DocLink>
+* <DocLink slug="/en/observability/analyze-hosts" section="the-chart-interval-is-too-short">The chart interval is too short</DocLink>
+* <DocLink slug="/en/observability/analyze-hosts" section="data-is-missing">Data is missing</DocLink>
+* <DocLink slug="/en/observability/analyze-hosts" section="the-chart-interval-is-too-short-and-data-is-missing">The chart interval is too short and data is missing</DocLink>
 
 <div id="dashed-interval"></div>
 

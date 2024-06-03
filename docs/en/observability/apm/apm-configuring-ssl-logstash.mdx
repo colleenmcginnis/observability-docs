@@ -38,7 +38,7 @@ To use SSL mutual authentication:
       ssl.key: "/etc/client.key"
     ```
 
-    For more information about these configuration options, see <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink>.
+    For more information about these configuration options, see <DocLink slug="/en/observability/apm-configuration-ssl">SSL/TLS output settings</DocLink>.
 
 1. Configure ((ls)) to use SSL. In the ((ls)) config file, specify the following settings for the [((beats)) input plugin for ((ls))](((logstash-ref))/plugins-inputs-beats.html):
 
@@ -115,7 +115,7 @@ Validation for this test fails because the certificate is not valid for the spec
     curl: (51) SSL: certificate verification failed (result: 5)
 ```
 
-See the <DocLink id="enObservabilityApmCommonProblems" section="ssl-client-fails-to-connect">troubleshooting docs</DocLink> for info about resolving this issue.
+See the <DocLink slug="/en/observability/apm-common-problems" section="ssl-client-fails-to-connect">troubleshooting docs</DocLink> for info about resolving this issue.
 
 <div id="test_the_apm_server_to_((ls))_connection"></div>
 
@@ -128,5 +128,5 @@ the foreground so you can quickly see any errors that occur:
 apm-server -c apm-server.yml -e -v
 ```
 
-Any errors will be printed to the console. See the <DocLink id="enObservabilityApmCommonProblems" section="ssl-client-fails-to-connect">troubleshooting docs</DocLink> for info about
+Any errors will be printed to the console. See the <DocLink slug="/en/observability/apm-common-problems" section="ssl-client-fails-to-connect">troubleshooting docs</DocLink> for info about
 resolving common errors.
