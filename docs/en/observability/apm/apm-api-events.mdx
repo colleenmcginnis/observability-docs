@@ -1,7 +1,16 @@
-[[apm-api-events]]
-=== Elastic APM events intake API
+---
+id: enObservabilityApmApiEvents
+slug: /en/observability/apm-api-events
+title: Elastic APM events intake API
+description: Description to be written
+tags: []
+---
 
-NOTE: Most users do not need to interact directly with the events intake API.
+<div id="apm-api-events"></div>
+
+<DocCallOut title="Note">
+Most users do not need to interact directly with the events intake API.
+</DocCallOut>
 
 The events intake API is what we call the internal protocol that APM agents use to talk to the APM Server.
 Agents communicate with the Server by sending events -- captured pieces of information -- in an HTTP request.
@@ -13,74 +22,71 @@ Events can be:
 * Metrics
 
 Each event is sent as its own line in the HTTP request body.
-This is known as http://ndjson.org[newline delimited JSON (NDJSON)].
+This is known as [newline delimited JSON (NDJSON)](http://ndjson.org).
 
 With NDJSON, agents can open an HTTP POST request and use chunked encoding to stream events to the APM Server
 as soon as they are recorded in the agent.
 This makes it simple for agents to serialize each event to a stream of newline delimited JSON.
 The APM Server also treats the HTTP body as a compressed stream and thus reads and handles each event independently.
 
-See the <<apm-data-model,APM data model>> to learn more about the different types of events.
+See the <DocLink id="enObservabilityApmDataModel">APM data model</DocLink> to learn more about the different types of events.
 
-[[apm-api-events-endpoint]]
-[float]
-=== Endpoints
+<div id="apm-api-events-endpoint"></div>
+
+## Endpoints
 
 APM Server exposes the following endpoints for Elastic APM agent data intake:
 
-[options="header"]
-|====
-|Name |Endpoint
-|APM agent event intake |`/intake/v2/events`
-|RUM event intake (v2) |`/intake/v2/rum/events`
-|RUM event intake (v3) |`/intake/v3/rum/events`
-|====
+| Name | Endpoint |
+|---|---|
+| APM agent event intake | `/intake/v2/events` |
+| RUM event intake (v2) | `/intake/v2/rum/events` |
+| RUM event intake (v3) | `/intake/v3/rum/events` |
 
-[[apm-api-events-example]]
-[float]
-=== Request
+<div id="apm-api-events-example"></div>
+
+## Request
 
 Send an `HTTP POST` request to the APM Server `intake/v2/events` endpoint:
 
-[source,bash]
-------------------------------------------------------------
+```bash
 http(s)://{hostname}:{port}/intake/v2/events
-------------------------------------------------------------
+```
 
 From version `8.5.0` onwards, the APM Server supports asynchronous processing of batches.
 To request asynchronous processing the `async` query parameter can be set in the POST request
 to the `intake/v2/events` endpoint:
 
-[source,bash]
-------------------------------------------------------------
+```bash
 http(s)://{hostname}:{port}/intake/v2/events?async=true
-------------------------------------------------------------
+```
 
-NOTE: Since asynchronous processing defers some of the event processing to the
+<DocCallOut title="Note">
+Since asynchronous processing defers some of the event processing to the
 background and takes place after the client has closed the request, some errors
 can't be communicated back to the client and are logged by the APM Server.
 Furthermore, asynchronous processing requests will only be scheduled if the APM Server can
 service the incoming request, requests that cannot be serviced will receive an internal error
 `503` "queue is full" error.
+</DocCallOut>
 
-For <<apm-rum,RUM>> send an `HTTP POST` request to the APM Server `intake/v3/rum/events` endpoint instead:
+For <DocLink id="enObservabilityApmRum">RUM</DocLink> send an `HTTP POST` request to the APM Server `intake/v3/rum/events` endpoint instead:
 
-[source,bash]
-------------------------------------------------------------
+```bash
 http(s)://{hostname}:{port}/intake/v3/rum/events
-------------------------------------------------------------
+```
 
-[[apm-api-events-response]]
-[float]
-=== Response
+<div id="apm-api-events-response"></div>
+
+## Response
 
 On success, the server will respond with a 202 Accepted status code and no body.
 
 Keep in mind that events can succeed and fail independently of each other. Only if all events succeed does the server respond with a 202.
 
-[[apm-api-events-errors]]
-[float]
-=== Errors
+<div id="apm-api-events-errors"></div>
+
+## Errors
 
 There are two types of errors that the APM Server may return to an agent:
 
@@ -104,13 +110,12 @@ it is added to the internal array and immediately returned.
 
 An example error response might look something like this:
 
-[source,json]
-------------------------------------------------------------
+```json
 {
   "errors": [
     {
-      "message": "<json-schema-err>", <1>
-      "document": "<ndjson-obj>" <2>
+      "message": "<json-schema-err>",  [^1]
+      "document": "<ndjson-obj>"  [^2]
     },{
       "message": "<json-schema-err>",
       "document": "<ndjson-obj>"
@@ -118,36 +123,35 @@ An example error response might look something like this:
       "message": "<json-decoding-err>",
       "document": "<ndjson-obj>"
     },{
-      "message": "too many requests" <3>
+      "message": "too many requests"  [^3]
     },
   ],
-  "accepted": 2320 <4>
+  "accepted": 2320  [^4]
 }
-------------------------------------------------------------
-
-<1> An event related error
-<2> The document causing the error
-<3> An immediately returning non-event related error
-<4> The number of accepted events
+```
+[^1]: An event related error
+[^2]: The document causing the error
+[^3]: An immediately returning non-event related error
+[^4]: The number of accepted events
 
 If you're developing an agent, these errors can be useful for debugging.
 
-[[apm-api-events-schema-definition]]
-[float]
-=== Event API Schemas
+<div id="apm-api-events-schema-definition"></div>
+
+## Event API Schemas
 
 The APM Server uses a collection of JSON Schemas for validating requests to the intake API:
 
-* <<apm-api-metadata>>
-* <<apm-api-transaction>>
-* <<apm-api-span>>
-* <<apm-api-error>>
-* <<apm-api-metricset>>
-* <<apm-api-event-example>>
+* <DocLink id="enObservabilityApmApiMetadata">Metadata</DocLink>
+* <DocLink id="enObservabilityApmApiTransaction">Transactions</DocLink>
+* <DocLink id="enObservabilityApmApiSpan">Spans</DocLink>
+* <DocLink id="enObservabilityApmApiError">Errors</DocLink>
+* <DocLink id="enObservabilityApmApiMetricset">Metrics</DocLink>
+* <DocLink id="enObservabilityApmApiEventExample">Example request body</DocLink>
 
-include::./api-metadata.asciidoc[]
-include::./api-transaction.asciidoc[]
-include::./api-span.asciidoc[]
-include::./api-error.asciidoc[]
-include::./api-metricset.asciidoc[]
-include::./api-event-example.asciidoc[]
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}

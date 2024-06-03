@@ -1,0 +1,12 @@
+
+import InitdNote from './initd-note.mdx'
+
+export let beatname_url = "((beats-ref-root))/{props.beatname_lc}/((branch))"
+
+```sh
+sudo service {props.beatname_pkg} start
+```
+
+<InitdNote beatname_url={props.beatname_url} />
+
+Also see [{props.beatname_uc} and systemd]({props.beatname_url}/running-with-systemd.html).

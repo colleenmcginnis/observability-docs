@@ -1,0 +1,30 @@
+---
+id: enObservabilityApmSelectMetrics
+slug: /en/observability/apm-select-metrics
+title: The select metrics
+description: Description to be written
+tags: []
+---
+
+<div id="apm-select-metrics"></div>
+
+We only ship a select list of metrics, to avoid overwhelming your monitoring cluster.
+If you need the entire set of metrics and traces we can expose, you should use
+<DocLink id="enObservabilityApmConfigurationInstrumentation">Self Instrumentation</DocLink> instead of local
+collection.
+
+Here is the list of every metrics we currently expose:
+
+* http.server.request.count
+* http.server.request.duration
+* http.server.response.valid.count
+* http.server.response.errors.count
+* http.server.errors.timeout
+* http.server.errors.ratelimit
+* grpc.server.request.count
+* grpc.server.request.duration
+* grpc.server.response.valid.count
+* grpc.server.response.errors.count
+* grpc.server.errors.timeout
+* grpc.server.errors.ratelimit
+

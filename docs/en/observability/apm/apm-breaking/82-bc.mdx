@@ -1,0 +1,37 @@
+
+The following breaking changes are introduced in APM version 8.2.0:
+
+<div id="apm_server_now_emits_events_with_`event.duration`"></div>
+
+#### APM Server now emits events with `event.duration`
+
+APM Server no longer emits events with a `transaction.duration.us` or `span.duration.us`.
+Instead, events are emitted with an `event.duration`.
+An ingest pipeline sets the legacy `<event>.duration.us` field and removes the `event.duration`.
+
+This change will impact users who are not using APM Server's ((es)) output or the packaged ingest pipeline.
+For details, see [PR #7261](https://github.com/elastic/apm-server/pull/7261).
+
+<div id="removed_`observer.version_major`"></div>
+
+#### Removed `observer.version_major`
+
+The field `observer.version_major` is non-standard and existed only for the APM UI to filter out legacy docs (versions \<7.0).
+This check is no longer performed, so the field has been removed.
+
+For details, see [PR #7399](https://github.com/elastic/apm-server/pull/7399).
+
+<div id="apm_server_no_longer_ships_with_system_v_init_scripts_or_the_go-daemon_wrapper"></div>
+
+#### APM Server no longer ships with System V init scripts or the go-daemon wrapper
+
+As of version 8.1.0, all Linux distributions supported by APM Server support systemd.
+As a result, APM Server no longer ships with System V init scripts or the go-daemon wrapper; use systemd instead.
+
+For details, see [PR #7576](https://github.com/elastic/apm-server/pull/7576).
+
+<div id="deprecated_32-bit_architectures"></div>
+
+#### Deprecated 32-bit architectures
+
+APM Server support for 32-bit architectures has been deprecated and will be removed in a future release.

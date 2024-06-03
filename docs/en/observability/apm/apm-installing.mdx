@@ -1,0 +1,148 @@
+---
+id: enObservabilityApmInstalling
+slug: /en/observability/apm-installing
+title: "Step 1: Install"
+description: Description to be written
+tags: []
+---
+
+<div id="apm-installing"></div>
+
+<DocCallOut title="Note">
+**Before you begin**: If you haven't installed the ((stack)), do that now.
+See [Learn how to install the
+((stack)) on your own hardware](((stack-ref))/installing-elastic-stack.html).
+</DocCallOut>
+
+To download and install APM Server, use the commands below that work with your system.
+If you use `apt` or `yum`, you can <DocLink id="enObservabilityApmSetupRepositories">install APM Server from our repositories</DocLink>
+to update to the newest version more easily.
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+See our [download page](https://www.elastic.co/downloads/apm)
+for other installation options, such as 32-bit images.
+</DocIf>
+
+<div id="apm-deb"></div>
+
+**deb:**
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((apm_server_version)) of APM Server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+```sh
+curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-((apm_server_version))-amd64.deb
+sudo dpkg -i apm-server-((apm_server_version))-amd64.deb
+```
+
+</DocIf>
+
+<div id="apm-rpm"></div>
+
+**RPM:**
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((apm_server_version)) of APM Server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+```sh
+curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-((apm_server_version))-x86_64.rpm
+sudo rpm -vi apm-server-((apm_server_version))-x86_64.rpm
+```
+
+</DocIf>
+
+<div id="apm-linux"></div>
+
+**Other Linux:**
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((apm_server_version)) of APM Server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+```sh
+curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-((apm_server_version))-linux-x86_64.tar.gz
+tar xzvf apm-server-((apm_server_version))-linux-x86_64.tar.gz
+```
+</DocIf>
+
+<div id="apm-mac"></div>
+
+**Mac:**
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((apm_server_version)) of APM Server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+```sh
+curl -L -O https://artifacts.elastic.co/downloads/apm-server/apm-server-((apm_server_version))-darwin-x86_64.tar.gz
+tar xzvf apm-server-((apm_server_version))-darwin-x86_64.tar.gz
+```
+
+</DocIf>
+
+<div id="apm-installing-on-windows"></div>
+
+**Windows:**
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((apm_server_version)) of APM Server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+1. Download the APM Server Windows zip file from the
+    [downloads page](https://www.elastic.co/downloads/apm/apm-server).
+
+1. Extract the contents of the zip file into `C:\Program Files`.
+
+1. Rename the `apm-server-<version>-windows` directory to `APM-Server`.
+
+1. Open a PowerShell prompt as an Administrator (right-click the PowerShell icon and select **Run As Administrator**).
+    If you are running Windows XP, you may need to download and install PowerShell.
+
+1. From the PowerShell prompt, run the following commands to install APM Server as a Windows service:
+
+    ```shell
+    PS > cd 'C:\Program Files\APM-Server'
+    PS C:\Program Files\APM-Server> .\install-service.ps1
+    ```
+
+<DocCallOut title="Note">
+If script execution is disabled on your system,
+you need to set the execution policy for the current session to allow the script to run.
+For example: `PowerShell.exe -ExecutionPolicy UnRestricted -File .\install-service.ps1`.
+</DocCallOut>
+
+</DocIf>
+
+<div id="apm-docker"></div>
+
+**Docker:**
+
+See <DocLink id="enObservabilityApmRunningOnDocker">Running on Docker</DocLink> for deploying Docker containers.
+
+{/* ******************************************************* */}
+{/* STEP 2 */}
+{/* ******************************************************* */}
+

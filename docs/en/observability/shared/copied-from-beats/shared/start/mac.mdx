@@ -1,0 +1,31 @@
+
+
+
+export let has_modules_command = false
+
+<DocIf condition={ has_modules_command === false }>
+
+```sh
+sudo chown root {props.beatname_lc}.yml  [^1]
+sudo ./{props.beatname_lc} -e
+```
+[^1]: You'll be running {props.beatname_uc} as root, so you need to change ownership
+of the configuration file, or run {props.beatname_uc} with `--strict.perms=false`
+specified. See
+[Config File Ownership and Permissions](((beats-ref))/config-file-permissions.html).
+
+</DocIf>
+
+<DocIf condition={ has_modules_command === true }>
+
+```sh
+sudo chown root {props.beatname_lc}.yml  [^1]
+sudo chown root modules.d/{props.modulename}.yml  [^1]
+sudo ./{props.beatname_lc} -e
+```
+[^1]: You'll be running {props.beatname_uc} as root, so you need to change ownership of the
+configuration file and any configurations enabled in the `modules.d` directory,
+or run {props.beatname_uc} with `--strict.perms=false` specified. See
+[Config File Ownership and Permissions](((beats-ref))/config-file-permissions.html).
+
+</DocIf>

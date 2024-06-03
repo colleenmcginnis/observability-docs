@@ -1,118 +1,125 @@
-[[logs-checklist]]
-= Log monitoring
+---
+id: enObservabilityLogsChecklist
+slug: /en/observability/logs-checklist
+title: Log monitoring
+description: Description to be written
+tags: []
+---
+
+<div id="logs-checklist"></div>
 
 Logs are an important tool for ensuring the performance and reliability of your applications and infrastructure. They provide important information for debugging, analyzing performance, and managing compliance.
 
-On this page, you'll find resources for sending log data to {es}, configuring your logs, and analyzing your logs.
+On this page, you'll find resources for sending log data to ((es)), configuring your logs, and analyzing your logs.
 
-[discrete]
-[[logs-getting-started-checklist]]
-== Get started with logs
+<div id="logs-getting-started-checklist"></div>
 
-For a high-level overview on ingesting, viewing, and analyzing logs with Elastic, refer to <<logs-metrics-get-started, Get started with logs and metrics>>.
+## Get started with logs
+
+For a high-level overview on ingesting, viewing, and analyzing logs with Elastic, refer to <DocLink id="enObservabilityLogsMetricsGetStarted">Get started with logs and metrics</DocLink>.
 
 To get started ingesting, parsing, and filtering your own data, refer to these pages:
 
-* *<<logs-stream>>*: send log files from your system to {es} using a standalone {agent} and configure the {agent} and your data streams using the `elastic-agent.yml` file.
-* *<<logs-parse>>*: break your log messages into meaningful fields that you can use to filter and analyze your data.
-* *<<logs-filter-and-aggregate>>*: find specific information in your log data to gain insight and monitor your systems.
+* **<DocLink id="enObservabilityLogsStream">Stream any log file</DocLink>**: send log files from your system to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
+* **<DocLink id="enObservabilityLogsParse">Parse and organize logs</DocLink>**: break your log messages into meaningful fields that you can use to filter and analyze your data.
+* **<DocLink id="enObservabilityLogsFilterAndAggregate">Filter and aggregate logs</DocLink>**: find specific information in your log data to gain insight and monitor your systems.
 
 The following sections provide resources to important concepts or advanced use cases for working with your logs.
 
-[discrete]
-[[logs-send-data-checklist]]
-== Send log data to {es}
+<div id="logs-send-data-checklist"></div>
 
-You can send log data to {es} in different ways depending on your needs:
+## Send log data to ((es))
 
-* *{agent}*: a single agent for logs, metrics, security data, and threat prevention. It can be deployed either standalone or managed by {fleet}:
-** *Standalone*: Manually configure, deploy and update an {agent} on each host.
-** *Fleet*: Centrally manage and update {agent} policies and lifecycles in {kib}.
-* *{filebeat}*: a lightweight, logs-specific shipper for forwarding and centralizing log data.
+You can send log data to ((es)) in different ways depending on your needs:
 
-Refer to the {fleet-guide}/beats-agent-comparison.html[{agent} and {beats} capabilities comparison] for more information on which option best fits your situation.
+* **((agent))**: a single agent for logs, metrics, security data, and threat prevention. It can be deployed either standalone or managed by ((fleet)):
+    * **Standalone**: Manually configure, deploy and update an ((agent)) on each host.
+    * **Fleet**: Centrally manage and update ((agent)) policies and lifecycles in ((kib)).
+* **((filebeat))**: a lightweight, logs-specific shipper for forwarding and centralizing log data.
 
-[discrete]
-[[agent-ref-guide]]
-=== Install {agent}
-The following pages detail installing and managing the {agent} in different modes.
+Refer to the [((agent)) and ((beats)) capabilities comparison](((fleet-guide))/beats-agent-comparison.html) for more information on which option best fits your situation.
 
-* *Standalone {agent}*
-+
-Install an {agent} and manually configure it locally on the system where it's installed.
-You are responsible for managing and upgrading the agents.
-+
-Refer to <<logs-stream>> to learn how to send a log file to {es} using a standalone {agent} and configure the {agent} and your data streams using the `elastic-agent.yml` file.
+<div id="agent-ref-guide"></div>
 
-* *{fleet}-managed {agent}*
-+
-Install an {agent} and use {fleet} in {kib} to define, configure, and manage your agents in a central location.
-+
-Refer to {fleet-guide}/install-fleet-managed-elastic-agent.html[install {fleet}-managed {agent}].
+### Install ((agent))
+The following pages detail installing and managing the ((agent)) in different modes.
 
-* *{agent} in a containerized environment*
-+
-Run an {agent} inside of a container—either with {fleet-server} or standalone.
-+
-Refer to {fleet-guide}/install-elastic-agents-in-containers.html[install {agent} in a containerized environment].
+* **Standalone ((agent))**
 
-[discrete]
-[[beats-ref-guide]]
-=== Install {filebeat}
-{filebeat} is a lightweight shipper for forwarding and centralizing log data.
-Installed as a service on your servers, {filebeat} monitors the log files or locations that you specify, collects log events, and forwards them
-either to {ref}[{es}] or
-{logstash-ref}[Logstash] for indexing.
+    Install an ((agent)) and manually configure it locally on the system where it's installed.
+    You are responsible for managing and upgrading the agents.
 
-- {filebeat-ref}/filebeat-overview.html[{filebeat} overview]: general information on {filebeat} and how it works.
-- {filebeat-ref}/filebeat-installation-configuration.html[{filebeat} quick start]: basic installation instructions to get you started.
-- {filebeat-ref}/setting-up-and-running.html[Set up and run {filebeat}]: information on how to install, set up, and run {filebeat}.
+    Refer to <DocLink id="enObservabilityLogsStream">Stream any log file</DocLink> to learn how to send a log file to ((es)) using a standalone ((agent)) and configure the ((agent)) and your data streams using the `elastic-agent.yml` file.
 
-[discrete]
-[[logs-configure-data-checklist]]
-== Parse and organize your logs
+* **((fleet))-managed ((agent))**
 
-To get started parsing and organizing your logs, refer to <<logs-parse>> for information on breaking unstructured log data into meaningful fields you can use to filter and aggregate your data.
+    Install an ((agent)) and use ((fleet)) in ((kib)) to define, configure, and manage your agents in a central location.
+
+    Refer to [install ((fleet))-managed ((agent))](((fleet-guide))/install-fleet-managed-elastic-agent.html).
+
+* **((agent)) in a containerized environment**
+
+    Run an ((agent)) inside of a container—either with ((fleet-server)) or standalone.
+
+    Refer to [install ((agent)) in a containerized environment](((fleet-guide))/install-elastic-agents-in-containers.html).
+
+<div id="beats-ref-guide"></div>
+
+### Install ((filebeat))
+((filebeat)) is a lightweight shipper for forwarding and centralizing log data.
+Installed as a service on your servers, ((filebeat)) monitors the log files or locations that you specify, collects log events, and forwards them
+either to [((es))](((ref))) or
+[Logstash](((logstash-ref))) for indexing.
+
+- [((filebeat)) overview](((filebeat-ref))/filebeat-overview.html): general information on ((filebeat)) and how it works.
+- [((filebeat)) quick start](((filebeat-ref))/filebeat-installation-configuration.html): basic installation instructions to get you started.
+- [Set up and run ((filebeat))](((filebeat-ref))/setting-up-and-running.html): information on how to install, set up, and run ((filebeat)).
+
+<div id="logs-configure-data-checklist"></div>
+
+## Parse and organize your logs
+
+To get started parsing and organizing your logs, refer to <DocLink id="enObservabilityLogsParse">Parse and organize logs</DocLink> for information on breaking unstructured log data into meaningful fields you can use to filter and aggregate your data.
 
 The following resources provide information on important concepts related to parsing and organizing your logs:
 
-- {ref}/data-streams.html[Data streams]: Efficiently store append-only time series data in multiple backing indices partitioned by time and size.
-- {kibana-ref}/data-views.html[Data views]: Query log entries from the data streams of specific datasets or namespaces.
-- {ref}/example-using-index-lifecycle-policy.html[Index lifecycle management]: Configure the built-in logs policy based on your application's performance, resilience, and retention requirements.
-- {ref}/ingest.html[Ingest pipeline]: Parse and transform log entries into a suitable format before indexing.
-- {ref}/mapping.html[Mapping]: define how data is stored and indexed.
+- [Data streams](((ref))/data-streams.html): Efficiently store append-only time series data in multiple backing indices partitioned by time and size.
+- [Data views](((kibana-ref))/data-views.html): Query log entries from the data streams of specific datasets or namespaces.
+- [Index lifecycle management](((ref))/example-using-index-lifecycle-policy.html): Configure the built-in logs policy based on your application's performance, resilience, and retention requirements.
+- [Ingest pipeline](((ref))/ingest.html): Parse and transform log entries into a suitable format before indexing.
+- [Mapping](((ref))/mapping.html): define how data is stored and indexed.
 
-[discrete]
-[[logs-monitor-checklist]]
-== View and monitor logs
+<div id="logs-monitor-checklist"></div>
 
-With the {logs-app} in {kib} you can search, filter, and tail all your logs ingested into {es} in one place.
+## View and monitor logs
+
+With the ((logs-app)) in ((kib)) you can search, filter, and tail all your logs ingested into ((es)) in one place.
 
 The following resources provide information on viewing and monitoring your logs:
 
-- <<tail-logs>>: monitor all of the log events flowing in from your servers, virtual machines, and containers in a centralized view.
-- <<inspect-log-anomalies>>: use {ml} to detect log anomalies automatically.
-- <<categorize-logs>>: use {ml} to categorize log messages to quickly identify patterns in your log events.
-- <<configure-data-sources>>: Specify the source configuration for logs in the Logs app settings in the Kibana configuration file.
+- <DocLink id="enObservabilityTailLogs">Tail log files</DocLink>: monitor all of the log events flowing in from your servers, virtual machines, and containers in a centralized view.
+- <DocLink id="enObservabilityInspectLogAnomalies">Inspect log anomalies</DocLink>: use ((ml)) to detect log anomalies automatically.
+- <DocLink id="enObservabilityCategorizeLogs">Categorize log entries</DocLink>: use ((ml)) to categorize log messages to quickly identify patterns in your log events.
+- <DocLink id="enObservabilityConfigureDataSources">Configure data sources</DocLink>: Specify the source configuration for logs in the Logs app settings in the Kibana configuration file.
 
-[discrete]
-[[logs-checklist-k8s]]
-== Monitor Kubernetes logs
+<div id="logs-checklist-k8s"></div>
 
-You can use the {agent} with the Kubernetes integration to collect and parse Kubernetes logs.
-Refer to <<monitor-kubernetes>>.
+## Monitor Kubernetes logs
 
-[discrete]
-[[logs-app-checklist]]
-== View and monitor application logs
+You can use the ((agent)) with the Kubernetes integration to collect and parse Kubernetes logs.
+Refer to <DocLink id="enObservabilityMonitorKubernetes">Monitor Kubernetes: Observe the health and performance of your Kubernetes deployments</DocLink>.
+
+<div id="logs-app-checklist"></div>
+
+## View and monitor application logs
 
 Application logs provide valuable insight into events that have occurred within your services and applications.
 
-Refer to <<application-logs>>.
+Refer to <DocLink id="enObservabilityApplicationLogs">Stream application logs</DocLink>.
 
-[discrete]
-[[logs-alerts-checklist]]
-== Create a log threshold alert
+<div id="logs-alerts-checklist"></div>
+
+## Create a log threshold alert
 
 You can create a rule to send an alert when the log aggregation exceeds a threshold.
-See <<logs-threshold-alert>>.
+See <DocLink id="enObservabilityLogsThresholdAlert">Create a log threshold rule</DocLink>.

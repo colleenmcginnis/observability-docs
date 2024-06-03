@@ -1,0 +1,83 @@
+
+**1. Add the agent dependency to your project**
+
+Add the Elastic APM iOS Agent to your Xcode project or your `Package.swift`.
+
+Here are instructions for adding a [package dependency](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app) to a standard Xcode project.
+
+Refer to ['Add a Dependency on Another Swift Package'](https://developer.apple.com/documentation/xcode/creating_a_standalone_swift_package_with_xcode#3578941) for details about adding dependencies to your `Package.swift`.
+Here is a helpful code-snippet:
+
+```swift
+Package(
+    dependencies:[
+         .package(name: "apm-agent-ios", url: "https://github.com/elastic/apm-agent-ios.git", from: "1.0.0"),
+    ],
+  targets:[
+    .target(
+        name: "MyApp",
+        dependencies: [
+            .product(name: "ElasticApm", package: "apm-agent-ios")
+        ]
+    ),
+])
+```
+
+**2. Initialize the agent**
+
+If you're using `SwiftUI` to build your app, add the following to your `App.swift`:
+
+```swift
+import SwiftUI
+import ElasticApm
+
+class AppDelegate : NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        var config = AgentConfigBuilder()
+            .withServerUrl(URL(string:"http://127.0.0.1:8200"))  [^1]
+            .withSecretToken("<SecretToken>")  [^2]
+            .build()
+
+        ElasticApmAgent.start(with: config)
+        return true
+    }
+}
+
+@main
+struct MyApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    init() {
+    }
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+```
+[^1]: The APM integration host and port
+[^2]: Secret token for APM integration connection
+
+If you're not using `SwiftUI`, you can alternatively add the same thing to your `AppDelegate.swift` file:
+
+```swift
+import UIKit
+import ElasticApm
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+var config = AgentConfigBuilder()
+                       .withServerUrl(URL(string:"http://127.0.0.1:8200"))  [^1]
+                       .withSecretToken("<SecretToken>")  [^2]
+                       .build()
+        ElasticApmAgent.start(with: config)
+        return true
+    }
+}
+```
+[^1]: The APM integration host and port
+[^2]: Secret token for APM integration connection
+
+**Learn more in the agent reference**
+
+Read more in the [APM iOS Agent Reference](((apm-ios-ref))/intro.html).

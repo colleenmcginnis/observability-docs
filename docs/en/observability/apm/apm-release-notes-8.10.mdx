@@ -1,0 +1,93 @@
+---
+id: enObservabilityApmReleaseNotes8.10
+slug: /en/observability/apm-release-notes-8.10
+title: APM version 8.10
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.10"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.10" section="apm-version-8104">APM version 8.10.4</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.10" section="apm-version-8103">APM version 8.10.3</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.10" section="apm-version-8102">APM version 8.10.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.10" section="apm-version-8101">APM version 8.10.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.10" section="apm-version-8100">APM version 8.10.0</DocLink>
+
+<div id="apm-release-notes-8.10.4"></div>
+
+## APM version 8.10.4
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.10.3\...v8.10.4)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+
+- RPM package upgrade no longer overwrites the apm-server.yml config [11808]({pull}11808)
+
+<div id="apm-release-notes-8.10.3"></div>
+
+## APM version 8.10.3
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.10.2\...v8.10.3)
+
+No significant changes.
+
+<div id="apm-release-notes-8.10.2"></div>
+
+## APM version 8.10.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.10.1\...v8.10.2)
+
+No significant changes.
+
+<div id="apm-release-notes-8.10.1"></div>
+
+## APM version 8.10.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.10.0\...v8.10.1)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+Fix tail-based sampling discarding low throughput and low sample rate traces [11642]({pull}11642)
+
+<div id="apm-release-notes-8.10.0"></div>
+
+## APM version 8.10.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.9.2\...v8.10.0)
+
+<div id="breaking_changes"></div>
+
+### Breaking Changes
+- Aggregated metrics now consider global labels to be part of a service's identity, and high cardinality global labels may cause services to be obscured [11386]({pull}11386)
+- Event protobuf encoding for tail-based sampling changed (to a more efficient encoding) for event timestamp and duration [11386]({pull}11386)
+- Use object notation for data_stream fields [11311]({pull}11311)
+- Removed `processor.event` and `processor.name` from the data model [11028]({pull}11028)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Add back handling of `queue.*` config for libbeat outputs, such as logstash and kafka [11534]({pull}11534)
+- Fix panic on missing `transaction.dropped_spans_stats.duration` field [11117]({pull}11117)
+
+<div id="intake_api_changes"></div>
+
+### Intake API Changes
+- `null` is no longer an acceptable value for `context.http.request.headers` and `context.http.response.headers` [11386]({pull}11386)
+
+<div id="added"></div>
+
+### Added
+- Add a self-instrumentation transaction to the source map periodic refresh action. [11116]({pull}11116)
+- Add a self-instrumentation transaction to the agent config periodic refresh action. [11129]({pull}11129)
+- Stop dropping metadata fields from span documents. [11089]({pull}11089)
+- Add permissions to reroute events in the integration package. [11168]({pull}11168)
+
+<div id="aggregation_changes_and_improvements"></div>
+
+### Aggregation changes and improvements
+- Replace aggregation with LSM-based aggregator which has a lower memory footprint [11117]({pull}11117)
+- Add `service.language.name` to service destination metrics [11117]({pull}11117)
+- Modify per-service transaction groups limit to consider more than service.name; Add per-service service destination groups limit and per-service service transaction groups limit [11117]({pull}11117)
+- All aggregations share the MaxServices limit [11117]({pull}11117)

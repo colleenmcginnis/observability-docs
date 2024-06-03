@@ -1,40 +1,12 @@
-++++
-<div class="tabs" data-tab-group="ts">
-  <div role="tablist" aria-label="tls">
-    <button role="tab"
-            aria-selected="true"
-            aria-controls="fm-tab-ts"
-            id="fm-ts">
-      Fleet-managed
-    </button>
-    <button role="tab"
-            aria-selected="false"
-            aria-controls="binary-tab-ts"
-            id="binary-ts"
-            tabindex="-1">
-      APM Server binary
-    </button>
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="fm-tab-ts"
-       aria-labelledby="fm-ts">
-++++
 
-include::api-key.asciidoc[tag=fleet-managed]
+import FleetManaged from './api-key/fleet-managed.mdx'
+import Binary from './api-key/fleet-managed.mdx'
 
-++++
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="binary-tab-ts"
-       aria-labelledby="binary-ts"
-       hidden="">
-++++
-
-include::api-key.asciidoc[tag=binary]
-
-++++
-  </div>
-</div>
-++++
+<DocTabs hasBorder>
+	<DocTab name="Fleet-managed">
+		<FleetManaged />  
+	</DocTab>
+	<DocTab name="APM Server binary">
+		<Binary />  
+	</DocTab>
+</DocTabs>

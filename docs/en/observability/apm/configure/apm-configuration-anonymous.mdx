@@ -1,15 +1,19 @@
-[[apm-configuration-anonymous]]
-= Configure anonymous authentication
+---
+id: enObservabilityApmConfigurationAnonymous
+slug: /en/observability/apm-configuration-anonymous
+title: Configure anonymous authentication
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Anonymous authentication</titleabbrev>
-++++
+import ApmSupportOverview from '../components/support-overview.mdx'
+import AnonAuthWidget from './tab-widgets/anon-auth-widget.mdx'
 
-****
-image:./binary-yes-fm-yes.svg[supported deployment methods]
+<div id="apm-configuration-anonymous"></div>
 
-Most options on this page are supported by all APM Server deployment methods.
-****
+<ApmSupportOverview binary={true} fleet={true}>
+  Most options on this page are supported by all APM Server deployment methods.
+</ApmSupportOverview>
 
 Elastic APM agents can send unauthenticated (anonymous) events to the APM Server.
 An event is considered to be anonymous if no authentication token can be extracted from the incoming request.
@@ -19,41 +23,41 @@ agent running in a browser, or the Android or iOS/Swift agent running in a user 
 Enable anonymous authentication in the APM Server to allow the
 ingestion of unauthenticated client-side APM data while still requiring authentication for server-side services.
 
-include::./tab-widgets/anon-auth-widget.asciidoc[]
+<AnonAuthWidget />
 
+<DocCallOut title="Important" color="warning">
+All anonymous access configuration is ignored if
+<DocLink id="enObservabilityApmSecureAgentCommunication">authenticated communication</DocLink> is disabled.
+</DocCallOut>
 
+<div id="apm-config-auth-anon-rum"></div>
 
-IMPORTANT: All anonymous access configuration is ignored if
-<<apm-secure-agent-communication,authenticated communication>> is disabled.
+## Real User Monitoring (RUM)
 
-[float]
-[[apm-config-auth-anon-rum]]
-= Real User Monitoring (RUM)
-
-If an <<apm-api-key,API key>> or <<apm-secret-token,secret token>> is configured,
+If an <DocLink id="enObservabilityApmApiKey">API key</DocLink> or <DocLink id="enObservabilityApmSecretToken">secret token</DocLink> is configured,
 then anonymous authentication must be enabled to collect RUM data.
-For this reason, anonymous auth will be enabled automatically if <<apm-rum-enable>>
-is set to `true`, and <<apm-config-auth-anon-enabled>> is not explicitly defined.
+For this reason, anonymous auth will be enabled automatically if <DocLink id="enObservabilityApmConfigurationRum" section="enable-rum">Enable RUM</DocLink>
+is set to `true`, and <DocLink id="enObservabilityApmConfigurationAnonymous" section="anonymous-agent-access">Anonymous Agent access</DocLink> is not explicitly defined.
 
-See <<apm-configuration-rum>> for additional RUM configuration options.
+See <DocLink id="enObservabilityApmConfigurationRum">Configure Real User Monitoring (RUM)</DocLink> for additional RUM configuration options.
 
-[float]
-[[apm-config-auth-anon-mitigating]]
-== Mitigating malicious requests
+<div id="apm-config-auth-anon-mitigating"></div>
+
+### Mitigating malicious requests
 
 There are a few configuration variables that can mitigate the impact of malicious requests to an
 unauthenticated APM Server endpoint.
 
-Use the <<apm-config-auth-anon-allow-agent>> and <<apm-config-auth-anon-allow-service>> configs to ensure that the
+Use the <DocLink id="enObservabilityApmConfigurationAnonymous" section="allowed-anonymous-agents">Allowed anonymous agents</DocLink> and <DocLink id="enObservabilityApmConfigurationAnonymous" section="allowed-services">Allowed services</DocLink> configs to ensure that the
 `agent.name` and `service.name` of each incoming request match a specified list.
 
 Additionally, the APM Server can rate-limit unauthenticated requests based on the client IP address
-(`client.ip`) of the request with <<apm-config-auth-anon-event-limit>>.
+(`client.ip`) of the request with <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink>.
 This allows you to specify the maximum number of requests allowed per unique IP address, per second.
 
-[float]
-[[apm-config-auth-anon-client-ip]]
-== Deriving an incoming request's `client.ip` address
+<div id="apm-config-auth-anon-client-ip"></div>
+
+### Deriving an incoming request's `client.ip` address
 
 The remote IP address of an incoming request might be different
 from the end-user's actual IP address, for example, because of a proxy. For this reason,
@@ -61,14 +65,14 @@ the APM Server attempts to derive the IP address of an incoming request from HTT
 The supported headers are parsed in the following order:
 
 1. `Forwarded`
-2. `X-Real-Ip`
-3. `X-Forwarded-For`
+1. `X-Real-Ip`
+1. `X-Forwarded-For`
 
 If none of these headers are present, the remote address for the incoming request is used.
 
-[float]
-[[apm-config-auth-anon-client-ip-concerns]]
-== Using a reverse proxy or load balancer
+<div id="apm-config-auth-anon-client-ip-concerns"></div>
+
+### Using a reverse proxy or load balancer
 
 HTTP headers are easily modified;
 it's possible for anyone to spoof the derived `client.ip` value by changing or setting,
@@ -81,67 +85,67 @@ and replace them with one set by the proxy.
 This prevents malicious users from cycling spoofed IP addresses to bypass the
 APM Server's rate limiting feature.
 
-[float]
-[[apm-config-auth-anon]]
-= Configuration reference
+<div id="apm-config-auth-anon"></div>
 
-[float]
-[[apm-config-auth-anon-enabled]]
-== Anonymous Agent access
+## Configuration reference
+
+<div id="apm-config-auth-anon-enabled"></div>
+
+### Anonymous Agent access
 
 Enable or disable anonymous authentication.
 Default: `false` (disabled). (bool)
 
-|====
-| APM Server binary | `apm-server.auth.anonymous.enabled`
-| Fleet-managed     | `Anonymous Agent access`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.auth.anonymous.enabled` |
+| Fleet-managed     | `Anonymous Agent access` |
 
-[float]
-[[apm-config-auth-anon-allow-agent]]
-== Allowed anonymous agents
-A list of permitted {apm-agent} names for anonymous authentication.
+<div id="apm-config-auth-anon-allow-agent"></div>
+
+### Allowed anonymous agents
+A list of permitted ((apm-agent)) names for anonymous authentication.
 Names in this list must match the agent's `agent.name`.
 Default: `[rum-js, js-base]` (only RUM agent events are accepted). (array)
 
-|====
-| APM Server binary | `apm-server.auth.anonymous.allow_agent`
-| Fleet-managed     | `Allowed Anonymous agents`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.auth.anonymous.allow_agent` |
+| Fleet-managed     | `Allowed Anonymous agents` |
 
-[float]
-[[apm-config-auth-anon-allow-service]]
-== Allowed services
+<div id="apm-config-auth-anon-allow-service"></div>
+
+### Allowed services
 A list of permitted service names for anonymous authentication.
 Names in this list must match the agent's `service.name`.
 This can be used to limit the number of service-specific indices or data streams created.
 Default: Not set (any service name is accepted). (array)
 
-|====
-| APM Server binary | `apm-server.auth.anonymous.allow_service`
-| Fleet-managed     | `Allowed Anonymous services`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.auth.anonymous.allow_service` |
+| Fleet-managed     | `Allowed Anonymous services` |
 
-[float]
-[[apm-config-auth-anon-ip-limit]]
-== IP limit
+<div id="apm-config-auth-anon-ip-limit"></div>
+
+### IP limit
 The number of unique IP addresses to track in an LRU cache.
-IP addresses in the cache will be rate limited according to the <<apm-config-auth-anon-event-limit>> setting.
+IP addresses in the cache will be rate limited according to the <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink> setting.
 Consider increasing this default if your application has many concurrent clients.
 Default: `1000`. (int)
 
-|====
-| APM Server binary | `apm-server.auth.anonymous.rate_limit.ip_limit`
-| Fleet-managed     | `Anonymous Rate limit (IP limit)`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.auth.anonymous.rate_limit.ip_limit` |
+| Fleet-managed     | `Anonymous Rate limit (IP limit)` |
 
-[float]
-[[apm-config-auth-anon-event-limit]]
-== Event limit
+<div id="apm-config-auth-anon-event-limit"></div>
+
+### Event limit
 The maximum number of events allowed per second, per agent IP address.
 Default: `300`. (int)
 
-|====
-| APM Server binary | `apm-server.auth.anonymous.rate_limit.event_limit`
-| Fleet-managed     | `Anonymous Event rate limit (event limit)`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.auth.anonymous.rate_limit.event_limit` |
+| Fleet-managed     | `Anonymous Event rate limit (event limit)` |

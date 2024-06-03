@@ -1,29 +1,36 @@
-[[apm-monitoring]]
-= Monitor the APM Server binary
+---
+id: enObservabilityApmMonitoring
+slug: /en/observability/apm-monitoring
+title: Monitor the APM Server binary
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>APM Server binary</titleabbrev>
-++++
+<div id="apm-monitoring"></div>
 
 There are two methods to monitor the APM Server binary.
-Make sure monitoring is enabled on your {es} cluster,
+Make sure monitoring is enabled on your ((es)) cluster,
 then configure one of these methods to collect APM Server metrics:
 
-* <<apm-monitoring-internal-collection,Internal collection>> - Internal
-collectors send monitoring data directly to your monitoring cluster.
-ifndef::serverless[]
-* <<apm-monitoring-metricbeat-collection, {metricbeat} collection>> -
-{metricbeat} collects monitoring data from your APM Server instance
-and sends it directly to your monitoring cluster.
-* <<apm-monitoring-local-collection, Local collection>> - Local collection sends
-select monitoring data directly to the standard indices of your monitoring
-cluster.
-endif::[]
+* <DocLink id="enObservabilityApmMonitoringInternalCollection">Internal collection</DocLink> - Internal
+    collectors send monitoring data directly to your monitoring cluster.
 
-include::monitoring-internal-collection.asciidoc[]
-include::monitoring-local-collection.asciidoc[]
+export let serverless = false
 
-ifndef::serverless[]
+<DocIf condition={ serverless === false }>
+* <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">((metricbeat)) collection</DocLink> -
+    ((metricbeat)) collects monitoring data from your APM Server instance
+    and sends it directly to your monitoring cluster.
 
-include::monitoring-metricbeat.asciidoc[]
-endif::[]
+* <DocLink id="enObservabilityApmMonitoringLocalCollection">Local collection</DocLink> - Local collection sends
+    select monitoring data directly to the standard indices of your monitoring
+    cluster.
+
+</DocIf>
+
+{/* The include that was here is another page */}
+{/* The include that was here is another page */}
+
+<DocIf condition={ serverless === false }>
+{/* The include that was here is another page */}
+</DocIf>

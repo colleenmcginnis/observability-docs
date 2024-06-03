@@ -1,0 +1,118 @@
+---
+id: enObservabilityApmReleaseNotes8.7
+slug: /en/observability/apm-release-notes-8.7
+title: APM version 8.7
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.7"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.7" section="apm-version-872">APM version 8.7.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.7" section="apm-version-871">APM version 8.7.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.7" section="apm-version-870">APM version 8.7.0</DocLink>
+
+<div id="apm-release-notes-8.7.2"></div>
+
+## APM version 8.7.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.7.1\...v8.7.2)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+
+<div id="apm-release-notes-8.7.1"></div>
+
+## APM version 8.7.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.7.0\...v8.7.1)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Fix indexing failures for metric, error and log documents when `agent.activation_method` is set [10552]({pull}10552)
+- Use droppedspan outcome in service destination aggregation [10592]({pull}10592)
+- metrics: Count context.DeadlineExceeded as timeout [10594]({pull}10594)
+- metrics: Count GRPC codes.Canceled as timeout [10605]({pull}10605)
+- Remove global labels from aggregations for RUM services [10624]({pull}10624)
+- Remove redundant aggregation groups on `faas.coldstart` in transaction metrics [10635]({pull}10635)
+
+<div id="apm-release-notes-8.7.0"></div>
+
+## APM version 8.7.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.6.2\...v8.7.0)
+
+<div id="breaking_changes"></div>
+
+### Breaking Changes
+- `transaction.failure_count` has been removed. `transaction.success_count` type has changed to `aggregated_metric_double` [9791]({pull}9791)
+- `transaction.success_count` has been moved to `event.success_count` [9819]({pull}9819)
+- Stop indexing transaction metrics to `metrics-apm.internal` [9846]({pull}9846)
+- Stop indexing span destination metrics to `metrics-apm.internal` [9926]({pull}9926)
+- `apmserver.aggregation.txmetrics.overflowed` metric has been renamed to `apmserver.aggregation.txmetrics.overflowed.total` [10330]({pull}10330)
+- Elasticsearch sourcemapping credentials require access to the `.apm-source-map` index [9722]({pull}9722)
+- Change APM Server default host to 127.0.0.1 [9877]({pull}9877)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- We no longer unconditionally block shutdown for 5 seconds when tail-based sampling is enabled [9838]({pull}9838)
+- Fix a panic caused by accepting new grpc connections during shutdown [10013]({pull}10013)
+- Fix goroutine leak in libbeat final processor [10247]({pull}10247)
+- Fix servicemetrics aggregator name typo [10022]({pull}10022)
+
+<div id="intake_api_changes"></div>
+
+### Intake API Changes
+- Add `request.id` to `span.context.http` [9673]({pull}9673)
+- Add `agent.activation_method` metadata field [9850]({pull}9850)
+
+<div id="added"></div>
+
+### Added
+- Metrics data streams now use synthetic source [9756]({pull}9756)
+- Translate otel log events to error events [10066]({pull}10066) [10128]({pull}10128)
+- Use Elasticsearch fetcher for agent remote configuration where possible [9720]({pull}9720) [10088]({pull}10088) [10115]({pull}10115)
+- Fetch sourcemaps from Elasticsearch [9722]({pull}9722) [10367]({pull}10367) [10360]({pull}10360) [10106]({pull}10106)
+- Add support for RHEL 9 [10317]({pull}10317)
+
+<div id="transaction_metric_improvements"></div>
+
+### Transaction metric improvements
+- Add `event.success_count` to transaction metrics [9819]({pull}9819) [10165]({pull}10165)
+- Add `transaction.duration.summary` to transaction metrics [9973]({pull}9973) [10214]({pull}10214)
+- Introduce overflow buckets to limit cardinality and scale the max groups based on available memory [9856]({pull}9856) [10157]({pull}10157) [10362]({pull}10362) [9911]({pull}9911) [10012]({pull}10012) [10190]({pull}10190)
+- Add overflow metrics collection [10330]({pull}10330)
+- Improve APM UI query performance by producing `1m`, `10m` and `60m` aggregation intervals for transaction metrics. Store them into hidden data streams `metrics-apm.transaction.${interval}` [9846]({pull}9846) [10070]({pull}10070)
+- Reduce memory footprint of transaction aggregations [10178]({pull}10178)
+
+<div id="service_transaction_metric_improvements"></div>
+
+### Service transaction metric improvements
+- Introduce overflow buckets to limit cardinality and scale the max groups based on available memory [9856]({pull}9856) [10157]({pull}10157) [9911]({pull}9911) [10012]({pull}10012)
+- Add overflow metrics collection [10330]({pull}10330)
+- Rename service metrics to service transaction metrics [10095]({pull}10095) [10110]({pull}10110)
+- Improve APM UI query performance by producing `1m`, `10m` and `60m` aggregation intervals for service metrics. Store them into hidden data streams `metrics-apm.service.${interval}` [9960]({pull}9960) [10070]({pull}10070)
+- Add `service.language.name` [10111]({pull}10111)
+- Add histogram support [9864]({pull}9864) [10214]({pull}10214) [10127]({pull}10127) [10216]({pull}10216)
+- Always enable metrics aggregaton and remove config option [10060]({pull}10060) [10109]({pull}10109)
+- Reduce memory footprint of service transaction aggregations [10178]({pull}10178)
+
+<div id="service_destination_metric_improvements"></div>
+
+### Service destination metric improvements
+- Introduce overflow buckets to limit cardinality [10069]({pull}10069)
+- Add overflow metrics collection [10330]({pull}10330)
+- Set `_doc_count` for service destination metrics [9931]({pull}9931)
+- Add global labels to service destination metrics [10056]({pull}10056) [10297]({pull}10297)
+- Improve APM UI query performance by producing `1m`, `10m` and `60m` aggregation intervals for service destination metrics. Store them into data streams `metrics-apm.service_destination.${interval}` and make them hidden for non-default intervals [9926]({pull}9926) [10070]({pull}10070)
+
+<div id="introducing_service_summary_metric_improvements"></div>
+
+### Introducing Service summary metric improvements
+- Introduce service summary metrics [10111]({pull}10111)
+- Introduce overflow buckets to limit cardinality [10061]({pull}10061) [10302]({pull}10302)
+- Add overflow metrics collection [10330]({pull}10330)
+- Improve APM UI query performance by adding an always enabled service summary metrics aggregator which produces `1m`, `10m` and `60m` aggregation intervals. Store them into data streams `metrics-apm.service_summary.${interval}` and make them hidden for
+non-default intervals [10029]({pull}10029) [10060]({pull}10060) [10070]({pull}10070)
+- Add `service.language.name` [10111]({pull}10111)

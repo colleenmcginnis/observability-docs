@@ -1,0 +1,16 @@
+
+
+Add the following setting in the APM Server configuration file
+(`apm-server.yml`):
+
+```yaml
+http.enabled: true
+```
+
+By default, metrics are exposed on port 5066. If you need to monitor multiple
+((beats)) shippers running on the same server, set `http.port` to expose metrics
+for each shipper on a different port number:
+
+```yaml
+http.port: 5067
+```

@@ -1,47 +1,53 @@
-[[apm-exploring-es-data]]
-= Explore data in {es}
+---
+id: enObservabilityApmExploringEsData
+slug: /en/observability/apm-exploring-es-data
+title: Explore data in ((es))
+description: Description to be written
+tags: []
+---
 
-* <<apm-elasticsearch-query-examples>>
+<div id="apm-exploring-es-data"></div>
 
-[float]
-[[apm-elasticsearch-query-examples]]
-== {es} query examples
+* <DocLink id="enObservabilityApmExploringEsData" section="((es))-query-examples">((es)) query examples</DocLink>
 
-Elastic APM data is stored in <<apm-data-streams>>.
+<div id="apm-elasticsearch-query-examples"></div>
 
-The following examples enable you to interact with {es}'s REST API.
-One possible way to do this is using {kib}'s
-{kibana-ref}/console-kibana.html[{dev-tools-app} console].
+## ((es)) query examples
 
-Data streams, templates, and index-level operations can also be manged via {kib}'s
-{kibana-ref}/managing-indices.html[Index management] panel.
+Elastic APM data is stored in <DocLink id="enObservabilityApmDataStreams">Data streams</DocLink>.
+
+The following examples enable you to interact with ((es))'s REST API.
+One possible way to do this is using ((kib))'s
+[((dev-tools-app)) console](((kibana-ref))/console-kibana.html).
+
+Data streams, templates, and index-level operations can also be manged via ((kib))'s
+[Index management](((kibana-ref))/managing-indices.html) panel.
 
 To see an overview of existing data streams, run:
-["source","sh"]
-----
+
+```sh
 GET /_data_stream/*apm*
-----
-// CONSOLE
+```
+{/* CONSOLE */}
 
 To query a specific event type, for example, application traces:
-["source","sh",subs="attributes"]
-----
+
+```sh
 GET traces-apm*/_search
-----
-// CONSOLE
+```
+{/* CONSOLE */}
 
 If you are interested in the _settings_ and _mappings_ of the Elastic APM indices,
 first, run a query to find template names:
 
-["source","sh"]
-----
+```sh
 GET _cat/templates/*apm*
-----
-// CONSOLE
+```
+{/* CONSOLE */}
 
 Then, retrieve the specific template you are interested in:
-["source","sh"]
-----
+
+```sh
 GET  /_template/your-template-name
-----
-// CONSOLE
+```
+{/* CONSOLE */}

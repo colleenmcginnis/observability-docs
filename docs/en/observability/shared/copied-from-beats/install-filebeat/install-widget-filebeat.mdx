@@ -1,0 +1,43 @@
+
+import InstallDeb from '../shared/install/deb.mdx'
+import InstallRpm from '../shared/install/rpm.mdx'
+import InstallMac from '../shared/install/mac.mdx'
+import InstallLinux from '../shared/install/linux.mdx'
+import InstallWin from '../shared/install/win.mdx'
+
+export let beatname_uc = "Filebeat"
+
+export let beatname_lc = "filebeat"
+
+<DocTabs hasBorder>
+	<DocTab name="DEB">
+		<InstallDeb
+      beatname_lc={props.beatname_lc}
+      beatname_uc={props.beatname_uc}
+    />  
+	</DocTab>
+	<DocTab name="RPM">
+		<InstallRpm
+      beatname_lc={props.beatname_lc}
+      beatname_uc={props.beatname_uc}
+    />  
+	</DocTab>
+	<DocTab name="MacOS">
+		<InstallMac
+      beatname_lc={props.beatname_lc}
+      beatname_uc={props.beatname_uc}
+    />  
+	</DocTab>
+	<DocTab name="Linux">
+		<InstallLinux
+      beatname_lc={props.beatname_lc}
+      beatname_uc={props.beatname_uc}
+    />  
+	</DocTab>
+	<DocTab name="Windows">
+		<InstallWin
+      beatname_lc={props.beatname_lc}
+      beatname_uc={props.beatname_uc}
+    />  
+	</DocTab>
+</DocTabs>

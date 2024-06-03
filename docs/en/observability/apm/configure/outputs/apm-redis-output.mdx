@@ -1,57 +1,69 @@
-[[apm-redis-output]]
-== Configure the Redis output
+---
+id: enObservabilityApmRedisOutput
+slug: /en/observability/apm-redis-output
+title: Configure the Redis output
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Redis</titleabbrev>
-++++
+import SharedKibanaConfig from '../../shared-kibana-endpoint.mdx'
+import ApmSupportOverview from '../../components/support-overview.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-redis-output"></div>
 
-The Redis output is not yet supported by {fleet}-managed APM Server.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  The Redis output is not yet supported by ((fleet))-managed APM Server.
+</ApmSupportOverview>
 
 The Redis output inserts the events into a Redis list or a Redis channel.
 This output plugin is compatible with
-the {logstash-ref}/plugins-inputs-redis.html[Redis input plugin] for {ls}.
+the [Redis input plugin](((logstash-ref))/plugins-inputs-redis.html) for ((ls)).
 
-To use this output, edit the APM Server configuration file to disable the {es}
+To use this output, edit the APM Server configuration file to disable the ((es))
 output by commenting it out, and enable the Redis output by adding `output.redis`.
 
 Example configuration:
 
-["source","yaml",subs="attributes"]
-------------------------------------------------------------------------------
+```yaml
 output.redis:
   hosts: ["localhost"]
   password: "my_password"
   key: "apm-server"
   db: 0
   timeout: 5
-------------------------------------------------------------------------------
+```
 
-[float]
-=== {kib} configuration
+<div id="((kib))_configuration"></div>
 
-include::../../shared-kibana-endpoint.asciidoc[tag=shared-kibana-config]
+## ((kib)) configuration
 
-=== Compatibility
+<SharedKibanaConfig />
+
+<div id="compatibility"></div>
+
+## Compatibility
 
 This output is expected to work with all Redis versions between 3.2.4 and 5.0.8. Other versions might work as well,
 but are not supported.
 
-=== Configuration options
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following `output.redis` options in the `apm-server.yml` config file:
 
-==== `enabled`
+<div id="enabled"></div>
+
+### `enabled`
 
 The enabled config is a boolean setting to enable or disable the output. If set
 to false, the output is disabled.
 
 The default value is `true`.
 
-==== `hosts`
+<div id="hosts"></div>
+
+### `hosts`
 
 The list of Redis servers to connect to. If load balancing is enabled, the events are
 distributed to the servers in the list. If one server becomes unreachable, the events are
@@ -65,12 +77,15 @@ The `redis` scheme will disable the `ssl` settings for the host, while `rediss`
 will enforce TLS.  If `rediss` is specified and no `ssl` settings are
 configured, the output uses the system certificate store.
 
-==== `index`
+<div id="index"></div>
 
-The index name added to the events metadata for use by {ls}. The default is "apm-server".
+### `index`
 
-[[apm-key-option-redis]]
-==== `key`
+The index name added to the events metadata for use by ((ls)). The default is "apm-server".
+
+<div id="apm-key-option-redis"></div>
+
+### `key`
 
 The name of the Redis list or channel the events are published to. If not
 configured, the value of the `index` setting is used.
@@ -79,47 +94,51 @@ You can set the key dynamically by using a format string to access any event
 field. For example, this configuration uses a custom field, `fields.list`, to
 set the Redis list key. If `fields.list` is missing, `fallback` is used:
 
-["source","yaml"]
-------------------------------------------------------------------------------
+```yaml
 output.redis:
   hosts: ["localhost"]
   key: "%{[fields.list]:fallback}"
-------------------------------------------------------------------------------
+```
 
-See the <<apm-keys-option-redis,`keys`>> setting for other ways to set the key
+See the <DocLink id="enObservabilityApmRedisOutput" section="keys">`keys`</DocLink> setting for other ways to set the key
 dynamically.
 
-[[apm-keys-option-redis]]
-==== `keys`
+<div id="apm-keys-option-redis"></div>
+
+### `keys`
 
 An array of key selector rules. Each rule specifies the `key` to use for events
 that match the rule. During publishing, APM Server uses the first matching
 rule in the array. Rules can contain conditionals, format string-based fields,
 and name mappings. If the `keys` setting is missing or no rule matches, the
-<<apm-key-option-redis,`key`>> setting is used.
+<DocLink id="enObservabilityApmRedisOutput" section="key">`key`</DocLink> setting is used.
 
 Rule settings:
 
-*`index`*:: The key format string to use. If this string contains field
-references, such as `%{[fields.name]}`, the fields must exist, or the rule
-fails.
+**`index`**
+    : The key format string to use. If this string contains field references, such as `%{[fields.name]}`, the fields must exist, or the rule
+    fails.
 
-*`mappings`*:: A dictionary that takes the value returned by `key` and maps it to
-a new name.
+**`mappings`**
+    : A dictionary that takes the value returned by `key` and maps it to a new name.
 
-*`default`*:: The default string value to use if `mappings` does not find a match.
+**`default`**
+    : The default string value to use if `mappings` does not find a match.
 
-*`when`*:: A condition that must succeed in order to execute the current rule.
-ifndef::no-processors[]
+**`when`**
+  : A condition that must succeed in order to execute the current rule.
 
-All the <<conditions,conditions>> supported by processors are also supported
+export let no_processors = false
+
+<DocIf condition={ no_processors === false }>
+
+All the \<\<conditions,conditions>> supported by processors are also supported
 here.
-endif::no-processors[]
+</DocIf>
 
 Example `keys` settings:
 
-["source","yaml"]
-------------------------------------------------------------------------------
+```yaml
 output.redis:
   hosts: ["localhost"]
   key: "default_list"
@@ -135,17 +154,23 @@ output.redis:
         http: "frontend_list"
         nginx: "frontend_list"
         mysql: "backend_list"
-------------------------------------------------------------------------------
+```
 
-==== `password`
+<div id="password"></div>
+
+### `password`
 
 The password to authenticate with. The default is no authentication.
 
-==== `db`
+<div id="db"></div>
+
+### `db`
 
 The Redis database number where the events are published. The default is 0.
 
-==== `datatype`
+<div id="datatype"></div>
+
+### `datatype`
 
 The Redis data type to use for publishing events.If the data type is `list`, the
 Redis RPUSH command is used and all events are added to the list with the key defined under `key`.
@@ -153,28 +178,38 @@ If the data type `channel` is used, the Redis `PUBLISH` command is used and mean
 are pushed to the pub/sub mechanism of Redis. The name of the channel is the one defined under `key`.
 The default value is `list`.
 
-==== `codec`
+<div id="codec"></div>
+
+### `codec`
 
 Output codec configuration. If the `codec` section is missing, events will be JSON encoded.
 
-See <<apm-configuration-output-codec>> for more information.
+See \<\<apm-configuration-output-codec>> for more information.
 
-==== `worker`
+<div id="worker"></div>
+
+### `worker`
 
 The number of workers to use for each host configured to publish events to Redis. Use this setting along with the
 `loadbalance` option. For example, if you have 2 hosts and 3 workers, in total 6 workers are started (3 for each host).
 
-==== `loadbalance`
+<div id="loadbalance"></div>
+
+### `loadbalance`
 
 If set to true and multiple hosts or workers are configured, the output plugin load balances published events onto all
 Redis hosts. If set to false, the output plugin sends all events to only one host (determined at random) and will switch
 to another host if the currently selected one becomes unreachable. The default value is true.
 
-==== `timeout`
+<div id="timeout"></div>
+
+### `timeout`
 
 The Redis connection timeout in seconds. The default is 5 seconds.
 
-==== `backoff.init`
+<div id="backoff.init"></div>
+
+### `backoff.init`
 
 The number of seconds to wait before trying to reconnect to Redis after
 a network error. After waiting `backoff.init` seconds, APM Server tries to
@@ -182,18 +217,24 @@ reconnect. If the attempt fails, the backoff timer is increased exponentially up
 to `backoff.max`. After a successful connection, the backoff timer is reset. The
 default is `1s`.
 
-==== `backoff.max`
+<div id="backoff.max"></div>
+
+### `backoff.max`
 
 The maximum number of seconds to wait before attempting to connect to
 Redis after a network error. The default is `60s`.
 
-==== `max_retries`
+<div id="max_retries"></div>
 
-ifdef::ignores_max_retries[]
+### `max_retries`
+
+export let ignores_max_retries = false
+
+<DocIf condition={ ignores_max_retries === true }>
 APM Server ignores the `max_retries` setting and retries indefinitely.
-endif::[]
+</DocIf>
 
-ifndef::ignores_max_retries[]
+<DocIf condition={ ignores_max_retries === false }>
 
 The number of times to retry publishing an event after a publishing failure.
 After the specified number of retries, the events are typically dropped.
@@ -201,10 +242,11 @@ After the specified number of retries, the events are typically dropped.
 Set `max_retries` to a value less than 0 to retry until all events are published.
 
 The default is 3.
-endif::[]
+</DocIf>
 
+<div id="bulk_max_size"></div>
 
-==== `bulk_max_size`
+### `bulk_max_size`
 
 The maximum number of events to bulk in a single Redis request or pipeline. The default is 2048.
 
@@ -221,13 +263,17 @@ Setting `bulk_max_size` to values less than or equal to 0 disables the
 splitting of batches. When splitting is disabled, the queue decides on the
 number of events to be contained in a batch.
 
-==== `ssl`
+<div id="ssl"></div>
+
+### `ssl`
 
 Configuration options for SSL parameters like the root CA for Redis connections
-guarded by SSL proxies (for example https://www.stunnel.org[stunnel]). See
-<<apm-configuration-ssl>> for more information.
+guarded by SSL proxies (for example [stunnel](https://www.stunnel.org)). See
+<DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information.
 
-==== `proxy_url`
+<div id="proxy_url"></div>
+
+### `proxy_url`
 
 The URL of the SOCKS5 proxy to use when connecting to the Redis servers. The
 value must be a URL with a scheme of `socks5://`. You cannot use a web proxy
@@ -238,10 +284,11 @@ a username and password in the URL.
 
 When using a proxy, hostnames are resolved on the proxy server instead of on the
 client. You can change this behavior by setting the
-<<apm-redis-proxy-use-local-resolver,`proxy_use_local_resolver`>> option.
+<DocLink id="enObservabilityApmRedisOutput" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
 
-[[apm-redis-proxy-use-local-resolver]]
-==== `proxy_use_local_resolver`
+<div id="apm-redis-proxy-use-local-resolver"></div>
+
+### `proxy_use_local_resolver`
 
 This option determines whether Redis hostnames are resolved locally when using a proxy.
 The default value is false, which means that name resolution occurs on the proxy server.

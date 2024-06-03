@@ -1,45 +1,41 @@
-[[synthetics-role-read]]
-= Reader role
+---
+id: enObservabilitySyntheticsRoleRead
+slug: /en/observability/synthetics-role-read
+title: Reader role
+description: Description to be written
+tags: []
+---
+
+<div id="synthetics-role-read"></div>
 
 For users who need to view and create visualizations that access Synthetics data,
 provide read access. Two types of read access are outlined below:
 
-* *General read access*: For most users, you can use <<synthetics-read-privileges-general>>,
-which grants read access to all {kib} apps and requires little configuration.
-* *Limited read access*: If you want to limit read access to the {synthetics-app} only,
-you can use <<synthetics-read-privileges-limited>>, which requires additional configuration.
+* **General read access**: For most users, you can use <DocLink id="enObservabilitySyntheticsRoleRead" section="general-read-access">General read access</DocLink>,
+    which grants read access to all ((kib)) apps and requires little configuration.
 
-[discrete]
-[[synthetics-read-privileges-general]]
-= General read access
+* **Limited read access**: If you want to limit read access to the ((synthetics-app)) only,
+    you can use <DocLink id="enObservabilitySyntheticsRoleRead" section="limited-read-access">Limited read access</DocLink>, which requires additional configuration.
 
-For users who only need to view results in {kib},
-use the `viewer` {ref}/built-in-roles.html[built-in role].
+<div id="synthetics-read-privileges-general"></div>
 
-[discrete]
-[[synthetics-read-privileges-limited]]
-= Limited read access
+## General read access
 
-If you want to limit read access to the {synthetics-app} only, do _not_ use the
-`viewer` {ref}/built-in-roles.html[built-in role].
+For users who only need to view results in ((kib)),
+use the `viewer` [built-in role](((ref))/built-in-roles.html).
+
+<div id="synthetics-read-privileges-limited"></div>
+
+## Limited read access
+
+If you want to limit read access to the ((synthetics-app)) only, do _not_ use the
+`viewer` [built-in role](((ref))/built-in-roles.html).
 
 Instead to you can create a reader role, called something like `synthetics_reader_limited`,
 and grant the following privileges:
 
-[options="header"]
-|====
-|Type | Privilege | Purpose
-
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `synthetics-*`: `read`
-| Read-only access to synthetics indices.
-
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `.alerts-observability.uptime.alerts-*`: `read`
-| Read-only access to synthetics alert indices.
-
-| {kibana-ref}/kibana-privileges.html[Kibana]
-| `Synthetics and Uptime`: `All`
-| Access to the {synthetics-app} in {kib}.
-
-|====
+| Type | Privilege | Purpose |
+|---|---|---|
+| [Index](((ref))/security-privileges.html#privileges-list-indices) | `synthetics-*`: `read` | Read-only access to synthetics indices. |
+| [Index](((ref))/security-privileges.html#privileges-list-indices) | `.alerts-observability.uptime.alerts-*`: `read` | Read-only access to synthetics alert indices. |
+| [Kibana](((kibana-ref))/kibana-privileges.html) | `Synthetics and Uptime`: `All` | Access to the ((synthetics-app)) in ((kib)). |

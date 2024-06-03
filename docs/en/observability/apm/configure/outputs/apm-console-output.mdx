@@ -1,61 +1,81 @@
-[[apm-console-output]]
-== Configure the Console output
+---
+id: enObservabilityApmConsoleOutput
+slug: /en/observability/apm-console-output
+title: Configure the Console output
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Console</titleabbrev>
-++++
+import ApmSupportOverview from '../../components/support-overview.mdx'
+import SharedKibanaConfig from '../../shared-kibana-endpoint.mdx'
+import Codec from './apm-configuration-output-codec.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-console-output"></div>
 
-The Console output is not yet supported by {fleet}-managed APM Server.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  The Console output is not yet supported by ((fleet))-managed APM Server.
+</ApmSupportOverview>
 
 The Console output writes events in JSON format to stdout.
 
-WARNING: The Console output should be used only for debugging issues as it can produce a large amount of logging data.
+<DocCallOut title="Warning" color="warning">
+The Console output should be used only for debugging issues as it can produce a large amount of logging data.
+</DocCallOut>
 
-To use this output, edit the APM Server configuration file to disable the {es}
+To use this output, edit the APM Server configuration file to disable the ((es))
 output by commenting it out, and enable the console output by adding `output.console`.
 
 Example configuration:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 output.console:
   pretty: true
-------------------------------------------------------------------------------
+```
 
-ifdef::apm-server[]
+export let apm_server = false
 
-[float]
-=== {kib} configuration
+<DocIf condition={ apm_server === true }>
 
-include::../../shared-kibana-endpoint.asciidoc[tag=shared-kibana-config]
-endif::[]
+<div id="((kib))_configuration"></div>
 
-=== Configuration options
+## ((kib)) configuration
+
+<SharedKibanaConfig />
+
+</DocIf>
+
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following `output.console` options in the `apm-server.yml` config file:
 
-==== `enabled`
+<div id="`enabled`"></div>
+
+### `enabled`
 
 The enabled config is a boolean setting to enable or disable the output. If set
 to false, the output is disabled.
 
 The default value is `true`.
 
-==== `pretty`
+<div id="`pretty`"></div>
+
+### `pretty`
 
 If `pretty` is set to true, events written to stdout will be nicely formatted. The default is false.
 
-==== `codec`
+<div id="`codec`"></div>
+
+### `codec`
 
 Output codec configuration. If the `codec` section is missing, events will be JSON encoded using the `pretty` option.
 
-See <<apm-configuration-output-codec>> for more information.
+See \<\<apm-configuration-output-codec>> for more information.
 
-==== `bulk_max_size`
+<div id="`bulk_max_size`"></div>
+
+### `bulk_max_size`
 
 The maximum number of events to buffer internally during publishing. The default is 2048.
 
@@ -66,4 +86,4 @@ Setting `bulk_max_size` to values less than or equal to 0 disables the
 splitting of batches. When splitting is disabled, the queue decides on the
 number of events to be contained in a batch.
 
-include::codec.asciidoc[leveloffset=+1]
+<Codec />

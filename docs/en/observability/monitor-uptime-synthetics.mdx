@@ -1,51 +1,53 @@
-[[monitor-uptime-synthetics]]
-= Synthetic monitoring
+---
+id: enObservabilityMonitorUptimeSynthetics
+slug: /en/observability/monitor-uptime-synthetics
+title: Synthetic monitoring
+description: Description to be written
+tags: []
+---
 
-[NOTE]
-====
-The {synthetics-app} is for viewing result data from monitors created and managed
-directly in the <<synthetics-get-started-ui,{synthetics-app}>> or managed externally
-using <<synthetics-get-started-project,projects>>.
+<div id="monitor-uptime-synthetics"></div>
+
+<DocCallOut title="Note">
+
+The ((synthetics-app)) is for viewing result data from monitors created and managed
+directly in the <DocLink id="enObservabilitySyntheticsGetStartedUi">((synthetics-app))</DocLink> or managed externally
+using <DocLink id="enObservabilitySyntheticsGetStartedProject">projects</DocLink>.
 This can include both lightweight and browser-based monitors, and can include monitors
 running from either Elastic's global managed testing infrastructure or from
-<<synthetics-private-location,{private-location}s>>.
+<DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))s</DocLink>.
 
-To view result data from lightweight monitors running through {heartbeat} and configured with
-a traditional `heartbeat.yml` file, use the <<uptime-intro,{uptime-app}>> instead of the {synthetics-app}.
-====
+To view result data from lightweight monitors running through ((heartbeat)) and configured with
+a traditional `heartbeat.yml` file, use the <DocLink id="enObservabilityUptimeIntro">((uptime-app))</DocLink> instead of the ((synthetics-app)).
+
+</DocCallOut>
 
 Synthetics periodically checks the status of your services and applications.
 Monitor the availability of network endpoints and services using the following types of monitors:
 
-* <<monitoring-uptime>>
-* <<monitoring-synthetics>>
+* <DocLink id="enObservabilityMonitorUptimeSynthetics" section="lightweight-https-tcp-and-icmp-monitors">Lightweight HTTP/S, TCP, and ICMP monitors</DocLink>
+* <DocLink id="enObservabilityMonitorUptimeSynthetics" section="browser-monitors">Browser monitors</DocLink>
 
-[role="screenshot"]
-image::images/synthetics-monitor-page.png[{synthetics-app} in {kib}]
+![((synthetics-app)) in ((kib))](images/synthetics-monitor-page.png)
 
-[discrete]
-[[monitoring-uptime]]
-== Lightweight HTTP/S, TCP, and ICMP monitors
+<div id="monitoring-uptime"></div>
+
+## Lightweight HTTP/S, TCP, and ICMP monitors
 
 You can monitor the status of network endpoints using the following lightweight checks:
 
-// lint ignore v4 v6
-|===
-| *HTTP monitor* | Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct
-status code and display the correct text.
-| *ICMP monitor* | Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo
-Requests to check the network reachability of the hosts you are pinging. This will tell you whether the
-host is available and connected to the network, but doesn't tell you if a service on the host is running or
-not.
-| *TCP monitor* | Monitor the services running on your hosts. The TCP monitor checks individual ports
-to make sure the service is accessible and running.
-|===
+{/* lint ignore v4 v6 */}
+|  |  |
+|---|---|
+| **HTTP monitor** | Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct status code and display the correct text. |
+| **ICMP monitor** | Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo Requests to check the network reachability of the hosts you are pinging. This will tell you whether the host is available and connected to the network, but doesn't tell you if a service on the host is running or not. |
+| **TCP monitor** | Monitor the services running on your hosts. The TCP monitor checks individual ports to make sure the service is accessible and running. |
 
-To set up your first monitor, refer to <<synthetics-get-started>>.
+To set up your first monitor, refer to <DocLink id="enObservabilitySyntheticsGetStarted">Get started</DocLink>.
 
-[discrete]
-[[monitoring-synthetics]]
-== Browser monitors
+<div id="monitoring-synthetics"></div>
+
+## Browser monitors
 
 Real browser synthetic monitoring enables you to test critical actions and requests that an end-user would make
 on your site at predefined intervals and in a controlled environment.
@@ -56,9 +58,9 @@ For example, you can test popular user journeys, like logging in, adding items t
 out -- actions that need to work for your users consistently.
 
 You can run automated synthetic monitoring projects on a real Chromium browser and
-view each synthetic monitoring journey in {kib} side-by-side with your other monitors.
+view each synthetic monitoring journey in ((kib)) side-by-side with your other monitors.
 
 Alerting helps you detect degraded performance or broken actions before your users do.
 By receiving alerts early, you can fix issues before they impact your bottom line or customer experience.
 
-To set up your first monitor, refer to <<synthetics-get-started>>.
+To set up your first monitor, refer to <DocLink id="enObservabilitySyntheticsGetStarted">Get started</DocLink>.

@@ -1,57 +1,62 @@
-[[explore-logs]]
-= Logs Explorer
+---
+id: enObservabilityExploreLogs
+slug: /en/observability/explore-logs
+title: Logs Explorer
+description: Description to be written
+tags: []
+---
 
-beta[]
+<div id="explore-logs"></div>
 
+<DocCallOut template="beta" />
 With **Logs Explorer**, you can quickly search and filter your log data, get information about the structure of log fields, and display your findings in a visualization.
 You can also customize and save your searches and place them on a dashboard.
 Instead of having to log into different servers, change directories, and view individual files, all your logs are available in a single view.
 
-From the {observability} navigation menu, click **Explorer** under the **Logs** heading to open Logs Explorer.
+From the ((observability)) navigation menu, click **Explorer** under the **Logs** heading to open Logs Explorer.
 
-[role="screenshot"]
-image::images/log-explorer.png[Screen capture of the Logs Explorer]
+{/* ![Screen capture of the Logs Explorer](./images/monitor-k8s-log-explorer.png) */}
 
-[discrete]
-[[logs-explorer-privileges]]
-== Required {kib} privileges
+<div id="logs-explorer-privileges"></div>
 
-Viewing data in Logs Explorer requires `read` privileges for *Discover* and *Integrations*. For more on assigning {kib} privileges, refer to the {kibana-ref}/kibana-privileges.html[{kib} privileges] docs.
+## Required ((kib)) privileges
 
-[discrete]
-[[find-your-logs]]
-== Find your logs
+Viewing data in Logs Explorer requires `read` privileges for **Discover** and **Integrations**. For more on assigning ((kib)) privileges, refer to the [((kib)) privileges](((kibana-ref))/kibana-privileges.html) docs.
+
+<div id="find-your-logs"></div>
+
+## Find your logs
 
 By default, Logs Explorer shows all of your logs.
 If you need to focus on logs from a specific integration, select the integration from the logs menu:
 
-[role="screenshot"]
-image::images/log-menu.png[Screen capture of log menu]
+![Screen capture of log menu](images/log-menu.png)
 
 Once you have the logs you want to focus on displayed, you can drill down further to find the information you need.
-For more on filtering your data in Logs Explorer, refer to <<logs-filter-logs-explorer>>.
+For more on filtering your data in Logs Explorer, refer to <DocLink id="enObservabilityLogsFilterAndAggregate" section="filter-logs-in-log-explorer">Filter logs in Log Explorer</DocLink>.
 
-[discrete]
-[[update-the-documents-table]]
-== Update the documents table
+<div id="update-the-documents-table"></div>
+
+## Update the documents table
 
 The documents table in Logs Explorer functions similarly to the table in Discover.
 You can add fields, order table columns, sort fields, and update the row height in the same way you would in Discover.
 
-Refer to the {kibana-ref}/discover.html[Discover] documentation for more information.
+Refer to the [Discover](((kibana-ref))/discover.html) documentation for more information.
 
-[discrete]
-[[view-log-details]]
-== View log details
+<div id="view-log-details"></div>
 
-Click the expand icon (image:images/expand-icon.png[icon to open log details]) to get an in-depth look at an individual log file.
+## View log details
+
+Click the expand icon (<DocIcon name="expand" title="Expand icon" />) to get an in-depth look at an individual log file.
 
 These details provide immediate feedback and context for what's happening and where it's happening for each log.
 From here, you can quickly debug errors and investigate the services where errors have occurred.
 
 The following actions help you filter and focus on specific fields in the log details:
 
-* **Filter for value (image:images/plusInCircle.png[filter for value icon]):** Show logs that contain the specific field value.
-* **Filter out value (image:images/minusInCircle.png[filter out value icon]):** Show logs that do *not* contain the specific field value.
-* **Filter for field present (image:images/filter.png[filter for present icon]):** Show logs that contain the specific field.
-* **Toggle column in table (image:images/listAdd.png[toggle column in table icon]):** Add or remove a column for the field to the main Logs Explorer table.
+* **Filter for value (<DocImage flatImage alt="filter for value icon" url="images/plusInCircle.png" />):** Show logs that contain the specific field value.
+* **Filter out value (<DocImage flatImage alt="filter out value icon" url="images/minusInCircle.png" />):** Show logs that do **not** contain the specific field value.
+* **Filter for field present (<DocImage flatImage alt="filter for present icon" url="images/filter.png" />):** Show logs that contain the specific field.
+* **Toggle column in table (<DocImage flatImage alt="toggle column in table icon" url="images/listAdd.png" />):** Add or remove a column for the field to the main Logs Explorer table.
+

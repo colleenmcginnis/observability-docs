@@ -1,5 +1,12 @@
-[[apm-processing-and-performance]]
-=== Processing and performance
+---
+id: enObservabilityApmProcessingAndPerformance
+slug: /en/observability/apm-processing-and-performance
+title: Processing and performance
+description: Description to be written
+tags: []
+---
+
+<div id="apm-processing-and-performance"></div>
 
 APM Server performance depends on a number of factors: memory and CPU available,
 network latency, transaction sizes, workload patterns,
@@ -7,80 +14,131 @@ agent and server settings, versions, and protocol.
 
 We tested several scenarios to help you understand how to size the APM Server so that it can keep up with the load that your Elastic APM agents are sending:
 
-* Using the default hardware template on AWS, GCP and Azure on {ecloud}.
+* Using the default hardware template on AWS, GCP and Azure on ((ecloud)).
 * For each hardware template, testing with several sizes: 1 GB, 4 GB, 8 GB, and 32 GB.
 * For each size, using a fixed number of APM agents: 10 agents for 1 GB, 30 agents for 4 GB, 60 agents for 8 GB, and 240 agents for 32 GB.
 * In all scenarios, using medium sized events. Events include
-<<apm-data-model-transactions,transactions>> and
-<<apm-data-model-spans,spans>>.
+    <DocLink id="enObservabilityApmDataModelTransactions">transactions</DocLink> and
+    <DocLink id="enObservabilityApmDataModelSpans">spans</DocLink>.
 
-NOTE: You will also need to scale up {es} accordingly, potentially with an increased number of shards configured.
-For more details on scaling {es}, refer to the {ref}/scalability.html[{es} documentation].
+<DocCallOut title="Note">
+You will also need to scale up ((es)) accordingly, potentially with an increased number of shards configured.
+For more details on scaling ((es)), refer to the [((es)) documentation](((ref))/scalability.html).
+</DocCallOut>
 
 The results below include numbers for a synthetic workload. You can use the results of our tests to guide
-your sizing decisions, however, *performance will vary based on factors unique to your use case* like your
+your sizing decisions, however, **performance will vary based on factors unique to your use case** like your
 specific setup, the size of APM event data, and the exact number of agents.
 
-:hardbreaks-option:
+export let hardbreaks_option = true
 
-[options="header"]
-|====
-| Profile / Cloud | AWS | Azure | GCP
+<DocTable columns={[
+  { "title": "Profile / Cloud" },
+  { "title": "AWS" },
+  { "title": "Azure" },
+  { "title": "GCP" }
+]}>
+  <DocRow>
+    <DocCell>
+      **1 GB**<br />
+      (10 agents)
+    </DocCell>
+    <DocCell>
+      9,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      6,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      9,000<br />
+      events/second
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      **4 GB**<br />
+      (30 agents)
+    </DocCell>
+    <DocCell>
+      25,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      18,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      17,000<br />
+      events/second
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      **8 GB**<br />
+      (60 agents)
+    </DocCell>
+    <DocCell>
+      40,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      26,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      25,000<br />
+      events/second
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      **16 GB**<br />
+      (120 agents)
+    </DocCell>
+    <DocCell>
+      72,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      51,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      45,000<br />
+      events/second
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      **32 GB**<br />
+      (240 agents)
+    </DocCell>
+    <DocCell>
+      135,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      95,000<br />
+      events/second
+    </DocCell>
+    <DocCell>
+      95,000<br />
+      events/second
+    </DocCell>
+  </DocRow>
+</DocTable>
 
-a| *1 GB*
-(10 agents)
-a| 9,000
-events/second
-a| 6,000
-events/second
-a| 9,000
-events/second
-
-a| *4 GB*
-(30 agents)
-a| 25,000
-events/second
-a| 18,000
-events/second
-a| 17,000
-events/second
-
-a| *8 GB*
-(60 agents)
-a| 40,000
-events/second
-a| 26,000
-events/second
-a| 25,000
-events/second
-
-a| *16 GB*
-(120 agents)
-a| 72,000
-events/second
-a| 51,000
-events/second
-a| 45,000
-events/second
-
-a| *32 GB*
-(240 agents)
-a| 135,000
-events/second
-a| 95,000
-events/second
-a| 95,000
-events/second
-
-|====
-
-:!hardbreaks-option:
+{hardbreaks_option = undefined}
 
 Don't forget that the APM Server is stateless.
 Several instances running do not need to know about each other.
-This means that with a properly sized {es} instance, APM Server scales out linearly.
+This means that with a properly sized ((es)) instance, APM Server scales out linearly.
 
-NOTE: RUM deserves special consideration. The RUM agent runs in browsers, and there can be many thousands reporting to an APM Server with very variable network latency.
+<DocCallOut title="Note">
+RUM deserves special consideration. The RUM agent runs in browsers, and there can be many thousands reporting to an APM Server with very variable network latency.
+</DocCallOut>
 
 Alternatively or in addition to scaling the APM Server, consider
-decreasing the ingestion volume. Read more in <<apm-reduce-apm-storage>>.
+decreasing the ingestion volume. Read more in <DocLink id="enObservabilityApmReduceApmStorage">Reduce storage</DocLink>.

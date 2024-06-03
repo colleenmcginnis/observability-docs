@@ -1,0 +1,119 @@
+---
+id: enObservabilityApmPrivilegesToPublishMonitoring
+slug: /en/observability/apm-privileges-to-publish-monitoring
+title: Grant privileges and roles needed for monitoring
+description: Description to be written
+tags: []
+---
+
+<div id="apm-privileges-to-publish-monitoring"></div>
+
+((es-security-features)) provides built-in users and roles for publishing and viewing monitoring data.
+The privileges and roles needed to publish monitoring data
+depend on the method used to collect that data.
+
+* <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="publish-monitoring-data">Publish monitoring data</DocLink>
+    * <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="internal-collection">Internal collection</DocLink>
+    * <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="((metricbeat))-collection">((metricbeat)) collection</DocLink>
+* <DocLink id="enObservabilityApmPrivilegesToPublishMonitoring" section="view-monitoring-data">View monitoring data</DocLink>
+
+<div id="apm-privileges-to-publish-monitoring-write"></div>
+
+## Publish monitoring data
+
+<DocCallOut title="Important" color="warning">
+
+**((ecloud)) users:** This section does not apply to our
+[hosted ((ess))](https://www.elastic.co/cloud/elasticsearch-service).
+Monitoring on ((ecloud)) is enabled by clicking the **Enable** button in the **Monitoring** panel.
+
+</DocCallOut>
+
+<div id="apm-privileges-to-publish-monitoring-internal"></div>
+
+### Internal collection
+
+If you're using <DocLink id="enObservabilityApmMonitoringInternalCollection">internal collection</DocLink> to
+collect metrics about APM Server, ((security-features)) provides
+the `apm_system` [built-in user](((ref))/built-in-users.html) and
+`apm_system` [built-in role](((ref))/built-in-roles.html) to send
+monitoring information. You can use the built-in user, if it's available in your
+environment, or create a user who has the built-in role assigned,
+or create a user and manually assign the privileges needed to send monitoring
+information.
+
+If you use the built-in `apm_system` user,
+make sure you set the password before using it.
+
+If you don't use the `apm_system` user:
+
+1. Create a **monitoring role**, called something like
+
+`apm_monitoring_writer`, that has the following privileges:
+
+| Type | Privilege | Purpose |
+|---|---|---|
+| Index | `create_index` on `.monitoring-beats-*` indices | Create monitoring indices in ((es)) |
+| Index | `create_doc` on `.monitoring-beats-*` indices | Write monitoring events into ((es)) |
+
+1. Assign the **monitoring role** to users who need to write monitoring data to ((es)).
+
+<div id="apm-privileges-to-publish-monitoring-metricbeat"></div>
+
+### ((metricbeat)) collection
+
+<DocCallOut title="Note">
+When using ((metricbeat)) to collect metrics,
+no roles or users need to be created with APM Server.
+See <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">Use ((metricbeat)) to send monitoring data</DocLink>
+for complete details on setting up ((metricbeat)) collection.
+</DocCallOut>
+
+If you're <DocLink id="enObservabilityApmMonitoringMetricbeatCollection">using ((metricbeat))</DocLink> to collect
+metrics about APM Server, ((security-features)) provides the `remote_monitoring_user`
+[built-in user](((ref))/built-in-users.html), and the `remote_monitoring_collector`
+and `remote_monitoring_agent` [built-in roles](((ref))/built-in-roles.html) for
+collecting and sending monitoring information. You can use the built-in user, if
+it's available in your environment, or create a user who has the privileges
+needed to collect and send monitoring information.
+
+If you use the built-in `remote_monitoring_user` user,
+make sure you set the password before using it.
+
+If you don't use the `remote_monitoring_user` user:
+
+1. Create a **monitoring user** on the production cluster who will collect and send monitoring
+    information. Assign the following roles to the **monitoring user**:
+
+    | Role | Purpose |
+    |---|---|
+    | `remote_monitoring_collector` | Collect monitoring metrics from APM Server |
+    | `remote_monitoring_agent` | Send monitoring data to the monitoring cluster |
+
+<div id="apm-privileges-to-publish-monitoring-view"></div>
+
+## View monitoring data
+
+To grant users the required privileges for viewing monitoring data:
+
+1. Create a **monitoring role**, called something like
+    `apm_monitoring_viewer`, that has the following privileges:
+
+    | Type | Privilege | Purpose |
+    |---|---|---|
+    | Spaces | `Read` on Stack monitoring | Read-only access to the ((stack-monitor-app)) feature in ((kib)). |
+    | Spaces | `Read` on Dashboards | Read-only access to the Dashboards feature in ((kib)). |
+
+1. Assign the **monitoring role**, along with the following built-in roles, to users who
+    need to view monitoring data for APM Server:
+
+    | Role | Purpose |
+    |---|---|
+    | `monitoring_user` | Grants access to monitoring indices for APM Server |
+
+{/*
+***  **
+***  ** 
+
+*/}
+

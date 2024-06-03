@@ -1,23 +1,27 @@
-[[apm-securing-apm-server]]
-== Secure communication with the {stack}
+---
+id: enObservabilityApmSecuringApmServer
+slug: /en/observability/apm-securing-apm-server
+title: Secure communication with the ((stack))
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Secure communication</titleabbrev>
-++++
+<div id="apm-securing-apm-server"></div>
 
 The following topics provide information about securing the APM Server
-process and connecting securely to APM agents and the {stack}.
+process and connecting securely to APM agents and the ((stack)).
 
-* <<apm-secure-agent-communication,Secure communication with APM agents>>
-* <<apm-instrument-apps-otel,Secure communication with OpenTelemetry agents>>
-* <<apm-secure-comms-stack,Secure communication with the {stack}>>
+* <DocLink id="enObservabilityApmSecureAgentCommunication">Secure communication with APM agents</DocLink>
+* <DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-agent">Secure communication with OpenTelemetry agents</DocLink>
+* <DocLink id="enObservabilityApmSecureCommsStack">Secure communication with the ((stack))</DocLink>
 
-:leveloffset: +1
-include::secure-agent-communication.asciidoc[]
+export let leveloffset = "+1"
 
-// APM privileges
-include::{observability-docs-root}/docs/en/observability/apm/feature-roles.asciidoc[]
+{/* The include that was here is another page */}
 
-// APM API keys
-include::{observability-docs-root}/docs/en/observability/apm/access-api-keys.asciidoc[]
-:leveloffset: -1
+{/* APM privileges */}
+{/* The include that was here is another page */}
+
+{/* APM API keys */}
+{/* The include that was here is another page */}
+{leveloffset = "-1"}

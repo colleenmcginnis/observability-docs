@@ -1,71 +1,80 @@
-[[categorize-logs]]
-= Categorize log entries
+---
+id: enObservabilityCategorizeLogs
+slug: /en/observability/categorize-logs
+title: Categorize log entries
+description: Description to be written
+tags: []
+---
+
+<div id="categorize-logs"></div>
 
 Application log events are often unstructured and contain variable data. Many
 log messages are the same or very similar, so classifying them can reduce
 millions of log lines into just a few categories.
 
-Within the {logs-app}, the *Categories* page enables you to identify patterns in
-your log events quickly. Instead of manually identifying similar logs, the logs 
-categorization view lists log events that have been grouped based on their 
+Within the ((logs-app)), the **Categories** page enables you to identify patterns in
+your log events quickly. Instead of manually identifying similar logs, the logs
+categorization view lists log events that have been grouped based on their
 messages and formats so that you can take action quicker.
 
-NOTE: This feature makes use of {ml} {anomaly-jobs}. To set up jobs, you must
-have `all` {kib} feature privileges for *{ml-app}*. Users that have full or
-read-only access to {ml-features} within a {kib} space can view the results of
-_all_ {anomaly-jobs} that are visible in that space, even if they do not have
+<DocCallOut title="Note">
+This feature makes use of ((ml)) ((anomaly-jobs)). To set up jobs, you must
+have `all` ((kib)) feature privileges for **((ml-app))**. Users that have full or
+read-only access to ((ml-features)) within a ((kib)) space can view the results of
+_all_ ((anomaly-jobs)) that are visible in that space, even if they do not have
 access to the source indices of those jobs. You must carefully consider who is
-given access to {ml-features}; {anomaly-job} results may propagate field values
+given access to ((ml-features)); ((anomaly-job)) results may propagate field values
 that contain sensitive information from the source indices to the results. For
-more details, refer to {ml-docs}/setup.html[Set up {ml-features}].
+more details, refer to [Set up ((ml-features))](((ml-docs))/setup.html).
+</DocCallOut>
 
-[discrete]
-[[create-log-categories]]
-== Create log categories
+<div id="create-log-categories"></div>
 
-Create a {ml} job to categorize log messages automatically. {ml-cap} observes
+## Create log categories
+
+Create a ((ml)) job to categorize log messages automatically. ((ml-cap)) observes
 the static parts of the message, clusters similar messages, classifies them into
-message categories, and detects unusually high message counts in the categories. 
+message categories, and detects unusually high message counts in the categories.
 
-[role="screenshot"]
-image::images/log-create-categorization-job.jpg[Configure log categorization job]
+![Configure log categorization job](images/log-create-categorization-job.jpg)
 
-// lint ignore ml
-1. Select *Categories*, and you are prompted to use {ml} to create 
-   log rate categorizations.
-2. Choose a time range for the {ml} analysis. By default, the {ml} job analyzes 
-   log messages no older than four weeks and continues indefinitely.
-3. Add the indices that contain the logs you want to examine.
-4. Click *Create ML job*. The job is created, and it starts to run. It takes a few 
-   minutes for the {ml} robots to collect the necessary data. After the job 
-   processed the data, you can view the results.
+{/* lint ignore ml */}
+1. Select **Categories**, and you are prompted to use ((ml)) to create
+    log rate categorizations.
 
-[discrete]
-[[analyze-log-categories]]
-== Analyze log categories
+1. Choose a time range for the ((ml)) analysis. By default, the ((ml)) job analyzes
+    log messages no older than four weeks and continues indefinitely.
 
-The *Categories* page lists all the log categories from the selected indices. 
-You can filter the categories by indices. The screenshot below shows the 
+1. Add the indices that contain the logs you want to examine.
+1. Click **Create ML job**. The job is created, and it starts to run. It takes a few
+    minutes for the ((ml)) robots to collect the necessary data. After the job
+    processed the data, you can view the results.
+
+<div id="analyze-log-categories"></div>
+
+## Analyze log categories
+
+The **Categories** page lists all the log categories from the selected indices.
+You can filter the categories by indices. The screenshot below shows the
 categories from the `elastic.agent` log.
 
-[role="screenshot"]
-image::images/log-categories.jpg[Log categories]
+![Log categories](images/log-categories.jpg)
 
-The category row contains the following information: 
+The category row contains the following information:
 
 * message count: shows how many messages belong to the given category.
 * trend: indicates how the occurrence of the messages changes in time.
-* category name: it is the name of the category and is derived from the message 
-  text.
+* category name: it is the name of the category and is derived from the message
+    text.
+
 * datasets: the name of the datasets where the categories are present.
 * maximum anomaly score: the highest anomaly score in the category.
 
-To view a log message under a particular category, click  
-the arrow at the end of the row. To further examine a message, it 
-can be viewed in the corresponding log event on the *Stream* page or displayed in its context.
+To view a log message under a particular category, click
+the arrow at the end of the row. To further examine a message, it
+can be viewed in the corresponding log event on the **Stream** page or displayed in its context.
 
-[role="screenshot"]
-image::images/log-opened.png[Opened log category]
+![Opened log category](images/log-opened.png)
 
 For more information about categorization, go to
-{ml-docs}/ml-configuring-categories.html[Detecting anomalous categories of data]. 
+[Detecting anomalous categories of data](((ml-docs))/ml-configuring-categories.html).

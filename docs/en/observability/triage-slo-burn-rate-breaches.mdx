@@ -1,16 +1,20 @@
-[[triage-slo-burn-rate-breaches]]
-= Triage SLO burn rate breaches
-++++
-<titleabbrev>SLO burn rate breaches</titleabbrev>
-++++
+---
+id: enObservabilityTriageSloBurnRateBreaches
+slug: /en/observability/triage-slo-burn-rate-breaches
+title: Triage SLO burn rate breaches
+description: Description to be written
+tags: []
+---
 
-SLO burn rate breaches occur when the percentage of bad events over a specified time period exceeds the threshold set in your <<slo-burn-rate-alert,SLO burn rate rule>>.
+<div id="triage-slo-burn-rate-breaches"></div>
+
+SLO burn rate breaches occur when the percentage of bad events over a specified time period exceeds the threshold set in your <DocLink id="enObservabilitySloBurnRateAlert">SLO burn rate rule</DocLink>.
 When this happens, you are at risk of exhausting your error budget and violating your SLO.
 
 To triage issues quickly, go to the alert details page:
 
-. Go to **{observability}** → **Alerts** (or open the SLO and click **Alerts**).
-. From the Alerts table, click the image:images/icons/boxesHorizontal.svg[More actions] icon next to the alert and select **View alert details**.
+1. Go to **((observability))** → **Alerts** (or open the SLO and click **Alerts**).
+1. From the Alerts table, click the ![More actions](images/icons/boxesHorizontal.svg) icon next to the alert and select **View alert details**.
 
 The alert details page shows information about the alert, including when the alert was triggered,
 the duration of the alert, the source SLO, and the rule that triggered the alert.
@@ -18,24 +22,28 @@ You can follow the links to navigate to the source SLO or rule definition.
 
 Explore charts on the page to learn more about the SLO breach:
 
-[role="screenshot"]
-image::images/slo-burn-rate-breach.png[Alert details for SLO burn rate breach]
+![Alert details for SLO burn rate breach](images/slo-burn-rate-breach.png)
 
 * The first chart shows the burn rate during the time range when the alert was active.
-The line indicates how close the SLO came to breaching the threshold.
+    The line indicates how close the SLO came to breaching the threshold.
+
 * The next chart shows the alerts history over the last 30 days.
-It shows the number of alerts that were triggered and the average time it took to recover after a breach.
+    It shows the number of alerts that were triggered and the average time it took to recover after a breach.
+
 * Both timelines are annotated to show when the threshold was breached.
-You can hover over an alert icon to see the timestamp of the alert.
+    You can hover over an alert icon to see the timestamp of the alert.
 
 The number, duration, and frequency of these breaches over time gives you an indication of how severely the service is degrading so that you can focus on high severity issues first.
 
-NOTE: The contents of the alert details page may vary depending on the type of SLI that's defined in the SLO.
+<DocCallOut title="Note">
+The contents of the alert details page may vary depending on the type of SLI that's defined in the SLO.
+</DocCallOut>
 
 After investigating the alert, you may want to:
 
 * Click **Snooze the rule** to snooze notifications for a specific time period or indefinitely.
-* Click the image:images/icons/boxesVertical.svg[Actions] icon and select **Add to case** to add the alert to a new or existing case. To learn more, refer to <<create-cases>>.
-* Click the image:images/icons/boxesVertical.svg[Actions] icon and select **Mark as untracked**.
-When an alert is marked as untracked, actions are no longer generated.
-You can choose to move active alerts to this state when you disable or delete rules.
+* Click the ![Actions](images/icons/boxesVertical.svg) icon and select **Add to case** to add the alert to a new or existing case. To learn more, refer to <DocLink id="enObservabilityCreateCases">Cases</DocLink>.
+* Click the ![Actions](images/icons/boxesVertical.svg) icon and select **Mark as untracked**.
+    When an alert is marked as untracked, actions are no longer generated.
+    You can choose to move active alerts to this state when you disable or delete rules.
+

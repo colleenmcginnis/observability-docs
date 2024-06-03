@@ -1,0 +1,16 @@
+
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((version)) of {props.beatname_uc} has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+1. Download the {props.beatname_uc} Windows zip file from the
+    [downloads page](https://www.elastic.co/downloads/beats/{props.beatname_lc}).
+
+1. Extract the contents of the zip file into `C:\Program Files`.
+
+</DocIf>

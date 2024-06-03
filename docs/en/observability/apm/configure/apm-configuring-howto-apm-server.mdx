@@ -1,52 +1,61 @@
-[[apm-configuring-howto-apm-server]]
-= Configure
+---
+id: enObservabilityApmConfiguringHowtoApmServer
+slug: /en/observability/apm-configuring-howto-apm-server
+title: Configure
+description: Description to be written
+tags: []
+---
+
+<div id="apm-configuring-howto-apm-server"></div>
 
 How you configure the APM Server depends on your deployment method.
 
 * **APM Server binary** users need to edit the `apm-server.yml` configuration file.
-The location of the file varies by platform. To locate the file, see <<apm-directory-layout>>.
-* **Fleet-managed** users configure the APM Server directly in {kib}.
-Each configuration page describes the specific location.
-* **Elastic cloud** users should see {cloud}/ec-manage-apm-settings.html[Add APM user settings] for information on how to configure Elastic APM.
+    The location of the file varies by platform. To locate the file, see <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink>.
+
+* **Fleet-managed** users configure the APM Server directly in ((kib)).
+    Each configuration page describes the specific location.
+
+* **Elastic cloud** users should see [Add APM user settings](((cloud))/ec-manage-apm-settings.html) for information on how to configure Elastic APM.
 
 The following topics describe how to configure APM Server:
 
-* <<apm-configuration-process>>
-* <<apm-configuration-anonymous>>
-* <<apm-agent-auth>>
-* <<apm-configure-agent-config>>
-* <<apm-configuration-instrumentation>>
-* <<apm-setup-kibana-endpoint>>
-* <<apm-configuration-logging>>
-* <<apm-configuring-output>>
-* <<apm-configuration-path>>
-* <<apm-configuration-rum>>
-* <<apm-configuration-ssl-landing>>
-* <<apm-tail-based-samling-config>>
-* <<apm-config-env>>
+* <DocLink id="enObservabilityApmConfigurationProcess">General configuration options</DocLink>
+* <DocLink id="enObservabilityApmConfigurationAnonymous">Configure anonymous authentication</DocLink>
+* <DocLink id="enObservabilityApmAgentAuth">APM agent authorization</DocLink>
+* <DocLink id="enObservabilityApmConfigureAgentConfig">Configure APM agent configuration</DocLink>
+* <DocLink id="enObservabilityApmConfigurationInstrumentation">Configure APM instrumentation</DocLink>
+* <DocLink id="enObservabilityApmSetupKibanaEndpoint">Configure the ((kib)) endpoint</DocLink>
+* <DocLink id="enObservabilityApmConfigurationLogging">Configure logging</DocLink>
+* <DocLink id="enObservabilityApmConfiguringOutput">Configure the output</DocLink>
+* <DocLink id="enObservabilityApmConfigurationPath">Configure project paths</DocLink>
+* <DocLink id="enObservabilityApmConfigurationRum">Configure Real User Monitoring (RUM)</DocLink>
+* <DocLink id="enObservabilityApmConfigurationSslLanding">SSL/TLS settings</DocLink>
+* <DocLink id="enObservabilityApmTailBasedSamlingConfig">Tail-based sampling</DocLink>
+* <DocLink id="enObservabilityApmConfigEnv">Use environment variables in the configuration</DocLink>
 
-include::general.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::anonymous-auth.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::auth.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::agent-config.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::instrumentation.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::kibana.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::logging.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::output.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::path.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::rum.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::tls.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::sampling.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}
 
-include::env.asciidoc[leveloffset=+1]
+{/* The include that was here is another page */}

@@ -1,8 +1,15 @@
-[[apm-api-otlp]]
-=== OpenTelemetry intake API
+---
+id: enObservabilityApmApiOtlp
+slug: /en/observability/apm-api-otlp
+title: OpenTelemetry intake API
+description: Description to be written
+tags: []
+---
+
+<div id="apm-api-otlp"></div>
 
 APM Server supports receiving traces, metrics, and logs over the
-https://opentelemetry.io/docs/specs/otlp/[OpenTelemetry Protocol (OTLP)].
+[OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
 OTLP is the default transfer protocol for OpenTelemetry and is supported natively by APM Server.
 
 APM Server supports two OTLP communication protocols on the same port:
@@ -10,28 +17,29 @@ APM Server supports two OTLP communication protocols on the same port:
 * OTLP/HTTP (protobuf)
 * OTLP/gRPC
 
-[discrete]
-=== OTLP/gRPC paths
+<div id="otlp/grpc_paths"></div>
 
-[options="header"]
-|====
-|Name |Endpoint
-|OTLP metrics intake |`/opentelemetry.proto.collector.metrics.v1.MetricsService/Export`
-|OTLP trace intake |`/opentelemetry.proto.collector.trace.v1.TraceService/Export`
-|OTLP logs intake |`/opentelemetry.proto.collector.logs.v1.LogsService/Export`
-|====
+## OTLP/gRPC paths
 
-[discrete]
-==== OTLP/HTTP paths
+| Name | Endpoint |
+|---|---|
+| OTLP metrics intake | `/opentelemetry.proto.collector.metrics.v1.MetricsService/Export` |
+| OTLP trace intake | `/opentelemetry.proto.collector.trace.v1.TraceService/Export` |
+| OTLP logs intake | `/opentelemetry.proto.collector.logs.v1.LogsService/Export` |
 
-[options="header"]
-|====
-|Name |Endpoint
-|OTLP metrics intake |`/v1/metrics`
-|OTLP trace intake |`/v1/traces`
-|OTLP logs intake |`/v1/logs`
-|====
+<div id="otlp/http_paths"></div>
 
-TIP: See our OpenTelemetry documentation to learn how to send data to the APM Server from an
-<<apm-instrument-apps-otel,OpenTelemetry agent>> or
-<<apm-connect-open-telemetry-collector,OpenTelemetry collector>>.
+### OTLP/HTTP paths
+
+| Name | Endpoint |
+|---|---|
+| OTLP metrics intake | `/v1/metrics` |
+| OTLP trace intake | `/v1/traces` |
+| OTLP logs intake | `/v1/logs` |
+
+<DocCallOut title="Tip">
+See our OpenTelemetry documentation to learn how to send data to the APM Server from an
+<DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-agent">OpenTelemetry agent</DocLink> or
+<DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-collector">OpenTelemetry collector</DocLink>.
+</DocCallOut>
+

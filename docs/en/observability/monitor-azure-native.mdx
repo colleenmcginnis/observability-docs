@@ -1,151 +1,162 @@
-[[monitor-azure-native]]
-== Monitor Microsoft Azure with the Azure Native ISV Service
+---
+id: enObservabilityMonitorAzureNative
+slug: /en/observability/monitor-azure-native
+title: Monitor Microsoft Azure with the Azure Native ISV Service
+description: Description to be written
+tags: []
+---
 
-****
-The {ecloud} Azure Native ISV Service allows you to deploy managed
-instances of the {stack} directly in Azure, through the Azure integrated
+<div id="monitor-azure-native"></div>
+
+<DocCallOut>
+
+The ((ecloud)) Azure Native ISV Service allows you to deploy managed
+instances of the ((stack)) directly in Azure, through the Azure integrated
 marketplace. The service includes native capabilities for consolidating
 Azure logs and metrics in Elastic. For more information, refer to
-{cloud}/ec-azure-marketplace-native.html[Azure Native ISV Service]
-in the {ess} documentation.
+[Azure Native ISV Service](((cloud))/ec-azure-marketplace-native.html)
+in the ((ess)) documentation.
 
-**Using {agent} to monitor Azure?** Refer to <<monitor-azure-elastic-agent>>.
+**Using ((agent)) to monitor Azure?** Refer to <DocLink id="enObservabilityMonitorAzureElasticAgent">Monitor Microsoft Azure with ((agent))</DocLink>.
 
-****
+</DocCallOut>
 
 In this tutorial, you'll learn how to:
 
-* Create an {es} resource in the Azure portal.
+* Create an ((es)) resource in the Azure portal.
 * Ingest Azure platform logs using the Azure Native ISV Service.
 * Ingest logs and metrics from your virtual machines.
-* Visualize the logs and metrics in {kib}.
+* Visualize the logs and metrics in ((kib)).
 
-TIP: The full product name in the Azure integrated marketplace is
+<DocCallOut title="Tip">
+The full product name in the Azure integrated marketplace is
 `Elastic Cloud (Elasticsearch) - An Azure Native ISV Service`.
+</DocCallOut>
 
-[discrete]
-[[azure-create-resource]]
-=== Step 1: Create an {es} resource in the Azure portal
+<div id="azure-create-resource"></div>
 
-IMPORTANT: These steps will not work if you have an active GCP or AWS deployment
-in {ecloud} that is already associated with the email address used for your
+## Step 1: Create an ((es)) resource in the Azure portal
+
+<DocCallOut title="Important" color="warning">
+These steps will not work if you have an active GCP or AWS deployment
+in ((ecloud)) that is already associated with the email address used for your
 Azure account. To avoid this problem, delete your GCP and AWS deployments in
-{ecloud}, or use a different Azure account. If this does not resolve your issue,
+((ecloud)), or use a different Azure account. If this does not resolve your issue,
 reach out to us at support@elastic.co.
+</DocCallOut>
 
-Microsoft Azure allows you to find, deploy, and manage {es} from within the
+Microsoft Azure allows you to find, deploy, and manage ((es)) from within the
 Azure portal. The Azure Native ISV Service makes it faster and easier
 for you to experience the value of Elastic in your Azure environment. Behind the
-scenes, this process provisions a marketplace subscription with {ecloud}.
+scenes, this process provisions a marketplace subscription with ((ecloud)).
 
-[discrete]
-==== Create an {es} resource
+<div id="create_an_((es))_resource"></div>
 
-. Log in to the https://portal.azure.com/[Azure portal].
-+
-[NOTE]
-====
-Ensure your Azure account is configured with **Owner** access on the subscription
-you want to use to deploy {es}. To learn more about Azure subscriptions, refer to the
-https://docs.microsoft.com/en-us/azure/cost-management-billing/manage/add-change-subscription-administrator#assign-a-subscription-administrator[Microsoft Azure documentation].
-====
+### Create an ((es)) resource
 
-. In the search bar, enter *Elastic Cloud (Elasticsearch)* and then select
-**Elastic Cloud (Elasticsearch) – An Azure Native ISV Service**.
-. Click **Create**.
-. Enter the **Subscription**, **Resource group**, and the **Resource name**.
-. Select an {es} version.
-. Select a region and then click **Review + create**.
-+
-[NOTE]
-====
-Don't change any settings under Logs & metrics yet. We will cover logs and
-infrastructure metrics later in this tutorial.
-====
-+
-[role="screenshot"]
-image::monitor-azure-native-create-elastic-resource.png[Screenshot of Elastic resource creation in Azure]
+1. Log in to the [Azure portal](https://portal.azure.com/).
 
-. To create the {es} deployment, click **Create**.
-. After deployment is complete, click *Go to resource*. Here you can view and
-configure your deployment details. To access the cluster, click *{kib}*.
-+
-[role="screenshot"]
-image::monitor-azure-native-elastic-deployment.png[Screenshot of deployment details for Elastic resource in Azure]
-// lint ignore observability
-. Click **Accept** (if necessary) to grant permissions to use your Azure
-account, then log in to {ecloud} using your Azure credentials as a single
-sign-on.
-. To look for available data, click **Observability**. There should be no data
-yet. Next, you'll ingest logs.
+    <DocCallOut title="Note">
 
-[discrete]
-[[azure-ingest-logs-native-integration]]
-=== Step 2: Ingest logs by using the Azure Native ISV Service
+    Ensure your Azure account is configured with **Owner** access on the subscription
+    you want to use to deploy ((es)). To learn more about Azure subscriptions, refer to the
+    [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/cost-management-billing/manage/add-change-subscription-administrator#assign-a-subscription-administrator).
+
+    </DocCallOut>
+
+1. In the search bar, enter **Elastic Cloud (Elasticsearch)** and then select
+    **Elastic Cloud (Elasticsearch) – An Azure Native ISV Service**.
+
+1. Click **Create**.
+1. Enter the **Subscription**, **Resource group**, and the **Resource name**.
+1. Select an ((es)) version.
+1. Select a region and then click **Review + create**.
+
+    <DocCallOut title="Note">
+
+    Don't change any settings under Logs & metrics yet. We will cover logs and
+    infrastructure metrics later in this tutorial.
+
+    </DocCallOut>
+
+    ![Screenshot of Elastic resource creation in Azure](images/monitor-azure-native-create-elastic-resource.png)
+
+1. To create the ((es)) deployment, click **Create**.
+1. After deployment is complete, click **Go to resource**. Here you can view and
+    configure your deployment details. To access the cluster, click **((kib))**.
+
+    ![Screenshot of deployment details for Elastic resource in Azure](images/monitor-azure-native-elastic-deployment.png)
+    {/* lint ignore observability */}
+
+1. Click **Accept** (if necessary) to grant permissions to use your Azure
+    account, then log in to ((ecloud)) using your Azure credentials as a single
+    sign-on.
+
+1. To look for available data, click **Observability**. There should be no data
+    yet. Next, you'll ingest logs.
+
+<div id="azure-ingest-logs-native-integration"></div>
+
+## Step 2: Ingest logs by using the Azure Native ISV Service
 
 To ingest Azure subscription and resource logs into Elastic, you use the
 Azure Native ISV Service.
 
-. In the Azure portal, go to your {es} resource page and click
-**Ingest logs and metrics from Azure Services**.
+1. In the Azure portal, go to your ((es)) resource page and click
+    **Ingest logs and metrics from Azure Services**.
 
-. Under **Logs**, select both checkboxes to collect subscription activity logs
-and Azure resource logs. Click **Save**.
-+
-[role="screenshot"]
-image::monitor-azure-native-elastic-config-logs-metrics.png[Screenshot of logs and metrics configuration for Elastic resource in Azure]
-+
-NOTE: This configuration can also be applied during the Elastic resource
+1. Under **Logs**, select both checkboxes to collect subscription activity logs
+    and Azure resource logs. Click **Save**.
+
+    ![Screenshot of logs and metrics configuration for Elastic resource in Azure](images/monitor-azure-native-elastic-config-logs-metrics.png)
+
+<DocCallOut title="Note">
+This configuration can also be applied during the Elastic resource
 creation. To make the concepts clearer, this tutorial separates the two steps.
-+
+
 NOTE: Native metrics collection for Azure services is not fully supported yet.
 To learn how to collect metrics from Azure services, refer to
-<<monitor-azure-elastic-agent>>.
+<DocLink id="enObservabilityMonitorAzureElasticAgent">Monitor Microsoft Azure with ((agent))</DocLink>.
+</DocCallOut>
 
-. In {kib}, under **{observability}**, click **Overview** until data appears in
-{kib}. This might take several minutes.
-+
-[role="screenshot"]
-image::monitor-azure-native-kibana-observability-page-data.png[Screenshot of {kib} {observability} overview]
+1. In ((kib)), under **((observability))**, click **Overview** until data appears in
+    ((kib)). This might take several minutes.
 
-. To analyze your subscription and resource logs, click **Show log stream** (or
- click **Stream** in the navigation pane).
-+
-[role="screenshot"]
-image::monitor-azure-native-kibana-logs-app.png[{kib} {logs-app}]
+    ![Screenshot of ((kib)) ((observability)) overview](images/monitor-azure-native-kibana-observability-page-data.png)
 
-[discrete]
-[[azure-ingest-VM-logs-metrics]]
-=== Step 3: Ingest logs and metrics from your virtual machines (VMs)
+1. To analyze your subscription and resource logs, click **Show log stream** (or
+    click **Stream** in the navigation pane).
 
-. In the Azure portal, go to your {es} resource and click **Virtual machines**.
+    ![((kib)) ((logs-app))](images/monitor-azure-native-kibana-logs-app.png)
 
-. Select the VMs that you want to collect logs and metrics from, click
-**Install Extension**, and then click **OK**.
-+
-[role="screenshot"]
-image::monitor-azure-native-elastic-vms.png[Screenshot that shows VMs selected for logs and metrics collection]
+<div id="azure-ingest-VM-logs-metrics"></div>
 
-. Wait until the extension is installed and sending data (if the list does not
-update, click **Refresh** ).
+## Step 3: Ingest logs and metrics from your virtual machines (VMs)
 
-. Back in {kib}, view the log stream again (**Logs -> Stream**).
-Notice that you can filter the view to show logs for a specific instance, for
-example
-`cloud.instance.name : "ingest-tutorial-linux"`:
-+
-[role="screenshot"]
-image::monitor-azure-native-kibana-vms-logs.png[Screenshot of VM logs in the {logs-app}]
+1. In the Azure portal, go to your ((es)) resource and click **Virtual machines**.
 
-. To view VM metrics, go to **Infrastructure -> Inventory** and then select a VM.
-+
-[role="screenshot"]
-image::monitor-azure-native-kibana-vms-metrics.png[Screenshot of VM metrics]
-+
-To explore the data further, click **Open as page**.
-+
-[role="screenshot"]
-image::monitor-azure-native-kibana-vms-metrics-detail.png[Screenshot of detailed VM metrics]
+1. Select the VMs that you want to collect logs and metrics from, click
+    **Install Extension**, and then click **OK**.
+
+    ![Screenshot that shows VMs selected for logs and metrics collection](images/monitor-azure-native-elastic-vms.png)
+
+1. Wait until the extension is installed and sending data (if the list does not
+    update, click **Refresh** ).
+
+1. Back in ((kib)), view the log stream again (**Logs -> Stream**).
+    Notice that you can filter the view to show logs for a specific instance, for
+    example
+    `cloud.instance.name : "ingest-tutorial-linux"`:
+
+    ![Screenshot of VM logs in the ((logs-app))](images/monitor-azure-native-kibana-vms-logs.png)
+
+1. To view VM metrics, go to **Infrastructure -> Inventory** and then select a VM.
+
+    ![Screenshot of VM metrics](images/monitor-azure-native-kibana-vms-metrics.png)
+
+    To explore the data further, click **Open as page**.
+
+    ![Screenshot of detailed VM metrics](images/monitor-azure-native-kibana-vms-metrics-detail.png)
 
 Congratulations! You have completed the tutorial. To try other tutorials in this
-series, visit the <<observability-tutorials>> page.
+series, visit the <DocLink id="enObservabilityObservabilityTutorials">Tutorials</DocLink> page.

@@ -1,5 +1,12 @@
-[[apm-span-compression]]
-=== Span compression
+---
+id: enObservabilityApmSpanCompression
+slug: /en/observability/apm-span-compression
+title: Span compression
+description: Description to be written
+tags: []
+---
+
+<div id="apm-span-compression"></div>
 
 In some cases, APM agents may collect large amounts of very similar or identical spans in a transaction.
 For example, this can happen if spans are captured inside of a loop, or in unoptimized SQL queries that use multiple queries instead of joins to fetch related data.
@@ -17,18 +24,17 @@ Regardless of the compression strategy, a span is eligible for compression if:
 - Is an _exit_ span (such as database query spans).
 - Its outcome is not `"failure"`.
 
+<div id="apm-span-compression-strategy"></div>
 
-[float]
-[[apm-span-compression-strategy]]
-=== Compression strategies
+## Compression strategies
 
-The {apm-agent} can select between two strategies to decide if two adjacent spans can be compressed.
+The ((apm-agent)) can select between two strategies to decide if two adjacent spans can be compressed.
 Both strategies have the benefit that only one previous span needs to be kept in memory.
 This is important to ensure that the agent doesn't require large amounts of memory to enable span compression.
 
-[float]
-[[apm-span-compression-same]]
-==== Same-Kind strategy
+<div id="apm-span-compression-same"></div>
+
+### Same-Kind strategy
 
 The agent selects this strategy if two adjacent spans have the same:
 
@@ -36,9 +42,9 @@ The agent selects this strategy if two adjacent spans have the same:
  * span subtype
  * `destination.service.resource` (e.g. database name)
 
-[float]
-[[apm-span-compression-exact]]
-==== Exact-Match strategy
+<div id="apm-span-compression-exact"></div>
+
+### Exact-Match strategy
 
 The agent selects this strategy if two adjacent spans have the same:
 
@@ -47,36 +53,24 @@ The agent selects this strategy if two adjacent spans have the same:
  * span subtype
  * `destination.service.resource` (e.g. database name)
 
-[float]
-[[apm-span-compression-settings]]
-=== Settings
+<div id="apm-span-compression-settings"></div>
+
+## Settings
 
 The agent has configuration settings to define upper thresholds in terms of span duration for both strategies.
 For the "Same-Kind" strategy, the default limit is 0 milliseconds, which means that the "Same-Kind" strategy is disabled by default. For the "Exact-Match" strategy, the default limit is 50 milliseconds.
 Spans with longer duration are not compressed. Please refer to the agent documentation for specifics.
 
-[float]
-[[apm-span-compression-support]]
-=== Agent support
+<div id="apm-span-compression-support"></div>
+
+## Agent support
 
 Support for span compression is available in these agents:
 
-[options="header"]
-|====
-| Agent | Same-kind config | Exact-match config
-| **Go agent**
-| {apm-go-ref-v}/configuration.html#config-span-compression-same-kind-duration[`ELASTIC_APM_SPAN_COMPRESSION_SAME_KIND_MAX_DURATION`]
-| {apm-go-ref-v}/configuration.html#config-span-compression-exact-match-duration[`ELASTIC_APM_SPAN_COMPRESSION_EXACT_MATCH_MAX_DURATION`]
-| **Java agent**
-| {apm-java-ref-v}/config-huge-traces.html#config-span-compression-same-kind-max-duration[`span_compression_same_kind_max_duration`]
-| {apm-java-ref-v}/config-huge-traces.html#config-span-compression-exact-match-max-duration[`span_compression_exact_match_max_duration`]
-| **.NET agent**
-| {apm-dotnet-ref-v}/config-core.html#config-span-compression-same-kind-max-duration[`SpanCompressionSameKindMaxDuration`]
-| {apm-dotnet-ref-v}/config-core.html#config-span-compression-exact-match-max-duration[`SpanCompressionExactMatchMaxDuration`]
-| **Node.js agent**
-| {apm-node-ref-v}/configuration.html#span-compression-same-kind-max-duration[`spanCompressionSameKindMaxDuration`]
-| {apm-node-ref-v}/configuration.html#span-compression-exact-match-max-duration[`spanCompressionExactMatchMaxDuration`]
-| **Python agent**
-| {apm-py-ref-v}/configuration.html#config-span-compression-same-kind-max-duration[`span_compression_same_kind_max_duration`]
-| {apm-py-ref-v}/configuration.html#config-span-compression-exact-match-max_duration[`span_compression_exact_match_max_duration`]
-|====
+| Agent | Same-kind config | Exact-match config |
+|---|---|---|
+| **Go agent** | [`ELASTIC_APM_SPAN_COMPRESSION_SAME_KIND_MAX_DURATION`](((apm-go-ref-v))/configuration.html#config-span-compression-same-kind-duration) | [`ELASTIC_APM_SPAN_COMPRESSION_EXACT_MATCH_MAX_DURATION`](((apm-go-ref-v))/configuration.html#config-span-compression-exact-match-duration) |
+| **Java agent** | [`span_compression_same_kind_max_duration`](((apm-java-ref-v))/config-huge-traces.html#config-span-compression-same-kind-max-duration) | [`span_compression_exact_match_max_duration`](((apm-java-ref-v))/config-huge-traces.html#config-span-compression-exact-match-max-duration) |
+| **.NET agent** | [`SpanCompressionSameKindMaxDuration`](((apm-dotnet-ref-v))/config-core.html#config-span-compression-same-kind-max-duration) | [`SpanCompressionExactMatchMaxDuration`](((apm-dotnet-ref-v))/config-core.html#config-span-compression-exact-match-max-duration) |
+| **Node.js agent** | [`spanCompressionSameKindMaxDuration`](((apm-node-ref-v))/configuration.html#span-compression-same-kind-max-duration) | [`spanCompressionExactMatchMaxDuration`](((apm-node-ref-v))/configuration.html#span-compression-exact-match-max-duration) |
+| **Python agent** | [`span_compression_same_kind_max_duration`](((apm-py-ref-v))/configuration.html#config-span-compression-same-kind-max-duration) | [`span_compression_exact_match_max_duration`](((apm-py-ref-v))/configuration.html#config-span-compression-exact-match-max_duration) |

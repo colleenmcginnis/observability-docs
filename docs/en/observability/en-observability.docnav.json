@@ -1,0 +1,1286 @@
+{
+  "mission": "Observability",
+  "id": "en-observability",
+  "icon": "logoObservability",
+  "description": "Description to be written",
+  "landingPageId": "enObservability",
+  "items": [
+    {
+      "pageId": "enObservabilityObservabilityIntroduction"
+    },
+    {
+      "pageId": "enObservabilityWhatsNew"
+    },
+    {
+      "label": "Get started",
+      "pageId": "enObservabilityObservabilityGetStarted",
+      "items": [
+        {
+          "label": "Logs and metrics",
+          "id": "enObservabilityLogsMetricsGetStarted"
+        },
+        {
+          "label": "Traces and APM",
+          "id": "enObservabilityTracesGetStarted"
+        },
+        {
+          "label": "Data from Splunk",
+          "id": "enObservabilitySplunkGetStarted"
+        }
+      ]
+    },
+    {
+      "pageId": "enObservabilityObsAiAssistant"
+    },
+    {
+      "label": "Application performance monitoring (APM)",
+      "pageId": "enObservabilityApm",
+      "items": [
+        {
+          "label": "Self manage APM Server",
+          "id": "enObservabilityApmGettingStartedApmServer",
+          "items": [
+            {
+              "label": "APM Server binary",
+              "id": "enObservability_apm_server_binary",
+              "items": [
+                {
+                  "label": "Step 1: Install",
+                  "id": "enObservabilityApmInstalling"
+                },
+                {
+                  "label": "Step 2: Set up and configure",
+                  "id": "enObservabilityApmServerConfiguration"
+                },
+                {
+                  "label": "Step 3: Start",
+                  "id": "enObservabilityApmServerStarting"
+                },
+                {
+                  "label": "Step 4: Next steps",
+                  "id": "enObservabilityApmNextSteps"
+                },
+                {
+                  "label": "Repositories for APT and YUM",
+                  "id": "enObservabilityApmSetupRepositories"
+                },
+                {
+                  "label": "Run APM Server on Docker",
+                  "id": "enObservabilityApmRunningOnDocker"
+                }
+              ]
+            },
+            {
+              "label": "Fleet-managed APM Server",
+              "id": "enObservability_fleet_managed_apm_server",
+              "items": [
+                {
+                  "label": "Step 1: Set up Fleet",
+                  "id": "enObservability_step_1_set_up_fleet"
+                },
+                {
+                  "label": "Step 2: Add and configure the APM integration",
+                  "id": "enObservability_step_2_add_and_configure_the_apm_integration"
+                },
+                {
+                  "label": "Step 3: Install APM agents",
+                  "id": "enObservability_step_3_install_apm_agents"
+                },
+                {
+                  "label": "Step 4: View your data",
+                  "id": "enObservability_step_4_view_your_data"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Data Model",
+          "id": "enObservabilityApmDataModel",
+          "items": [
+            {
+              "label": "Spans",
+              "id": "enObservabilityApmDataModelSpans"
+            },
+            {
+              "label": "Transactions",
+              "id": "enObservabilityApmDataModelTransactions"
+            },
+            {
+              "label": "Errors",
+              "id": "enObservabilityApmDataModelErrors"
+            },
+            {
+              "label": "Metrics",
+              "id": "enObservabilityApmDataModelMetrics"
+            },
+            {
+              "label": "Metadata",
+              "id": "enObservabilityApmDataModelMetadata"
+            }
+          ]
+        },
+        {
+          "label": "Features",
+          "id": "enObservabilityApmFeatures",
+          "items": [
+            {
+              "label": "Data security",
+              "id": "enObservabilityApmDataSecurity",
+              "items": [
+                {
+                  "label": "Built-in data filters",
+                  "id": "enObservabilityApmFiltering"
+                },
+                {
+                  "label": "Custom filters",
+                  "id": "enObservabilityApmCustomFilter"
+                },
+                {
+                  "label": "Delete sensitive data",
+                  "id": "enObservabilityApmDataSecurityDelete"
+                }
+              ]
+            },
+            {
+              "label": "Distributed tracing",
+              "id": "enObservabilityApmDistributedTracing"
+            },
+            {
+              "label": "Real User Monitoring (RUM)",
+              "id": "enObservabilityApmRum"
+            },
+            {
+              "label": "Transaction sampling",
+              "id": "enObservabilityApmSampling",
+              "items": [
+                {
+                  "label": "Configure head-based sampling",
+                  "id": "enObservabilityApmConfigureHeadBasedSampling"
+                },
+                {
+                  "label": "Configure tail-based sampling",
+                  "id": "enObservabilityApmConfigureTailBasedSampling"
+                }
+              ]
+            },
+            {
+              "label": "Logging integration",
+              "id": "enObservabilityApmLogCorrelation"
+            },
+            {
+              "label": "Cross-cluster search",
+              "id": "enObservabilityApmCrossClusterSearch"
+            },
+            {
+              "label": "Span compression",
+              "id": "enObservabilityApmSpanCompression"
+            },
+            {
+              "label": "Monitoring AWS Lambda Functions",
+              "id": "enObservabilityApmMonitoringAwsLambda"
+            },
+            {
+              "label": "APM K8S Attacher",
+              "id": "enObservabilityApmK8sAttacher"
+            }
+          ]
+        },
+        {
+          "label": "How-to guides",
+          "id": "enObservabilityApmHowToGuides",
+          "items": [
+            {
+              "label": "Create and upload source maps (RUM)",
+              "id": "enObservabilityApmSourceMapHowTo"
+            },
+            {
+              "label": "Integrate with Jaeger",
+              "id": "enObservabilityApmJaegerIntegration"
+            },
+            {
+              "label": "Parse data using ingest pipelines",
+              "id": "enObservabilityApmIngestPipelines"
+            },
+            {
+              "label": "View the Elasticsearch index template",
+              "id": "enObservabilityApmCustomIndexTemplate"
+            }
+          ]
+        },
+        {
+          "label": "OpenTelemetry integration",
+          "id": "enObservabilityApmOpenTelemetry",
+          "items": [
+            {
+              "label": "OpenTelemetry API/SDK with Elastic APM agents",
+              "id": "enObservabilityApmOpenTelemetryWithElastic"
+            },
+            {
+              "label": "OpenTelemetry native support",
+              "id": "enObservabilityApmOpenTelemetryDirect"
+            },
+            {
+              "label": "AWS Lambda Support",
+              "id": "enObservabilityApmOpenTelemetryOtherEnv"
+            },
+            {
+              "label": "Collect metrics",
+              "id": "enObservabilityApmOpenTelemetryCollectMetrics"
+            },
+            {
+              "label": "Limitations",
+              "id": "enObservabilityApmOpenTelemetryKnownLimitations"
+            },
+            {
+              "label": "Resource attributes",
+              "id": "enObservabilityApmOpenTelemetryResourceAttributes"
+            }
+          ]
+        },
+        {
+          "label": "Manage storage",
+          "id": "enObservabilityApmManageStorage",
+          "items": [
+            {
+              "label": "Data streams",
+              "id": "enObservabilityApmDataStreams"
+            },
+            {
+              "label": "Index lifecycle management",
+              "id": "enObservabilityApmIlmHowTo"
+            },
+            {
+              "label": "Storage and sizing guide",
+              "id": "enObservabilityApmStorageGuide"
+            },
+            {
+              "label": "Reduce storage",
+              "id": "enObservabilityApmReduceApmStorage"
+            },
+            {
+              "label": "Explore data in Elasticsearch",
+              "id": "enObservabilityApmExploringEsData"
+            }
+          ]
+        },
+        {
+          "label": "Configure",
+          "id": "enObservabilityApmConfiguringHowtoApmServer",
+          "items": [
+            {
+              "label": "General configuration options",
+              "id": "enObservabilityApmConfigurationProcess"
+            },
+            {
+              "label": "Anonymous authentication",
+              "id": "enObservabilityApmConfigurationAnonymous"
+            },
+            {
+              "label": "APM agent authorization",
+              "id": "enObservabilityApmAgentAuth"
+            },
+            {
+              "label": "APM agent configuration",
+              "id": "enObservabilityApmConfigureAgentConfig"
+            },
+            {
+              "label": "Instrumentation",
+              "id": "enObservabilityApmConfigurationInstrumentation"
+            },
+            {
+              "label": "Kibana endpoint",
+              "id": "enObservabilityApmSetupKibanaEndpoint"
+            },
+            {
+              "label": "Logging",
+              "id": "enObservabilityApmConfigurationLogging"
+            },
+            {
+              "label": "Output",
+              "id": "enObservabilityApmConfiguringOutput",
+              "items": [
+                {
+                  "label": "Elasticsearch Service",
+                  "id": "enObservabilityApmConfigureCloudId"
+                },
+                {
+                  "label": "Elasticsearch",
+                  "id": "enObservabilityApmElasticsearchOutput"
+                },
+                {
+                  "label": "Logstash",
+                  "id": "enObservabilityApmLogstashOutput"
+                },
+                {
+                  "label": "Kafka",
+                  "id": "enObservabilityApmKafkaOutput"
+                },
+                {
+                  "label": "Redis",
+                  "id": "enObservabilityApmRedisOutput"
+                },
+                {
+                  "label": "Console",
+                  "id": "enObservabilityApmConsoleOutput"
+                }
+              ]
+            },
+            {
+              "label": "Project paths",
+              "id": "enObservabilityApmConfigurationPath"
+            },
+            {
+              "label": "Real User Monitoring (RUM)",
+              "id": "enObservabilityApmConfigurationRum"
+            },
+            {
+              "label": "SSL/TLS settings",
+              "id": "enObservabilityApmConfigurationSslLanding",
+              "items": [
+                {
+                  "label": "SSL/TLS output settings",
+                  "id": "enObservabilityApmConfigurationSsl"
+                },
+                {
+                  "label": "SSL/TLS input settings",
+                  "id": "enObservabilityApmAgentServerSsl"
+                }
+              ]
+            },
+            {
+              "label": "Tail-based sampling",
+              "id": "enObservabilityApmTailBasedSamlingConfig"
+            },
+            {
+              "label": "Use environment variables in the configuration",
+              "id": "enObservabilityApmConfigEnv"
+            }
+          ]
+        },
+        {
+          "label": "Advanced setup",
+          "id": "enObservabilityApmSettingUpAndRunning",
+          "items": [
+            {
+              "label": "Installation layout",
+              "id": "enObservabilityApmDirectoryLayout"
+            },
+            {
+              "label": "Secrets keystore",
+              "id": "enObservabilityApmKeystore"
+            },
+            {
+              "label": "Command reference",
+              "id": "enObservabilityApmCommandLineOptions"
+            },
+            {
+              "label": "Tune data ingestion",
+              "id": "enObservabilityApmTuneDataIngestion"
+            },
+            {
+              "label": "High Availability",
+              "id": "enObservabilityApmHighAvailability"
+            },
+            {
+              "label": "APM Server and systemd",
+              "id": "enObservabilityApmRunningWithSystemd"
+            }
+          ]
+        },
+        {
+          "label": "Secure communication",
+          "id": "enObservabilityApmSecuringApmServer",
+          "items": [
+            {
+              "label": "With APM agents",
+              "id": "enObservabilityApmSecureAgentCommunication",
+              "items": [
+                {
+                  "label": "APM agent TLS communication",
+                  "id": "enObservabilityApmAgentTls"
+                },
+                {
+                  "label": "API keys",
+                  "id": "enObservabilityApmApiKey"
+                },
+                {
+                  "label": "Secret token",
+                  "id": "enObservabilityApmSecretToken"
+                },
+                {
+                  "label": "Anonymous authentication",
+                  "id": "enObservabilityApmAnonymousAuth"
+                }
+              ]
+            },
+            {
+              "label": "With the Elastic Stack",
+              "id": "enObservabilityApmSecureCommsStack",
+              "items": [
+                {
+                  "label": "Create a <em>writer</em> user",
+                  "id": "enObservabilityApmPrivilegesToPublishEvents"
+                },
+                {
+                  "label": "Create a <em>monitoring</em> user",
+                  "id": "enObservabilityApmPrivilegesToPublishMonitoring"
+                },
+                {
+                  "label": "Create an <em>API key</em> user",
+                  "id": "enObservabilityApmPrivilegesApiKey"
+                },
+                {
+                  "label": "Create a <em>central config</em> user",
+                  "id": "enObservabilityApmPrivilegesAgentCentralConfig"
+                },
+                {
+                  "label": "Create a <em>source map</em> user",
+                  "id": "enObservabilityApmPrivilegesRumSourceMap"
+                },
+                {
+                  "label": "Grant access using API keys",
+                  "id": "enObservabilityApmBeatsApiKeys"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Monitor",
+          "id": "enObservabilityApmMonitorApm",
+          "items": [
+            {
+              "label": "Fleet-managed",
+              "id": "enObservabilityApmMonitorApmSelfInstall"
+            },
+            {
+              "label": "APM Server binary",
+              "id": "enObservabilityApmMonitoring",
+              "items": [
+                {
+                  "label": "Use internal collection",
+                  "id": "enObservabilityApmMonitoringInternalCollection"
+                }
+              ]
+            },
+            {
+              "label": "Use local collection",
+              "id": "enObservabilityApmMonitoringLocalCollection",
+              "items": [
+                {
+                  "label": "The select metrics",
+                  "id": "enObservabilityApmSelectMetrics"
+                },
+                {
+                  "label": "Use Metricbeat collection",
+                  "id": "enObservabilityApmMonitoringMetricbeatCollection"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "API",
+          "id": "enObservabilityApmApi",
+          "items": [
+            {
+              "label": "APM Server information API",
+              "id": "enObservabilityApmApiInfo"
+            },
+            {
+              "label": "Elastic APM events intake API",
+              "id": "enObservabilityApmApiEvents",
+              "items": [
+                {
+                  "label": "Metadata",
+                  "id": "enObservabilityApmApiMetadata"
+                },
+                {
+                  "label": "Transactions",
+                  "id": "enObservabilityApmApiTransaction"
+                },
+                {
+                  "label": "Spans",
+                  "id": "enObservabilityApmApiSpan"
+                },
+                {
+                  "label": "Errors",
+                  "id": "enObservabilityApmApiError"
+                },
+                {
+                  "label": "Metrics",
+                  "id": "enObservabilityApmApiMetricset"
+                },
+                {
+                  "label": "Example request body",
+                  "id": "enObservabilityApmApiEventExample"
+                }
+              ]
+            },
+            {
+              "label": "Elastic APM agent configuration API",
+              "id": "enObservabilityApmApiConfig"
+            },
+            {
+              "label": "OpenTelemetry intake API",
+              "id": "enObservabilityApmApiOtlp"
+            },
+            {
+              "label": "Jaeger event intake",
+              "id": "enObservabilityApmApiJaeger"
+            }
+          ]
+        },
+        {
+          "label": "Troubleshoot",
+          "id": "enObservabilityApmTroubleshootApm",
+          "items": [
+            {
+              "label": "Common problems",
+              "id": "enObservabilityApmCommonProblems"
+            },
+            {
+              "label": "What happens when APM Server or Elasticsearch is down?",
+              "id": "enObservabilityApmServerEsDown"
+            },
+            {
+              "label": "APM Server response codes",
+              "id": "enObservabilityApmCommonResponseCodes"
+            },
+            {
+              "label": "Processing and performance",
+              "id": "enObservabilityApmProcessingAndPerformance"
+            },
+            {
+              "label": "APM Server binary debugging",
+              "id": "enObservabilityApmEnableApmServerDebugging"
+            }
+          ]
+        },
+        {
+          "label": "Upgrade",
+          "id": "enObservabilityApmUpgrade",
+          "items": [
+            {
+              "label": "APM agent compatibility",
+              "id": "enObservabilityApmAgentServerCompatibility"
+            },
+            {
+              "label": "Breaking Changes",
+              "id": "enObservabilityApmBreaking"
+            },
+            {
+              "label": "Upgrade to version 8.13.4",
+              "id": "enObservabilityApmUpgradingTo8.x",
+              "items": [
+                {
+                  "label": "Self-installation standalone",
+                  "id": "enObservabilityApmUpgrade8.0SelfStandalone"
+                },
+                {
+                  "label": "Self-installation APM integration",
+                  "id": "enObservabilityApmUpgrade8.0SelfIntegration"
+                },
+                {
+                  "label": "Elastic Cloud standalone",
+                  "id": "enObservabilityApmUpgrade8.0CloudStandalone"
+                },
+                {
+                  "label": "Elastic Cloud APM integration",
+                  "id": "enObservabilityApmUpgrade8.0CloudIntegration"
+                }
+              ]
+            },
+            {
+              "label": "Switch to the Elastic APM integration",
+              "id": "enObservabilityApmUpgradeToApmIntegration",
+              "items": [
+                {
+                  "label": "Switch a self-installation",
+                  "id": "enObservabilityApmIntegrationUpgradeSteps"
+                },
+                {
+                  "label": "Switch an Elastic Cloud cluster",
+                  "id": "enObservabilityApmIntegrationUpgradeStepsEss"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Release notes",
+          "id": "enObservabilityApmReleaseNotes",
+          "items": [
+            {
+              "label": "APM version 8.13",
+              "id": "enObservabilityApmReleaseNotes8.13"
+            },
+            {
+              "label": "APM version 8.12",
+              "id": "enObservabilityApmReleaseNotes8.12"
+            },
+            {
+              "label": "APM version 8.11",
+              "id": "enObservabilityApmReleaseNotes8.11"
+            },
+            {
+              "label": "APM version 8.10",
+              "id": "enObservabilityApmReleaseNotes8.10"
+            },
+            {
+              "label": "APM version 8.9",
+              "id": "enObservabilityApmReleaseNotes8.9"
+            },
+            {
+              "label": "APM version 8.8",
+              "id": "enObservabilityApmReleaseNotes8.8"
+            },
+            {
+              "label": "APM version 8.7",
+              "id": "enObservabilityApmReleaseNotes8.7"
+            },
+            {
+              "label": "APM version 8.6",
+              "id": "enObservabilityApmReleaseNotes8.6"
+            },
+            {
+              "label": "APM version 8.5",
+              "id": "enObservabilityApmReleaseNotes8.5"
+            },
+            {
+              "label": "APM version 8.4",
+              "id": "enObservabilityApmReleaseNotes8.4"
+            },
+            {
+              "label": "APM version 8.3",
+              "id": "enObservabilityApmReleaseNotes8.3"
+            },
+            {
+              "label": "APM version 8.2",
+              "id": "enObservabilityApmReleaseNotes8.2"
+            },
+            {
+              "label": "APM version 8.1",
+              "id": "enObservabilityApmReleaseNotes8.1"
+            },
+            {
+              "label": "APM version 8.0",
+              "id": "enObservabilityApmReleaseNotes8.0"
+            }
+          ]
+        },
+        {
+          "label": "Known issues",
+          "id": "enObservabilityApmKnownIssues"
+        }
+      ]
+    },
+    {
+      "label": "Log monitoring",
+      "pageId": "enObservabilityLogsChecklist",
+      "items": [
+        {
+          "label": "Stream any log file",
+          "id": "enObservabilityLogsStream"
+        },
+        {
+          "label": "Parse and organize logs",
+          "id": "enObservabilityLogsParse"
+        },
+        {
+          "label": "Filter and aggregate logs",
+          "id": "enObservabilityLogsFilterAndAggregate"
+        },
+        {
+          "label": "Stream application logs",
+          "id": "enObservabilityApplicationLogs",
+          "items": [
+            {
+              "label": "Plaintext application logs",
+              "id": "enObservabilityLogsPlaintext"
+            },
+            {
+              "label": "ECS formatted application logs",
+              "id": "enObservabilityLogsEcsApplication"
+            },
+            {
+              "label": "APM agent log sending",
+              "id": "enObservabilityLogsSendApplication"
+            }
+          ]
+        },
+        {
+          "label": "Explore logs",
+          "id": "enObservabilityMonitorLogs",
+          "items": [
+            {
+              "label": "Logs Explorer",
+              "id": "enObservabilityExploreLogs"
+            },
+            {
+              "label": "Tail log files",
+              "id": "enObservabilityTailLogs"
+            },
+            {
+              "label": "Categorize log entries",
+              "id": "enObservabilityCategorizeLogs"
+            },
+            {
+              "label": "Inspect log anomalies",
+              "id": "enObservabilityInspectLogAnomalies"
+            },
+            {
+              "label": "Configure data sources",
+              "id": "enObservabilityConfigureDataSources"
+            }
+          ]
+        },
+        {
+          "label": "Logs index template reference",
+          "id": "enObservabilityLogsIndexTemplate"
+        },
+        {
+          "label": "Troubleshoot logs",
+          "id": "enObservabilityLogsTroubleshooting"
+        }
+      ]
+    },
+    {
+      "label": "Infrastructure monitoring",
+      "pageId": "enObservabilityAnalyzeMetrics",
+      "items": [
+        {
+          "label": "View infrastructure metrics by resource type",
+          "id": "enObservabilityViewInfrastructureMetrics"
+        },
+        {
+          "label": "Explore infrastructure metrics over time",
+          "id": "enObservabilityExploreMetrics"
+        },
+        {
+          "label": "Analyze and compare hosts",
+          "id": "enObservabilityAnalyzeHosts"
+        },
+        {
+          "label": "Detect metric anomalies",
+          "id": "enObservabilityInspectMetricAnomalies"
+        },
+        {
+          "label": "Configure settings",
+          "id": "enObservabilityConfigureSettings"
+        },
+        {
+          "label": "Metrics reference",
+          "id": "enObservabilityMetricsReference",
+          "items": [
+            {
+              "label": "Host metrics",
+              "id": "enObservabilityHostMetrics"
+            },
+            {
+              "label": "Kubernetes pod metrics",
+              "id": "enObservabilityKubernetesPodMetrics"
+            },
+            {
+              "label": "Docker container metrics",
+              "id": "enObservabilityDockerContainerMetrics"
+            },
+            {
+              "label": "AWS metrics",
+              "id": "enObservabilityAwsMetrics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "AWS monitoring",
+      "pageId": "enObservabilityMonitorAmazonWebServices",
+      "items": [
+        {
+          "label": "Ingestion options",
+          "id": "enObservabilityIngestAwsOptions"
+        },
+        {
+          "label": "Monitor AWS with Elastic Agent",
+          "id": "enObservabilityMonitorAwsElasticAgent",
+          "items": [
+            {
+              "label": "Monitor EC2",
+              "id": "enObservabilityMonitorAmazonEc2"
+            },
+            {
+              "label": "Monitor Kinesis data streams",
+              "id": "enObservabilityMonitorAmazonKinesis"
+            },
+            {
+              "label": "Monitor S3",
+              "id": "enObservabilityMonitorAmazonS3"
+            },
+            {
+              "label": "Monitor SQS",
+              "id": "enObservabilityMonitorAmazonSqs"
+            }
+          ]
+        },
+        {
+          "label": "Monitor AWS with Beats",
+          "id": "enObservabilityMonitorAws"
+        },
+        {
+          "label": "Monitor AWS with Amazon Data Firehose",
+          "id": "enObservabilityMonitorAwsFirehose",
+          "items": [
+            {
+              "label": "Monitor VPC Flow Logs",
+              "id": "enObservabilityMonitorAmazonVpcFlowLogs"
+            },
+            {
+              "label": "Monitor CloudTrail logs",
+              "id": "enObservabilityMonitorAwsCloudtrailFirehose"
+            },
+            {
+              "label": "Monitor WAF logs",
+              "id": "enObservabilityMonitorAwsWafFirehose"
+            },
+            {
+              "label": "Troubleshooting",
+              "id": "enObservabilityMonitorAwsFirehoseTroubleshooting"
+            }
+          ]
+        },
+        {
+          "label": "Monitor AWS with Elastic Serverless Forwarder",
+          "id": "enObservabilityMonitorAwsEsf"
+        }
+      ]
+    },
+    {
+      "label": "Synthetic monitoring",
+      "pageId": "enObservabilityMonitorUptimeSynthetics",
+      "items": [
+        {
+          "label": "Get started",
+          "id": "enObservabilitySyntheticsGetStarted",
+          "items": [
+            {
+              "label": "Use Project monitors",
+              "id": "enObservabilitySyntheticsGetStartedProject"
+            },
+            {
+              "label": "Use the Synthetics app",
+              "id": "enObservabilitySyntheticsGetStartedUi"
+            }
+          ]
+        },
+        {
+          "label": "Scripting browser monitors",
+          "id": "enObservabilitySyntheticsJourneys",
+          "items": [
+            {
+              "label": "Write a synthetic test",
+              "id": "enObservabilitySyntheticsCreateTest"
+            },
+            {
+              "label": "Configure individual monitors",
+              "id": "enObservabilitySyntheticsMonitorUse"
+            },
+            {
+              "label": "Use the Synthetics Recorder",
+              "id": "enObservabilitySyntheticsRecorder"
+            }
+          ]
+        },
+        {
+          "label": "Configure lightweight monitors",
+          "id": "enObservabilitySyntheticsLightweight"
+        },
+        {
+          "label": "Manage monitors",
+          "id": "enObservabilitySyntheticsManageMonitors"
+        },
+        {
+          "label": "Work with params and secrets",
+          "id": "enObservabilitySyntheticsParamsSecrets"
+        },
+        {
+          "label": "Analyze monitor data",
+          "id": "enObservabilitySyntheticsAnalyze"
+        },
+        {
+          "label": "Monitor resources on private networks",
+          "id": "enObservabilitySyntheticsPrivateLocation"
+        },
+        {
+          "label": "Use the CLI",
+          "id": "enObservabilitySyntheticsCommandReference",
+          "items": [
+            {
+              "label": "Filtering monitors",
+              "id": "enObservabilitySyntheticsCommandReference"
+            }
+          ]
+        },
+        {
+          "label": "Configure projects",
+          "id": "enObservabilitySyntheticsConfiguration"
+        },
+        {
+          "label": "Configure Synthetics settings",
+          "id": "enObservabilitySyntheticsSettings"
+        },
+        {
+          "label": "Grant users access to secured resources",
+          "id": "enObservabilitySyntheticsFeatureRoles",
+          "items": [
+            {
+              "label": "Setup role",
+              "id": "enObservabilitySyntheticsRoleSetup"
+            },
+            {
+              "label": "Writer role",
+              "id": "enObservabilitySyntheticsRoleWrite"
+            },
+            {
+              "label": "Reader role",
+              "id": "enObservabilitySyntheticsRoleRead"
+            }
+          ]
+        },
+        {
+          "label": "Manage data retention",
+          "id": "enObservabilitySyntheticsManageRetention"
+        },
+        {
+          "label": "Use Synthetics with traffic filters",
+          "id": "enObservabilitySyntheticsTrafficFilters"
+        },
+        {
+          "label": "Migrate from the Elastic Synthetics integration",
+          "id": "enObservabilitySyntheticsMigrateFromIntegration"
+        },
+        {
+          "label": "Scale and architect a deployment",
+          "id": "enObservabilitySyntheticsScaleAndArchitect"
+        },
+        {
+          "label": "Synthetics support matrix",
+          "id": "enObservabilitySyntheticsSupportMatrix"
+        },
+        {
+          "label": "Synthetics Encryption and Security",
+          "id": "enObservabilitySyntheticsSecurityEncryption"
+        },
+        {
+          "label": "Troubleshooting",
+          "id": "enObservabilitySyntheticsTroubleshooting"
+        }
+      ]
+    },
+    {
+      "label": "Uptime monitoring",
+      "pageId": "enObservabilityUptimeIntro",
+      "items": [
+        {
+          "label": "Get started with Uptime",
+          "id": "enObservabilityUptimeGetStarted"
+        },
+        {
+          "label": "Analyze",
+          "id": "enObservabilityUptimeAnalyze",
+          "items": [
+            {
+              "label": "View monitor status",
+              "id": "enObservabilityViewMonitorStatus"
+            },
+            {
+              "label": "Analyze monitors",
+              "id": "enObservabilityAnalyzeMonitors"
+            },
+            {
+              "label": "Inspect uptime duration anomalies",
+              "id": "enObservabilityInspectUptimeDurationAnomalies"
+            }
+          ]
+        },
+        {
+          "label": "Configure settings",
+          "id": "enObservabilityConfigureUptimeSettings"
+        },
+        {
+          "label": "Troubleshoot mapping issues",
+          "id": "enObservabilityTroubleshootUptimeMappingIssues"
+        }
+      ]
+    },
+    {
+      "pageId": "enObservabilityUserExperience"
+    },
+    {
+      "label": "Universal Profiling",
+      "pageId": "enObservabilityUniversalProfiling",
+      "items": [
+        {
+          "label": "Get started",
+          "id": "enObservabilityProfilingGetStarted"
+        },
+        {
+          "label": "Manage data storage",
+          "id": "enObservabilityProfilingManageStorage",
+          "items": [
+            {
+              "label": "Index lifecycle management",
+              "id": "enObservabilityProfilingIndexLifecycleManagement"
+            },
+            {
+              "label": "Configure probabilistic profiling",
+              "id": "enObservabilityProfilingProbabilisticProfiling"
+            }
+          ]
+        },
+        {
+          "label": "Advanced configuration",
+          "id": "enObservabilityProfilingAdvancedConfiguration",
+          "items": [
+            {
+              "label": "Tag data for querying",
+              "id": "enObservabilityProfilingTagDataQuery"
+            },
+            {
+              "label": "Add symbols for native frames",
+              "id": "enObservabilityProfilingAddSymbols"
+            },
+            {
+              "label": "Use a proxy",
+              "id": "enObservabilityProfilingUseAProxy"
+            },
+            {
+              "label": "Override kernel version check",
+              "id": "enObservabilityProfilingNoKernelVersionCheck"
+            }
+          ]
+        },
+        {
+          "label": "Upgrade",
+          "id": "enObservabilityProfilingUpgrade"
+        },
+        {
+          "label": "Troubleshoot",
+          "id": "enObservabilityProfilingTroubleshooting"
+        },
+        {
+          "label": "Self-hosted infrastructure",
+          "id": "enObservabilityProfilingSelfManaged",
+          "items": [
+            {
+              "label": "Install the backend",
+              "id": "enObservabilityProfilingSelfManagedInstallation",
+              "items": [
+                {
+                  "label": "Step 1: Update the stack",
+                  "id": "enObservabilityProfilingSelfManagedUpdating"
+                },
+                {
+                  "label": "Step 2: Enable Universal Profiling in Kibana",
+                  "id": "enObservabilityProfilingSelfManagedEnableKibana"
+                },
+                {
+                  "label": "Step 3: Set up Universal Profiling in Kibana",
+                  "id": "enObservabilityProfilingSelfManagedSetupKibana"
+                },
+                {
+                  "label": "Step 4: Run the backend applications",
+                  "id": "enObservabilityProfilingSelfManagedRunning"
+                },
+                {
+                  "label": "Step 5: Next steps",
+                  "id": "enObservabilityProfilingSelfManagedInstallNextSteps"
+                }
+              ]
+            },
+            {
+              "label": "Operate the backend",
+              "id": "enObservabilityProfilingSelfManagedOps"
+            },
+            {
+              "label": "Troubleshoot the backend",
+              "id": "enObservabilityProfilingSelfManagedTroubleshooting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Alerting",
+      "pageId": "enObservabilityCreateAlerts",
+      "items": [
+        {
+          "label": "Create and manage rules",
+          "id": "enObservabilityCreateAlertsRules",
+          "items": [
+            {
+              "label": "Custom threshold",
+              "id": "enObservabilityCustomThresholdAlert"
+            },
+            {
+              "label": "Log threshold",
+              "id": "enObservabilityLogsThresholdAlert"
+            },
+            {
+              "label": "Inventory threshold",
+              "id": "enObservabilityInfrastructureThresholdAlert"
+            },
+            {
+              "label": "Metric threshold",
+              "id": "enObservabilityMetricsThresholdAlert"
+            },
+            {
+              "label": "Monitor status",
+              "id": "enObservabilityMonitorStatusAlert"
+            },
+            {
+              "label": "TLS certificate",
+              "id": "enObservabilityTlsCertificateAlert"
+            },
+            {
+              "label": "Uptime duration anomaly",
+              "id": "enObservabilityDurationAnomalyAlert"
+            },
+            {
+              "label": "SLO burn rate",
+              "id": "enObservabilitySloBurnRateAlert"
+            }
+          ]
+        },
+        {
+          "label": "Aggregation options",
+          "id": "enObservabilityAggregationOptions",
+          "items": [
+            {
+              "label": "Rate aggregation",
+              "id": "enObservabilityRateAggregation"
+            }
+          ]
+        },
+        {
+          "label": "View alerts",
+          "id": "enObservabilityViewObservabilityAlerts",
+          "items": [
+            {
+              "label": "SLO burn rate breaches",
+              "id": "enObservabilityTriageSloBurnRateBreaches"
+            },
+            {
+              "label": "Threshold breaches",
+              "id": "enObservabilityTriageThresholdBreaches"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Service-level objectives (SLOs)",
+      "pageId": "enObservabilitySlo",
+      "items": [
+        {
+          "label": "Configure SLO access",
+          "id": "enObservabilitySloPrivileges"
+        },
+        {
+          "label": "Create an SLO",
+          "id": "enObservabilitySloCreate"
+        }
+      ]
+    },
+    {
+      "label": "Cases",
+      "pageId": "enObservabilityCreateCases",
+      "items": [
+        {
+          "label": "Configure access to cases",
+          "id": "enObservabilityGrantCasesAccess"
+        },
+        {
+          "label": "Open and manage new cases",
+          "id": "enObservabilityManageCases"
+        },
+        {
+          "label": "Configure external connectors",
+          "id": "enObservabilityCasesExternalConnectors"
+        }
+      ]
+    },
+    {
+      "pageId": "enObservabilityCiCdObservability"
+    },
+    {
+      "label": "Troubleshooting",
+      "pageId": "enObservabilityTroubleshooting",
+      "items": [
+        {
+          "label": "Explore data",
+          "id": "enObservabilityExploratoryDataVisualizations"
+        },
+        {
+          "label": "Inspect",
+          "id": "enObservabilityInspect"
+        }
+      ]
+    },
+    {
+      "label": "Fields reference",
+      "pageId": "enObservabilityFieldsReference",
+      "items": [
+        {
+          "label": "Logs app fields",
+          "id": "enObservabilityLogsAppFields"
+        },
+        {
+          "label": "Infrastructure app fields",
+          "id": "enObservabilityMetricsAppFields"
+        }
+      ]
+    },
+    {
+      "label": "Tutorials",
+      "pageId": "enObservabilityObservabilityTutorials",
+      "items": [
+        {
+          "label": "Monitor Google Cloud Platform",
+          "id": "enObservabilityMonitorGcp",
+          "items": [
+            {
+              "label": "GCP Dataflow templates",
+              "id": "enObservabilityGcpDataflow"
+            }
+          ]
+        },
+        {
+          "label": "Monitor a Java application",
+          "id": "enObservabilityMonitorJavaApp"
+        },
+        {
+          "label": "Monitor Kubernetes",
+          "id": "enObservabilityMonitorKubernetes"
+        },
+        {
+          "label": "Monitor nginx",
+          "id": "enObservabilityMonitorNginx"
+        },
+        {
+          "label": "Monitor Microsoft Azure with Elastic Agent",
+          "id": "enObservabilityMonitorAzureElasticAgent"
+        },
+        {
+          "label": "Monitor Microsoft Azure with the Azure Native ISV Service",
+          "id": "enObservabilityMonitorAzureNative"
+        },
+        {
+          "label": "Monitor Microsoft Azure with Beats",
+          "id": "enObservabilityMonitorAzure"
+        }
+      ]
+    }
+  ]
+}

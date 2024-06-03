@@ -1,0 +1,72 @@
+export let serverless = false
+
+<DocTable columns={[
+  { "title": "Type" },
+  { "title": "Description" },
+  { "title": "Location " }
+]}>
+  <DocRow>
+    <DocCell>home</DocCell>
+    <DocCell>
+      Home of the APM Server installation.
+    </DocCell>
+    <DocCell>
+      `{extract.path}`
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>bin</DocCell>
+    <DocCell>
+      The location for the binary files.
+    </DocCell>
+    <DocCell>
+      `{extract.path}`
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>config</DocCell>
+    <DocCell>
+      The location for configuration files.
+    </DocCell>
+    <DocCell>
+      `{extract.path}`
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>data</DocCell>
+    <DocCell>
+      The location for persistent data files.
+    </DocCell>
+    <DocCell>
+      `{extract.path}/data`
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>logs</DocCell>
+    <DocCell>
+      The location for the logs created by APM Server.
+    </DocCell>
+    <DocCell>
+      `{extract.path}/logs`
+    </DocCell>
+  </DocRow>
+  <DocIf condition={ serverless === true }>
+    <DocRow>
+      <DocCell>pkg</DocCell>
+      <DocCell>
+        The location for the binary uploaded to your serverless provider.
+      </DocCell>
+      <DocCell>
+        `{extract.path}/pkg`
+      </DocCell>
+    </DocRow>
+  </DocIf>
+</DocTable>
+
+For the ZIP, tar.gz, or TGZ distributions, these paths are based on the location
+of the extracted binary file. This means that if you start APM Server with
+the following simple command, all paths are set correctly:
+
+```sh
+./apm-server
+```

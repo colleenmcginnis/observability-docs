@@ -1,0 +1,30 @@
+---
+id: enObservabilityApmUpgrade8.0CloudIntegration
+slug: /en/observability/apm-upgrade-8.0-cloud-integration
+title: Upgrade ((ecloud)) with the APM integration to 8.0
+description: Description to be written
+tags: []
+---
+
+<div id="apm-upgrade-8.0-cloud-integration"></div>
+
+This upgrade guide is for the Elastic APM integration.
+Only use this guide if both of the following are true:
+
+* You're using ((ecloud)).
+* You have already switched to and are running ((fleet)) and the Elastic APM integration.
+
+Follow these steps to upgrade:
+
+1. Review the APM <DocLink id="enObservabilityApmReleaseNotes">release notes</DocLink>, <DocLink id="enObservabilityApmBreaking">breaking changes</DocLink>,
+    and ((observability)) [What's new](((observability-guide))/whats-new.html) content.
+
+1. Upgrade your ((ecloud)) instance to ((version)).
+    See [Upgrade versions](((cloud))/ec-upgrade-deployment.html) for details.
+    The APM integration will automatically be upgraded to version ((version)) as a part of this process.
+
+<DocCallOut title="Note">
+((ece)) users require additional TLS setup.
+See [Add APM user settings](((ece-ref))/ece-manage-apm-settings.html) for more information.
+</DocCallOut>
+

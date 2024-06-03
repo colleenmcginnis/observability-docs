@@ -1,63 +1,62 @@
-[[uptime-intro]]
-= Uptime monitoring
+---
+id: enObservabilityUptimeIntro
+slug: /en/observability/uptime-intro
+title: Uptime monitoring
+description: Description to be written
+tags: []
+---
 
-[[uptime-monitors]]
+<div id="uptime-intro"></div>
 
-[IMPORTANT]
-====
-The {uptime-app} is for viewing result data from lightweight monitors running through
-{heartbeat} and <<uptime-get-started,configured with a traditional `heartbeat.yml` file>>.
+<DocCallOut id="uptime-monitors" title="Important" color="warning">
+
+The ((uptime-app)) is for viewing result data from lightweight monitors running through
+((heartbeat)) and <DocLink id="enObservabilityUptimeGetStarted">configured with a traditional `heartbeat.yml` file</DocLink>.
 This is for TCP, HTTP or ICMP monitors that you have configured and run from your own
-infrastructure with {heartbeat} natively.
+infrastructure with ((heartbeat)) natively.
 
 For browser-based monitors, a richer management and reporting experience,
 and more capabilities such as triaging and responding to alerts, use the
-<<monitor-uptime-synthetics,{synthetics-app}>> instead of the {uptime-app}.
+<DocLink id="enObservabilityMonitorUptimeSynthetics">((synthetics-app))</DocLink> instead of the ((uptime-app)).
 
-Note that the {uptime-app} is hidden from the interface when there is no recent {heartbeat} data. To see the app, you may need to turn on the **Always show legacy Uptime app** setting (`observability:enableLegacyUptimeApp`) under {kib} Advanced Settings. To learn how, refer to {kibana-ref}/advanced-options.html[Advanced Settings].
-====
+Note that the ((uptime-app)) is hidden from the interface when there is no recent ((heartbeat)) data. To see the app, you may need to turn on the **Always show legacy Uptime app** setting (`observability:enableLegacyUptimeApp`) under ((kib)) Advanced Settings. To learn how, refer to [Advanced Settings](((kibana-ref))/advanced-options.html).
 
-The {uptime-app} uses {agent} to periodically check the status of your services and applications.
-Monitor the availability of network endpoints and services using <<monitoring-uptime>>.
+</DocCallOut>
 
-[discrete]
-[[uptime-lightweight]]
-== Lightweight HTTP/S, TCP, and ICMP monitors
+The ((uptime-app)) uses ((agent)) to periodically check the status of your services and applications.
+Monitor the availability of network endpoints and services using <DocLink id="enObservabilityMonitorUptimeSynthetics" section="lightweight-https-tcp-and-icmp-monitors">Lightweight HTTP/S, TCP, and ICMP monitors</DocLink>.
 
-In the {uptime-app}, you can monitor the status of network endpoints using the following lightweight checks:
+<div id="uptime-lightweight"></div>
 
-// lint ignore v4 v6
-|===
-| *HTTP monitor* | Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct
-status code and display the correct text.
-| *ICMP monitor* | Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo
-Requests to check the network reachability of the hosts you are pinging. This will tell you whether the
-host is available and connected to the network, but doesn't tell you if a service on the host is running or
-not.
-| *TCP monitor* | Monitor the services running on your hosts. The TCP monitor checks individual ports
-to make sure the service is accessible and running.
-|===
+## Lightweight HTTP/S, TCP, and ICMP monitors
 
-[role="screenshot"]
-image::images/uptime-app.png[{uptime-app} in {kib}]
+In the ((uptime-app)), you can monitor the status of network endpoints using the following lightweight checks:
 
-To set up your first monitor, refer to <<uptime-get-started>>.
+{/* lint ignore v4 v6 */}
+|  |  |
+|---|---|
+| **HTTP monitor** | Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct status code and display the correct text. |
+| **ICMP monitor** | Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo Requests to check the network reachability of the hosts you are pinging. This will tell you whether the host is available and connected to the network, but doesn't tell you if a service on the host is running or not. |
+| **TCP monitor** | Monitor the services running on your hosts. The TCP monitor checks individual ports to make sure the service is accessible and running. |
 
-[discrete]
-[[view-certificate-status]]
-== TLS Certificates
+![((uptime-app)) in ((kib))](images/uptime-app.png)
 
-The TLS Certificates page in the {uptime-app} lists the TLS certificates that are being monitored and
+To set up your first monitor, refer to <DocLink id="enObservabilityUptimeGetStarted">Get started with Uptime</DocLink>.
+
+<div id="view-certificate-status"></div>
+
+## TLS Certificates
+
+The TLS Certificates page in the ((uptime-app)) lists the TLS certificates that are being monitored and
 shows the TLS certificate data in your indices.
 
 In addition to the common name, associated monitors, issuer information, and SHA fingerprints,
-an assigned status is derived from the threshold values in the <<configure-uptime-settings,Settings>> page.
+an assigned status is derived from the threshold values in the <DocLink id="enObservabilityConfigureUptimeSettings">Settings</DocLink> page.
 
-[role="screenshot"]
-image::images/tls-certificates.png[TLS certificates]
+![TLS certificates](images/tls-certificates.png)
 
 The table entries can be sorted by _status_ and _valid until_. You can use the search bar at the
 top of the view to find values in most of the TLS-related fields in your Uptime indices.
 
-Additionally, you can select the *Alerts and rules* dropdown at the top of the page, and create a
-<<tls-certificate-alert,TLS rule>> to receive an alert when your certificate is about to expire.
+Additionally, you can select the **Alerts and rules** dropdown at the top of the page, and create a
+<DocLink id="enObservabilityTlsCertificateAlert">TLS rule</DocLink> to receive an alert when your certificate is about to expire.

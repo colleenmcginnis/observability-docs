@@ -1,0 +1,39 @@
+
+<div id="breaking-changes-8.6"></div>
+
+### 8.6
+
+The following breaking changes and deprecations are introduced in APM version 8.6.0:
+
+<div id="`apm-server.decoder.*`_no_longer_recorded"></div>
+
+#### `apm-server.decoder.*` no longer recorded
+The stack monitoring metrics, `apm-server.decoder.*`, are no longer recorded.
+These metrics were not used by stack monitoring, so there should be no noticeable change.
+
+For more details, see [PR #9210](https://github.com/elastic/apm-server/pull/9210).
+
+<div id="`context.http.response.*_size`_fields_now_enforce_integer_values"></div>
+
+#### `context.http.response.*_size` fields now enforce integer values
+New field mappings enforce integer values for `context.http.response.*_size`.
+The fields are mapped with `index: false` to minimize storage overhead.
+
+For more details, see [PR #9429](https://github.com/elastic/apm-server/pull/9429).
+
+<div id="`observer.id`_and_`observer.ephemeral_id`_removed"></div>
+
+#### `observer.id` and `observer.ephemeral_id` removed
+
+`observer.id` and `observer.ephemeral_id` are no longer added to APM documents.
+The APM UI does not currently rely on these field, so there should be no noticeable change.
+
+For more details, see [PR #9412](https://github.com/elastic/apm-server/pull/9412).
+
+<div id="`timeseries.instance`_removed"></div>
+
+#### `timeseries.instance` removed
+`timeseries.instance` has been removed from transaction metrics docs.
+The APM UI did not use this field, so there should be no noticeable change.
+
+For more details, see [PR #9565](https://github.com/elastic/apm-server/pull/9565).

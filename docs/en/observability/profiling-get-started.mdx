@@ -1,36 +1,38 @@
-[[profiling-get-started]]
-= Get started with Universal Profiling
+---
+id: enObservabilityProfilingGetStarted
+slug: /en/observability/profiling-get-started
+title: Get started with Universal Profiling
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Get started</titleabbrev>
-++++
+<div id="profiling-get-started"></div>
 
 On this page, you'll learn how to configure and use Universal Profiling. This page covers:
 
 * Prerequisites to setting up Universal Profiling
-* Setting up Universal Profiling in your {ecloud} deployment
+* Setting up Universal Profiling in your ((ecloud)) deployment
 * Installing the Universal Profiling Agent
 * Installing the Universal Profiling Agent integration
 
 We would appreciate feedback on your experience with this product and any other profiling pain points you may have.
-See the <<profiling-send-feedback, send feedback>> section of the troubleshooting documentation for more information.
+See the <DocLink id="enObservabilityProfilingTroubleshooting" section="send-feedback">send feedback</DocLink> section of the troubleshooting documentation for more information.
 
+<div id="profiling-prereqs"></div>
 
-[discrete]
-[[profiling-prereqs]]
-== Prerequisites
+## Prerequisites
 
 Before setting up Universal Profiling, make sure you meet the following requirements:
 
-* An {stack} deployment on http://cloud.elastic.co[{ecloud}] at version 8.7.0 or higher. Universal Profiling is currently only available on Elastic Cloud.
+* An ((stack)) deployment on [((ecloud))](http://cloud.elastic.co) at version 8.7.0 or higher. Universal Profiling is currently only available on Elastic Cloud.
 * The workloads you're profiling must be running on Linux machines with x86_64 or ARM64 CPUs.
 * The minimum supported kernel version is either 4.19 for x86_64 or 5.5 for ARM64 machines.
-* The Integrations Server must be enabled on your {ecloud} deployment.
+* The Integrations Server must be enabled on your ((ecloud)) deployment.
 * Credentials (username and password) for the `superuser` Elasticsearch role (typically, the `elastic` user).
 
-[discrete]
-[[profiling-prereqs-interpreters]]
-=== Interpreters
+<div id="profiling-prereqs-interpreters"></div>
+
+### Interpreters
 
 Universal Profiling is a system-wide profiling solution with additional support for PHP, Python, Java (or any JVM language), Go, Rust, C/C++, Node.js/V8, Ruby, .Net, and Perl.
 
@@ -44,130 +46,126 @@ The minimum supported versions of each interpreter are:
 * Ruby: 2.5
 * .Net: 6
 
-[discrete]
-[[profiling-prereqs-config-example]]
-=== Deployment configuration example
+<div id="profiling-prereqs-config-example"></div>
+
+### Deployment configuration example
 
 The following deployment configuration example was tested to support profiling data from a fleet of up to 500 hosts, each with 8 or 16 CPU cores, for a total of roughly 6000 cores:
 
-[options,header]
-|====
-| Component | Size per zone (memory)  | Zones
-| {es} | 64 GB | 2
-| Kibana | 8 GB | 1
-| Integrations Server | 8 GB | 1
-|====
+| Component | Size per zone (memory) | Zones |
+|---|---|---|
+| ((es)) | 64 GB | 2 |
+| Kibana | 8 GB | 1 |
+| Integrations Server | 8 GB | 1 |
 
 Even if you're profiling a smaller fleet, we recommend configuring at least two zones for Elasticsearch and 4 GB of memory each for the Integrations Server and Kibana.
 
-[discrete]
-[[profiling-set-up-on-cloud]]
-== Set up Universal Profiling on an {ecloud} deployment
+<div id="profiling-set-up-on-cloud"></div>
 
-To set up Universal Profiling on your {ecloud} deployment, you need to <<profiling-configure-data-ingestion, configure data ingestion>> first.
+## Set up Universal Profiling on an ((ecloud)) deployment
 
-[discrete]
-[[profiling-configure-data-ingestion]]
-=== Configure data ingestion
+To set up Universal Profiling on your ((ecloud)) deployment, you need to <DocLink id="enObservabilityProfilingGetStarted" section="configure-data-ingestion">configure data ingestion</DocLink> first.
+
+<div id="profiling-configure-data-ingestion"></div>
+
+### Configure data ingestion
 
 After enabling Universal Profiling on your deployment for the first time, select any subheading under **Universal Profiling** in the navigation menu to open the following page:
 
-[role="screenshot"]
-image::images/profiling-setup-popup.png[]
+![](images/profiling-setup-popup.png)
 
-Click *Set up Universal Profiling* to configure data ingestion.
+Click **Set up Universal Profiling** to configure data ingestion.
 
-NOTE: To configure data ingestion, you need elevated privileges, typically the `elastic` user.
+<DocCallOut title="Note">
+To configure data ingestion, you need elevated privileges, typically the `elastic` user.
+</DocCallOut>
 
-If you're upgrading from a previous version with Universal Profiling enabled, see the <<profiling-upgrade,upgrade guide>>.
+If you're upgrading from a previous version with Universal Profiling enabled, see the <DocLink id="enObservabilityProfilingUpgrade">upgrade guide</DocLink>.
 
-IMPORTANT: When upgrading, you must remove all existing profiling data.
+<DocCallOut title="Important" color="warning">
+When upgrading, you must remove all existing profiling data.
 We still recommend upgrading as the latest version contains several improvements and new features.
+</DocCallOut>
 
-[discrete]
-[[profiling-upgrade-known-issues]]
-==== Known issue when configuring data ingestion
+<div id="profiling-upgrade-known-issues"></div>
 
-If your {ecloud} deployment originated from version 7.x or earlier and is currently running a version between 8.9.0 and 8.10.2, you may encounter a problem while trying to enable Universal Profiling.
+#### Known issue when configuring data ingestion
 
-Specifically, clicking the *Set up Universal Profiling* button triggers an error message that reads `Error while setting up Universal Profiling`.
-Upgrade to version *8.10.3* or more recent to fix this issue.
+If your ((ecloud)) deployment originated from version 7.x or earlier and is currently running a version between 8.9.0 and 8.10.2, you may encounter a problem while trying to enable Universal Profiling.
 
+Specifically, clicking the **Set up Universal Profiling** button triggers an error message that reads `Error while setting up Universal Profiling`.
+Upgrade to version **8.10.3** or more recent to fix this issue.
 
-If you previously enabled Universal Profiling in {ecloud} version 8.9.0, and you're re-executing the setup, you may also encounter
+If you previously enabled Universal Profiling in ((ecloud)) version 8.9.0, and you're re-executing the setup, you may also encounter
 this error. If upgrading to 8.10.3 does not solve the issue, complete the following step.
 
+Open **Dev Tools** from the navigation menu and execute the following command:
 
-Open *Dev Tools* from the navigation menu and execute the following command:
+<DocCallOut title="Warning" color="warning">
+When running the following command, customizations of APM and Fleet configurations will be erased.
+</DocCallOut>
 
-
-WARNING: When running the following command, customizations of APM and Fleet configurations will be erased.
-
-[source,console]
-----
+```console
 POST kbn:/internal/fleet/reset_preconfigured_agent_policies/policy-elastic-agent-on-cloud
-----
+```
 
+<div id="profiling-install-profiling-agent"></div>
 
-[discrete]
-[[profiling-install-profiling-agent]]
-== Install the Universal Profiling Agent
+## Install the Universal Profiling Agent
 You have the following options when installing the Universal Profiling Agent:
 
-. <<profiling-install-agent-elastic-agent, Install the Universal Profiling Agent using the {agent}>>
-. <<profiling-install-agent-standalone, Install the Universal Profiling Agent in standalone mode>>
+1. <DocLink id="enObservabilityProfilingGetStarted" section="install-the-universal-profiling-agent-using-the-((agent))">Install the Universal Profiling Agent using the ((agent))</DocLink>
+1. <DocLink id="enObservabilityProfilingGetStarted" section="install-the-universal-profiling-agent-in-standalone-mode">Install the Universal Profiling Agent in standalone mode</DocLink>
 
-[discrete]
-[[profiling-install-agent-elastic-agent]]
-=== Install the Universal Profiling Agent using the {agent}
+<div id="profiling-install-agent-elastic-agent"></div>
 
-To install the Universal Profiling Agent using the {agent} and the Universal Profiling Agent integration, complete the following steps:
+### Install the Universal Profiling Agent using the ((agent))
 
-. Copy the `secret token` and `Universal Profiling Collector url` from the Elastic Agent Integration
-+
-[role="screenshot"]
-image::images/profiling-elastic-agent.png[]
-+
-. Click `Manage Universal Profiling Agent in Fleet` to complete the integration.
-. On the Integrations page, click **Add Universal Profiling Agent**.
-. In **Universal Profiling Agent → Settings**, add the information you copied from the *Add profiling data* page:
-.. Add the Universal Profiling collector URL to the **Universal Profiling collector endpoint** field.
-.. Add the secret token to the **Authorization** field.
-+
-[role="screenshot"]
-image::images/profililing-elastic-agent-creds.png[]
-+
-. Click **Save and continue**.
+To install the Universal Profiling Agent using the ((agent)) and the Universal Profiling Agent integration, complete the following steps:
 
-[discrete]
-[[profiling-install-agent-standalone]]
-== Install the Universal Profiling Agent in standalone mode
+1. Copy the `secret token` and `Universal Profiling Collector url` from the Elastic Agent Integration
+
+    ![](images/profiling-elastic-agent.png)
+
+1. Click `Manage Universal Profiling Agent in Fleet` to complete the integration.
+1. On the Integrations page, click **Add Universal Profiling Agent**.
+1. In **Universal Profiling Agent → Settings**, add the information you copied from the **Add profiling data** page:
+    1. Add the Universal Profiling collector URL to the **Universal Profiling collector endpoint** field.
+    1. Add the secret token to the **Authorization** field.
+
+        ![](images/profililing-elastic-agent-creds.png)
+
+1. Click **Save and continue**.
+
+<div id="profiling-install-agent-standalone"></div>
+
+## Install the Universal Profiling Agent in standalone mode
 
 The Universal Profiling Agent profiles your fleet. You need to install and configure it on every machine that you want to profile.
 The Universal Profiling Agent needs  `root` / `CAP_SYS_ADMIN` privileges to run.
 
-After clicking *Set up Universal Profiling* in the previous step, you'll see the instructions for installing the Universal Profiling Agent.
-You can also find these instructions by clicking the *Add data* button in the top-right corner of the page.
+After clicking **Set up Universal Profiling** in the previous step, you'll see the instructions for installing the Universal Profiling Agent.
+You can also find these instructions by clicking the **Add data** button in the top-right corner of the page.
 
-The following is an example of the provided instructions for {k8s}:
+The following is an example of the provided instructions for ((k8s)):
 
-[role="screenshot"]
-image::images/profiling-k8s-hostagent.png[]
+![](images/profiling-k8s-hostagent.png)
 
-[discrete]
-[[profiling-agent-config-notes]]
-=== Universal Profiling Agent configuration notes
+<div id="profiling-agent-config-notes"></div>
+
+### Universal Profiling Agent configuration notes
 
 Consider the following when configuring your Universal Profiling Agent:
 
 * The instructions in Kibana work well for testing environments. For production environments, we recommend setting an immutable version.
 
-* Before {stack} version 8.9 the Universal Profiling Agent versioning scheme was **not aligned with the {stack} version scheme**.
+* Before ((stack)) version 8.9 the Universal Profiling Agent versioning scheme was **not aligned with the ((stack)) version scheme**.
 
 * You can find a list of container image versions in the
-https://container-library.elastic.co/r/observability/profiling-agent[Elastic container library repository].
+    [Elastic container library repository](https://container-library.elastic.co/r/observability/profiling-agent).
 
-* For {k8s} deployments, the Helm chart version is already used to configure the same container image, unless
-overwritten with the `version` parameter in the Helm values file.
+* For ((k8s)) deployments, the Helm chart version is already used to configure the same container image, unless
+    overwritten with the `version` parameter in the Helm values file.
 
-* For {stack} version 8.8 or higher, use `v3` host agents. For version 8.7, use `v2`. `v3` host agents are incompatible with 8.7 {stack} versions.
+* For ((stack)) version 8.8 or higher, use `v3` host agents. For version 8.7, use `v2`. `v3` host agents are incompatible with 8.7 ((stack)) versions.
+

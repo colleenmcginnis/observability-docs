@@ -1,0 +1,117 @@
+---
+id: enObservabilityApmCustomIndexTemplate
+slug: /en/observability/apm-custom-index-template
+title: View the ((es)) index template
+description: Description to be written
+tags: []
+---
+
+{/*
+This content is reused in the Legacy ILM documentation
+ids look like this
+<span id="name-name{append_legacy}"></span>
+
+*/}
+
+<div id="apm-custom-index-template"></div>
+
+export let append_legacy = true
+
+{/* tag::index-template-integration[] */}
+
+Index templates are used to configure the backing indices of data streams as they are created.
+These index templates are composed of multiple component templates--reusable building blocks
+that configure index mappings, settings, and aliases.
+
+The default APM index templates can be viewed in ((kib)).
+Navigate to **((stack-manage-app))** → **Index Management** → **Index Templates**, and search for `apm`.
+Select any of the APM index templates to view their relevant component templates.
+
+<div id="index-template-view{append_legacy}"></div>
+
+## Edit the ((es)) index template
+
+<DocCallOut title="Warning" color="warning">
+Custom index mappings may conflict with the mappings defined by the APM integration
+and may break the APM integration and ((apm-app)) in ((kib)).
+Do not change or customize any default mappings.
+</DocCallOut>
+
+When you install the APM integration, ((fleet)) creates a default `@custom` component template for each data stream.
+You can edit this `@custom` component template to customize your ((es)) indices.
+
+First, determine which <DocLink id="enObservabilityApmDataStreams">data stream</DocLink> you'd like to edit.
+Then, open ((kib)) and navigate to **((stack-manage-app))** → **Index Management** → **Component Templates**.
+
+Custom component templates are named following this pattern: `<name_of_data_stream>@custom`.
+Search for the name of the data stream, like `traces-apm`, and select its custom component template.
+In this example, that'd be, `traces-apm@custom`.
+Then click **Manage** → **Edit**.
+
+Add any custom metadata, index settings, or mappings.
+
+<div id="apm-custom-index-template-index-settings"></div>
+
+### Index settings
+
+In the **Index settings** step, you can specify custom [index settings](((ref))/index-modules.html#index-modules-settings).
+For example, you could:
+
+* Customize the index lifecycle policy applied to a data stream.
+    See \<\<apm-data-streams-custom-policy,custom index lifecycle policies>> for a walk-through.
+
+* Change the number of [shards](((ref))/scalability.html) per index.
+    Specify the number of primary shards:
+
+    ```json
+    {
+      "settings": {
+        "number_of_shards": "4",
+      }
+    }
+    ```
+
+* Change the number of [replicas](((ref))/docs-replication.html) per index.
+    Specify the number of replica shards:
+
+    ```json
+    {
+      "index": {
+        "number_of_replicas": "2"
+      }
+    }
+    ```
+
+<div id="apm-custom-index-template-mappings"></div>
+
+### Mappings
+
+[Mapping](((ref))/mapping.html) is the process of defining how a document, and the fields it contains, are stored and indexed.
+In the **Mappings** step, you can add custom field mappings.
+For example, you could:
+
+* Add custom field mappings that you can index on and search.
+    In the **Mapped fields** tab, add a new field including the [field type](((ref))/mapping-types.html):
+
+    ![Editing a component template to add a new mapped field](images/custom-index-template-mapped-fields.png)
+
+* Add a [runtime field](((ref))/runtime.html) that is evaluated at query time.
+    In the **Runtime fields** tab, click **Create runtime field** and provide a field name,
+    type, and optionally a script:
+
+    ![Editing a component template to add a new runtime field](images/custom-index-template-runtime-fields.png)
+
+<div id="apm-custom-index-template-rollover"></div>
+
+## Roll over the data stream
+
+Changes to component templates are not applied retroactively to existing indices.
+For changes to take effect, you must create a new write index for the data stream.
+This can be done with the ((es)) [Rollover API](((ref))/indices-rollover-index.html).
+For example, to roll over the `traces-apm-default` data stream, run:
+
+```console
+POST /traces-apm-default/_rollover/
+```
+
+{/* end::index-template-integration[] */}

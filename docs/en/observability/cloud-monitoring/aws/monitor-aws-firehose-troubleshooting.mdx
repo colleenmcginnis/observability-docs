@@ -1,25 +1,27 @@
-[[monitor-aws-firehose-troubleshooting]]
-= Troubleshooting
+---
+id: enObservabilityMonitorAwsFirehoseTroubleshooting
+slug: /en/observability/monitor-aws-firehose-troubleshooting
+title: Troubleshooting
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Troubleshooting</titleabbrev>
-++++
+<div id="monitor-aws-firehose-troubleshooting"></div>
 
 You can use the monitoring tab in the Firehose console to ensure there are incoming records and the delivery success rate is 100%. By default Firehose also logs to a Cloudwatch log group with the name `/aws/kinesisfirehose/<delivery stream name>`, which is automatically created when the delivery stream is created. Two log streams, `DestinationDelivery` and `BackupDelivery`, are created in this log group.
 
-The backup settings in the delivery stream specify how failed delivery requests are handled. For more details on how to configure backups to S3, refer to <<firehose-step-three>>.
+The backup settings in the delivery stream specify how failed delivery requests are handled. For more details on how to configure backups to S3, refer to <DocLink id="enObservabilityMonitorAwsFirehose" section="step-3-specify-the-destination-settings-for-your-firehose-stream">Step 3: Specify the destination settings for your Firehose stream</DocLink>.
 
-[discrete]
-[[aws-firehose-troubleshooting-scaling]]
-== Scaling
+<div id="aws-firehose-troubleshooting-scaling"></div>
 
-Firehose can https://docs.aws.amazon.com/firehose/latest/dev/limits.html[automatically scale] to handle very high throughput. If your Elastic deployment is not properly configured for the data volume coming from Firehose, it could cause a bottleneck, which may lead to increased ingest times or indexing failures.
+## Scaling
 
-There are several facets to optimizing the underlying Elasticsearch performance, but Elastic Cloud provides several ready-to-use hardware profiles which can provide a good starting point. Other factors which can impact performance are {ref}/size-your-shards.html[shard sizing], {ref}/tune-for-indexing-speed.html[indexing configuration], and {ref}/index-lifecycle-management.html[index lifecycle management (ILM)].
+Firehose can [automatically scale](https://docs.aws.amazon.com/firehose/latest/dev/limits.html) to handle very high throughput. If your Elastic deployment is not properly configured for the data volume coming from Firehose, it could cause a bottleneck, which may lead to increased ingest times or indexing failures.
 
+There are several facets to optimizing the underlying Elasticsearch performance, but Elastic Cloud provides several ready-to-use hardware profiles which can provide a good starting point. Other factors which can impact performance are [shard sizing](((ref))/size-your-shards.html), [indexing configuration](((ref))/tune-for-indexing-speed.html), and [index lifecycle management (ILM)](((ref))/index-lifecycle-management.html).
 
-[discrete]
-[[aws-firehose-troubleshooting-support]]
-== Support
+<div id="aws-firehose-troubleshooting-support"></div>
 
-If you encounter further problems, please contact https://www.elastic.co/guide/en/starting-with-the-elasticsearch-platform-and-its-solutions/current/get-support-help.html[Elastic support].
+## Support
+
+If you encounter further problems, please contact [Elastic support](https://www.elastic.co/guide/en/starting-with-the-elasticsearch-platform-and-its-solutions/current/get-support-help.html).

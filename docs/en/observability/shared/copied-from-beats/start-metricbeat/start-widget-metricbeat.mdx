@@ -1,0 +1,60 @@
+
+import StartDeb from '../shared/start/deb.mdx'
+import StartRpm from '../shared/start/rpm.mdx'
+import StartMac from '../shared/start/mac.mdx'
+import StartLinux from '../shared/start/linux.mdx'
+import StartWin from '../shared/start/win.mdx'
+
+export let beatname_uc = "Metricbeat"
+
+export let beatname_lc = "metricbeat"
+
+export let beatname_pkg = "metricbeat"
+
+<DocTabs hasBorder>
+	<DocTab name="DEB">
+		<StartDeb
+      beatname_lc={props.beatname_lc}
+      beatname_pkg={props.beatname_pkg}
+      beatname_uc={props.beatname_uc}
+      beatname_url={props.beatname_url}
+      modulename={props.modulename}
+    />  
+	</DocTab>
+	<DocTab name="RPM">
+		<StartRpm
+      beatname_lc={props.beatname_lc}
+      beatname_pkg={props.beatname_pkg}
+      beatname_uc={props.beatname_uc}
+      beatname_url={props.beatname_url}
+      modulename={props.modulename}
+    />  
+	</DocTab>
+	<DocTab name="MacOS">
+		<StartMac
+      beatname_lc={props.beatname_lc}
+      beatname_pkg={props.beatname_pkg}
+      beatname_uc={props.beatname_uc}
+      beatname_url={props.beatname_url}
+      modulename={props.modulename}
+    />  
+	</DocTab>
+	<DocTab name="Linux">
+		<StartLinux
+      beatname_lc={props.beatname_lc}
+      beatname_pkg={props.beatname_pkg}
+      beatname_uc={props.beatname_uc}
+      beatname_url={props.beatname_url}
+      modulename={props.modulename}
+    />  
+	</DocTab>
+	<DocTab name="Windows">
+		<StartWin
+      beatname_lc={props.beatname_lc}
+      beatname_pkg={props.beatname_pkg}
+      beatname_uc={props.beatname_uc}
+      beatname_url={props.beatname_url}
+      modulename={props.modulename}
+    />  
+	</DocTab>
+</DocTabs>

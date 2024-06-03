@@ -1,93 +1,95 @@
-[[apm-logstash-output]]
-== Configure the {ls} output
+---
+id: enObservabilityApmLogstashOutput
+slug: /en/observability/apm-logstash-output
+title: Configure the ((ls)) output
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>{ls}</titleabbrev>
-++++
+import ApmSupportOverview from '../../components/support-overview.mdx'
+import SharedKibanaConfig from '../../shared-kibana-endpoint.mdx'
+import SharedSslLogstashConfig from '../../apm-configuring-ssl-logstash.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-logstash-output"></div>
 
-The {ls} output is not yet supported by {fleet}-managed APM Server.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  The ((ls)) output is not yet supported by ((fleet))-managed APM Server.
+</ApmSupportOverview>
 
-{ls} allows for additional processing and routing of APM events.
-The {ls} output sends events directly to {ls} using the lumberjack
+((ls)) allows for additional processing and routing of APM events.
+The ((ls)) output sends events directly to ((ls)) using the lumberjack
 protocol, which runs over TCP.
 
-[float]
-== Send events to {ls}
+<div id="send_events_to_((ls))"></div>
 
-To send events to {ls}, you must:
+## Send events to ((ls))
 
-. <<apm-ls-output-config,Enable the {ls} output in APM Server>>
-. <<apm-ls-kib-config,Enable the {kib} endpoint in APM Server>>
-. <<apm-ls-config-pipeline,Create a {ls} configuration pipeline in {ls}>>
+To send events to ((ls)), you must:
 
-[float]
-[[apm-ls-output-config]]
-=== {ls} output configuration
+1. <DocLink id="enObservabilityApmLogstashOutput" section="((ls))-output-configuration">Enable the ((ls)) output in APM Server</DocLink>
+1. <DocLink id="enObservabilityApmLogstashOutput" section="((kib))-endpoint-configuration">Enable the ((kib)) endpoint in APM Server</DocLink>
+1. <DocLink id="enObservabilityApmLogstashOutput" section="((ls))-configuration-pipeline">Create a ((ls)) configuration pipeline in ((ls))</DocLink>
 
-To enable the {ls} output in APM Server,
+<div id="apm-ls-output-config"></div>
+
+### ((ls)) output configuration
+
+To enable the ((ls)) output in APM Server,
 edit the `apm-server.yml` file to:
 
-. Disable the {es} output by commenting it out and
-. Enable the {ls} output by uncommenting the {ls} section and setting `enabled` to `true`:
-+
-[source,yaml]
-----
-output.logstash:
-  enabled: true
-  hosts: ["localhost:5044"] <1>
-----
-<1> The `hosts` option specifies the {ls} server and the port (`5044`) where {ls} is configured to listen for incoming
-APM Server connections.
+1. Disable the ((es)) output by commenting it out and
+1. Enable the ((ls)) output by uncommenting the ((ls)) section and setting `enabled` to `true`:
 
-[float]
-[[apm-ls-kib-config]]
-=== {kib} endpoint configuration
+    ```yaml
+    output.logstash:
+    enabled: true
+    hosts: ["localhost:5044"]  [^1]
+    ```
+    [^1]: The `hosts` option specifies the ((ls)) server and the port (`5044`) where ((ls)) is configured to listen for incoming
+    APM Server connections.
 
-include::../../shared-kibana-endpoint.asciidoc[tag=shared-kibana-config]
+<div id="apm-ls-kib-config"></div>
 
-[float]
-[[apm-ls-config-pipeline]]
-=== {ls} configuration pipeline
+### ((kib)) endpoint configuration
 
-Finally, you must create a {ls} configuration pipeline that listens for incoming
-APM Server connections and indexes received events into {es}.
+<SharedKibanaConfig />
 
-. Use the {logstash-ref}/plugins-inputs-elastic_agent.html[Elastic Agent input plugin] to configure
-{ls} to receive events from the APM Server. A minimal `input` config might look like this:
-+
-[source,conf]
-----
-input {
-  elastic_agent {
-    port => 5044
-  }
-}
-----
+<div id="apm-ls-config-pipeline"></div>
 
-. Use the {logstash-ref}/plugins-outputs-elasticsearch.html[{es} output plugin] to send
-events to {es} for indexing. A minimal `output` config might look like this:
-+
-[source,conf]
-----
-output {
-  elasticsearch {
-    data_stream => "true" <1>
-    cloud_id => "YOUR_CLOUD_ID_HERE" <2>
-    cloud_auth => "YOUR_CLOUD_AUTH_HERE" <2>
-  }
-}
-----
-<1> Enables indexing into {es} data streams.
-<2> This example assumes you're sending data to {ecloud}. If you're using a self-hosted version of {es}, use `hosts` instead. See {logstash-ref}/plugins-outputs-elasticsearch.html[{es} output plugin] for more information.
+### ((ls)) configuration pipeline
 
-Here's what your basic {ls} configuration file will look like when we put everything together:
+Finally, you must create a ((ls)) configuration pipeline that listens for incoming
+APM Server connections and indexes received events into ((es)).
 
-[source,conf]
-----
+1. Use the [Elastic Agent input plugin](((logstash-ref))/plugins-inputs-elastic_agent.html) to configure
+    ((ls)) to receive events from the APM Server. A minimal `input` config might look like this:
+
+    ```conf
+    input {
+      elastic_agent {
+        port => 5044
+      }
+    }
+    ```
+
+1. Use the [((es)) output plugin](((logstash-ref))/plugins-outputs-elasticsearch.html) to send
+    events to ((es)) for indexing. A minimal `output` config might look like this:
+
+    ```conf
+    output {
+      elasticsearch {
+        data_stream => "true"  [^1]
+        cloud_id => "YOUR_CLOUD_ID_HERE"  [^2]
+        cloud_auth => "YOUR_CLOUD_AUTH_HERE"  [^2]
+      }
+    }
+    ```
+    [^1]: Enables indexing into ((es)) data streams.
+    [^2]: This example assumes you're sending data to ((ecloud)). If you're using a self-hosted version of ((es)), use `hosts` instead. See [((es)) output plugin](((logstash-ref))/plugins-outputs-elasticsearch.html) for more information.
+
+Here's what your basic ((ls)) configuration file will look like when we put everything together:
+
+```conf
 input {
   elastic_agent {
     port => 5044
@@ -101,93 +103,101 @@ output {
     cloud_auth => "YOUR_CLOUD_AUTH_HERE"
   }
 }
-----
+```
 
-[float]
-== Accessing the @metadata field
+<div id="accessing_the_@metadata_field"></div>
 
-Every event sent to {ls} contains a special field called
-{logstash-ref}/event-dependent-configuration.html#metadata[`@metadata`] that you can
-use in {ls} for conditionals, filtering, indexing and more.
-APM Server sends the following `@metadata` to {ls}:
+## Accessing the @metadata field
 
-["source","json",subs="attributes"]
-----
+Every event sent to ((ls)) contains a special field called
+[`@metadata`](((logstash-ref))/event-dependent-configuration.html#metadata) that you can
+use in ((ls)) for conditionals, filtering, indexing and more.
+APM Server sends the following `@metadata` to ((ls)):
+
+```json
 {
     ...
     "@metadata": {
-      "beat": "apm-server", <1>
-      "version": "{version}" <2>
+      "beat": "apm-server",  [^1]
+      "version": "((version))"  [^2]
     }
 }
-----
-<1> To change the default `apm-server` value, set the
-<<apm-logstash-index,`index`>> option in the APM Server config file.
-<2> The current version of APM Server.
+```
+[^1]: To change the default `apm-server` value, set the
+<DocLink id="enObservabilityApmLogstashOutput" section="index">`index`</DocLink> option in the APM Server config file.
+[^2]: The current version of APM Server.
 
 In addition to `@metadata`, APM Server provides other potentially useful fields, like the
 `data_stream` field, which can be used to conditionally operate on
-{observability-guide}/apm-data-model.html[event types], namespaces, or datasets.
+[event types](((observability-guide))/apm-data-model.html), namespaces, or datasets.
 
-As an example, you might want to use {ls} to route all `metric` events to the same custom metrics data stream,
+As an example, you might want to use ((ls)) to route all `metric` events to the same custom metrics data stream,
 rather than to service-specific data streams:
 
-["source","json",subs="attributes"]
-----
+```json
 output {
-  if [@metadata][beat] == "apm-server" { <1>
-    if [data_stream][type] == "metrics" { <2>
+  if [@metadata][beat] == "apm-server" {  [^1]
+    if [data_stream][type] == "metrics" {  [^2]
       elasticsearch {
-        index => "%{[data_stream][type]}-custom-%{[data_stream][namespace]}" <3>
-        action => "create" <4>
-        cloud_id => "${CLOUD_ID}" <5>
-        cloud_auth => "${CLOUD_AUTH}" <5>
+        index => "%{[data_stream][type]}-custom-%{[data_stream][namespace]}"  [^3]
+        action => "create"  [^4]
+        cloud_id => "${CLOUD_ID}"  [^5]
+        cloud_auth => "${CLOUD_AUTH}"  [^5]
       }
     } else {
       elasticsearch {
-        data_stream => "true" <6>
+        data_stream => "true"  [^6]
         cloud_id => "${CLOUD_ID}"
         cloud_auth => "${CLOUD_AUTH}"
       }
     }
   }
 }
-----
-<1> Only apply this output if the data is being sent from the APM Server
-<2> Determine if the event type is `metric`
-<3> If the event type is `metric`, output to a custom data stream: `metrics-custom-<YOUR_NAMESPACE>`
-<4> You must explicitly set `action` to `create when using {ls} to output an index to a data stream
-<5> In this example, `cloud_id` and `cloud_auth` are stored as {logstash-ref}/environment-variables.html[environment variables]
-<6> For all other event types, index data directly into the predefined APM data steams
+```
+[^1]: Only apply this output if the data is being sent from the APM Server
+[^2]: Determine if the event type is `metric`
+[^3]: If the event type is `metric`, output to a custom data stream: `metrics-custom-<YOUR_NAMESPACE>`
+[^4]: You must explicitly set `action` to `create when using ((ls)) to output an index to a data stream
+[^5]: In this example, `cloud_id` and `cloud_auth` are stored as [environment variables](((logstash-ref))/environment-variables.html)
+[^6]: For all other event types, index data directly into the predefined APM data steams
 
-=== Compatibility
+<div id="compatibility"></div>
 
-This output works with all compatible versions of {ls}. See the
-https://www.elastic.co/support/matrix#matrix_compatibility[Elastic Support
-Matrix].
+### Compatibility
 
-=== Configuration options
+This output works with all compatible versions of ((ls)). See the
+[Elastic Support
+Matrix](https://www.elastic.co/support/matrix#matrix_compatibility).
+
+<div id="configuration_options"></div>
+
+### Configuration options
 
 You can specify the following options in the `logstash` section of the
 `apm-server.yml` config file:
 
-==== `enabled`
+<div id="enabled"></div>
+
+#### `enabled`
 
 The enabled config is a boolean setting to enable or disable the output. If set
 to false, the output is disabled.
 
 The default value is `false`.
 
-[[apm-hosts]]
-==== `hosts`
+<div id="apm-hosts"></div>
 
-The list of known {ls} servers to connect to. If load balancing is disabled, but
+#### `hosts`
+
+The list of known ((ls)) servers to connect to. If load balancing is disabled, but
 multiple hosts are configured, one host is selected randomly (there is no precedence).
 If one host becomes unreachable, another one is selected randomly.
 
 All entries in this list can contain a port number. The default port number 5044 will be used if no number is given.
 
-==== `compression_level`
+<div id="compression_level"></div>
+
+#### `compression_level`
 
 The gzip compression level. Setting this value to 0 disables compression.
 The compression level must be in the range of 1 (best speed) to 9 (best compression).
@@ -196,101 +206,122 @@ Increasing the compression level will reduce the network usage but will increase
 
 The default value is 3.
 
-==== `escape_html`
+<div id="escape_html"></div>
+
+#### `escape_html`
 
 Configure escaping of HTML in strings. Set to `true` to enable escaping.
 
 The default value is `false`.
 
-==== `worker`
+<div id="worker"></div>
 
-The number of workers per configured host publishing events to {ls}. This
+#### `worker`
+
+The number of workers per configured host publishing events to ((ls)). This
 is best used with load balancing mode enabled. Example: If you have 2 hosts and
 3 workers, in total 6 workers are started (3 for each host).
 
-[[apm-loadbalance]]
-==== `loadbalance`
+<div id="apm-loadbalance"></div>
 
-If set to true and multiple {ls} hosts are configured, the output plugin
-load balances published events onto all {ls} hosts. If set to false,
+#### `loadbalance`
+
+If set to true and multiple ((ls)) hosts are configured, the output plugin
+load balances published events onto all ((ls)) hosts. If set to false,
 the output plugin sends all events to only one host (determined at random) and
 will switch to another host if the selected one becomes unresponsive. The default value is false.
 
-["source","yaml",subs="attributes"]
-------------------------------------------------------------------------------
+```yaml
 output.logstash:
   hosts: ["localhost:5044", "localhost:5045"]
   loadbalance: true
   index: apm-server
-------------------------------------------------------------------------------
+```
 
-==== `ttl`
+<div id="ttl"></div>
 
-Time to live for a connection to {ls} after which the connection will be re-established.
-Useful when {ls} hosts represent load balancers. Since the connections to {ls} hosts
+#### `ttl`
+
+Time to live for a connection to ((ls)) after which the connection will be re-established.
+Useful when ((ls)) hosts represent load balancers. Since the connections to ((ls)) hosts
 are sticky, operating behind load balancers can lead to uneven load distribution between the instances.
 Specifying a TTL on the connection allows to achieve equal connection distribution between the
 instances.  Specifying a TTL of 0 will disable this feature.
 
 The default value is 0.
 
-NOTE: The "ttl" option is not yet supported on an asynchronous {ls} client (one with the "pipelining" option set).
+<DocCallOut title="Note">
+The "ttl" option is not yet supported on an asynchronous ((ls)) client (one with the "pipelining" option set).
+</DocCallOut>
 
-==== `pipelining`
+<div id="pipelining"></div>
 
-Configures the number of batches to be sent asynchronously to {ls} while waiting
-for ACK from {ls}. Output only becomes blocking once number of `pipelining`
+#### `pipelining`
+
+Configures the number of batches to be sent asynchronously to ((ls)) while waiting
+for ACK from ((ls)). Output only becomes blocking once number of `pipelining`
 batches have been written. Pipelining is disabled if a value of 0 is
 configured. The default value is 2.
 
-==== `proxy_url`
+<div id="proxy_url"></div>
 
-The URL of the SOCKS5 proxy to use when connecting to the {ls} servers. The
+#### `proxy_url`
+
+The URL of the SOCKS5 proxy to use when connecting to the ((ls)) servers. The
 value must be a URL with a scheme of `socks5://`. The protocol used to
-communicate to {ls} is not based on HTTP so a web-proxy cannot be used.
+communicate to ((ls)) is not based on HTTP so a web-proxy cannot be used.
 
 If the SOCKS5 proxy server requires client authentication, then a username and
 password can be embedded in the URL as shown in the example.
 
 When using a proxy, hostnames are resolved on the proxy server instead of on the
 client. You can change this behavior by setting the
-<<apm-logstash-proxy-use-local-resolver,`proxy_use_local_resolver`>> option.
+<DocLink id="enObservabilityApmLogstashOutput" section="proxy_use_local_resolver">`proxy_use_local_resolver`</DocLink> option.
 
-["source","yaml",subs="attributes"]
-------------------------------------------------------------------------------
+```yaml
 output.logstash:
   hosts: ["remote-host:5044"]
   proxy_url: socks5://user:password@socks5-proxy:2233
-------------------------------------------------------------------------------
+```
 
-[[apm-logstash-proxy-use-local-resolver]]
-==== `proxy_use_local_resolver`
+<div id="apm-logstash-proxy-use-local-resolver"></div>
 
-The `proxy_use_local_resolver` option determines if {ls} hostnames are
+#### `proxy_use_local_resolver`
+
+The `proxy_use_local_resolver` option determines if ((ls)) hostnames are
 resolved locally when using a proxy. The default value is false, which means
 that when a proxy is used the name resolution occurs on the proxy server.
 
-[[apm-logstash-index]]
-==== `index`
+<div id="apm-logstash-index"></div>
+
+#### `index`
 
 The index root name to write events to. The default is `apm-server`. For
-example `"apm"` generates `"[apm-]{version}-YYYY.MM.DD"`
-indices (for example, `"apm-{version}-2017.04.26"`).
+example "apm" generates "[apm-]((version))-YYYY.MM.DD"
+indices (for example, "apm-((version))-2017.04.26").
 
-NOTE: This parameter's value will be assigned to the `metadata.beat` field. It
-can then be accessed in {ls}'s output section as `%{[@metadata][beat]}`.
+<DocCallOut title="Note">
+This parameter's value will be assigned to the `metadata.beat` field. It
+can then be accessed in ((ls))'s output section as `%{[@metadata][beat]}`.
+</DocCallOut>
 
-==== `ssl`
+<div id="ssl"></div>
 
-Configuration options for SSL parameters like the root CA for {ls} connections. See
-<<apm-configuration-ssl>> for more information. To use SSL, you must also configure the
-{logstash-ref}/plugins-inputs-beats.html[{beats} input plugin for {ls}] to use SSL/TLS.
+#### `ssl`
 
-==== `timeout`
+Configuration options for SSL parameters like the root CA for ((ls)) connections. See
+<DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink> for more information. To use SSL, you must also configure the
+[((beats)) input plugin for ((ls))](((logstash-ref))/plugins-inputs-beats.html) to use SSL/TLS.
 
-The number of seconds to wait for responses from the {ls} server before timing out. The default is 30 (seconds).
+<div id="timeout"></div>
 
-==== `max_retries`
+#### `timeout`
+
+The number of seconds to wait for responses from the ((ls)) server before timing out. The default is 30 (seconds).
+
+<div id="max_retries"></div>
+
+#### `max_retries`
 
 The number of times to retry publishing an event after a publishing failure.
 After the specified number of retries, the events are typically dropped.
@@ -299,9 +330,11 @@ Set `max_retries` to a value less than 0 to retry until all events are published
 
 The default is 3.
 
-==== `bulk_max_size`
+<div id="bulk_max_size"></div>
 
-The maximum number of events to bulk in a single {ls} request. The default is 2048.
+#### `bulk_max_size`
+
+The maximum number of events to bulk in a single ((ls)) request. The default is 2048.
 
 If the Beat sends single events, the events are collected into batches. If the Beat publishes
 a large batch of events (larger than the value specified by `bulk_max_size`), the batch is
@@ -316,7 +349,9 @@ Setting `bulk_max_size` to values less than or equal to 0 disables the
 splitting of batches. When splitting is disabled, the queue decides on the
 number of events to be contained in a batch.
 
-==== `slow_start`
+<div id="slow_start"></div>
+
+#### `slow_start`
 
 If enabled, only a subset of events in a batch of events is transferred per transaction.
 The number of events to be sent increases up to `bulk_max_size` if no error is encountered.
@@ -324,18 +359,22 @@ On error, the number of events per transaction is reduced again.
 
 The default is `false`.
 
-==== `backoff.init`
+<div id="backoff.init"></div>
 
-The number of seconds to wait before trying to reconnect to {ls} after
+#### `backoff.init`
+
+The number of seconds to wait before trying to reconnect to ((ls)) after
 a network error. After waiting `backoff.init` seconds, APM Server tries to
 reconnect. If the attempt fails, the backoff timer is increased exponentially up
 to `backoff.max`. After a successful connection, the backoff timer is reset. The
 default is `1s`.
 
-==== `backoff.max`
+<div id="backoff.max"></div>
+
+#### `backoff.max`
 
 The maximum number of seconds to wait before attempting to connect to
-{ls} after a network error. The default is `60s`.
+((ls)) after a network error. The default is `60s`.
 
-// Logstash security
-include::{observability-docs-root}/docs/en/observability/apm/shared-ssl-logstash-config.asciidoc[]
+{/* Logstash security */}
+<SharedSslLogstashConfig />

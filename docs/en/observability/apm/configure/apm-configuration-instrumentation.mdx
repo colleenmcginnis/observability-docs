@@ -1,62 +1,70 @@
-[[apm-configuration-instrumentation]]
-= Configure APM instrumentation
+---
+id: enObservabilityApmConfigurationInstrumentation
+slug: /en/observability/apm-configuration-instrumentation
+title: Configure APM instrumentation
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Instrumentation</titleabbrev>
-++++
+import ApmSupportOverview from '../components/support-overview.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-configuration-instrumentation"></div>
 
-Instrumentation of APM Server is not yet supported for Fleet-managed APM.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  Instrumentation of APM Server is not yet supported for Fleet-managed APM.
+</ApmSupportOverview>
 
 APM Server uses the Elastic APM Go Agent to instrument its publishing pipeline.
 To gain insight into the performance of APM Server, you can enable this instrumentation and send trace data to APM Server.
-Currently, only the {es} output is instrumented.
+Currently, only the ((es)) output is instrumented.
 
 Example configuration with instrumentation enabled:
 
-["source","yaml"]
-----
+```yaml
 instrumentation:
   enabled: true
   environment: production
   hosts:
     - "http://localhost:8200"
   api_key: L5ER6FEvjkmlfalBealQ3f3fLqf03fazfOV
-----
+```
 
-[float]
-== Configuration options
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following options in the `instrumentation` section of the `apm-server.yml` config file:
 
-[float]
-=== `enabled`
+<div id="`enabled`"></div>
+
+### `enabled`
 
 Set to `true` to enable instrumentation of APM Server.
 Defaults to `false`.
 
-[float]
-=== `environment`
+<div id="`environment`"></div>
+
+### `environment`
 
 Set the environment in which APM Server is running, for example, `staging`, `production`, `dev`, etc.
-Environments can be filtered in the {kibana-ref}/xpack-apm.html[{apm-app}].
+Environments can be filtered in the [((apm-app))](((kibana-ref))/xpack-apm.html).
 
-[float]
-=== `hosts`
+<div id="`hosts`"></div>
 
-The {observability-guide}/apm-getting-started-apm-server.html[APM Server] hosts to report instrumentation data to.
+### `hosts`
+
+The [APM Server](((observability-guide))/apm-getting-started-apm-server.html) hosts to report instrumentation data to.
 Defaults to `http://localhost:8200`.
 
-[float]
-=== `api_key`
+<div id="`api_key`"></div>
 
-{observability-guide}/apm-api-key.html[API key] used to secure communication with the APM Server(s).
+### `api_key`
+
+[API key](((observability-guide))/apm-api-key.html) used to secure communication with the APM Server(s).
 If `api_key` is set then `secret_token` will be ignored.
 
-[float]
-=== `secret_token`
+<div id="`secret_token`"></div>
 
-{observability-guide}/apm-secret-token.html[Secret token] used to secure communication with the APM Server(s).
+### `secret_token`
+
+[Secret token](((observability-guide))/apm-secret-token.html) used to secure communication with the APM Server(s).

@@ -1,0 +1,106 @@
+---
+id: enObservabilityApmReleaseNotes8.5
+slug: /en/observability/apm-release-notes-8.5
+title: APM version 8.5
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.5"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.5" section="apm-version-853">APM version 8.5.3</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.5" section="apm-version-852">APM version 8.5.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.5" section="apm-version-851">APM version 8.5.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.5" section="apm-version-850">APM version 8.5.0</DocLink>
+
+<div id="apm-release-notes-8.5.3"></div>
+
+## APM version 8.5.3
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.5.2\...v8.5.3)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+- OpenTelemetry GRPC Spans from the Javascript API/SDK/Instrumentations are now correctly transformed into transactions with type=`request` [9308]({pull}9308)
+
+<div id="apm-release-notes-8.5.2"></div>
+
+## APM version 8.5.2
+
+This release includes an important APM Server bug fix.
+Users running APM Server with Tail Sampling enabled in version >=8.3.0 and above should upgrade immediately.
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.5.1\...v8.5.2)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Fix Tail Sampling OOM issues when storage limit is reached [9583]({pull}9583)
+- Null APM agent configuration entries are now treated as empty, and will not cause the server to exit with an error [9546]({pull}9546)
+
+<div id="apm-release-notes-8.5.1"></div>
+
+## APM version 8.5.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.5.0\...v8.5.1)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Set `error.id` for OpenTelemetry exception span events [9327]({pull}9327)
+- Add an `apm-server` user to /etc/passwd in the Docker images [9496]({pull}9496)
+
+<div id="apm-release-notes-8.5.0"></div>
+
+## APM version 8.5.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.4.3\...v8.5.0)
+
+<div id="known_issue"></div>
+
+### Known issue
+Due to a recent change in the Red Hat scan verification process,
+this version of APM Server is not available in the Red Hat Ecosystem Catalog.
+This bug will be fixed in the next release.
+Please use the [Elastic docker registry](https://www.docker.elastic.co/r/apm) to download the 8.5.0 APM Server image.
+
+<div id="breaking_changes"></div>
+
+### Breaking Changes
+- `event.action` is no longer recorded for OTLP logs, due to breaking OTLP changes [8765]({pull}8765)
+- Experimental support for ingesting profile data has been removed [8911]({pull}8911)
+- `process.ppid` has been renamed to `process.parent.pid` for alignment with ECS [8783]({pull}8783)
+
+<div id="deprecations"></div>
+
+### Deprecations
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Set `message` instead of `labels.event` for Jaeger span events [8765]({pull}8765)
+- Reach full support (still technical preview) for Java agent auto attachment on Linux by allowing attachment to a JVM of any user [8803]({pull}8803)
+- The OTLP/HTTP handlers now support gzip and deflate compression [9067]({pull}9067)
+- The Fleet integration now applies source maps correctly when they have been uploaded with a relative bundle_filepath [9082]({pull}9082)
+- Dynamically map all simple numerical metrics as `double`, to avoid mapping conflicts [8868]({pull}8868)
+- Fix data stream migration ingest pipeline, upgrading old `observer.*` and `process.ppid` fields [9095]({pull}9095)
+- Fix ordering of processors to ensure `host.hostname` is set consistently in aggregated metrics [8983]({pull}8983)
+
+<div id="intake_api_changes"></div>
+
+### Intake API Changes
+- Add a new `async` boolean query parameter (`intake/v2/events?async=<true|false>`).
+  When set to `true`, the batch will be processed asynchronously if the APM Server can
+  service the incoming request immediately, otherwise a "503 queue is full" error will
+  be returned [8979]({pull}8979)
+- <DocBadge template="technical preview" />  Add logs support to v2 intake API [9068]({pull}9068)
+
+<div id="added"></div>
+
+### Added
+- Set a default User-Agent field value when making HTTP requests [8758]({pull}8758)
+- OTLP support updated to opentelemetry-collector v0.56.0 [8765]({pull}8765)
+- Map additional fields from mobile agents [8784]({pull}8784)
+- Include global labels to the transaction metric dimensions [8839]({pull}8839)
+- Add an experimental integration of the Profiling collection agent gRPC service [9005]({pull}9005)
+- Clarify tail-based sampling storage limit reached errors [9085]({pull}9085)
+- Added support for new OTel JVM metric names, as changed in OTel Java SDK v1.13.0 [8777]({pull}8777)
+- <DocBadge template="technical preview" />  Added technical preview of aggregated service metrics [8607]({pull}8607)

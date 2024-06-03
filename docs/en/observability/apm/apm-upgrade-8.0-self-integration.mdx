@@ -1,0 +1,52 @@
+---
+id: enObservabilityApmUpgrade8.0SelfIntegration
+slug: /en/observability/apm-upgrade-8.0-self-integration
+title: Upgrade a self-installation of the APM integration to ((version))
+description: Description to be written
+tags: []
+---
+
+<div id="apm-upgrade-8.0-self-integration"></div>
+
+This upgrade guide is for the Elastic APM integration.
+Only use this guide if both of the following are true:
+
+* You have a self-installation of the ((stack)), i.e. you're not using ((ecloud)).
+* You have already switched to and are running ((fleet)) and the Elastic APM integration.
+
+<div id="prerequisites"></div>
+
+## Prerequisites
+
+1. Prior to upgrading to version ((version)), ((es)), and ((kib))
+    must be upgraded to version 7.17. To upgrade ((es)) and ((kib)),
+    see the [((stack)) Installation and Upgrade Guide](https://www.elastic.co/guide/en/elastic-stack/7.17/upgrading-elastic-stack.html)
+
+1. Review the APM <DocLink id="enObservabilityApmReleaseNotes">release notes</DocLink>, <DocLink id="enObservabilityApmBreaking">breaking changes</DocLink>,
+    and ((observability)) [What's new](((observability-guide))/whats-new.html) content.
+
+<div id="upgrade_steps"></div>
+
+## Upgrade steps
+
+1. Upgrade the ((stack)) to version ((version)).
+
+    The ((stack)) (((es)) and ((kib))) must be upgraded before ((agent)).
+    See the [((stack)) Installation and Upgrade Guide](((stack-ref))/upgrading-elastic-stack.html) for guidance.
+
+1. Upgrade ((agent)) to version ((version)).
+    As a part of this process, the APM integration will automatically upgrade to version ((version)).
+
+    1. In ((fleet)), select **Agents**.
+
+    1. Under **Agents**, click **Upgrade available** to see a list of agents that you can upgrade.
+
+    1. Choose **Upgrade agent** from the **Actions** menu next to the agent you want to upgrade.
+        The **Upgrade agent** option is grayed out when an upgrade is unavailable, or
+        the ((kib)) version is lower than the agent version.
+
+    For more details, or for bulk upgrade instructions, see
+    [Upgrade ((agent))](((fleet-guide))/upgrade-elastic-agent.html)
+
+{/* ******************************************************** */}
+

@@ -1,0 +1,32 @@
+
+<DocDefList>
+  <DocDefTerm>
+    **`create`**
+  </DocDefTerm>
+  <DocDefDescription>
+    Create an API Key with the specified privilege(s). No required flags.
+
+    The user requesting to create an API Key needs to have APM privileges used by the APM Server.
+    A superuser, by default, has these privileges. For other users,
+    you can create them. See <DocLink id="enObservabilityApmPrivilegesApiKey">create an API key user</DocLink> for required privileges.
+  </DocDefDescription>
+  <DocDefTerm>
+    **`info`**
+  </DocDefTerm>
+  <DocDefDescription>
+    Query API Key(s). `--id` or `--name` required.
+  </DocDefDescription>
+  <DocDefTerm>
+    **`invalidate`**
+  </DocDefTerm>
+  <DocDefDescription>
+    Invalidate API Key(s). `--id` or `--name` required.
+  </DocDefDescription>
+  <DocDefTerm>
+    **`verify`**
+  </DocDefTerm>
+  <DocDefDescription>
+    Check if a credentials string has the given privilege(s).
+    `--credentials` required.
+  </DocDefDescription>
+</DocDefList>

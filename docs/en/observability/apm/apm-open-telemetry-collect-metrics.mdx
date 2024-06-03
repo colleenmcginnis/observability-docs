@@ -1,13 +1,23 @@
-[[apm-open-telemetry-collect-metrics]]
-=== Collect metrics
+---
+id: enObservabilityApmOpenTelemetryCollectMetrics
+slug: /en/observability/apm-open-telemetry-collect-metrics
+title: Collect metrics
+description: Description to be written
+tags: []
+---
 
-IMPORTANT: When collecting metrics, please note that the https://www.javadoc.io/doc/io.opentelemetry/opentelemetry-api/latest/io/opentelemetry/api/metrics/DoubleValueRecorder.html[`DoubleValueRecorder`]
-and https://www.javadoc.io/doc/io.opentelemetry/opentelemetry-api/latest/io/opentelemetry/api/metrics/LongValueObserver.html[`LongValueRecorder`] metrics are not yet supported.
+import OpenKibanaWidget from './tab-widgets/open-kibana-widget.mdx'
+
+<div id="apm-open-telemetry-collect-metrics"></div>
+
+<DocCallOut title="Important" color="warning">
+When collecting metrics, please note that the [`DoubleValueRecorder`](https://www.javadoc.io/doc/io.opentelemetry/opentelemetry-api/latest/io/opentelemetry/api/metrics/DoubleValueRecorder.html)
+and [`LongValueRecorder`](https://www.javadoc.io/doc/io.opentelemetry/opentelemetry-api/latest/io/opentelemetry/api/metrics/LongValueObserver.html) metrics are not yet supported.
+</DocCallOut>
 
 Here's an example of how to capture business metrics from a Java application.
 
-[source,java]
-----
+```java
 // initialize metric
 Meter meter = GlobalMetricsProvider.getMeter("my-frontend");
 DoubleCounter orderValueCounter = meter.doubleCounterBuilder("order_value").build();
@@ -19,33 +29,31 @@ public void createOrder(HttpServletRequest request) {
    // increment business metrics for monitoring
    orderValueCounter.add(orderPrice);
 }
-----
+```
 
-See the https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md[Open Telemetry Metrics API]
+See the [Open Telemetry Metrics API](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md)
 for more information.
 
-[float]
-[[apm-open-telemetry-verify-metrics]]
-==== Verify OpenTelemetry metrics data
+<div id="apm-open-telemetry-verify-metrics"></div>
 
-Use *Discover* to validate that metrics are successfully reported to {kib}.
+## Verify OpenTelemetry metrics data
 
-. Launch {kib}:
-+
---
-include::{observability-docs-root}/docs/en/observability/apm/tab-widgets/open-kibana-widget.asciidoc[]
---
+Use **Discover** to validate that metrics are successfully reported to ((kib)).
 
-. Open the main menu, then click *Discover*.
-. Select `apm-*` as your index pattern.
-. Filter the data to only show documents with metrics: `[data_stream][type]: "metrics"`
-. Narrow your search with a known OpenTelemetry field. For example, if you have an `order_value` field, add `order_value: *` to your search to return
-only OpenTelemetry metrics documents.
+1. Launch ((kib)):
 
-[float]
-[[apm-open-telemetry-visualize]]
-==== Visualize in {kib}
+    <OpenKibanaWidget />
 
-Use *Lens* to create visualizations for OpenTelemetry metrics. Lens enables you to build visualizations by dragging and dropping data fields. It makes smart visualization suggestions for your data, allowing you to switch between visualization types.
+1. Open the main menu, then click **Discover**.
+1. Select `apm-*` as your index pattern.
+1. Filter the data to only show documents with metrics: `[data_stream][type]: "metrics"`
+1. Narrow your search with a known OpenTelemetry field. For example, if you have an `order_value` field, add `order_value: *` to your search to return
+    only OpenTelemetry metrics documents.
 
-For more information on using Lens, refer to the {kibana-ref}/lens.html[Lens documentation].
+<div id="apm-open-telemetry-visualize"></div>
+
+## Visualize in ((kib))
+
+Use **Lens** to create visualizations for OpenTelemetry metrics. Lens enables you to build visualizations by dragging and dropping data fields. It makes smart visualization suggestions for your data, allowing you to switch between visualization types.
+
+For more information on using Lens, refer to the [Lens documentation](((kibana-ref))/lens.html).

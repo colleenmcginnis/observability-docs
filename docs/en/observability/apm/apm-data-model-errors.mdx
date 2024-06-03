@@ -1,0 +1,67 @@
+---
+id: enObservabilityApmDataModelErrors
+slug: /en/observability/apm-data-model-errors
+title: Errors
+description: Description to be written
+tags: []
+---
+
+import LogsDataStreams from './data-streams/logs-data-streams.mdx'
+
+<div id="apm-data-model-errors"></div>
+
+An error event contains at least
+information about the original `exception` that occurred
+or about a `log` created when the exception occurred.
+For simplicity, errors are represented by a unique ID.
+
+An Error contains:
+
+* Both the captured `exception` and the captured `log` of an error can contain a `stack trace`,
+    which is helpful for debugging.
+
+* The `culprit` of an error indicates where it originated.
+* An error might relate to the <DocLink id="enObservabilityApmDataModelTransactions">transaction</DocLink> during which it happened,
+    via the `transaction.id`.
+
+* Data about the environment in which the event is recorded:
+    * Service - environment, framework, language, etc.
+    * Host - architecture, hostname, IP, etc.
+    * Process - args, PID, PPID, etc.
+    * URL - full, domain, port, query, etc.
+    * <DocLink id="enObservabilityApmDataModelMetadata" section="user-context">User</DocLink> - (if supplied) email, ID, username, etc.
+
+In addition, agents provide options for users to capture custom <DocLink id="enObservabilityApmDataModelMetadata">metadata</DocLink>.
+Metadata can be indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="labels">`labels`</DocLink>, or not-indexed - <DocLink id="enObservabilityApmDataModelMetadata" section="custom-context">`custom`</DocLink>.
+
+<DocCallOut title="Tip">
+Most agents limit keyword fields (e.g. `error.id`) to 1024 characters,
+non-keyword fields (e.g. `error.exception.message`) to 10,000 characters.
+</DocCallOut>
+
+Errors are stored in error indices.
+
+<div id="data_streams"></div>
+
+## Data streams
+
+Errors are stored in the following data streams:
+
+<LogsDataStreams />
+
+See <DocLink id="enObservabilityApmDataStreams">Data streams</DocLink> to learn more.
+
+<div id="example_error_document"></div>
+
+## Example error document
+
+This example shows what error documents can look like when indexed in ((es)).
+
+<DocAccordion buttonContent="Expand ((es)) document">
+
+```json
+include::\(\(apm-server-root))/docs/data/elasticsearch/generated/errors.json[]
+```
+
+</DocAccordion>
+

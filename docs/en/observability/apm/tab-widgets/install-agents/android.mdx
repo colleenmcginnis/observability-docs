@@ -1,0 +1,73 @@
+
+**1. Add the agent to your project**
+
+First, add the [Elastic APM agent plugin](https://plugins.gradle.org/plugin/co.elastic.apm.android) to your application's `build.gradle` file as shown below:
+
+```groovy
+// Android app's build.gradle file
+plugins {
+    id "com.android.application"
+    id "co.elastic.apm.android" version "[latest_version]"  [^1]
+}
+```
+[^1]: The Elastic plugin declaration must be added below the Android app plugin declaration (`com.android.application`) and below the Kotlin plugin declaration (if used).
+
+**2. Configure the agent**
+
+After adding the agent plugin, configure it.
+A minimal configuration sets the Elastic APM integration endpoint as shown below:
+
+```groovy
+// Android app's build.gradle file
+plugins {
+    //...
+    id "co.elastic.apm.android" version "[latest_version]"  [^1]
+}
+
+elasticApm {
+    // Minimal configuration
+    serverUrl = "https://your.elastic.server"
+
+    // Optional
+    serviceName = "your app name"  [^2]
+    serviceVersion = "0.0.0"  [^3]
+    apiKey = "your server api key"  [^4]
+    secretToken = "your server auth token"  [^5]
+}
+```
+[^1]: You can find the latest version in the [Gradle plugin portal](https://plugins.gradle.org/plugin/co.elastic.apm.android).
+[^2]: Defaults to your `android.defaultConfig.applicationId` value.
+[^3]: Defaults to your `android.defaultConfig.versionName` value.
+[^4]: Defaults to null.
+More info on API Keys [here](((ref))/security-api-create-api-key.html).
+[^5]: Defaults to null.
+
+<DocCallOut title="Note">
+When both `secretToken` and `apiKey` are provided, apiKey has priority and secretToken is ignored.
+</DocCallOut>
+
+**3. Initialize the agent**
+
+After syncing your project with the Gradle changes above, the Elastic APM agent needs to be initialized within your [Application class](https://developer.android.com/reference/android/app/Application).
+This example shows the simplest way to configure the agent:
+
+```java
+// Your Application class
+
+class MyApp extends android.app.Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ElasticApmAgent.initialize(this);  [^1]
+    }
+}
+```
+[^1]: Initialize the Elastic APM agent once.
+
+All that's left is to compile and run your application.
+That's it!
+
+**Learn more in the agent reference**
+
+Read more in the [APM Android Agent Reference](((apm-android-ref))/intro.html).

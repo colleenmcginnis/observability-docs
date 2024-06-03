@@ -1,56 +1,117 @@
-[[grant-cases-access]]
-= Configure access to cases
+---
+id: enObservabilityGrantCasesAccess
+slug: /en/observability/grant-cases-access
+title: Configure access to cases
+description: Description to be written
+tags: []
+---
 
-// lint ignore observability
-To access and send cases to external systems, you need the {subscriptions}[appropriate license],
-and your role must have the *Cases* {kib} privilege as a user for the *{observability}* feature.
+<div id="grant-cases-access"></div>
+
+{/* lint ignore observability */}
+To access and send cases to external systems, you need the [appropriate license](((subscriptions))),
+and your role must have the **Cases** ((kib)) privilege as a user for the **((observability))** feature.
 
 Here are the minimum required privileges:
 
-// lint disable observability
-[options="header"]
-|===
+{/* lint disable observability */}
+<DocTable columns={[
+  {
+    "title": "Action",
+    "width": "50%"
+  },
+  {
+    "title": "((kib)) Privileges",
+    "width": "50%"
+  }
+]}>
+  <DocRow>
+    <DocCell>
+      Give full access to manage cases and settings
 
-| Action | {kib} Privileges
-| Give full access to manage cases and settings
-a|
-* `All` for the *Cases* feature under *{observability}*.
-* `All` for the *{connectors-feature}* feature under *Management*.
+    </DocCell>
+    <DocCell>
 
-[NOTE]
-====
-Roles without `All` *{connectors-feature}* feature privileges cannot create, add, delete, or modify case connectors.
+      * `All` for the **Cases** feature under **((observability))**.
+      * `All` for the **((connectors-feature))** feature under **Management**.
 
-By default, `All` for the *Cases* feature includes authority to delete cases, delete alerts and comments from cases, and edit case settings unless you customize the sub-feature privileges.
-====
 
-| Give assignee access to cases
-a| `All` for the *Cases* feature under *{observability}*.
+      <DocCallOut title="Note">
 
-NOTE: Before a user can be assigned to a case, they must log into {kib} at
-least once, which creates a user profile.
+      Roles without `All` **((connectors-feature))** feature privileges cannot create, add, delete, or modify case connectors.
 
-| Give view-only access for cases
-a| `Read` for the *Cases* feature under *{observability}*.
+      By default, `All` for the **Cases** feature includes authority to delete cases, delete alerts and comments from cases, and edit case settings unless you customize the sub-feature privileges.
 
-NOTE: By default, `Read` for the *Cases* feature does not include authority to delete cases or delete alerts and comments from cases. You also cannot view or edit case settings. You can enable these actions by customizing the sub-feature privileges.
+      </DocCallOut>
 
-| Give access to add alerts to cases
-a|
-* `All` for the *Cases* feature under *{observability}*.
-* `Read` for an *{observability}* feature that has alerts.
 
-| Revoke all access to cases | `None` for the *Cases* feature under *{observability}*.
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      Give assignee access to cases
 
-|===
-// lint enable observability
+    </DocCell>
+    <DocCell>
+      `All` for the **Cases** feature under **((observability))**.
 
-NOTE: If you are using an on-premises {kib} deployment and want your email
+      <DocCallOut title="Note">
+      Before a user can be assigned to a case, they must log into ((kib)) at
+      least once, which creates a user profile.
+      </DocCallOut>
+
+
+
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      Give view-only access for cases
+
+    </DocCell>
+    <DocCell>
+      `Read` for the **Cases** feature under **((observability))**.
+
+      <DocCallOut title="Note">
+      By default, `Read` for the **Cases** feature does not include authority to delete cases or delete alerts and comments from cases. You also cannot view or edit case settings. You can enable these actions by customizing the sub-feature privileges.
+      </DocCallOut>
+
+
+
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>
+      Give access to add alerts to cases
+
+    </DocCell>
+    <DocCell>
+
+      * `All` for the **Cases** feature under **((observability))**.
+      * `Read` for an **((observability))** feature that has alerts.
+
+
+
+    </DocCell>
+  </DocRow>
+  <DocRow>
+    <DocCell>Revoke all access to cases</DocCell>
+    <DocCell>
+      `None` for the **Cases** feature under **((observability))**.
+
+
+    </DocCell>
+  </DocRow>
+</DocTable>
+{/* lint enable observability */}
+
+<DocCallOut title="Note">
+If you are using an on-premises ((kib)) deployment and want your email
 notifications and external incident management systems to contain links back
-to {kib}, configure the
-{kibana-ref}/settings.html#server-publicBaseUrl[server.publicBaseUrl] setting.
+to ((kib)), configure the
+[server.publicBaseUrl](((kibana-ref))/settings.html#server-publicBaseUrl) setting.
+</DocCallOut>
 
-For more details, refer to {kibana-ref}/xpack-spaces.html#spaces-control-user-access[feature access based on user privileges].
+For more details, refer to [feature access based on user privileges](((kibana-ref))/xpack-spaces.html#spaces-control-user-access).
 
-[role="screenshot"]
-image::images/cases-privileges.png[]
+![](images/cases-privileges.png)

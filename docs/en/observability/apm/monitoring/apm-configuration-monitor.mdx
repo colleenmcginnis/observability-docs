@@ -1,135 +1,155 @@
-[float]
-[[apm-configuration-monitor]]
-=== Settings for internal collection
+
+<div id="apm-configuration-monitor"></div>
+
+### Settings for internal collection
 
 Use the following settings to configure internal collection when you are not
-using {metricbeat} to collect monitoring data.
+using ((metricbeat)) to collect monitoring data.
 
 You specify these settings in the X-Pack monitoring section of the
 `apm-server.yml` config file:
 
-[float]
-==== `monitoring.enabled`
+<div id="`monitoring.enabled`"></div>
 
-The `monitoring.enabled` config is a boolean setting to enable or disable {monitoring}.
+#### `monitoring.enabled`
+
+The `monitoring.enabled` config is a boolean setting to enable or disable ((monitoring)).
 If set to `true`, monitoring is enabled.
 
 The default value is `false`.
 
-[float]
-==== `monitoring.elasticsearch`
+<div id="`monitoring.elasticsearch`"></div>
 
-The {es} instances that you want to ship your APM Server metrics to. This
+#### `monitoring.elasticsearch`
+
+The ((es)) instances that you want to ship your APM Server metrics to. This
 configuration option contains the following fields:
 
-[float]
-===== `api_key`
+<div id="`api_key`"></div>
 
-The detail of the API key to be used to send monitoring information to {es}.
-See <<apm-beats-api-keys>> for more information.
+##### `api_key`
 
-[float]
-===== `bulk_max_size`
+The detail of the API key to be used to send monitoring information to ((es)).
+See <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink> for more information.
 
-The maximum number of metrics to bulk in a single {es} bulk API index request.
-The default is `50`. For more information, see <<apm-elasticsearch-output>>.
+<div id="`bulk_max_size`"></div>
 
-[float]
-===== `backoff.init`
+##### `bulk_max_size`
 
-The number of seconds to wait before trying to reconnect to {es} after
+The maximum number of metrics to bulk in a single ((es)) bulk API index request.
+The default is `50`. For more information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
+
+<div id="`backoff.init`"></div>
+
+##### `backoff.init`
+
+The number of seconds to wait before trying to reconnect to ((es)) after
 a network error. After waiting `backoff.init` seconds, APM Server tries to
 reconnect. If the attempt fails, the backoff timer is increased exponentially up
 to `backoff.max`. After a successful connection, the backoff timer is reset. The
 default is `1s`.
 
-[float]
-===== `backoff.max`
+<div id="`backoff.max`"></div>
+
+##### `backoff.max`
 
 The maximum number of seconds to wait before attempting to connect to
-{es} after a network error. The default is `60s`.
+((es)) after a network error. The default is `60s`.
 
-[float]
-===== `compression_level`
+<div id="`compression_level`"></div>
+
+##### `compression_level`
 
 The gzip compression level. Setting this value to `0` disables compression. The
 compression level must be in the range of `1` (best speed) to `9` (best
 compression). The default value is `0`. Increasing the compression level
 reduces the network usage but increases the CPU usage.
 
-[float]
-===== `headers`
+<div id="`headers`"></div>
+
+##### `headers`
 
 Custom HTTP headers to add to each request. For more information, see
-<<apm-elasticsearch-output>>.
+<DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
 
-[float]
-===== `hosts`
+<div id="`hosts`"></div>
 
-The list of {es} nodes to connect to. Monitoring metrics are distributed to
+##### `hosts`
+
+The list of ((es)) nodes to connect to. Monitoring metrics are distributed to
 these nodes in round robin order. For more information, see
-<<apm-elasticsearch-output>>.
+<DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
 
-[float]
-===== `max_retries`
+<div id="`max_retries`"></div>
+
+##### `max_retries`
 
 The number of times to retry sending the monitoring metrics after a failure.
 After the specified number of retries, the metrics are typically dropped. The
-default value is `3`. For more information, see <<apm-elasticsearch-output>>.
+default value is `3`. For more information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
 
-[float]
-===== `parameters`
+<div id="`parameters`"></div>
+
+##### `parameters`
 
 Dictionary of HTTP parameters to pass within the URL with index operations.
 
-[float]
-===== `password`
+<div id="`password`"></div>
 
-The password that APM Server uses to authenticate with the {es} instances for
+##### `password`
+
+The password that APM Server uses to authenticate with the ((es)) instances for
 shipping monitoring data.
 
-[float]
-===== `metrics.period`
+<div id="`metrics.period`"></div>
 
-The time interval (in seconds) when metrics are sent to the {es} cluster. A new
+##### `metrics.period`
+
+The time interval (in seconds) when metrics are sent to the ((es)) cluster. A new
 snapshot of APM Server metrics is generated and scheduled for publishing each
 period. The default value is 10 * time.Second.
 
-[float]
-===== `state.period`
+<div id="`state.period`"></div>
 
-The time interval (in seconds) when state information are sent to the {es} cluster. A new
+##### `state.period`
+
+The time interval (in seconds) when state information are sent to the ((es)) cluster. A new
 snapshot of APM Server state is generated and scheduled for publishing each
 period. The default value is 60 * time.Second.
 
-[float]
-===== `protocol`
+<div id="`protocol`"></div>
 
-The name of the protocol to use when connecting to the {es} cluster. The options
+##### `protocol`
+
+The name of the protocol to use when connecting to the ((es)) cluster. The options
 are: `http` or `https`. The default is `http`. If you specify a URL for `hosts`,
 however, the value of protocol is overridden by the scheme you specify in the URL.
 
-[float]
-===== `proxy_url`
+<div id="`proxy_url`"></div>
 
-The URL of the proxy to use when connecting to the {es} cluster. For more
-information, see <<apm-elasticsearch-output>>.
+##### `proxy_url`
 
-[float]
-===== `timeout`
+The URL of the proxy to use when connecting to the ((es)) cluster. For more
+information, see <DocLink id="enObservabilityApmElasticsearchOutput">Configure the ((es)) output</DocLink>.
 
-The HTTP request timeout in seconds for the {es} request. The default is `90`.
+<div id="`timeout`"></div>
 
-[float]
-===== `ssl`
+##### `timeout`
+
+The HTTP request timeout in seconds for the ((es)) request. The default is `90`.
+
+<div id="`ssl`"></div>
+
+##### `ssl`
 
 Configuration options for Transport Layer Security (TLS) or Secure Sockets Layer
 (SSL) parameters like the certificate authority (CA) to use for HTTPS-based
 connections. If the `ssl` section is missing, the host CAs are used for
-HTTPS connections to {es}. For more information, see <<apm-configuration-ssl>>.
+HTTPS connections to ((es)). For more information, see <DocLink id="enObservabilityApmConfigurationSsl">SSL/TLS output settings</DocLink>.
 
-[float]
-===== `username`
+<div id="`username`"></div>
 
-The user ID that APM Server uses to authenticate with the {es} instances for
+##### `username`
+
+The user ID that APM Server uses to authenticate with the ((es)) instances for
 shipping monitoring data.

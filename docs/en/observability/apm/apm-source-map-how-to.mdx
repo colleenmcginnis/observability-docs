@@ -1,5 +1,12 @@
-[[apm-source-map-how-to]]
-=== Create and upload source maps (RUM)
+---
+id: enObservabilityApmSourceMapHowTo
+slug: /en/observability/apm-source-map-how-to
+title: Create and upload source maps (RUM)
+description: Description to be written
+tags: []
+---
+
+<div id="apm-source-map-how-to"></div>
 
 Minifying JavaScript bundles in production is a common practice;
 it can greatly improve the load time and network latency of your applications.
@@ -10,36 +17,33 @@ and not something you only do when you see unhelpful errors.
 That's because uploading source maps after errors happen won't make old errors magically readable —
 errors must occur again for source mapping to occur.
 
-Here's an example of an exception stack trace in the {apm-app} when using minified code.
+Here's an example of an exception stack trace in the ((apm-app)) when using minified code.
 As you can see, it's not very helpful.
 
-[role="screenshot"]
-image::images/source-map-before.png[{apm-app} without source mapping]
+![((apm-app)) without source mapping](images/source-map-before.png)
 
 With a source map, minified files are mapped back to the original source code,
 allowing you to maintain the speed advantage of minified code,
 without losing the ability to quickly and easily debug your application.
 Here's the same example as before, but with a source map uploaded and applied:
 
-[role="screenshot"]
-image::images/source-map-after.png[{apm-app} with source mapping]
+![((apm-app)) with source mapping](images/source-map-after.png)
 
-Follow the steps below to enable source mapping your error stack traces in the {apm-app}:
+Follow the steps below to enable source mapping your error stack traces in the ((apm-app)):
 
-* <<apm-source-map-rum-initialize>>
-* <<apm-source-map-rum-generate>>
-* <<apm-source-map-rum-upload>>
+* <DocLink id="enObservabilityApmSourceMapHowTo" section="initialize-the-rum-agent">Initialize the RUM Agent</DocLink>
+* <DocLink id="enObservabilityApmSourceMapHowTo" section="generate-a-source-map">Generate a source map</DocLink>
+* <DocLink id="enObservabilityApmSourceMapHowTo" section="upload-the-source-map">Upload the source map</DocLink>
 
-[float]
-[[apm-source-map-rum-initialize]]
-=== Initialize the RUM Agent
+<div id="apm-source-map-rum-initialize"></div>
+
+## Initialize the RUM Agent
 
 Set the service name and version of your application when initializing the RUM Agent.
 To make uploading subsequent source maps easier, the `serviceVersion` you choose might be the
 `version` from your `package.json`. For example:
 
-[source,js]
-----
+```js
 import { init as initApm } from '@elastic/apm-rum'
 const serviceVersion = require("./package.json").version
 
@@ -47,34 +51,32 @@ const apm = initApm({
   serviceName: 'myService',
   serviceVersion: serviceVersion
 })
-----
+```
 
 Or, `serviceVersion` could be a git commit reference. For example:
 
-[source,js]
-----
+```js
 const git = require('git-rev-sync')
 const serviceVersion = git.short()
-----
+```
 
 It can also be any other unique string that indicates a specific version of your application.
 The APM integration uses the service name and version to match the correct source map file to each stack trace.
 
-[float]
-[[apm-source-map-rum-generate]]
-=== Generate a source map
+<div id="apm-source-map-rum-generate"></div>
+
+## Generate a source map
 
 To be compatible with Elastic APM, source maps must follow the
-https://sourcemaps.info/spec.html[source map revision 3 proposal spec].
+[source map revision 3 proposal spec](https://sourcemaps.info/spec.html).
 
 Source maps can be generated and configured in many different ways.
 For example, parcel automatically generates source maps by default.
 If you're using webpack, some configuration may be needed to generate a source map:
 
-[source,js]
-----
+```js
 const webpack = require('webpack')
-const serviceVersion = require("./package.json").version <1>
+const serviceVersion = require("./package.json").version  [^1]
 const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   entry: 'app.js',
@@ -90,16 +92,18 @@ module.exports = {
     })
   ]
 }
-----
-<1> If you're using a different method of defining `serviceVersion`, you can set it here.
+```
+[^1]: If you're using a different method of defining `serviceVersion`, you can set it here.
 
-[float]
-[[apm-source-map-rum-upload]]
-=== Upload the source map
+<div id="apm-source-map-rum-upload"></div>
 
-TIP: When uploading a source map, ensure that RUM support is enabled in the APM integration.
+## Upload the source map
 
-{kib} exposes a {kibana-ref}/rum-sourcemap-api.html[source map endpoint] for uploading source maps.
+<DocCallOut title="Tip">
+When uploading a source map, ensure that RUM support is enabled in the APM integration.
+</DocCallOut>
+
+((kib)) exposes a [source map endpoint](((kibana-ref))/rum-sourcemap-api.html) for uploading source maps.
 Source maps can be uploaded as a string, or as a file upload.
 
 Let's look at two different ways to upload a source map: curl and a custom application.
@@ -112,38 +116,36 @@ Each example includes the four fields necessary for APM Server to later map mini
 
 If you have multiple source maps, you'll need to upload each individually.
 
-[float]
-[[apm-source-map-curl]]
-==== Upload via curl
+<div id="apm-source-map-curl"></div>
+
+### Upload via curl
 
 Here’s an example curl request that uploads the source map file created in the previous step.
 This request uses an API key for authentication.
 
-[source,console]
-----
-SERVICEVERSION=`node -e "console.log(require('./package.json').version);"` && \ <1>
+```console
+SERVICEVERSION=`node -e "console.log(require('./package.json').version);"` && \  [^1]
 curl -X POST "http://localhost:5601/api/apm/sourcemaps" \
 -H 'Content-Type: multipart/form-data' \
 -H 'kbn-xsrf: true' \
--H 'Authorization: ApiKey ${YOUR_API_KEY}' \ <2>
+-H 'Authorization: ApiKey ${YOUR_API_KEY}' \  [^2]
 -F 'service_name=foo' \
 -F 'service_version=$SERVICEVERSION' \
 -F 'bundle_filepath=/test/e2e/general-usecase/app.min.js' \
 -F 'sourcemap=@./dist/app.min.js.map'
-----
-<1> This example uses the version from `package.json`
-<2> The API key used here needs to have appropriate {kibana-ref}/rum-sourcemap-api.html[privileges]
+```
+[^1]: This example uses the version from `package.json`
+[^2]: The API key used here needs to have appropriate [privileges](((kibana-ref))/rum-sourcemap-api.html)
 
-[float]
-[[apm-source-map-custom-app]]
-==== Upload via a custom app
+<div id="apm-source-map-custom-app"></div>
+
+### Upload via a custom app
 
 To ensure uploading source maps become a part of your deployment process,
 consider automating the process with a custom application.
 Here's an example Node.js application that uploads the source map file created in the previous step:
 
-[source,js]
-----
+```js
 console.log('Uploading sourcemaps!')
 var request = require('request')
 var filepath = './dist/app.min.js.map'
@@ -165,13 +167,13 @@ request.post({url: 'http://localhost:5601/api/apm/sourcemaps',formData: formData
     console.log('Sourcemaps uploaded!')
   }
 })
-----
+```
 
-[float]
-[[apm-source-map-next]]
-=== What happens next
+<div id="apm-source-map-next"></div>
 
-Source maps are stored in {es}. When you upload a source map, a new {es} document is created
+## What happens next
+
+Source maps are stored in ((es)). When you upload a source map, a new ((es)) document is created
 containing the contents of the source map.
 When a RUM request comes in, APM Server will make use of these source map documents to apply the
 source map logic to the event's stack traces.

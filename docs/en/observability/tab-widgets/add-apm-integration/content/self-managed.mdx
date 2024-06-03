@@ -1,0 +1,30 @@
+
+1. In ((kib)), select **Add integrations** > **Elastic APM**.
+
+    {/* ![((fleet)) showing APM integration](images/kibana-fleet-integrations-apm.png) */}
+
+1. Click **Add Elastic APM**.
+
+    {/* ![((fleet)) showing APM integration overview](images/kibana-fleet-integrations-apm-overview.png) */}
+
+1. On the **Add Elastic APM integration** page,
+define the host and port where APM Server will listen.
+Make a note of this value--you'll need it later.
+
+    <DocCallOut title="Tip">
+      Using Docker or Kubernetes?
+      Set the host to `0.0.0.0` to bind to all interfaces.
+    </DocCallOut>
+
+
+1. Under **Agent authorization**, set a Secret token. This will be used to authorize requests from APM agents to the APM Server. Make a note of this value--you'll need it later.
+
+1. Click **Save and continue**.
+    This step takes a minute or two to complete. When it's done,
+    you'll have an agent policy that contains an APM integration policy for the configuration you just specified.
+
+1. To view the new policy, click **Agent policy 1**.
+
+    {/* ![((fleet)) showing apm policy](images/apm-agent-policy-1.png) */}
+
+    Any ((agent))s assigned to this policy will collect APM data from your instrumented services.

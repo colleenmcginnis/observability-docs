@@ -1,40 +1,12 @@
-++++
-<div class="tabs" data-tab-group="config-apm">
-  <div role="tablist" aria-label="Auth">
-    <button role="tab"
-            aria-selected="true"
-            aria-controls="binary-tab"
-            id="binary">
-      APM Server binary
-    </button>
-    <button role="tab"
-            aria-selected="false"
-            aria-controls="fleet-managed-tab"
-            id="fleet-managed"
-            tabindex="-1">
-      Fleet-managed
-    </button>
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="binary-tab"
-       aria-labelledby="binary">
-++++
 
-include::anon-auth.asciidoc[tag=binary]
+import AnonAuthBinary from './anon-auth/binary.mdx'
+import AnonAuthFleetManaged from './anon-auth/fleet-managed.mdx'
 
-++++
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="fleet-managed-tab"
-       aria-labelledby="fleet-managed"
-       hidden="">
-++++
-
-include::anon-auth.asciidoc[tag=fleet-managed]
-
-++++
-  </div>
-</div>
-++++
+<DocTabs hasBorder>
+	<DocTab name="APM Server binary">
+		<AnonAuthBinary />  
+	</DocTab>
+	<DocTab name="Fleet-managed">
+		<AnonAuthFleetManaged />  
+	</DocTab>
+</DocTabs>

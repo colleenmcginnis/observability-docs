@@ -1,5 +1,12 @@
-[[apm-api-metadata]]
-==== Metadata
+---
+id: enObservabilityApmApiMetadata
+slug: /en/observability/apm-api-metadata
+title: Metadata
+description: Description to be written
+tags: []
+---
+
+<div id="apm-api-metadata"></div>
 
 Every new connection to the APM Server starts with a `metadata` stanza.
 This provides general metadata concerning the other objects in the stream.
@@ -7,23 +14,24 @@ This provides general metadata concerning the other objects in the stream.
 Rather than send this metadata information from the agent multiple times,
 the APM Server hangs on to this information and applies it to other objects in the stream as necessary.
 
-TIP: Metadata is stored under `context` when viewing documents in {es}.
+<DocCallOut title="Tip">
+Metadata is stored under `context` when viewing documents in ((es)).
+</DocCallOut>
 
-* <<apm-api-kubernetes-data>>
-* <<apm-api-metadata-schema>>
+* <DocLink id="enObservabilityApmApiMetadata" section="kubernetes-data">Kubernetes data</DocLink>
+* <DocLink id="enObservabilityApmApiMetadata" section="metadata-schema">Metadata Schema</DocLink>
 
-[[apm-api-kubernetes-data]]
-[float]
-==== Kubernetes data
+<div id="apm-api-kubernetes-data"></div>
+
+## Kubernetes data
 
 APM agents automatically read Kubernetes data and send it to the APM Server.
 In most instances, agents are able to read this data from inside the container.
 If this is not the case, or if you wish to override this data, you can set environment variables for the agents to read.
-These environment variable are set via the Kubernetes https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/#use-pod-fields-as-values-for-environment-variables[Downward API].
+These environment variable are set via the Kubernetes [Downward API](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/#use-pod-fields-as-values-for-environment-variables).
 Here's how you would add the environment variables to your Kubernetes pod spec:
 
-[source,yaml]
-----
+```yaml
          - name: KUBERNETES_NODE_NAME
             valueFrom:
               fieldRef:
@@ -40,27 +48,24 @@ Here's how you would add the environment variables to your Kubernetes pod spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.uid
-----
+```
 
 The table below maps these environment variables to the APM metadata event field:
 
-[options="header"]
-|=====
-|Environment variable |Metadata field name
-| `KUBERNETES_NODE_NAME` |system.kubernetes.node.name
-| `KUBERNETES_POD_NAME` |system.kubernetes.pod.name
-| `KUBERNETES_NAMESPACE` |system.kubernetes.namespace
-| `KUBERNETES_POD_UID`	|system.kubernetes.pod.uid
-|=====
+| Environment variable | Metadata field name |
+|---|---|
+| `KUBERNETES_NODE_NAME` | system.kubernetes.node.name |
+| `KUBERNETES_POD_NAME` | system.kubernetes.pod.name |
+| `KUBERNETES_NAMESPACE` | system.kubernetes.namespace |
+| `KUBERNETES_POD_UID` | system.kubernetes.pod.uid |
 
-[[apm-api-metadata-schema]]
-[float]
-==== Metadata Schema
+<div id="apm-api-metadata-schema"></div>
+
+## Metadata Schema
 
 APM Server uses JSON Schema to validate requests. The specification for metadata is defined on
-https://github.com/elastic/apm-server/blob/{minor-version}/docs/spec/v2/metadata.json[GitHub] and included below:
+[GitHub](https://github.com/elastic/apm-server/blob/((minor-version))/docs/spec/v2/metadata.json) and included below:
 
-[source,json]
-----
-include::{apm-server-root}/docs/spec/v2/metadata.json[]
-----
+```json
+include::\(\(apm-server-root))/docs/spec/v2/metadata.json[]
+```

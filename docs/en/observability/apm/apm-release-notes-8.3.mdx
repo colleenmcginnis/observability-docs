@@ -1,0 +1,85 @@
+---
+id: enObservabilityApmReleaseNotes8.3
+slug: /en/observability/apm-release-notes-8.3
+title: APM version 8.3
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.3"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.3" section="apm-version-833">APM version 8.3.3</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.3" section="apm-version-832">APM version 8.3.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.3" section="apm-version-831">APM version 8.3.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.3" section="apm-version-830">APM version 8.3.0</DocLink>
+
+<div id="apm-release-notes-8.3.3"></div>
+
+## APM version 8.3.3
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.3.2\...v8.3.3)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+- Update APM integration description [8592]({pull}8592)
+
+<div id="apm-release-notes-8.3.2"></div>
+
+## APM version 8.3.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.3.1\...v8.3.2)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- When tail-based sampling is enabled, limit the local disk space for the feature to 3GB [8407]({pull}8407)
+
+<div id="apm-release-notes-8.3.1"></div>
+
+## APM version 8.3.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.3.0\...v8.3.1)
+
+No significant changes.
+
+<div id="apm-release-notes-8.3.0"></div>
+
+## APM version 8.3.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.2.2\...v8.3.0)
+
+<div id="breaking_changes"></div>
+
+### Breaking Changes
+- [experimental] Removed support for experimental firehose endpoint for CloudWatch metric streams [8109]({pull}8109)
+
+<div id="deprecations"></div>
+
+### Deprecations
+- `span.context.destination.service.resource` is deprecated [7925]({pull}7925)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Propagate datastream namespace changes from apm-integration into server [8176]({pull}8176)
+- Correct the `libbeat.output.write.bytes` metric to count the written bytes after the compressed writer has been flushed [8221]({pull}8221)
+- Allow 100% tail-based sampling [8233]({pull}8233)
+
+<div id="intake_api_changes"></div>
+
+### Intake API Changes
+- For OpenTelemetry exception span events, stack traces that cannot be parsed will now be stored in `event.stack_trace` [7706]({pull}7706)
+- Support for ingesting `service.target.type` and `service.target.name` added to intake API for spans [7870]({pull}7870)
+- Derive `service.target.{type, name}` fields for older agents from `span.context.destination.service.resource` [7925]({pull}7925)
+- Support `service.target.*` in metrics aggregation [7924]({pull}7924)
+
+<div id="added"></div>
+
+### Added
+- System, process, and well-defined runtime metrics are now sent to the shared `metrics-apm.internal-<namespace>` data stream [7882]({pull}7882)
+- Number of parallel bulk requests are now configurable via `output.elasticsearch.max_requests` [8055]({pull}8055)
+- OTLP/HTTP protocol is now supported [8156]({pull}8156)
+
+<div id="performance_improvements"></div>
+
+### Performance improvements
+- Limit the number of gomaxprocs when CPU limits have been set within a cgroup, yielding significant performance improvements, particularly when the APM Server experiences high traffic from a high number of APM agents [8175]({pull}8175) [8278]({pull}8278)

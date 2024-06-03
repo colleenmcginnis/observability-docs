@@ -1,0 +1,10 @@
+export default {
+  title: "Elastic Observability",
+  description: "Rely on the most widely deployed observability solution, powered by machine learning and analytics, to converge metrics, logs, and traces that deliver unified visibility and actionable insights.",
+  features: [
+    "Eliminate tool silos and efficiently store data",
+    "Get visibility across hybrid and multi-cloud environments",
+    "Monitor your digital experience — 24/7"
+  ],
+  image: "https://www.elastic.co/guide/en/observability/current/landing-page/images/intro.png"
+}

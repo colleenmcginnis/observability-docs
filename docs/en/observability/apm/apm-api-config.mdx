@@ -1,43 +1,46 @@
-[[apm-api-config]]
-=== Elastic APM agent configuration API
+---
+id: enObservabilityApmApiConfig
+slug: /en/observability/apm-api-config
+title: Elastic APM agent configuration API
+description: Description to be written
+tags: []
+---
+
+<div id="apm-api-config"></div>
 
 APM Server exposes API endpoints that allow Elastic APM agents to query the APM Server for configuration changes.
-More information on this feature is available in {kibana-ref}/agent-configuration.html[{apm-agent} configuration in {kib}].
+More information on this feature is available in [((apm-agent)) configuration in ((kib))](((kibana-ref))/agent-configuration.html).
 
-[float]
-[[apm-api-config-endpoint]]
-=== Agent configuration endpoints
+<div id="apm-api-config-endpoint"></div>
 
-[options="header"]
-|====
-|Name |Endpoint
-|Agent configuration intake |`/config/v1/agents`
-|RUM configuration intake |`/config/v1/rum/agents`
-|====
+## Agent configuration endpoints
+
+| Name | Endpoint |
+|---|---|
+| Agent configuration intake | `/config/v1/agents` |
+| RUM configuration intake | `/config/v1/rum/agents` |
 
 The Agent configuration endpoints accepts both `HTTP GET` and `HTTP POST` requests.
-If an <<apm-api-key>> or <<apm-secret-token>> is configured, requests to this endpoint must be authenticated.
+If an <DocLink id="enObservabilityApmApiKey">API keys</DocLink> or <DocLink id="enObservabilityApmSecretToken">Secret token</DocLink> is configured, requests to this endpoint must be authenticated.
 
-[float]
-[[apm-api-config-api-get]]
-==== HTTP GET
+<div id="apm-api-config-api-get"></div>
+
+### HTTP GET
 
 `service.name` is a required query string parameter.
 
-[source,bash]
-------------------------------------------------------------
+```bash
 http(s)://{hostname}:{port}/config/v1/agents?service.name=SERVICE_NAME
-------------------------------------------------------------
+```
 
-[float]
-[[apm-api-config-api-post]]
-==== HTTP POST
+<div id="apm-api-config-api-post"></div>
+
+### HTTP POST
 
 Encode parameters as a JSON object in the body.
 `service.name` is a required parameter.
 
-[source,bash]
-------------------------------------------------------------
+```bash
 http(s)://{hostname}:{port}/config/v1/agents
 {
   "service": {
@@ -46,43 +49,40 @@ http(s)://{hostname}:{port}/config/v1/agents
   },
   "CAPTURE_BODY": "off"
 }
-------------------------------------------------------------
+```
 
-[float]
-[[apm-api-config-api-response]]
-==== Responses
+<div id="apm-api-config-api-response"></div>
+
+### Responses
 
 * Successful - `200`
-* APM Server is configured to fetch agent configuration from {es} but the configuration is invalid - `403`
-* APM Server is starting up or {es} is unreachable - `503`
+* APM Server is configured to fetch agent configuration from ((es)) but the configuration is invalid - `403`
+* APM Server is starting up or ((es)) is unreachable - `503`
 
-[float]
-[[apm-api-config-api-example]]
-==== Example request
+<div id="apm-api-config-api-example"></div>
+
+### Example request
 
 Example Agent configuration `GET` request including the service name "test-service":
 
-["source","sh",subs="attributes"]
----------------------------------------------------------------------------
+```sh
 curl -i http://127.0.0.1:8200/config/v1/agents?service.name=test-service
----------------------------------------------------------------------------
+```
 
 Example Agent configuration `POST` request including the service name "test-service":
 
-["source","sh",subs="attributes"]
----------------------------------------------------------------------------
+```sh
 curl -X POST http://127.0.0.1:8200/config/v1/agents \
   -H "Authorization: Bearer secret_token" \
   -H 'content-type: application/json' \
   -d '{"service": {"name": "test-service"}}'
----------------------------------------------------------------------------
+```
 
-[float]
-[[apm-api-config-api-ex-response]]
-==== Example response
+<div id="apm-api-config-api-ex-response"></div>
 
-["source","sh",subs="attributes"]
----------------------------------------------------------------------------
+### Example response
+
+```sh
 HTTP/1.1 200 OK
 Cache-Control: max-age=30, must-revalidate
 Content-Type: application/json
@@ -95,4 +95,4 @@ Content-Length: 98
     "transaction_max_spans": "500",
     "transaction_sample_rate": "0.3"
 }
----------------------------------------------------------------------------
+```

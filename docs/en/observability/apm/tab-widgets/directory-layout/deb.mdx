@@ -1,0 +1,14 @@
+
+{/* [cols="<h,<,<m",options="header",] */}
+| Type | Description | Location  |
+|---|---|---|
+| home   | Home of the APM Server installation. | /usr/share/apm-server |
+| bin    | The location for the binary files. | /usr/share/apm-server/bin |
+| config | The location for configuration files. | /etc/apm-server |
+| data   | The location for persistent data files. | /var/lib/apm-server |
+| logs   | The location for the logs created by APM Server. | /var/log/apm-server |
+
+For the deb and rpm distributions, these paths are set in the init script or in
+the systemd unit file.  Make sure that you start the APM Server service by using
+the preferred operating system method (init scripts or `systemctl`).
+Otherwise the paths might be set incorrectly.

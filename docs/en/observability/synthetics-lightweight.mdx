@@ -1,35 +1,48 @@
-[[synthetics-lightweight]]
-= Configure lightweight monitors
+---
+id: enObservabilitySyntheticsLightweight
+slug: /en/observability/synthetics-lightweight
+title: Configure lightweight monitors
+description: Description to be written
+tags: []
+---
 
-In the {synthetics-app} you can monitor the status of network endpoints using the following lightweight checks:
+import LightweightConfigCommon from './synthetics-reference/lightweight-config/common.mdx'
+import LightweightConfigHttp from './synthetics-reference/lightweight-config/http.mdx'
+import LightweightConfigIcmp from './synthetics-reference/lightweight-config/icmp.mdx'
+import LightweightConfigTcp from './synthetics-reference/lightweight-config/tcp.mdx'
 
-* *HTTP*: Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct
-  status code and display the correct text.
-* *ICMP*: Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo
-  Requests to check the network reachability of the hosts you are pinging. This will tell you whether the
-  host is available and connected to the network, but doesn't tell you if a service on the host is running or
-  not.
-* *TCP*: Monitor the services running on your hosts. The TCP monitor checks individual ports
-  to make sure the service is accessible and running.
+<div id="synthetics-lightweight"></div>
 
-Lightweight monitors can be configured using either the <<synthetics-lightweight-ui>>
-or <<synthetics-lightweight-projects>>.
+In the ((synthetics-app)) you can monitor the status of network endpoints using the following lightweight checks:
 
-[discrete]
-[[synthetics-lightweight-ui]]
-= {synthetics-app}
+* **HTTP**: Monitor your website. The HTTP monitor checks to make sure specific endpoints return the correct
+    status code and display the correct text.
 
-To use the UI in the {synthetics-app}, go to the {synthetics-app} in {kib} to create and configure monitors.
-For step-by-step instructions, refer to <<synthetics-get-started-ui>>.
+* **ICMP**: Check the availability of your hosts. The ICMP monitor uses ICMP (v4 and v6) Echo
+    Requests to check the network reachability of the hosts you are pinging. This will tell you whether the
+    host is available and connected to the network, but doesn't tell you if a service on the host is running or
+    not.
 
-[role="screenshot"]
-image::images/synthetics-get-started-ui-lightweight.png[Synthetics Create monitor UI]
+* **TCP**: Monitor the services running on your hosts. The TCP monitor checks individual ports
+    to make sure the service is accessible and running.
 
-[discrete]
-[[synthetics-lightweight-projects]]
-= {project-monitors-cap}
+Lightweight monitors can be configured using either the <DocLink id="enObservabilitySyntheticsLightweight" section="((synthetics-app))">((synthetics-app))</DocLink>
+or <DocLink id="enObservabilitySyntheticsLightweight" section="((project-monitors-cap))">((project-monitors-cap))</DocLink>.
 
-To use YAML files in to create {project-monitors}, <<synthetics-get-started-project,set up a project>>
+<div id="synthetics-lightweight-ui"></div>
+
+## ((synthetics-app))
+
+To use the UI in the ((synthetics-app)), go to the ((synthetics-app)) in ((kib)) to create and configure monitors.
+For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsGetStartedUi">Create monitors in the ((synthetics-app))</DocLink>.
+
+![Synthetics Create monitor UI](images/synthetics-get-started-ui-lightweight.png)
+
+<div id="synthetics-lightweight-projects"></div>
+
+## ((project-monitors-cap))
+
+To use YAML files in to create ((project-monitors)), <DocLink id="enObservabilitySyntheticsGetStartedProject">set up a project</DocLink>
 and configure monitors in YAML files in the `lightweight` directory.
 
 In each YAML file, define a set of `monitors` to check your remote hosts.
@@ -40,8 +53,7 @@ optional settings.
 The following example configures three monitors checking via the `http`, `icmp`, and `tcp`
 protocols and demonstrates how to use TCP Echo response verification:
 
-[source,yaml]
-----
+```yaml
 heartbeat.monitors:
 - type: http
   name: Todos Lightweight
@@ -60,48 +72,49 @@ heartbeat.monitors:
   check.send: "Check"
   check.receive: "Check"
   schedule: '@every 60s'
-----
+```
 
-[[synthetics-monitor-options]]
+<div id="synthetics-monitor-options"></div>
+
 There are some common monitor configuration options that are the same for all lightweight monitor types.
-For a complete list, refer to <<synthetics-lightweight-common-options>>.
+For a complete list, refer to <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">Common options</DocLink>.
 
 Each monitor type also has additional configuration options that are specific to that type.
 Refer to:
 
-* <<synthetics-lightweight-http>>
-* <<synthetics-lightweight-icmp>>
-* <<synthetics-lightweight-tcp>>
+* <DocLink id="enObservabilitySyntheticsLightweight" section="http-options">HTTP options</DocLink>
+* <DocLink id="enObservabilitySyntheticsLightweight" section="icmp-options">ICMP options</DocLink>
+* <DocLink id="enObservabilitySyntheticsLightweight" section="tcp-options">TCP options</DocLink>
 
 The `tcp` and `http` monitor types both support SSL/TLS and some proxy settings.
 
-[discrete]
-[[synthetics-lightweight-common-options]]
-== Common options
+<div id="synthetics-lightweight-common-options"></div>
+
+### Common options
 
 You can specify the following options when defining a synthetic monitor in any location.
 These options are the same for all monitors. Each monitor type has additional configuration
 options that are specific to that monitor type.
 
-// Reference table
-include::synthetics-reference/lightweight-config/common.asciidoc[]
+{/* Reference table */}
+<LightweightConfigCommon />
 
-[discrete]
-[[synthetics-lightweight-http]]
-== HTTP options
+<div id="synthetics-lightweight-http"></div>
+
+### HTTP options
 
 The options described here configure Synthetics to connect via HTTP and
 optionally verify that the host returns the expected response.
 
-Valid options for HTTP monitors include <<synthetics-lightweight-common-options,all common options>>
+Valid options for HTTP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
 and the following HTTP-specific options:
 
-// Reference table
-include::synthetics-reference/lightweight-config/http.asciidoc[]
+{/* Reference table */}
+<LightweightConfigHttp />
 
-[discrete]
-[[synthetics-lightweight-icmp]]
-== ICMP options
+<div id="synthetics-lightweight-icmp"></div>
+
+### ICMP options
 
 The options described here configure Synthetics to use ICMP (v4 and v6) Echo
 Requests to check the configured hosts. On most platforms you must execute
@@ -114,67 +127,67 @@ To grant ping permissions in this way, run `sudo sysctl -w net.ipv4.ping_group_r
 
 Other platforms may require Synthetics to run as root or administrator to execute pings.
 
-Valid options for ICMP monitors include <<synthetics-lightweight-common-options,all common options>>
+Valid options for ICMP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
 and the following ICMP-specific options:
 
-// Reference table
-include::synthetics-reference/lightweight-config/icmp.asciidoc[]
+{/* Reference table */}
+<LightweightConfigIcmp />
 
-[discrete]
-[[synthetics-lightweight-tcp]]
-== TCP options
+<div id="synthetics-lightweight-tcp"></div>
+
+### TCP options
 
 The options described here configure Synthetics to connect via TCP and
 optionally verify the endpoint by sending and/or receiving a custom payload.
 
-Valid options for TCP monitors include <<synthetics-lightweight-common-options,all common options>>
+Valid options for TCP monitors include <DocLink id="enObservabilitySyntheticsLightweight" section="common-options">all common options</DocLink>
 and the following TCP-specific options:
 
-// Reference table
-include::synthetics-reference/lightweight-config/tcp.asciidoc[]
+{/* Reference table */}
+<LightweightConfigTcp />
 
-[discrete]
-[[synthetics-lightweight-data-types]]
-== Data types reference
+<div id="synthetics-lightweight-data-types"></div>
+
+### Data types reference
 
 Values of configuration settings are interpreted as required by Synthetics.
 If a value can't be correctly interpreted as the required type - for example a
 string is given when a number is required - Synthetics will fail to start up.
 
-[discrete]
-[[synthetics-lightweight-data-bool]]
-=== Boolean
+<div id="synthetics-lightweight-data-bool"></div>
+
+#### Boolean
 
 Boolean values can be either `true` or `false`. Alternative names for `true` are
 `yes` and `on`. Instead of `false` the values `no` and `off` can be used.
 
-[source,yaml]
------
+```yaml
 enabled: true
 disabled: false
------
+```
 
-[discrete]
-[[synthetics-lightweight-data-numbers]]
-=== Number
+<div id="synthetics-lightweight-data-numbers"></div>
+
+#### Number
 
 Number values require you to enter the number _without_ single or
-double quotes. 
+double quotes.
 
-[source,yaml]
------
+```yaml
 integer: 123
 negative: -1
 float: 5.4
------
+```
 
-NOTE: Some settings only support a restricted number range.
+<DocCallOut title="Note">
+Some settings only support a restricted number range.
+</DocCallOut>
 
-[discrete]
-[[synthetics-lightweight-data-string]]
-=== String
+<div id="synthetics-lightweight-data-string"></div>
 
-In http://www.yaml.org[YAML], multiple styles of string definitions are supported:
+#### String
+
+In [YAML](http://www.yaml.org), multiple styles of string definitions are supported:
 double-quoted, single-quoted, unquoted.
 
 The double-quoted style is specified by surrounding the string with `"`. This
@@ -188,27 +201,28 @@ characters can be used when using this form.
 Unquoted style requires no quotes, but does not support any escaping and can't
 include any symbol that has a special meaning in YAML.
 
-NOTE: Single-quoted style is recommended when defining regular expressions,
+<DocCallOut title="Note">
+Single-quoted style is recommended when defining regular expressions,
 event format strings, windows file paths, or non-alphabetical symbolic characters.
+</DocCallOut>
 
-[discrete]
-[[synthetics-lightweight-data-duration]]
-=== Duration
+<div id="synthetics-lightweight-data-duration"></div>
+
+#### Duration
 
 Durations require a numeric value with optional fraction and required unit.
 Valid time units are `ns`, `us`, `ms`, `s`, `m`, `h`. Sometimes features based
 on durations can be disabled by using zero or negative durations.
 
-[source,yaml]
------
+```yaml
 duration1: 2.5s
 duration2: 6h
 duration_disabled: -1s
------
+```
 
-[discrete]
-[[synthetics-lightweight-data-regex]]
-=== Regular expression
+<div id="synthetics-lightweight-data-regex"></div>
+
+#### Regular expression
 
 Regular expressions are special strings that are compiled into regular
 expressions at load time.

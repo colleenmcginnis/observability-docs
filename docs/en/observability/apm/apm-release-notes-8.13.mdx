@@ -1,0 +1,46 @@
+---
+id: enObservabilityApmReleaseNotes8.13
+slug: /en/observability/apm-release-notes-8.13
+title: APM version 8.13
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.13"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.13" section="apm-version-8132">APM version 8.13.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.13" section="apm-version-8131">APM version 8.13.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.13" section="apm-version-8130">APM version 8.13.0</DocLink>
+
+<div id="apm-release-notes-8.13.2"></div>
+
+## APM version 8.13.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.13.1\...v8.13.2)
+
+No significant changes.
+
+<div id="apm-release-notes-8.13.1"></div>
+
+## APM version 8.13.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.13.0\...v8.13.1)
+
+No significant changes.
+
+<div id="apm-release-notes-8.13.0"></div>
+
+## APM version 8.13.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.12.2\...v8.13.0)
+
+<div id="added"></div>
+
+### Added
+- map OTel's `span.Status: Unset` to `event.outcome: success` instead of `event.outcome: unknown` [12199]({pull}12199)
+- Add support for Otel code.stacktrace [12096]({pull}12096)
+- `http.request.body.bytes` now reports the bytes read from request body even if Content-Length is -1 [12451]({pull}12451)
+- Use `messaging.system` and `messaging.operation` to detect OTel messaging span for transactions [12506]({pull}12506)
+- Add support for OTel data stream routing by parsing `data_stream.dataset` and `data_stream.namespace` from: (from lowest to highest precedence) resource attributes, instrumentation scope attributes, and signal-level attributes. This is a breaking change only for users relying on the existing `data_stream` attributes being stored as labels. [12578]({pull}12578)
+- Map OTel transaction `elastic.profiler_stack_trace_ids` attribute [12493]({pull}12493)
+- Reduce go-docappender error logging verbosity. Groups all errors by groups and reports a new "document" field [12604]({pull}12604)

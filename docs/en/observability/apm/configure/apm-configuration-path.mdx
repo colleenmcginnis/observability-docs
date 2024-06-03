@@ -1,46 +1,53 @@
-[[apm-configuration-path]]
-= Configure project paths
+---
+id: enObservabilityApmConfigurationPath
+slug: /en/observability/apm-configuration-path
+title: Configure project paths
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Project paths</titleabbrev>
-++++
+import ApmSupportOverview from '../components/support-overview.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-configuration-path"></div>
 
-This documentation is only relevant for APM Server binary users.
-Fleet-managed paths are defined in <<apm-directory-layout>>.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  This documentation is only relevant for APM Server binary users.
+  Fleet-managed paths are defined in <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink>.
+</ApmSupportOverview>
 
 The `path` section of the `apm-server.yml` config file contains configuration
 options that define where APM Server looks for its files. For example, APM Server
-looks for the {es} template file in the configuration path and writes
+looks for the ((es)) template file in the configuration path and writes
 log files in the logs path.
-ifdef::has_registry[]
-APM Server looks for its registry files in the data path.
-endif::[]
 
-Please see the <<apm-directory-layout>> section for more details.
+export let has_registry = false
+
+<DocIf condition={ has_registry === true }>
+APM Server looks for its registry files in the data path.
+</DocIf>
+
+Please see the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for more details.
 
 Here is an example configuration:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 path.home: /usr/share/beat
 path.config: /etc/beat
 path.data: /var/lib/beat
 path.logs: /var/log/
-------------------------------------------------------------------------------
+```
 
 Note that it is possible to override these options by using command line flags.
 
-[float]
-== Configuration options
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following options in the `path` section of the `apm-server.yml` config file:
 
-[float]
-=== `home`
+<div id="`home`"></div>
+
+### `home`
 
 The home path for the APM Server installation. This is the default base path for all
 other path settings and for miscellaneous files that come with the distribution (for example, the
@@ -49,47 +56,48 @@ for the home path is the location of the APM Server binary.
 
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 path.home: /usr/share/beats
-------------------------------------------------------------------------------
+```
 
-[float]
-=== `config`
+<div id="`config`"></div>
+
+### `config`
 
 The configuration path for the APM Server installation. This is the default base path
 for configuration files, including the main YAML configuration file and the
-{es} template file. If not set by a CLI flag or in the configuration file, the default for the
+((es)) template file. If not set by a CLI flag or in the configuration file, the default for the
 configuration path is the home path.
 
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 path.config: /usr/share/beats/config
-------------------------------------------------------------------------------
+```
 
-[float]
-=== `data`
+<div id="`data`"></div>
+
+### `data`
 
 The data path for the APM Server installation. This is the default base path for all
 the files in which APM Server needs to store its data. If not set by a CLI
 flag or in the configuration file, the default for the data path is a `data`
 subdirectory inside the home path.
 
-
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 path.data: /var/lib/beats
-------------------------------------------------------------------------------
+```
 
-TIP: When running multiple APM Server instances on the same host, make sure they
+<DocCallOut title="Tip">
+When running multiple APM Server instances on the same host, make sure they
 each have a distinct `path.data` value.
+</DocCallOut>
 
-[float]
-=== `logs`
+<div id="`logs`"></div>
+
+### `logs`
 
 The logs path for a APM Server installation. This is the default location for APM Server's
 log files. If not set by a CLI flag or in the configuration file, the default
@@ -97,24 +105,22 @@ for the logs path is a `logs` subdirectory inside the home path.
 
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 path.logs: /var/log/beats
-------------------------------------------------------------------------------
+```
 
-[float]
-=== `system.hostfs`
+<div id="`system.hostfs`"></div>
+
+### `system.hostfs`
 
 Specifies the mount point of the host's file system for use in monitoring a host.
 This can either be set in the config, or with the `--system.hostfs` CLI flag. This is used for cgroup self-monitoring.
-ifeval::["apm-server"=="metricbeat"]
+<DocIf condition={ "apm-server" === "metricbeat" }>
 This is also used by the system module to read files from `/proc` and `/sys`.
-endif::[]
-
+</DocIf>
 
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 system.hostfs: /mount/rootfs
-------------------------------------------------------------------------------
+```

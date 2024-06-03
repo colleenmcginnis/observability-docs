@@ -1,0 +1,36 @@
+---
+id: enObservabilityApmPrivilegesToPublishEvents
+slug: /en/observability/apm-privileges-to-publish-events
+title: Grant privileges and roles needed for writing events
+description: Description to be written
+tags: []
+---
+
+<div id="apm-privileges-to-publish-events"></div>
+
+APM users that publish events to ((es)) need privileges to write to APM data streams.
+
+<div id="general_writer_role"></div>
+
+## General writer role
+
+To grant an APM user the required privileges for writing events to ((es)):
+
+1. Create a **general writer role**, called something like `apm_writer`,
+    that has the following privileges:
+
+    | Type | Privilege | Purpose |
+    |---|---|---|
+    | Index | `auto_configure` on `traces-apm*`, `logs-apm*`, and `metrics-apm*` indices | Permits auto-creation of indices and data streams |
+    | Index | `create_doc` on `traces-apm*`, `logs-apm*`, and `metrics-apm*` indices | Write events into ((es)) |
+
+1. Assign the **general writer role** to users who need to publish APM data.
+
+1. If <DocLink id="enObservabilityApmConfigurationRum">real user monitoring</DocLink> is enabled, create a separate <DocLink id="enObservabilityApmPrivilegesRumSourceMap" section="apm-server-rum-source-mapping">RUM source mapping role</DocLink>.
+
+{/*
+***  **
+***  ** 
+
+*/}
+

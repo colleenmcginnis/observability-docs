@@ -1,0 +1,42 @@
+---
+id: enObservabilityApmPrivilegesRumSourceMap
+slug: /en/observability/apm-privileges-rum-source-map
+title: Grant privileges and roles needed for reading source maps
+description: Description to be written
+tags: []
+---
+
+<div id="apm-privileges-rum-source-map"></div>
+
+<div id="apm-privileges-rum-source-mapping"></div>
+
+## APM Server RUM source mapping
+
+If <DocLink id="enObservabilityApmConfigurationRum">real user monitoring</DocLink> is enabled, additional privileges are required to read source maps.
+
+To grant an APM Server user with the required privileges for reading RUM source maps from ((es)) directly without ((kib)),
+assign the user the following privileges:
+
+| Type | Privilege | Purpose |
+|---|---|---|
+| Index | `read` on `.apm-source-map` index | Allow APM Server to read RUM source maps from ((es)) |
+
+The above privileges should be sufficient for RUM source mapping to work properly
+as long as APM Server communicates with ((es)) successfully.
+If it fails, it may fallback to read source maps via ((kib)) if configured,
+which requires additional ((kib)) privileges.
+See [RUM source map API](((kibana-ref))/rum-sourcemap-api.html) for more details.
+
+{/*
+***  **
+***  ** 
+
+*/}
+
+{/* <span id="apm-privileges-create-api-keys"></span>  */}
+{/* === Grant privileges and roles needed to create APM Server API keys */}
+
+{/* ++++ */}
+{/* <titleabbrev>Create an _APM API key_ user</titleabbrev> */}
+{/* ++++ */}
+

@@ -1,0 +1,67 @@
+---
+id: enObservabilityApmConfigureTailBasedSampling
+slug: /en/observability/apm-configure-tail-based-sampling
+title: Configure tail-based sampling
+description: Description to be written
+tags: []
+---
+
+import TbsTop from './configure/sampling/tbs-top.mdx'
+import TbsPolicy from './configure/sampling/tbs-policy.mdx'
+
+<div id="apm-configure-tail-based-sampling"></div>
+
+Enable tail-based sampling with \<\<sampling-tail-enabled-ref>>.
+When enabled, trace events are mapped to sampling policies.
+Each sampling policy must specify a sample rate, and can optionally specify other conditions.
+All of the policy conditions must be true for a trace event to match it.
+
+Trace events are matched to policies in the order specified.
+Each policy list must conclude with a default policy -- one that only specifies a sample rate.
+This default policy is used to catch remaining trace events that don't match a stricter policy.
+Requiring this default policy ensures that traces are only dropped intentionally.
+If you enable tail-based sampling and send a transaction that does not match any of the policies,
+APM Server will reject the transaction with the error `no matching policy`.
+
+<DocCallOut title="Important" color="warning">
+Please note that from version `8.3.1` APM Server implements a default storage limit of 3GB,
+but, due to how the limit is calculated and enforced the actual disk space may still grow slightly
+over the limit.
+</DocCallOut>
+
+<div id="example_configuration"></div>
+
+## Example configuration
+
+This example defines three tail-based sampling polices:
+
+```yml
+- sample_rate: 1  [^1]
+  service.environment: production
+  trace.name: "GET /very_important_route"
+- sample_rate: .01  [^2]
+  service.environment: production
+  trace.name: "GET /not_important_route"
+- sample_rate: .1  [^3]
+```
+[^1]: Samples 100% of traces in `production` with the trace name `"GET /very_important_route"`
+[^2]: Samples 1% of traces in `production` with the trace name `"GET /not_important_route"`
+[^3]: Default policy to sample all remaining traces at 10%, e.g. traces in a different environment, like `dev`,
+or traces with any other name
+
+<div id="configuration_reference"></div>
+
+## Configuration reference
+
+**Top-level tail-based sampling settings:**
+
+export let leveloffset = "+3"
+
+<TbsTop />
+
+**Policy settings:**
+
+<TbsPolicy />
+
+{leveloffset = "-3"}
+

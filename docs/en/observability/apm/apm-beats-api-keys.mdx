@@ -1,33 +1,40 @@
-[role="xpack"]
-[[apm-beats-api-keys]]
-=== Grant access using API keys
+---
+id: enObservabilityApmBeatsApiKeys
+slug: /en/observability/apm-beats-api-keys
+title: Grant access using API keys
+description: Description to be written
+tags: []
+---
+
+
+<div id="apm-beats-api-keys"></div>
 
 Instead of using usernames and passwords, you can use API keys to grant
-access to {es} resources. You can set API keys to expire at a certain time,
+access to ((es)) resources. You can set API keys to expire at a certain time,
 and you can explicitly invalidate them. Any user with the `manage_api_key`
 or `manage_own_api_key` cluster privilege can create API keys.
 
 APM Server instances typically send both collected data and monitoring
-information to {es}. If you are sending both to the same cluster, you can use the same
+information to ((es)). If you are sending both to the same cluster, you can use the same
 API key. For different clusters, you need to use an API key per cluster.
 
-NOTE: For security reasons, we recommend using a unique API key per APM Server instance.
+<DocCallOut title="Note">
+For security reasons, we recommend using a unique API key per APM Server instance.
 You can create as many API keys per user as necessary.
+</DocCallOut>
 
-[float]
-[[apm-beats-api-key-publish]]
-==== Create an API key for writing events
+<div id="apm-beats-api-key-publish"></div>
 
-In {kib}, navigate to **{stack-manage-app}** > **API keys** and click **Create API key**.
+## Create an API key for writing events
 
-[role="screenshot"]
-image::images/server-api-key-create.png[API key creation]
+In ((kib)), navigate to **((stack-manage-app))** > **API keys** and click **Create API key**.
+
+![API key creation](images/server-api-key-create.png)
 
 Enter a name for your API key and select **Restrict privileges**.
 In the role descriptors box, assign the appropriate privileges to the new API key. For example:
 
-[source,json,subs="attributes,callouts"]
-----
+```json
 {
     "apm_writer": {
         "index": [
@@ -54,40 +61,39 @@ In the role descriptors box, assign the appropriate privileges to the new API ke
         ]
     }
 }
-----
+```
 
-NOTE: This example only provides privileges for **writing data**.
-See <<apm-feature-roles>> for additional privileges and information.
+<DocCallOut title="Note">
+This example only provides privileges for **writing data**.
+See <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink> for additional privileges and information.
+</DocCallOut>
 
 To set an expiration date for the API key, select **Expire after time**
 and input the lifetime of the API key in days.
 
-Click **Create API key**. In the dropdown, switch to **{beats}** and copy the API key.
+Click **Create API key**. In the dropdown, switch to **((beats))** and copy the API key.
 
 You can now use this API key in your `apm-server.yml` configuration file:
 
-["source","yml",subs="attributes"]
---------------------
+```yml
 output.elasticsearch:
-  api_key: TiNAGG4BaaMdaH1tRfuU:KnR6yE41RrSowb0kQ0HWoA <1>
---------------------
-<1> Format is `id:api_key` (as shown in the {beats} dropdown)
+  api_key: TiNAGG4BaaMdaH1tRfuU:KnR6yE41RrSowb0kQ0HWoA  [^1]
+```
+[^1]: Format is `id:api_key` (as shown in the ((beats)) dropdown)
 
-[float]
-[[apm-beats-api-key-monitor]]
-==== Create an API key for monitoring
+<div id="apm-beats-api-key-monitor"></div>
 
-In {kib}, navigate to **{stack-manage-app}** > **API keys** and click **Create API key**.
+## Create an API key for monitoring
 
-[role="screenshot"]
-image::images/server-api-key-create.png[API key creation]
+In ((kib)), navigate to **((stack-manage-app))** > **API keys** and click **Create API key**.
+
+![API key creation](images/server-api-key-create.png)
 
 Enter a name for your API key and select **Restrict privileges**.
 In the role descriptors box, assign the appropriate privileges to the new API key.
 For example:
 
-[source,json,subs="attributes,callouts"]
-----
+```json
 {
     "apm_monitoring": {
         "index": [
@@ -98,39 +104,39 @@ For example:
       ]
     }
 }
-----
+```
 
-NOTE: This example only provides privileges for **publishing monitoring data**.
-See <<apm-feature-roles>> for additional privileges and information.
+<DocCallOut title="Note">
+This example only provides privileges for **publishing monitoring data**.
+See <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink> for additional privileges and information.
+</DocCallOut>
 
 To set an expiration date for the API key, select **Expire after time**
 and input the lifetime of the API key in days.
 
-Click **Create API key**. In the dropdown, switch to **{beats}** and copy the API key.
+Click **Create API key**. In the dropdown, switch to **((beats))** and copy the API key.
 
 You can now use this API key in your `apm-server.yml` configuration file like this:
 
-["source","yml",subs="attributes"]
---------------------
+```yml
 monitoring.elasticsearch:
-  api_key: TiNAGG4BaaMdaH1tRfuU:KnR6yE41RrSowb0kQ0HWoA <1>
---------------------
-<1> Format is `id:api_key` (as shown in the {beats} dropdown)
+  api_key: TiNAGG4BaaMdaH1tRfuU:KnR6yE41RrSowb0kQ0HWoA  [^1]
+```
+[^1]: Format is `id:api_key` (as shown in the ((beats)) dropdown)
 
-[float]
-[[apm-beats-api-key-es]]
-==== Create an API key with {es} APIs
+<div id="apm-beats-api-key-es"></div>
 
-You can also use {es}'s {ref}/security-api-create-api-key.html[Create API key API] to create a new API key.
+## Create an API key with ((es)) APIs
+
+You can also use ((es))'s [Create API key API](((ref))/security-api-create-api-key.html) to create a new API key.
 For example:
 
-[source,console,subs="attributes,callouts"]
-------------------------------------------------------------
+```console
 POST /_security/api_key
 {
-  "name": "apm_host001", <1>
+  "name": "apm_host001",  [^1]
   "role_descriptors": {
-    "apm_writer": { <2>
+    "apm_writer": {  [^2]
       "index": [
         {
           "names": ["apm-*"],
@@ -156,18 +162,19 @@ POST /_security/api_key
     }
   }
 }
-------------------------------------------------------------
-<1> Name of the API key
-<2> Granted privileges, see <<apm-feature-roles>>
+```
+[^1]: Name of the API key
+[^2]: Granted privileges, see <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink>
 
-See the {ref}/security-api-create-api-key.html[Create API key] reference for more information.
+See the [Create API key](((ref))/security-api-create-api-key.html) reference for more information.
 
-[[apm-learn-more-api-keys]]
-[float]
-==== Learn more about API keys
+<div id="apm-learn-more-api-keys"></div>
 
-See the {es} API key documentation for more information:
+## Learn more about API keys
 
-* {ref}/security-api-create-api-key.html[Create API key]
-* {ref}/security-api-get-api-key.html[Get API key information]
-* {ref}/security-api-invalidate-api-key.html[Invalidate API key]
+See the ((es)) API key documentation for more information:
+
+* [Create API key](((ref))/security-api-create-api-key.html)
+* [Get API key information](((ref))/security-api-get-api-key.html)
+* [Invalidate API key](((ref))/security-api-invalidate-api-key.html)
+

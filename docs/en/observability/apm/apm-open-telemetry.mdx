@@ -1,71 +1,68 @@
-[[apm-open-telemetry]]
-== OpenTelemetry integration
+---
+id: enObservabilityApmOpenTelemetry
+slug: /en/observability/apm-open-telemetry
+title: OpenTelemetry integration
+description: Description to be written
+tags: []
+---
 
-https://opentelemetry.io/docs/concepts/what-is-opentelemetry/[OpenTelemetry] is a set of APIs, SDKs, tooling, and integrations that enable the capture and management of
+<div id="apm-open-telemetry"></div>
+
+[OpenTelemetry](https://opentelemetry.io/docs/concepts/what-is-opentelemetry/) is a set of APIs, SDKs, tooling, and integrations that enable the capture and management of
 telemetry data from your services and applications. For more information about the
-OpenTelemetry project, see the https://github.com/open-telemetry/opentelemetry-specification/blob/master/README.md[spec].
+OpenTelemetry project, see the [spec](https://github.com/open-telemetry/opentelemetry-specification/blob/master/README.md).
 
-[float]
-== OpenTelemetry and the {stack}
+<div id="opentelemetry_and_the_((stack))"></div>
+
+## OpenTelemetry and the ((stack))
 
 [subs=attributes+]
 include::./diagrams/apm-otel-architecture.asciidoc[Architecture of Elastic APM with OpenTelemetry]
 
 Elastic integrates with OpenTelemetry, allowing you to reuse your existing instrumentation
-to easily send observability data to the {stack}.
-There are several ways to integrate OpenTelemetry with the {stack}:
+to easily send observability data to the ((stack)).
+There are several ways to integrate OpenTelemetry with the ((stack)):
 
 **OpenTelemetry API/SDK with Elastic APM agents**
 
-To unlock the full power of the {stack}, use the OpenTelemetry API/SDKs with Elastic APM agents,
+To unlock the full power of the ((stack)), use the OpenTelemetry API/SDKs with Elastic APM agents,
 currently supported by the Java, Python, .NET, and Node.js agents.
 These Elastic APM agents translate OpenTelemetry API calls to Elastic APM API calls.
 This allows you to reuse your existing instrumentation to create Elastic APM transactions and spans--
 avoiding vendor lock-in and having to redo manual instrumentation.
 
-<<apm-open-telemetry-with-elastic,Get started>>.
+<DocLink id="enObservabilityApmOpenTelemetryWithElastic">Get started</DocLink>.
 
 **OpenTelemetry agent**
 
-The {stack} natively supports the OpenTelemetry protocol (OTLP).
+The ((stack)) natively supports the OpenTelemetry protocol (OTLP).
 This means trace data and metrics collected from your applications and infrastructure by an
-OpenTelemetry agent can be sent directly to the {stack}.
+OpenTelemetry agent can be sent directly to the ((stack)).
 
-<<apm-instrument-apps-otel,Get started>>.
+<DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-agent">Get started</DocLink>.
 
 **OpenTelemetry collector**
 
-The {stack} natively supports the OpenTelemetry protocol (OTLP).
+The ((stack)) natively supports the OpenTelemetry protocol (OTLP).
 This means trace data and metrics collected from your applications and infrastructure by an
-OpenTelemetry collector can be sent directly to the {stack}.
+OpenTelemetry collector can be sent directly to the ((stack)).
 
-<<apm-connect-open-telemetry-collector,Get started>>.
+<DocLink id="enObservabilityApmOpenTelemetryDirect" section="send-data-from-an-opentelemetry-collector">Get started</DocLink>.
 
 **Lambda collector exporter**
 
-AWS Lambda functions can be instrumented with OpenTelemetry and monitored with Elastic {observability}.
+AWS Lambda functions can be instrumented with OpenTelemetry and monitored with Elastic ((observability)).
 
-<<apm-open-telemetry-aws-lambda,Get started>>.
+<DocLink id="enObservabilityApmOpenTelemetryOtherEnv" section="apm-open-telemetry-aws-lambda">Get started</DocLink>.
 
-include::./otel-with-elastic.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./otel-direct.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./otel-other.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./otel-metrics.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./otel-limitations.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./otel-attrs.asciidoc[]
-
-// ****
-// The text below is used in the Quick start guide
-// tag::otel-get-started[]
-Elastic integrates with OpenTelemetry, allowing you to reuse your existing instrumentation
-to easily send observability data to the {stack}.
-
-For more information on how to combine Elastic and OpenTelemetry,
-see {observability-guide}/apm-open-telemetry.html[OpenTelemetry integration].
-// end::otel-get-started[]
-// ****
+{/* The include that was here is another page */}

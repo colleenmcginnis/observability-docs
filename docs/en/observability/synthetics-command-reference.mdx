@@ -1,164 +1,217 @@
-[[synthetics-command-reference]]
-= Use the Synthetics CLI
+---
+id: enObservabilitySyntheticsCommandReference
+slug: /en/observability/synthetics-command-reference
+title: Use the Synthetics CLI
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Use the CLI</titleabbrev>
-++++
+<div id="synthetics-command-reference"></div>
 
-[discrete]
-[[elastic-synthetics-command]]
-= `@elastic/synthetics`
+<div id="elastic-synthetics-command"></div>
 
-The {synthetics-app} uses the
-https://www.npmjs.com/package/@elastic/synthetics[@elastic/synthetics] Node.js
+## `@elastic/synthetics`
+
+The ((synthetics-app)) uses the
+[@elastic/synthetics](https://www.npmjs.com/package/@elastic/synthetics) Node.js
 library to run synthetic browser tests and report the test results.
-The library also provides a CLI to help you scaffold, develop/run tests locally, and push tests to {kib}.
+The library also provides a CLI to help you scaffold, develop/run tests locally, and push tests to ((kib)).
 
-[source,sh]
-----
+```sh
 npx @elastic/synthetics [options] [files] [dir]
-----
+```
 
 You will not need to use most command line flags -- they have been implemented
-purely to interact with the {synthetics-app}.
+purely to interact with the ((synthetics-app)).
 However, there are some you may find useful:
 
-`--match <string>`::
-run tests with a name or tags that match the given glob pattern.
+<DocDefList>
+  <DocDefTerm>
+    `--match <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    Run tests with a name or tags that match the given glob pattern.
+  </DocDefDescription>
 
-`--tags Array<string>`::
-run tests with the given tags that match the given glob pattern.
+  <DocDefTerm>
+    `--tags Array<string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    Run tests with the given tags that match the given glob pattern.
+  </DocDefDescription>
 
-`--pattern <string>`::
-RegExp pattern to match journey files in the current working directory. Defaults
-to `/*.journey.(ts|js)$/`, which matches files ending with `.journey.ts` or `.journey.js`.
+  <DocDefTerm>
+    `--pattern <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    RegExp pattern to match journey files in the current working directory. Defaults
+    to `/*.journey.(ts|js)$/`, which matches files ending with `.journey.ts` or `.journey.js`.
+  </DocDefDescription>
 
-`--params <jsonstring>`::
-JSON object that defines any variables your tests require.
-Read more in <<synthetics-params-secrets>>.
-+
-Params passed will be merged with params defined in your
-<<synthetics-configuration-params,`synthetics.config.js` file>>.
-Params defined via the CLI take precedence.
+  <DocDefTerm>
+    `--params <jsonstring>`
+  </DocDefTerm>
+  <DocDefDescription>
+    JSON object that defines any variables your tests require.
+    Read more in <DocLink id="enObservabilitySyntheticsParamsSecrets">Work with params and secrets</DocLink>.
 
-`--playwright-options <jsonstring>`::
-JSON object to pass in custom Playwright options for the agent.
-For more details on relevant Playwright options, refer to the
-<<synthetics-configuration-playwright-options,the configuration docs>>.
-+
-Options passed will be merged with Playwright options defined in your
-<<synthetics-configuration-playwright-options,`synthetics.config.js` file>>.
-Options defined via the CLI take precedence.
+    Params passed will be merged with params defined in your
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="params">`synthetics.config.js` file</DocLink>.
+    Params defined via the CLI take precedence.
+  </DocDefDescription>
 
-`--screenshots <on|off|only-on-failure>`::
-Control whether or not to capture screenshots at the end of each step.
-Options include `'on'`, `'off'`, or `'only-on-failure'`.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-monitor,`monitor.screenshot`>>.
-The value defined via the CLI will take precedence.
+  <DocDefTerm>
+    `--playwright-options <jsonstring>`
+  </DocDefTerm>
+  <DocDefDescription>
+    JSON object to pass in custom Playwright options for the agent.
+    For more details on relevant Playwright options, refer to the
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="playwrightoptions">the configuration docs</DocLink>.
 
-`-c, --config <string>`::
-Path to the configuration file. By default, test runner looks for a
-`synthetics.config.(js|ts)` file in the current directory. Synthetics
-configuration provides options to configure how your tests are run and pushed to
-{kib}. Allowed options are described in the <<synthetics-config-file,configuration file>>.
+    Options passed will be merged with Playwright options defined in your
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="playwrightoptions">`synthetics.config.js` file</DocLink>.
+    Options defined via the CLI take precedence.
+  </DocDefDescription>
 
-`--reporter <json|junit|buildkite-cli|default>`::
-One of `json`, `junit`, `buildkite-cli`, or `default`. Use the JUnit or Buildkite
-reporter to provide easily parsed output to CI systems.
+  <DocDefTerm>
+    `--screenshots <on|off|only-on-failure>`
+  </DocDefTerm>
+  <DocDefDescription>
+    Control whether or not to capture screenshots at the end of each step.
+    Options include `'on'`, `'off'`, or `'only-on-failure'`.
 
-`--inline`::
-Instead of reading from a file, `cat` inline scripted journeys and pipe them through `stdin`.
-For example, `cat path/to/file.js | npx @elastic/synthetics --inline`.
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.screenshot`</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
 
-`--no-throttling`::
-Does not apply throttling.
-+
-Throttling can also be disabled in the configuration file using
-<<synthetics-configuration-monitor,`monitor.throttling`>>.
-The value defined via the CLI will take precedence.
+  <DocDefTerm>
+    `-c, --config <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    Path to the configuration file. By default, test runner looks for a
+    `synthetics.config.(js|ts)` file in the current directory. Synthetics
+    configuration provides options to configure how your tests are run and pushed to
+    ((kib)). Allowed options are described in the <DocLink id="enObservabilitySyntheticsConfiguration" section="synthetics-config-file">configuration file</DocLink>.
+  </DocDefDescription>
 
-[NOTE]
-=====
-Network throttling for browser based monitors is disabled.
-See this https://github.com/elastic/synthetics/blob/main/docs/throttling.md[documention] for more details.
-=====
+  <DocDefTerm>
+    `--reporter <json|junit|buildkite-cli|default>`
+  </DocDefTerm>
+    : One of `json`, `junit`, `buildkite-cli`, or `default`. Use the JUnit or Buildkite
+    reporter to provide easily parsed output to CI systems.
 
-`--no-headless`::
-Runs with the browser in headful mode.
-+
-This is the same as setting https://playwright.dev/docs/api/class-testoptions#test-options-headless[Playwright's `headless` option] to `false` by running `--playwright-options '{"headless": false}'`.
+  <DocDefTerm>
+    `--inline`
+  </DocDefTerm>
+  <DocDefDescription>
+    Instead of reading from a file, `cat` inline scripted journeys and pipe them through `stdin`.
+    For example, `cat path/to/file.js | npx @elastic/synthetics --inline`.
+  </DocDefDescription>
 
-[NOTE]
-=====
-Headful mode should only be used locally to see the browser and interact with DOM elements directly for testing purposes. Do not attempt to run in headful mode when running through Elastic's global managed testing infrastructure or {private-location}s as this is not supported.
-=====
+  <DocDefTerm>
+    `--no-throttling`
+  </DocDefTerm>
+  <DocDefDescription>
+    Does not apply throttling.
 
-`-h, --help`::
-Shows help for the `npx @elastic/synthetics` command.
+    Throttling can also be disabled in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.throttling`</DocLink>.
+    The value defined via the CLI will take precedence.
 
-[NOTE]
-=====
+    <DocCallOut title="Note">
+
+      Network throttling for browser based monitors is disabled.
+      See this [documention](https://github.com/elastic/synthetics/blob/main/docs/throttling.md) for more details.
+
+    </DocCallOut>
+  </DocDefDescription>
+
+  <DocDefTerm>
+    `--no-headless`
+  </DocDefTerm>
+  <DocDefDescription>
+    Runs with the browser in headful mode.
+
+    This is the same as setting [Playwright's `headless` option](https://playwright.dev/docs/api/class-testoptions#test-options-headless) to `false` by running `--playwright-options '{"headless": false}'`.
+
+    <DocCallOut title="Note">
+
+      Headful mode should only be used locally to see the browser and interact with DOM elements directly for testing purposes. Do not attempt to run in headful mode when running through Elastic's global managed testing infrastructure or ((private-location))s as this is not supported.
+
+    </DocCallOut>
+  </DocDefDescription>
+  <DocDefTerm>
+    `-h, --help`
+  </DocDefTerm>
+  <DocDefDescription>
+    Shows help for the `npx @elastic/synthetics` command.
+  </DocDefDescription>
+</DocDefList>
+
+<DocCallOut title="Note">
+
 The `--pattern`, `--tags`, and `--match` flags for filtering are only supported when you
 run synthetic tests locally or push them to Kibana. Filtering is _not_ supported in any other subcommands
 like `init` and `locations`.
-=====
 
-[NOTE]
-=====
+</DocCallOut>
+
+<DocCallOut title="Note">
+
 For debugging synthetic tests locally, you can set an environment variable,
 `DEBUG=synthetics npx @elastic/synthetics`, to capture Synthetics agent logs.
-=====
 
-[discrete]
-[[elastic-synthetics-init-command]]
-= `@elastic/synthetics init`
+</DocCallOut>
+
+<div id="elastic-synthetics-init-command"></div>
+
+## `@elastic/synthetics init`
 
 Scaffold a new project using Elastic Synthetics.
 
 This will create a template Node.js project that includes the synthetics agent, required dependencies,
 a synthetics configuration file, and example browser and lightweight monitor files.
-These files can be edited and then pushed to {kib} to create monitors.
+These files can be edited and then pushed to ((kib)) to create monitors.
 
-[source,sh]
-----
+```sh
 npx @elastic/synthetics init <name-of-project>
-----
+```
 
-Read more about what's included in a template project in <<synthetics-get-started-project-init>>.
+Read more about what's included in a template project in <DocLink id="enObservabilitySyntheticsGetStartedProject" section="create-a-project">Create a project</DocLink>.
 
-[discrete]
-[[elastic-synthetics-push-command]]
-= `@elastic/synthetics push`
+<div id="elastic-synthetics-push-command"></div>
 
-Create monitors in {kib} by using your local journeys. By default, running
+## `@elastic/synthetics push`
+
+Create monitors in ((kib)) by using your local journeys. By default, running
 `push` command will use the `project` settings field from the `synthetics.config.ts`
 file, which is set up using the `init` command. However, you can override these
 settings using the CLI flags.
 
-[source,sh]
-----
+```sh
 SYNTHETICS_API_KEY=<api-key> npx @elastic/synthetics push --url <kibana-url> --id <id|name>
-----
+```
 
-[NOTE]
-====
+<DocCallOut title="Note">
+
 The `push` command includes interactive prompts to prevent you from accidentally deleting or duplicating monitors.
 You will see a prompt when:
 
 * You `push` a project that used to contain one or more monitors but either no longer
-  contains previously running monitors or has any monitors.
-Select `yes` to delete the monitors associated with the project ID being pushed.
+    contains previously running monitors or has any monitors.
+    Select `yes` to delete the monitors associated with the project ID being pushed.
+
 * You `push` a project that's already been pushed using one project ID and then try to `push`
-  it using a _different_ ID.
-Select `yes` to create duplicates of all monitors in the project.
+    it using a _different_ ID.
+    Select `yes` to create duplicates of all monitors in the project.
 
 You can set `DEBUG=synthetics` environment variable to capture the deleted monitors.
-====
 
-[NOTE]
-====
+</DocCallOut>
+
+<DocCallOut title="Note">
+
 If the journey contains external NPM packages other than the `@elastic/synthetics`,
 those packages will be bundled along with the journey code when the `push` command is invoked.
 However there are some limitations when using external packages:
@@ -166,90 +219,126 @@ However there are some limitations when using external packages:
 * Bundled journeys after compression should not be more than 1500 Kilobytes.
 * Native node modules will not work as expected due to platform inconsistency.
 * Uploading files in journey scripts(via locator.setInputFiles) is not supported.
-====
 
-`--auth <string>`::
-API key used for {kibana-ref}/api-keys.html[{kib} authentication]. You can also set the API key via the `SYNTHETICS_API_KEY` environment variable.
-+
-If you are pushing to a <<private-locations,{private-location}>>, you must use an API key generated in 8.4 or higher.
-+
-To create an API key, you must be logged into {kib} as a user with the privileges described in
-<<synthetics-role-write>>.
+</DocCallOut>
 
-`--id <string>`::
-A unique id associated with your project.
-It will be used for logically grouping monitors.
-+
-If you used <<elastic-synthetics-init-command, `init` to create a project>>, this is the `<name-of-project>` you specified.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-project,`project.id`>>.
-The value defined via the CLI will take precedence.
+<DocDefList>
+  <DocDefTerm>
+    `--auth <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    API key used for [((kib)) authentication](((kibana-ref))/api-keys.html). You can also set the API key via the `SYNTHETICS_API_KEY` environment variable.
 
-`--url <string>`::
-The {kib} URL for the deployment to which you want to upload the monitors.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-project,`project.url`>>.
-The value defined via the CLI will take precedence.
+    If you are pushing to a <DocLink id="enObservabilitySyntheticsGetStartedUi" section="private-locations">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
 
-`--space <string>`::
-The identifier of the target {kibana-ref}/xpack-spaces.html[{kib} space] for the pushed monitors.
-Spaces help you organize pushed monitors.
-Pushes to the "default" space if not specified.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-project,`project.space`>>.
-The value defined via the CLI will take precedence.
+    To create an API key, you must be logged into ((kib)) as a user with the privileges described in
+    <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink>.
+  </DocDefDescription>
 
-`--schedule <number>`::
-The interval (in minutes) at which the monitor should run.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-monitor,`monitor.schedule`>>.
-The value defined via the CLI will take precedence.
+  <DocDefTerm>
+    `--id <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    A unique id associated with your project.
+    It will be used for logically grouping monitors.
 
-https://github.com/elastic/synthetics/blob/{synthetics_version}/src/locations/public-locations.ts#L28-L37[`--locations Array<SyntheticsLocationsType>`]::
-Where to deploy the monitor. Monitors can be deployed in multiple locations so that you can detect differences in availability and response times across those locations.
-+
-To list available locations, refer to <<elastic-synthetics-locations-command>>.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-monitor,`monitor.locations` in the configuration file>>.
-The value defined via the CLI will take precedence.
+    If you used <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-init">`init` to create a project</DocLink>, this is the `<name-of-project>` you specified.
 
-`--private-locations Array<string>`::
-The <<synthetics-private-location,{private-location}s>> to which the monitors will be deployed. These {private-location}s refer to locations hosted and managed by you, whereas
-`locations` are hosted by Elastic. You can specify a {private-location} using the location's name.
-+
-To list available {private-location}s, refer to <<elastic-synthetics-locations-command>>.
-+
-This can also be set in the configuration file using
-<<synthetics-configuration-monitor,`monitor.privateLocations` in the configuration file>>.
-The value defined via the CLI will take precedence.
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.id`</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
 
-`--yes`::
-The `push` command includes interactive prompts to prevent you from accidentally deleting or duplicating monitors.
-If running the CLI non-interactively, you can override these prompts using the `--yes` option.
-When the `--yes` option is passed to `push`:
-+
-* If you `push` a project that used to contain one or more monitors but no longer contains any monitors,
-all monitors associated with the project ID being pushed will be deleted.
-* If you `push` a project that's already been pushed using one project ID and then try to `push`
-it using a _different_ ID, it will create duplicates of all monitors in the
-project.
+  <DocDefTerm>
+    `--url <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    The ((kib)) URL for the deployment to which you want to upload the monitors.
 
-[discrete]
-[[tagging-and-filtering]]
-= Tagging and Filtering monitors
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.url`</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
+
+  <DocDefTerm>
+    `--space <string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    The identifier of the target [((kib)) space](((kibana-ref))/xpack-spaces.html) for the pushed monitors.
+    Spaces help you organize pushed monitors.
+    Pushes to the "default" space if not specified.
+
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="project">`project.space`</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
+
+  <DocDefTerm>
+    `--schedule <number>`
+  </DocDefTerm>
+  <DocDefDescription>
+    The interval (in minutes) at which the monitor should run.
+
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.schedule`</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
+
+  <DocDefTerm>
+    [`--locations Array<SyntheticsLocationsType>`](https://github.com/elastic/synthetics/blob/((synthetics_version))/src/locations/public-locations.ts#L28-L37)
+  </DocDefTerm>
+  <DocDefDescription>
+    Where to deploy the monitor. Monitors can be deployed in multiple locations so that you can detect differences in availability and response times across those locations.
+
+    To list available locations, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
+
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.locations` in the configuration file</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
+
+  <DocDefTerm>
+    `--private-locations Array<string>`
+  </DocDefTerm>
+  <DocDefDescription>
+    The <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))s</DocLink> to which the monitors will be deployed. These ((private-location))s refer to locations hosted and managed by you, whereas
+    `locations` are hosted by Elastic. You can specify a ((private-location)) using the location's name.
+
+    To list available ((private-location))s, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`@elastic/synthetics locations`</DocLink>.
+
+    This can also be set in the configuration file using
+    <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.privateLocations` in the configuration file</DocLink>.
+    The value defined via the CLI will take precedence.
+  </DocDefDescription>
+
+  <DocDefTerm>
+    `--yes`
+  </DocDefTerm>
+  <DocDefDescription>
+    The `push` command includes interactive prompts to prevent you from accidentally deleting or duplicating monitors.
+    If running the CLI non-interactively, you can override these prompts using the `--yes` option.
+    When the `--yes` option is passed to `push`:
+
+    * If you `push` a project that used to contain one or more monitors but no longer contains any monitors,
+        all monitors associated with the project ID being pushed will be deleted.
+
+    * If you `push` a project that's already been pushed using one project ID and then try to `push`
+        it using a _different_ ID, it will create duplicates of all monitors in the
+        project.
+  </DocDefDescription>
+</DocDefList>
+
+<div id="tagging-and-filtering"></div>
+
+## Tagging and Filtering monitors
 
 Synthetics journeys can be tagged with one or more tags. Use tags to
-filter journeys when running tests locally or pushing them to {kib}.
+filter journeys when running tests locally or pushing them to ((kib)).
 
 To add tags to a single journey, add the `tags` parameter to the `journey` function or
 use the `monitor.use` method.
-[source,js]
-----
+
+```js
 import {journey, monitor} from "@elastic/synthetics";
 
 journey({name: "example journey", tags: ["env:qa"] }, ({ page }) => {
@@ -258,65 +347,74 @@ journey({name: "example journey", tags: ["env:qa"] }, ({ page }) => {
   })
   // Add steps here
 });
-----
+```
 
 For lightweight monitors, use the `tags` field in the yaml configuration file.
-[source,yaml]
-----
+
+```yaml
 name: example monitor
 tags:
   - env:qa
-----
+```
 
-To apply tags to all browser and lightweight monitors, configure using <<synthetics-configuration-monitor,`monitor.tags`>> field in the `synthetics.config.ts` file.
+To apply tags to all browser and lightweight monitors, configure using <DocLink id="enObservabilitySyntheticsConfiguration" section="monitor">`monitor.tags`</DocLink> field in the `synthetics.config.ts` file.
 
-== Filtering monitors
+<div id="filtering_monitors"></div>
 
-When running the `npx @elastic/synthetics push` command, you can filter the monitors that are pushed to {kib} using the following flags:
+### Filtering monitors
 
-`--tags Array<string>`::
-Push monitors with the given tags that match the glob pattern.
+When running the `npx @elastic/synthetics push` command, you can filter the monitors that are pushed to ((kib)) using the following flags:
 
-`--match <string>`::
-Push monitors with a name or tags that match the glob pattern.
-
-`--pattern <string>`::
-RegExp pattern to match the journey files in the current working directory.
-Defaults to `/*.journey.(ts|js)$/`, for browser monitors and `/.(yml|yaml)$/` for
-lightweight monitors.
+<DocDefList>
+  <DocDefTerm>`--tags Array<string>`</DocDefTerm>
+  <DocDefDescription>
+    Push monitors with the given tags that match the glob pattern.
+  </DocDefDescription>
+  <DocDefTerm>`--match <string>`</DocDefTerm>
+  <DocDefDescription>
+    Push monitors with a name or tags that match the glob pattern.
+  </DocDefDescription>
+  <DocDefTerm>`--pattern <string>`</DocDefTerm>
+  <DocDefDescription>
+    RegExp pattern to match the journey files in the current working directory.
+    Defaults to `/*.journey.(ts|js)$/`, for browser monitors and `/.(yml|yaml)$/` for
+    lightweight monitors.
+  </DocDefDescription>
+</DocDefList>
 
 You can combine these techniques and push the monitors to different Kibana
 clusters/space based on the tags by using multiple configuration files.
 
-[source, sh]
-----
+```sh
 npx @elastic/synthetics push --config synthetics.qa.config.ts --tags env:qa
 npx @elastic/synthetics push --config synthetics.prod.config.ts --tags env:prod
-----
+```
 
-[discrete]
-[[elastic-synthetics-locations-command]]
-= `@elastic/synthetics locations`
+<div id="elastic-synthetics-locations-command"></div>
+
+## `@elastic/synthetics locations`
 
 List all available locations for running synthetics monitors.
 
-[source,sh]
-----
+```sh
 npx @elastic/synthetics locations --url <kibana-host> --auth <api-key>
-----
+```
 
 Run `npx @elastic/synthetics locations` with no flags to list all the available global locations managed by Elastic for running synthetics monitors.
 
-To list both locations on Elastic's global managed infrastructure and {private-location}s, include:
+To list both locations on Elastic's global managed infrastructure and ((private-location))s, include:
 
-`--url <string>`::
-The {kib} URL for the deployment from which to fetch all available public and {private-location}s.
+`--url <string>`
+    : The ((kib)) URL for the deployment from which to fetch all available public and ((private-location))s.
 
-`--auth <string>`::
-API key used for {kibana-ref}/api-keys.html[{kib} authentication].
+`--auth <string>`
+    : API key used for [((kib)) authentication](((kibana-ref))/api-keys.html).
 
-NOTE: If an administrator has disabled Elastic managed locations for the role you are assigned
+<DocCallOut title="Note">
+If an administrator has disabled Elastic managed locations for the role you are assigned
 and you do _not_ include `--url` and `--auth`, all global locations managed by Elastic will be listed.
 However, you will not be able to push to these locations with your API key and will see an error:
 _You don't have permission to use Elastic managed global locations_. For more details, refer to the
-<<synthetics-troubleshooting-public-locations-disabled,troubleshooting docs>>.
+<DocLink id="enObservabilitySyntheticsTroubleshooting" section="you-do-not-have-permission-to-use-elastic-managed-locations">troubleshooting docs</DocLink>.
+</DocCallOut>
+

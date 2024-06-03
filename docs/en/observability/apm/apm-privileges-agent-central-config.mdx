@@ -1,0 +1,39 @@
+---
+id: enObservabilityApmPrivilegesAgentCentralConfig
+slug: /en/observability/apm-privileges-agent-central-config
+title: Grant privileges and roles needed for APM Agent central configuration
+description: Description to be written
+tags: []
+---
+
+<div id="apm-privileges-agent-central-config"></div>
+
+<div id="apm-privileges-agent-central-config-server"></div>
+
+## APM Server agent central configuration management
+
+APM Server acts as a proxy between your APM agents and the ((apm-app)).
+The ((apm-app)) communicates any changed settings to APM Server so that your agents only need to poll the Server
+to determine which central configuration settings have changed.
+
+To grant an APM Server user with the required privileges for managing central configuration in ((es)) without ((kib)),
+assign the user the following privileges:
+
+| Type | Privilege | Purpose |
+|---|---|---|
+| Index | `read` on `.apm-agent-configuration` index, `allow_restricted_indices: true` | Allow APM Server to manage central configurations in ((es)) |
+
+The above privileges should be sufficient for APM agent central configuration to work properly
+as long as APM Server communicates with ((es)) successfully.
+If it fails, it may fallback to read agent central configuration via ((kib)) if configured,
+which requires the following privileges:
+
+| Type | Privilege | Purpose |
+|---|---|---|
+| Spaces | `Read` on ((apm-app)) | Allow APM Server to manage central configurations via the ((apm-app)) |
+
+<DocCallOut title="Tip">
+Looking for privileges and roles needed to use central configuration from the ((apm-app)) or ((apm-app)) API?
+See [((apm-app)) central configuration user](((kibana-ref))/apm-app-central-config-user.html).
+</DocCallOut>
+

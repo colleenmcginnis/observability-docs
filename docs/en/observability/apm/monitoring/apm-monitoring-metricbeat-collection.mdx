@@ -1,261 +1,243 @@
-[role="xpack"]
-[[apm-monitoring-metricbeat-collection]]
-== Use {metricbeat} to send monitoring data
-[subs="attributes"]
-++++
-<titleabbrev>Use {metricbeat} collection</titleabbrev>
-++++
+---
+id: enObservabilityApmMonitoringMetricbeatCollection
+slug: /en/observability/apm-monitoring-metricbeat-collection
+title: Use ((metricbeat)) to send monitoring data
+description: Description to be written
+tags: []
+---
 
-In 7.3 and later, you can use {metricbeat} to collect data about APM Server
-and ship it to the monitoring cluster. The benefit of using {metricbeat} instead
+
+<div id="apm-monitoring-metricbeat-collection"></div>
+
+In 7.3 and later, you can use ((metricbeat)) to collect data about APM Server
+and ship it to the monitoring cluster. The benefit of using ((metricbeat)) instead
 of internal collection is that the monitoring agent remains active even if the
 APM Server instance dies.
 
-//Commenting out this link temporarily until the general monitoring docs can be
-//updated.
-//To learn about monitoring in general, see
-//{ref}/monitor-elasticsearch-cluster.html[Monitor a cluster].
+{/* Commenting out this link temporarily until the general monitoring docs can be */}
+{/* updated. */}
+{/* To learn about monitoring in general, see */}
+{/* ((ref))/monitor-elasticsearch-cluster.html[Monitor a cluster]. */}
 
-//NOTE: The tagged regions are re-used in the Stack Overview.
+{/* NOTE: The tagged regions are re-used in the Stack Overview. */}
 
 To collect and ship monitoring data:
 
-. <<apm-configure-shipper,Configure the shipper you want to monitor>>
+1. <DocLink id="enObservabilityApmMonitoringMetricbeatCollection" section="configure-the-shipper-you-want-to-monitor">Configure the shipper you want to monitor</DocLink>
 
-. <<apm-configure-metricbeat,Install and configure {metricbeat} to collect monitoring data>>
+1. <DocLink id="enObservabilityApmMonitoringMetricbeatCollection" section="install-and-configure-((metricbeat))-to-collect-monitoring-data">Install and configure ((metricbeat)) to collect monitoring data</DocLink>
 
-[float]
-[[apm-configure-shipper]]
-=== Configure the shipper you want to monitor
+<div id="apm-configure-shipper"></div>
 
-. Enable the HTTP endpoint to allow external collection of monitoring data:
-+
---
-// tag::enable-http-endpoint[]
-Add the following setting in the APM Server configuration file
-(`apm-server.yml`):
+## Configure the shipper you want to monitor
 
-[source,yaml]
-----------------------------------
-http.enabled: true
-----------------------------------
+1. Enable the HTTP endpoint to allow external collection of monitoring data:
 
-By default, metrics are exposed on port 5066. If you need to monitor multiple
-{beats} shippers running on the same server, set `http.port` to expose metrics
-for each shipper on a different port number:
+    {/* tag::enable-http-endpoint[] */}
+    Add the following setting in the APM Server configuration file
+    (`apm-server.yml`):
 
-[source,yaml]
-----------------------------------
-http.port: 5067
-----------------------------------
-// end::enable-http-endpoint[]
---
+    ```yaml
+    http.enabled: true
+    ```
 
-. Disable the default collection of APM Server monitoring metrics. +
-+
---
-// tag::disable-beat-collection[]
-Add the following setting in the APM Server configuration file
-(`apm-server.yml`):
+    By default, metrics are exposed on port 5066. If you need to monitor multiple
+    ((beats)) shippers running on the same server, set `http.port` to expose metrics
+    for each shipper on a different port number:
 
-[source,yaml]
-----------------------------------
-monitoring.enabled: false
-----------------------------------
-// end::disable-beat-collection[]
+    ```yaml
+    http.port: 5067
+    ```
+    {/* end::enable-http-endpoint[] */}
 
-For more information, see
-<<apm-configuration-monitor,Monitoring configuration options>>.
---
+1. Disable the default collection of APM Server monitoring metrics.
 
-. Configure host (optional). +
-+
---
-// tag::set-http-host[]
-If you intend to get metrics using {metricbeat} installed on another server, you need to bind the APM Server to host's IP:
+    {/* tag::disable-beat-collection[] */}
+    Add the following setting in the APM Server configuration file
+    (`apm-server.yml`):
 
-[source,yaml]
-----------------------------------
-http.host: xxx.xxx.xxx.xxx
-----------------------------------
-// end::set-http-host[]
---
+    ```yaml
+    monitoring.enabled: false
+    ```
+    {/* end::disable-beat-collection[] */}
 
-. Configure cluster UUID (optional). +
-+
---
-// tag::set-cluster-uuid[]
-To see the {beats} monitoring section in {kib} if you have a cluster, you need to associate the APM Server with cluster UUID:
+    For more information, see
+    \<\<apm-configuration-monitor,Monitoring configuration options>>.
 
-[source,yaml]
-----------------------------------
-monitoring.cluster_uuid: "cluster-uuid"
-----------------------------------
-// end::set-cluster-uuid[]
---
+1. Configure host (optional).
 
-ifndef::serverless[]
-. Start APM Server.
-endif::[]
+    {/* tag::set-http-host[] */}
+    If you intend to get metrics using ((metricbeat)) installed on another server, you need to bind the APM Server to host's IP:
 
-[float]
-[[apm-configure-metricbeat]]
-=== Install and configure {metricbeat} to collect monitoring data
+    ```yaml
+    http.host: xxx.xxx.xxx.xxx
+    ```
+    {/* end::set-http-host[] */}
 
-. Install {metricbeat} on the same server as APM Server. To learn how, see
-{metricbeat-ref}/metricbeat-installation-configuration.html[Get started with {metricbeat}].
-If you already have {metricbeat} installed on the server, skip this step.
+1. Configure cluster UUID (optional).
 
-. Enable the `beat-xpack` module in {metricbeat}. +
-+
---
-// tag::enable-beat-module[]
-For example, to enable the default configuration in the `modules.d` directory,
-run the following command, using the correct command syntax for your OS:
+    {/* tag::set-cluster-uuid[] */}
+    To see the ((beats)) monitoring section in ((kib)) if you have a cluster, you need to associate the APM Server with cluster UUID:
 
-["source","sh",subs="attributes,callouts"]
-----------------------------------------------------------------------
-metricbeat modules enable beat-xpack
-----------------------------------------------------------------------
+    ```yaml
+    monitoring.cluster_uuid: "cluster-uuid"
+    ```
+    {/* end::set-cluster-uuid[] */}
 
-For more information, see
-{metricbeat-ref}/configuration-metricbeat.html[Configure modules] and
-{metricbeat-ref}/metricbeat-module-beat.html[beat module].
-// end::enable-beat-module[]
---
+export let serverless = false
 
-. Configure the `beat-xpack` module in {metricbeat}. +
-+
---
-// tag::configure-beat-module[]
-The `modules.d/beat-xpack.yml` file contains the following settings:
+<DocIf condition={ serverless === false }>
+1. Start APM Server.
 
-[source,yaml]
-----------------------------------
-- module: beat
-  metricsets:
-    - stats
-    - state
-  period: 10s
-  hosts: ["http://localhost:5066"]
-  #username: "user"
-  #password: "secret"
-  xpack.enabled: true
-----------------------------------
+</DocIf>
 
-Set the `hosts`, `username`, and `password` settings as required by your
-environment. For other module settings, it's recommended that you accept the
-defaults.
+<div id="apm-configure-metricbeat"></div>
 
-By default, the module collects APM Server monitoring data from
-`localhost:5066`. If you exposed the metrics on a different host or port when
-you enabled the HTTP endpoint, update the `hosts` setting.
+## Install and configure ((metricbeat)) to collect monitoring data
 
-To monitor multiple
-ifndef::apm-server[]
+export let apm_server = false
 
-{beats} agents,
-endif::[]
-ifdef::apm-server[]
+1. Install ((metricbeat)) on the same server as APM Server. To learn how, see
+    [Get started with ((metricbeat))](((metricbeat-ref))/metricbeat-installation-configuration.html).
+    If you already have ((metricbeat)) installed on the server, skip this step.
 
-APM Server instances,
-endif::[]
-specify a list of hosts, for example:
+1. Enable the `beat-xpack` module in ((metricbeat)).
 
-[source,yaml]
-----------------------------------
-hosts: ["http://localhost:5066","http://localhost:5067","http://localhost:5068"]
-----------------------------------
+    {/* tag::enable-beat-module[] */}
+    For example, to enable the default configuration in the `modules.d` directory,
+    run the following command, using the correct command syntax for your OS:
 
-If you configured APM Server to use encrypted communications, you must access
-it via HTTPS. For example, use a `hosts` setting like `https://localhost:5066`.
-// end::configure-beat-module[]
+    ```sh
+    metricbeat modules enable beat-xpack
+    ```
 
-// tag::remote-monitoring-user[]
-If the Elastic {security-features} are enabled, you must also provide a user
-ID and password so that {metricbeat} can collect metrics successfully:
+    For more information, see
+    [Configure modules](((metricbeat-ref))/configuration-metricbeat.html) and
+    [beat module](((metricbeat-ref))/metricbeat-module-beat.html).
+    {/* end::enable-beat-module[] */}
 
-.. Create a user on the {es} cluster that has the
-`remote_monitoring_collector` {ref}/built-in-roles.html[built-in role].
-Alternatively, if it's available in your environment, use the
-`remote_monitoring_user` {ref}/built-in-users.html[built-in user].
+1. Configure the `beat-xpack` module in ((metricbeat)).
 
-.. Add the `username` and `password` settings to the beat module configuration file.
-// end::remote-monitoring-user[]
---
+    {/* tag::configure-beat-module[] */}
+    The `modules.d/beat-xpack.yml` file contains the following settings:
 
-. Optional: Disable the system module in the {metricbeat}.
-+
---
-// tag::disable-system-module[]
-By default, the {metricbeat-ref}/metricbeat-module-system.html[system module] is
-enabled. The information it collects, however, is not shown on the
-*{stack-monitor-app}* page in {kib}. Unless you want to use that information for
-other purposes, run the following command:
+    ```yaml
+    - module: beat
+      metricsets:
+        - stats
+        - state
+      period: 10s
+      hosts: ["http://localhost:5066"]
+      #username: "user"
+      #password: "secret"
+      xpack.enabled: true
+    ```
 
-["source","sh",subs="attributes,callouts"]
-----------------------------------------------------------------------
-metricbeat modules disable system
-----------------------------------------------------------------------
-// end::disable-system-module[]
---
+    Set the `hosts`, `username`, and `password` settings as required by your
+    environment. For other module settings, it's recommended that you accept the
+    defaults.
 
-. Identify where to send the monitoring data. +
-+
---
-TIP: In production environments, we strongly recommend using a separate cluster
-(referred to as the _monitoring cluster_) to store the data. Using a separate
-monitoring cluster prevents production cluster outages from impacting your
-ability to access your monitoring data. It also prevents monitoring activities
-from impacting the performance of your production cluster.
+    By default, the module collects APM Server monitoring data from
+    `localhost:5066`. If you exposed the metrics on a different host or port when
+    you enabled the HTTP endpoint, update the `hosts` setting.
 
-For example, specify the {es} output information in the {metricbeat}
-configuration file (`metricbeat.yml`):
+    To monitor multiple<DocIf condition={ apm_server === false }>((beats)) agents,</DocIf><DocIf condition={ apm_server === true }>APM Server instances,</DocIf>
+    specify a list of hosts, for example:
 
-[source,yaml]
-----------------------------------
-output.elasticsearch:
-  # Array of hosts to connect to.
-  hosts: ["http://es-mon-1:9200", "http://es-mon2:9200"] <1>
+    ```yaml
+    hosts: ["http://localhost:5066","http://localhost:5067","http://localhost:5068"]
+    ```
 
-  # Optional protocol and basic auth credentials.
-  #protocol: "https"
-  #api_key:  "id:api_key" <2>
-  #username: "elastic"
-  #password: "changeme"
-----------------------------------
-<1> In this example, the data is stored on a monitoring cluster with nodes
-`es-mon-1` and `es-mon-2`.
-<2> Specify one of `api_key` or `username`/`password`.
+    If you configured APM Server to use encrypted communications, you must access
+    it via HTTPS. For example, use a `hosts` setting like `https://localhost:5066`.
+    {/* end::configure-beat-module[] */}
 
-If you configured the monitoring cluster to use encrypted communications, you
-must access it via HTTPS. For example, use a `hosts` setting like
-`https://es-mon-1:9200`.
+    {/* tag::remote-monitoring-user[] */}
+    If the Elastic ((security-features)) are enabled, you must also provide a user
+    ID and password so that ((metricbeat)) can collect metrics successfully:
 
-IMPORTANT: The {es} {monitor-features} use ingest pipelines, therefore the
-cluster that stores the monitoring data must have at least one ingest node.
+        1. Create a user on the ((es)) cluster that has the
+            `remote_monitoring_collector` [built-in role](((ref))/built-in-roles.html).
+            Alternatively, if it's available in your environment, use the
+            `remote_monitoring_user` [built-in user](((ref))/built-in-users.html).
 
-If the {es} {security-features} are enabled on the monitoring cluster, you
-must provide a valid user ID and password so that {metricbeat} can send metrics
-successfully:
+        1. Add the `username` and `password` settings to the beat module configuration file.
 
-.. Create a user on the monitoring cluster that has the
-`remote_monitoring_agent` {ref}/built-in-roles.html[built-in role].
-Alternatively, if it's available in your environment, use the
-`remote_monitoring_user` {ref}/built-in-users.html[built-in user].
-+
-TIP: If you're using {ilm}, the remote monitoring user
-requires additional privileges to create and read indices. For more
-information, see <<apm-feature-roles>>.
+    {/* end::remote-monitoring-user[] */}
 
-.. Add the `username` and `password` settings to the {es} output information in
-the {metricbeat} configuration file.
+1. Optional: Disable the system module in the ((metricbeat)).
 
-For more information about these configuration options, see
-{metricbeat-ref}/elasticsearch-output.html[Configure the {es} output].
---
+    {/* tag::disable-system-module[] */}
+    By default, the [system module](((metricbeat-ref))/metricbeat-module-system.html) is
+    enabled. The information it collects, however, is not shown on the
+    **((stack-monitor-app))** page in ((kib)). Unless you want to use that information for
+    other purposes, run the following command:
 
-. {metricbeat-ref}/metricbeat-starting.html[Start {metricbeat}] to begin
-collecting monitoring data.
+    ```sh
+    metricbeat modules disable system
+    ```
+    {/* end::disable-system-module[] */}
 
-. {kibana-ref}/monitoring-data.html[View the monitoring data in {kib}].
+1. Identify where to send the monitoring data.
+
+    <DocCallOut title="Tip">
+    In production environments, we strongly recommend using a separate cluster
+    (referred to as the _monitoring cluster_) to store the data. Using a separate
+    monitoring cluster prevents production cluster outages from impacting your
+    ability to access your monitoring data. It also prevents monitoring activities
+    from impacting the performance of your production cluster.
+    </DocCallOut>
+
+    For example, specify the ((es)) output information in the ((metricbeat))
+    configuration file (`metricbeat.yml`):
+
+    ```yaml
+    output.elasticsearch:
+      # Array of hosts to connect to.
+      hosts: ["http://es-mon-1:9200", "http://es-mon2:9200"]  [^1]
+
+      # Optional protocol and basic auth credentials.
+      #protocol: "https"
+      #api_key:  "id:api_key"  [^2]
+      #username: "elastic"
+      #password: "changeme"
+    ```
+    [^1]: In this example, the data is stored on a monitoring cluster with nodes
+    `es-mon-1` and `es-mon-2`.
+    [^2]: Specify one of `api_key` or `username`/`password`.
+
+    If you configured the monitoring cluster to use encrypted communications, you
+    must access it via HTTPS. For example, use a `hosts` setting like
+    `https://es-mon-1:9200`.
+
+    <DocCallOut title="Important" color="warning">
+    The ((es)) ((monitor-features)) use ingest pipelines, therefore the
+    cluster that stores the monitoring data must have at least one ingest node.
+    </DocCallOut>
+
+    If the ((es)) ((security-features)) are enabled on the monitoring cluster, you
+    must provide a valid user ID and password so that ((metricbeat)) can send metrics
+    successfully:
+
+        1. Create a user on the monitoring cluster that has the
+            `remote_monitoring_agent` [built-in role](((ref))/built-in-roles.html).
+            Alternatively, if it's available in your environment, use the
+            `remote_monitoring_user` [built-in user](((ref))/built-in-users.html).
+
+    <DocCallOut title="Tip">
+    If you're using ((ilm)), the remote monitoring user
+    requires additional privileges to create and read indices. For more
+    information, see <DocLink id="enObservabilityApmSecureCommsStack" section="feature-roles">Feature roles</DocLink>.
+    </DocCallOut>
+
+        1. Add the `username` and `password` settings to the ((es)) output information in
+            the ((metricbeat)) configuration file.
+
+    For more information about these configuration options, see
+    [Configure the ((es)) output](((metricbeat-ref))/elasticsearch-output.html).
+
+1. [Start ((metricbeat))](((metricbeat-ref))/metricbeat-starting.html) to begin
+    collecting monitoring data.
+
+1. [View the monitoring data in ((kib))](((kibana-ref))/monitoring-data.html).
+

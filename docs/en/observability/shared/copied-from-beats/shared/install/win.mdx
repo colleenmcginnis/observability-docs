@@ -1,0 +1,36 @@
+
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((version)) of {props.beatname_uc} has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+1. Download the {props.beatname_uc} Windows zip file from the
+    [downloads page](https://www.elastic.co/downloads/beats/{props.beatname_lc}).
+
+1. Extract the contents of the zip file into `C:\Program Files`.
+
+1. Rename the `{props.beatname_lc}-<version>-windows` directory to `{props.beatname_uc}`.
+
+1. Open a PowerShell prompt as an Administrator (right-click the PowerShell icon
+    and select **Run As Administrator**).
+
+1. From the PowerShell prompt, run the following commands to install
+    {props.beatname_uc} as a Windows service:
+
+    ```sh
+    PS > cd 'C:((backslash))Program Files((backslash)){props.beatname_uc}'
+    PS C:((backslash))Program Files((backslash)){props.beatname_uc}> .((backslash))install-service-{props.beatname_lc}.ps1
+    ```
+
+<DocCallOut title="Note">
+If script execution is disabled on your system, you need to set the
+execution policy for the current session to allow the script to run. For
+example:
+`PowerShell.exe -ExecutionPolicy UnRestricted -File .\install-service-{props.beatname_lc}.ps1`.
+</DocCallOut>
+
+</DocIf>

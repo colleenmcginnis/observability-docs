@@ -1,8 +1,20 @@
-[[apm-api-key]]
-=== API keys
+---
+id: enObservabilityApmApiKey
+slug: /en/observability/apm-api-key
+title: API keys
+description: Description to be written
+tags: []
+---
 
-IMPORTANT: API keys are sent as plain-text,
-so they only provide security when used in combination with <<apm-agent-tls,TLS>>.
+import ApiKeyWidget from './tab-widgets/api-key-widget.mdx'
+import ApikeySubcommands from './command-reference/apikey-subcommands.mdx'
+
+<div id="apm-api-key"></div>
+
+<DocCallOut title="Important" color="warning">
+API keys are sent as plain-text,
+so they only provide security when used in combination with <DocLink id="enObservabilityApmAgentTls">TLS</DocLink>.
+</DocCallOut>
 
 When enabled, API keys are used to authorize requests to the APM Server.
 API keys are not applicable for APM agents running on clients, like the RUM agent,
@@ -10,42 +22,42 @@ as there is no way to prevent them from being publicly exposed.
 
 You can assign one or more unique privileges to each API key:
 
-* *Agent configuration* (`config_agent:read`): Required for agents to read
-{kibana-ref}/agent-configuration.html[Agent configuration remotely].
-* *Ingest* (`event:write`): Required for ingesting agent events.
+* **Agent configuration** (`config_agent:read`): Required for agents to read
+    [Agent configuration remotely](((kibana-ref))/agent-configuration.html).
+
+* **Ingest** (`event:write`): Required for ingesting agent events.
 
 To secure the communication between APM Agents and the APM Server with API keys,
-make sure <<apm-agent-tls,TLS>> is enabled, then complete these steps:
+make sure <DocLink id="enObservabilityApmAgentTls">TLS</DocLink> is enabled, then complete these steps:
 
-. <<apm-enable-api-key,Enable API keys>>
-. <<apm-create-api-key-user,Create an API key user>>
-. <<apm-create-an-api-key,Create an API key in {kib}>>
-. <<apm-agent-api-key,Set the API key in your APM agents>>
+1. <DocLink id="enObservabilityApmApiKey" section="enable-api-keys">Enable API keys</DocLink>
+1. <DocLink id="enObservabilityApmApiKey" section="create-an-api-key-user-in-((kib))">Create an API key user</DocLink>
+1. <DocLink id="enObservabilityApmApiKey" section="create-an-api-key-in-the-((apm-app))">Create an API key in ((kib))</DocLink>
+1. <DocLink id="enObservabilityApmApiKey" section="set-the-api-key-in-your-apm-agents">Set the API key in your APM agents</DocLink>
 
-[[apm-enable-api-key]]
-[float]
-=== Enable API keys
+<div id="apm-enable-api-key"></div>
 
-include::{observability-docs-root}/docs/en/observability/apm/tab-widgets/api-key-widget.asciidoc[]
+## Enable API keys
 
-[[apm-create-api-key-user]]
-[float]
-=== Create an API key user in {kib}
+<ApiKeyWidget />
+
+<div id="apm-create-api-key-user"></div>
+
+## Create an API key user in ((kib))
 
 API keys can only have the same or lower access rights than the user that creates them.
 Instead of using a superuser account to create API keys, you can create a role with the minimum required
 privileges.
 
-The user creating an {apm-agent} API key must have at least the `manage_own_api_key` cluster privilege
+The user creating an ((apm-agent)) API key must have at least the `manage_own_api_key` cluster privilege
 and the APM application-level privileges that it wishes to grant.
-In addition, when creating an API key from the {apm-app},
-you'll need the appropriate {kib} Space and Feature privileges.
+In addition, when creating an API key from the ((apm-app)),
+you'll need the appropriate ((kib)) Space and Feature privileges.
 
-The example below uses the {kib} {kibana-ref}/role-management-api.html[role management API]
+The example below uses the ((kib)) [role management API](((kibana-ref))/role-management-api.html)
 to create a role named `apm_agent_key_role`.
 
-[source,js]
-----
+```js
 POST /_security/role/apm_agent_key_role
 {
    "cluster": [ "manage_own_api_key" ],
@@ -61,83 +73,84 @@ POST /_security/role/apm_agent_key_role
       {
          "application":"kibana-.kibana",
          "privileges":[ "feature_apm.all" ],
-         "resources":[ "space:default" ] <1>
+         "resources":[ "space:default" ]  [^1]
       }
    ]
 }
-----
-<1> This example assigns privileges for the default space.
+```
+[^1]: This example assigns privileges for the default space.
 
-Assign the newly created `apm_agent_key_role` role to any user that wishes to create {apm-agent} API keys.
+Assign the newly created `apm_agent_key_role` role to any user that wishes to create ((apm-agent)) API keys.
 
-[[apm-create-an-api-key]]
-[float]
-=== Create an API key in the {apm-app}
+<div id="apm-create-an-api-key"></div>
 
-The {apm-app} has a built-in workflow that you can use to easily create and view {apm-agent} API keys.
-Only API keys created in the {apm-app} will show up here.
+## Create an API key in the ((apm-app))
+
+The ((apm-app)) has a built-in workflow that you can use to easily create and view ((apm-agent)) API keys.
+Only API keys created in the ((apm-app)) will show up here.
 
 Using a superuser account, or a user with the role created in the previous step,
-open {kib} and navigate to **{observability}** > **APM** > **Settings** > **Agent keys**.
+open ((kib)) and navigate to **((observability))** > **APM** > **Settings** > **Agent keys**.
 Enter a name for your API key and select at least one privilege.
 
 For example, to create an API key that can be used to ingest APM events
 and read agent central configuration, select `config_agent:read` and `event:write`.
 
-// lint ignore apm-agent
+{/* lint ignore apm-agent */}
 Click **Create APM Agent key** and copy the Base64 encoded API key.
 You will need this for the next step, and you will not be able to view it again.
 
-[role="screenshot"]
-image::images/apm-ui-api-key.png[{apm-app} API key]
+![((apm-app)) API key](images/apm-ui-api-key.png)
 
-[[apm-agent-api-key]]
-[float]
-=== Set the API key in your APM agents
+<div id="apm-agent-api-key"></div>
+
+## Set the API key in your APM agents
 
 You can now apply your newly created API keys in the configuration of each of your APM agents.
 See the relevant agent documentation for additional information:
 
-// Not relevant for RUM
-* *Android*: {apm-android-ref}/configuration.html[`apiKey`]
-* *Go agent*: {apm-go-ref}/configuration.html#config-api-key[`ELASTIC_APM_API_KEY`]
-* *.NET agent*: {apm-dotnet-ref}/config-reporter.html#config-api-key[`ApiKey`]
-* *iOS*: {apm-ios-ref}/configuration.html#withApiKey[`withApiKey`]
-* *Java agent*: {apm-java-ref}/config-reporter.html#config-api-key[`api_key`]
-* *Node.js agent*: {apm-node-ref}/configuration.html#api-key[`apiKey`]
-* *PHP agent*: {apm-php-ref-v}/configuration-reference.html#config-api-key[`api_key`]
-* *Python agent*: {apm-py-ref}/configuration.html#config-api-key[`api_key`]
-* *Ruby agent*: {apm-ruby-ref}/configuration.html#config-api-key[`api_key`]
+{/* Not relevant for RUM */}
+* **Android**: [`apiKey`](((apm-android-ref))/configuration.html)
+* **Go agent**: [`ELASTIC_APM_API_KEY`](((apm-go-ref))/configuration.html#config-api-key)
+* **.NET agent**: [`ApiKey`](((apm-dotnet-ref))/config-reporter.html#config-api-key)
+* **iOS**: [`withApiKey`](((apm-ios-ref))/configuration.html#withApiKey)
+* **Java agent**: [`api_key`](((apm-java-ref))/config-reporter.html#config-api-key)
+* **Node.js agent**: [`apiKey`](((apm-node-ref))/configuration.html#api-key)
+* **PHP agent**: [`api_key`](((apm-php-ref-v))/configuration-reference.html#config-api-key)
+* **Python agent**: [`api_key`](((apm-py-ref))/configuration.html#config-api-key)
+* **Ruby agent**: [`api_key`](((apm-ruby-ref))/configuration.html#config-api-key)
 
-[[apm-configure-api-key-alternative]]
-[float]
-=== Alternate API key creation methods
+<div id="apm-configure-api-key-alternative"></div>
 
-API keys can also be created and validated outside of {kib}:
+## Alternate API key creation methods
 
-* <<apm-create-api-key-workflow-apm-server>>
-* <<apm-create-api-key-workflow-es>>
+API keys can also be created and validated outside of ((kib)):
 
-[[apm-create-api-key-workflow-apm-server]]
-[float]
-==== APM Server API key workflow
+* <DocLink id="enObservabilityApmApiKey" section="apm-server-api-key-workflow">APM Server API key workflow</DocLink>
+* <DocLink id="enObservabilityApmApiKey" section="((es))-api-key-workflow">((es)) API key workflow</DocLink>
+
+<div id="apm-create-api-key-workflow-apm-server"></div>
+
+### APM Server API key workflow
 
 This API creation method only works with the APM Server binary.
 
-deprecated::[8.6.0, Users should create API Keys through {kib} or the {es} REST API]
+<DocCallOut title="Deprecated in 8.6.0" color="danger">
+Users should create API Keys through ((kib)) or the ((es)) REST API
+</DocCallOut>
 
 APM Server provides a command line interface for creating, retrieving, invalidating, and verifying API keys.
 Keys created using this method can only be used for communication with APM Server.
 
-[[apm-create-api-key-subcommands]]
-[float]
-===== `apikey` subcommands
+<div id="apm-create-api-key-subcommands"></div>
 
-include::{observability-docs-root}/docs/en/observability/apm/command-reference.asciidoc[tag=apikey-subcommands]
+#### `apikey` subcommands
 
-[[apm-create-api-key-privileges]]
-[float]
-===== Privileges
+<ApikeySubcommands />
+
+<div id="apm-create-api-key-privileges"></div>
+
+#### Privileges
 
 If privileges are not specified at creation time, the created key will have all privileges.
 
@@ -145,134 +158,123 @@ If privileges are not specified at creation time, the created key will have all 
 * `--ingest` grants the `event:write` privilege
 * `--sourcemap` grants the `sourcemap:write` privilege
 
-[[apm-create-api-key-workflow]]
-[float]
-===== Create an API key
+<div id="apm-create-api-key-workflow"></div>
+
+#### Create an API key
 
 Create an API key with the `create` subcommand.
 
 The following example creates an API key with a `name` of `java-001`,
 and gives the "agent configuration" and "ingest" privileges.
 
-["source","sh",subs="attributes"]
------
+```sh
 apm-server apikey create --ingest --agent-config --name java-001
------
+```
 
 The response will look similar to this:
 
-[source,console-result]
---------------------------------------------------
+```console-result
 Name ........... java-001
 Expiration ..... never
 Id ............. qT4tz28B1g59zC3uAXfW
 API Key ........ rH55zKd5QT6wvs3UbbkxOA (won't be shown again)
 Credentials .... cVQ0dHoyOEIxZzU5ekMzdUFYZlc6ckg1NXpLZDVRVDZ3dnMzVWJia3hPQQ== (won't be shown again)
---------------------------------------------------
+```
 
 You should always verify the privileges of an API key after creating it.
 Verification can be done using the `verify` subcommand.
 
 The following example verifies that the `java-001` API key has the "agent configuration" and "ingest" privileges.
 
-["source","sh",subs="attributes"]
------
+```sh
 apm-server apikey verify --agent-config --ingest --credentials cVQ0dHoyOEIxZzU5ekMzdUFYZlc6ckg1NXpLZDVRVDZ3dnMzVWJia3hPQQ==
------
+```
 
 If the API key has the requested privileges, the response will look similar to this:
 
-[source,console-result]
---------------------------------------------------
+```console-result
 Authorized for privilege "event:write"...:          Yes
 Authorized for privilege "config_agent:read"...:    Yes
---------------------------------------------------
+```
 
 To invalidate an API key, use the `invalidate` subcommand.
-Due to {es} caching, there may be a delay between when this subcommand is executed and when it takes effect.
+Due to ((es)) caching, there may be a delay between when this subcommand is executed and when it takes effect.
 
 The following example invalidates the `java-001` API key.
 
-["source","sh",subs="attributes"]
------
+```sh
 apm-server apikey invalidate --name java-001
------
+```
 
 The response will look similar to this:
 
-[source,console-result]
---------------------------------------------------
+```console-result
 Invalidated keys ... qT4tz28B1g59zC3uAXfW
 Error count ........ 0
---------------------------------------------------
+```
 
-A full list of `apikey` subcommands and flags is available in the <<apm-apikey-command,API key command reference>>.
+A full list of `apikey` subcommands and flags is available in the <DocLink id="enObservabilityApmCommandLineOptions" section="apikey-command">API key command reference</DocLink>.
 
-[[apm-create-api-key-workflow-es]]
-[float]
-==== {es} API key workflow
+<div id="apm-create-api-key-workflow-es"></div>
 
-It is also possible to create API keys using the {es}
-{ref}/security-api-create-api-key.html[create API key API].
+### ((es)) API key workflow
+
+It is also possible to create API keys using the ((es))
+[create API key API](((ref))/security-api-create-api-key.html).
 
 This example creates an API key named `java-002`:
 
-[source,kibana]
-----
+```kibana
 POST /_security/api_key
 {
-  "name": "java-002", <1>
-  "expiration": "1d", <2>
+  "name": "java-002",  [^1]
+  "expiration": "1d",  [^2]
   "role_descriptors": {
     "apm": {
       "applications": [
         {
           "application": "apm",
-          "privileges": ["sourcemap:write", "event:write", "config_agent:read"], <3>
+          "privileges": ["sourcemap:write", "event:write", "config_agent:read"],  [^3]
           "resources": ["*"]
         }
       ]
     }
   }
 }
-----
-<1> The name of the API key
-<2> The expiration time of the API key
-<3> Any assigned privileges
+```
+[^1]: The name of the API key
+[^2]: The expiration time of the API key
+[^3]: Any assigned privileges
 
 The response will look similar to this:
 
-[source,console-result]
-----
+```console-result
 {
   "id" : "GnrUT3QB7yZbSNxKET6d",
   "name" : "java-002",
   "expiration" : 1599153532262,
   "api_key" : "RhHKisTmQ1aPCHC_TPwOvw"
 }
-----
+```
 
 The `credential` string, which is what agents use to communicate with APM Server,
 is a base64 encoded representation of the API key's `id:api_key`.
 It can be created like this:
 
-[source,console-result]
---------------------------------------------------
+```console-result
 echo -n GnrUT3QB7yZbSNxKET6d:RhHKisTmQ1aPCHC_TPwOvw | base64
---------------------------------------------------
+```
 
 You can verify your API key has been base64-encoded correctly with the
-{ref}/security-api-authenticate.html[Authenticate API]:
+[Authenticate API](((ref))/security-api-authenticate.html):
 
-["source","sh",subs="attributes"]
------
+```sh
 curl -H "Authorization: ApiKey R0gzRWIzUUI3eVpiU054S3pYSy06bXQyQWl4TlZUeEcyUjd4cUZDS0NlUQ==" localhost:9200/_security/_authenticate
------
+```
 
 If the API key has been encoded correctly, you'll see a response similar to the following:
 
-[source,console-result]
-----
+```console-result
 {
    "username":"1325298603",
    "roles":[],
@@ -280,9 +282,9 @@ If the API key has been encoded correctly, you'll see a response similar to the 
    "email":null,
    "metadata":{
       "saml_nameid_format":"urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
-      "saml(http://saml.elastic-cloud.com/attributes/principal)":[
+      "saml([
          "1325298603"
-      ],
+      ](http://saml.elastic-cloud.com/attributes/principal)":),
       "saml_roles":[
          "superuser"
       ],
@@ -290,9 +292,9 @@ If the API key has been encoded correctly, you'll see a response similar to the 
          "1325298603"
       ],
       "saml_nameid":"_7b0ab93bbdbc21d825edf7dca9879bd8d44c0be2",
-      "saml(http://saml.elastic-cloud.com/attributes/roles)":[
+      "saml([
          "superuser"
-      ]
+      ](http://saml.elastic-cloud.com/attributes/roles)":)
    },
    "enabled":true,
    "authentication_realm":{
@@ -304,20 +306,18 @@ If the API key has been encoded correctly, you'll see a response similar to the 
       "type":"_es_api_key"
    }
 }
-----
+```
 
 You can then use the APM Server CLI to verify that the API key has the requested privileges:
 
-["source","sh",subs="attributes"]
------
+```sh
 apm-server apikey verify --credentials R25yVVQzUUI3eVpiU054S0VUNmQ6UmhIS2lzVG1RMWFQQ0hDX1RQd092dw==
------
+```
 
 If the API key has the requested privileges, the response will look similar to this:
 
-[source,console-result]
-----
+```console-result
 Authorized for privilege "config_agent:read"...:  Yes
 Authorized for privilege "event:write"...:        Yes
 Authorized for privilege "sourcemap:write"...:    Yes
-----
+```

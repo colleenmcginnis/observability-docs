@@ -1,0 +1,53 @@
+---
+id: enObservabilityApmServerConfiguration
+slug: /en/observability/apm-server-configuration
+title: "Step 2: Set up and configure"
+description: Description to be written
+tags: []
+---
+
+import Snippet1 from './getting-started-apm-server/why-apm-integration.mdx'
+import Snippet2 from './getting-started-apm-server/install-apm-integration.mdx'
+
+<div id="apm-server-configuration"></div>
+
+{/* This content is reused in the upgrading guide */}
+<Snippet1 />
+
+<div id="install_the_apm_integration"></div>
+
+## Install the APM integration
+
+{/* This content is reused in the upgrading guide */}
+<Snippet2 />
+
+<div id="configure_apm"></div>
+
+## Configure APM
+
+Configure APM by editing the `apm-server.yml` configuration file.
+The location of this file varies by platform--see the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> for help locating it.
+
+A minimal configuration file might look like this:
+
+```yaml
+apm-server:
+  host: "localhost:8200"  [^1]
+output.elasticsearch:
+  hosts: ["localhost:9200"]  [^2]
+  username: "elastic"  [^3]
+  password: "changeme"
+```
+[^1]: The `host:port` APM Server listens on.
+[^2]: The ((es)) `host:port` to connect to.
+[^3]: This example uses basic authentication.
+The user provided here needs the privileges required to publish events to ((es)).
+To create a dedicated user for this role, see <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Grant privileges and roles needed for writing events</DocLink>.
+
+All available configuration options are outlined in
+[configuring APM Server](((observability-guide))/apm-configuring-howto-apm-server.html).
+
+{/* ******************************************************* */}
+{/* STEP 3 */}
+{/* ******************************************************* */}
+

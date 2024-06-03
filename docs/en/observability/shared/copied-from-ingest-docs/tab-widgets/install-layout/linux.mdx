@@ -1,0 +1,17 @@
+
+`/opt/Elastic/Agent/*`
+: ((agent)) program files
+
+`/opt/Elastic/Agent/elastic-agent.yml`
+: Main ((agent)) configuration
+
+`/opt/Elastic/Agent/fleet.enc`
+: Main ((agent)) ((fleet)) encrypted configuration
+
+`/opt/Elastic/Agent/data/elastic-agent-*/logs/elastic-agent.ndjson`
+: Log files for ((agent)) and ((beats)) shippers footnote:lognumbering[]
+
+`/usr/bin/elastic-agent`
+: Shell wrapper installed into PATH
+
+You can install ((agent)) in a custom base path other than `/opt`.  When installing ((agent)) with the `./elastic-agent install` command, use the `--base-path` CLI option to specify the custom base path.

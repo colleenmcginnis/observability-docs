@@ -1,6 +1,9 @@
-[discrete]
-[[monitor-kubernetes-application-performance]]
-== Part 4: Monitor application performance
+
+import Widget from '../shared/install-apm-agents-kube/widget.mdx'
+
+<div id="monitor-kubernetes-application-performance"></div>
+
+## Part 4: Monitor application performance
 
 Quickly triage and troubleshoot application performance problems with the help of Elastic
 application performance monitoring (APM).
@@ -8,82 +11,84 @@ application performance monitoring (APM).
 Think of a latency spike -- APM can help you narrow the scope of your investigation to a single service.
 Because you've also ingested and correlated logs and metrics, you can then link the problem to CPU and memory utilization or error log entries of a particular Kubernetes pod.
 
-[discrete]
-=== Step 1: Set up APM
+<div id="step_1:_set_up_apm"></div>
+
+### Step 1: Set up APM
 
 Application monitoring data is streamed from your applications running in Kubernetes to APM,
-where it is validated, processed, and transformed into {es} documents.
+where it is validated, processed, and transformed into ((es)) documents.
 
 There are many ways to deploy APM when working with Kubernetes,
-but this guide assumes that you're using our hosted {ess} on {ecloud}.
-If you haven't done so already, enable APM in the {ess-console}[{ess} console].
+but this guide assumes that you're using our hosted ((ess)) on ((ecloud)).
+If you haven't done so already, enable APM in the [((ess)) console](((ess-console))).
 
 If you want to manage APM yourself, there are a few alternative options:
 
-[%collapsible]
-.Expand alternatives
-====
-* {eck-ref}/[{ecloud} on Kubernetes (ECK)] -- The Elastic recommended approach for managing
-APM Server deployed with Kubernetes.
-Built on the Kubernetes Operator pattern, ECK extends basic Kubernetes orchestration capabilities
-to support the setup and management of APM Server on Kubernetes.
+<DocAccordion buttonContent="Expand alternatives">
+
+* [((ecloud)) on Kubernetes (ECK)](((eck-ref))/) -- The Elastic recommended approach for managing
+    APM Server deployed with Kubernetes.
+    Built on the Kubernetes Operator pattern, ECK extends basic Kubernetes orchestration capabilities
+    to support the setup and management of APM Server on Kubernetes.
 
 * Deploy APM Server as a DaemonSet -- Ensure a running instance of APM Server on each node in your cluster.
-Useful when all pods in a node should share a single APM Server instance.
+    Useful when all pods in a node should share a single APM Server instance.
 
 * Deploy APM Server as a sidecar -- For environments that should not share an APM Server,
-like when directing traces from multiple applications to separate {es} clusters.
+    like when directing traces from multiple applications to separate ((es)) clusters.
 
-* {observability-guide}/apm-getting-started-apm-server.html[Download and install APM Server] -- The classic, non-Kubernetes option.
-====
+* [Download and install APM Server](((observability-guide))/apm-getting-started-apm-server.html) -- The classic, non-Kubernetes option.
 
-[discrete]
-=== Step 2: Save your secret token
+</DocAccordion>
 
-A {observability-guide}/apm-secret-token.html[secret token] is used to secure communication between APM agents
-and APM Server. To create or update your secret token in {kib}:
+<div id="step_2:_save_your_secret_token"></div>
 
-. Open Kibana and navigate to Fleet.
-. Under the *Agent policies* tab, select the policy you would like to configure.
-. Find the Elastic APM integration and select *Actions → Edit integration*.
-. Navigate to *Agent authorization → Secret token* and set the value of your token.
-. Click Save integration. The APM Server will restart before the change takes effect.
+### Step 2: Save your secret token
+
+A [secret token](((observability-guide))/apm-secret-token.html) is used to secure communication between APM agents
+and APM Server. To create or update your secret token in ((kib)):
+
+1. Open Kibana and navigate to Fleet.
+1. Under the **Agent policies** tab, select the policy you would like to configure.
+1. Find the Elastic APM integration and select **Actions → Edit integration**.
+1. Navigate to **Agent authorization → Secret token** and set the value of your token.
+1. Click Save integration. The APM Server will restart before the change takes effect.
 
 To avoid exposing the secret token, you can store it in a Kubernetes secret. For example:
 
-[source, cmd]
-----
-kubectl create secret generic apm-secret --from-literal=ELASTIC_APM_SECRET_TOKEN=asecretpassword --namespace=kube-system <1>
-----
-<1> Create the secret in the same namespace that you'll be deploying your applications in.
+```cmd
+kubectl create secret generic apm-secret --from-literal=ELASTIC_APM_SECRET_TOKEN=asecretpassword --namespace=kube-system  [^1]
+```
+[^1]: Create the secret in the same namespace that you'll be deploying your applications in.
 
 If you're managing APM Server yourself,
-see {observability-guide}/apm-secret-token.html[secret token] for instructions on how to set up your secret token.
+see [secret token](((observability-guide))/apm-secret-token.html) for instructions on how to set up your secret token.
 
-If you are using ECK to set up APM Server, the operator automatically generates an `{APM-server-name}-apm-token` secret for you.
+If you are using ECK to set up APM Server, the operator automatically generates an `{APM_server_name}-apm-token` secret for you.
 
-[discrete]
-=== Step 3: Install and configure APM Agents
+<div id="step_3:_install_and_configure_apm_agents"></div>
+
+### Step 3: Install and configure APM Agents
 
 In most cases, setting up APM agents and thereby instrumenting your applications
 is as easy as installing a library and adding a few lines of code.
 
 Select your application's language for details:
 
-include::{observability-docs-root}/docs/en/shared/install-apm-agents-kube/widget.asciidoc[]
+<Widget />
 
-[discrete]
-=== Step 4: Configure Kubernetes data
+<div id="step_4:_configure_kubernetes_data"></div>
+
+### Step 4: Configure Kubernetes data
 
 In most instances, APM agents automatically read Kubernetes data from inside the
 container and send it to APM Server.
 If this is not the case, or if you wish to override this data,
 you can set environment variables for the agents to read.
-These environment variable are set via the https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/#the-downward-api[Downward API]
+These environment variable are set via the [Downward API](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/#the-downward-api)
 in your Kubernetes pod spec:
 
-[source,yml]
-----
+```yml
       # ...
       containers:
       - name: your-app-container
@@ -105,50 +110,46 @@ in your Kubernetes pod spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.uid
-----
+```
 
 The table below maps these environment variables to the APM metadata event field:
 
-[options="header"]
-|=====
-| Environment variable |Metadata field name
-| `KUBERNETES_NODE_NAME` |system.kubernetes.node.name
-| `KUBERNETES_POD_NAME` |system.kubernetes.pod.name
-| `KUBERNETES_NAMESPACE` |system.kubernetes.namespace
-| `KUBERNETES_POD_UID`	|system.kubernetes.pod.uid
-|=====
+| Environment variable | Metadata field name |
+|---|---|
+| `KUBERNETES_NODE_NAME` | system.kubernetes.node.name |
+| `KUBERNETES_POD_NAME` | system.kubernetes.pod.name |
+| `KUBERNETES_NAMESPACE` | system.kubernetes.namespace |
+| `KUBERNETES_POD_UID` | system.kubernetes.pod.uid |
 
-[discrete]
-=== Step 5: Deploy your application
+<div id="step_5:_deploy_your_application"></div>
+
+### Step 5: Deploy your application
 
 APM agents are deployed with your application.
 
-[%collapsible]
-.Resource configuration file example
-====
+<DocAccordion buttonContent="Resource configuration file example">
 
 A complete resource configuration file based on the previous steps.
 
-[source,yml]
-----
+```yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: <<your-app>>
+  name: \<\<your-app>>
   namespace: kube-system
   labels:
-    app: <<your-app>>
-    service: <<your-app>>
+    app: \<\<your-app>>
+    service: \<\<your-app>>
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: <<your-app>>
+      app: \<\<your-app>>
   template:
     metadata:
       labels:
-        app: <<your-app>>
-        service: <<your-app>>
+        app: \<\<your-app>>
+        service: \<\<your-app>>
     spec:
       dnsPolicy: ClusterFirstWithHostNet
       volumes:
@@ -162,8 +163,8 @@ spec:
           name: elastic-apm-agent
         command: ['cp', '-v', '/usr/agent/elastic-apm-agent.jar', '/elastic/apm/agent']
       containers:
-      - name: <<your-app>>
-        image: <<your-app>>
+      - name: \<\<your-app>>
+        image: \<\<your-app>>
         volumeMounts:
         - mountPath: /elastic/apm/agent
           name: elastic-apm-agent
@@ -199,30 +200,29 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.uid
-----
-====
+```
 
-[source,cmd]
-----
+</DocAccordion>
+
+```cmd
 kubectl apply -f demo.yml
-----
+```
 
-[discrete]
-=== View your traces in {kib}
+<div id="view_your_traces_in_((kib))"></div>
 
-To view your application's trace data, open {kib} and go to *{observability} → Services*.
+### View your traces in ((kib))
 
-The {apm-app} allows you to monitor your software services and applications in real-time:
+To view your application's trace data, open ((kib)) and go to **((observability)) → Services**.
+
+The ((apm-app)) allows you to monitor your software services and applications in real-time:
 visualize detailed performance information on your services, identify and analyze errors,
 and monitor host-level and agent-specific metrics like JVM and Go runtime metrics.
 
-[role="screenshot"]
-image::images/apm-app-landing.png[{apm-app} Kubernetes]
+![((apm-app)) Kubernetes](../images/apm-app-landing.png)
 
 Having access to application-level insights with just a few clicks can drastically decrease the time you spend debugging errors, slow response times, and crashes.
 
 Best of all, because Kubernetes environment variables have been mapped to APM metadata events,
 you can filter your trace data by Kubernetes `namespace`, `node.name`, `pod.name`, and `pod.uid`.
 
-[role="screenshot"]
-image::images/apm-app-kubernetes-filter.png[{apm-app} Kubernetes]
+![((apm-app)) Kubernetes](images/apm-app-kubernetes-filter.png)

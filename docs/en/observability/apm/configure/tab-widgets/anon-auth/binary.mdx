@@ -1,0 +1,10 @@
+
+Example configuration:
+
+```yaml
+apm-server.auth.anonymous.enabled: true
+apm-server.auth.anonymous.allow_agent: [rum-js]
+apm-server.auth.anonymous.allow_service: [my_service_name]
+apm-server.auth.anonymous.rate_limit.event_limit: 300
+apm-server.auth.anonymous.rate_limit.ip_limit: 1000
+```

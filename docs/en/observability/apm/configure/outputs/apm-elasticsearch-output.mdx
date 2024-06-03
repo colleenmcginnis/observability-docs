@@ -1,27 +1,31 @@
-[[apm-elasticsearch-output]]
-== Configure the {es} output
+---
+id: enObservabilityApmElasticsearchOutput
+slug: /en/observability/apm-elasticsearch-output
+title: Configure the ((es)) output
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>{es}</titleabbrev>
-++++
+import ApmSupportOverview from '../../components/support-overview.mdx'
+import Https from '../../apm-securing-communication-elasticsearch.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-elasticsearch-output"></div>
 
-This documentation only applies to APM Server binary users.
-Fleet-managed users should see {fleet-guide}/elasticsearch-output.html[Configure the {es} output].
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  This documentation only applies to APM Server binary users.
+  Fleet-managed users should see [Configure the ((es)) output](((fleet-guide))/elasticsearch-output.html).
+</ApmSupportOverview>
 
-The {es} output sends events directly to {es} using the {es} HTTP API.
+The ((es)) output sends events directly to ((es)) using the ((es)) HTTP API.
 
 Example configuration:
 
-["source","yaml",subs="attributes"]
-----
+{/* myEShost:9200" \<1> */}
+```yaml
 output.elasticsearch:
-  hosts: ["https://myEShost:9200"] <1>
-----
-<1> To enable SSL, add `https` to all URLs defined under __hosts__.
+  hosts: ["https://myEShost:9200"]  [^1]
+```
+[^1]: To enable SSL, add `https` to all URLs defined under __hosts__.
 
 When sending data to a secured cluster through the `elasticsearch`
 output, APM Server can use any of the following authentication methods:
@@ -30,79 +34,85 @@ output, APM Server can use any of the following authentication methods:
 * Token-based (API key) authentication.
 * Public Key Infrastructure (PKI) certificates.
 
-*Basic authentication:*
+**Basic authentication:**
 
-["source","yaml",subs="attributes,callouts"]
-----
+```yaml
 output.elasticsearch:
   hosts: ["https://myEShost:9200"]
   username: "apm_writer"
-  password: "{pwd}"
-----
+  password: "((pwd))"
+```
 
-*API key authentication:*
+**API key authentication:**
 
-["source","yaml",subs="attributes,callouts"]
-----
+```yaml
 output.elasticsearch:
   hosts: ["https://myEShost:9200"]
   api_key: "ZCV7VnwBgnX0T19fN8Qe:KnR6yE41RrSowb0kQ0HWoA"
-----
+```
 
-*PKI certificate authentication:*
+**PKI certificate authentication:**
 
-["source","yaml",subs="attributes,callouts"]
-----
+```yaml
 output.elasticsearch:
   hosts: ["https://myEShost:9200"]
   ssl.certificate: "/etc/pki/client/cert.pem"
   ssl.key: "/etc/pki/client/cert.key"
-----
+```
 
-See <<apm-securing-communication-elasticsearch>> for details on each authentication method.
+See \<\<apm-securing-communication-elasticsearch>> for details on each authentication method.
 
-=== Compatibility
+<div id="compatibility"></div>
 
-This output works with all compatible versions of {es}. See the
-https://www.elastic.co/support/matrix#matrix_compatibility[Elastic Support
-Matrix].
+## Compatibility
 
-=== Configuration options
+This output works with all compatible versions of ((es)). See the
+[Elastic Support
+Matrix](https://www.elastic.co/support/matrix#matrix_compatibility).
+
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following options in the `elasticsearch` section of the `apm-server.yml` config file:
 
-==== `enabled`
+<div id="`enabled`"></div>
+
+### `enabled`
 
 The enabled config is a boolean setting to enable or disable the output. If set
 to `false`, the output is disabled.
 
 The default value is `true`.
 
+<div id="apm-hosts-option"></div>
 
-[[apm-hosts-option]]
-==== `hosts`
+### `hosts`
 
-The list of {es} nodes to connect to. The events are distributed to
+The list of ((es)) nodes to connect to. The events are distributed to
 these nodes in round robin order. If one node becomes unreachable, the event is
-automatically sent to another node. Each {es} node can be defined as a `URL` or `IP:PORT`.
+automatically sent to another node. Each ((es)) node can be defined as a `URL` or `IP:PORT`.
 For example: `http://192.15.3.2`, `https://es.found.io:9230` or `192.24.3.2:9300`.
 If no port is specified, `9200` is used.
 
-NOTE: When a node is defined as an `IP:PORT`, the _scheme_ and _path_ are taken from the
-<<apm-protocol-option,`protocol`>> and <<apm-path-option,`path`>> config options.
+<DocCallOut title="Note">
+When a node is defined as an `IP:PORT`, the _scheme_ and _path_ are taken from the
+<DocLink id="enObservabilityApmElasticsearchOutput" section="protocol">`protocol`</DocLink> and <DocLink id="enObservabilityApmElasticsearchOutput" section="path">`path`</DocLink> config options.
+</DocCallOut>
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch:
-  hosts: ["10.45.3.2:9220", "10.45.3.1:9230"] <1>
+  hosts: ["10.45.3.2:9220", "10.45.3.1:9230"]  [^1]
   protocol: https
   path: /elasticsearch
-------------------------------------------------------------------------------
+```
 
-In the previous example, the {es} nodes are available at `https://10.45.3.2:9220/elasticsearch` and
+In the previous example, the ((es)) nodes are available at `https://10.45.3.2:9220/elasticsearch` and
 `https://10.45.3.1:9230/elasticsearch`.
 
-==== `compression_level`
+<div id="`compression_level`"></div>
+
+### `compression_level`
 
 The gzip compression level. Setting this value to `0` disables compression.
 The compression level must be in the range of `1` (best speed) to `9` (best compression).
@@ -111,151 +121,179 @@ Increasing the compression level will reduce the network usage but will increase
 
 The default value is `0`.
 
-==== `escape_html`
+<div id="`escape_html`"></div>
+
+### `escape_html`
 
 Configure escaping of HTML in strings. Set to `true` to enable escaping.
 
 The default value is `false`.
 
-==== `api_key`
+<div id="`api_key`"></div>
+
+### `api_key`
 
 Instead of using a username and password, you can use API keys to secure communication
-with {es}. The value must be the ID of the API key and the API key joined by a colon: `id:api_key`.
+with ((es)). The value must be the ID of the API key and the API key joined by a colon: `id:api_key`.
 
-See <<apm-beats-api-keys>> for more information.
+See <DocLink id="enObservabilityApmBeatsApiKeys">Grant access using API keys</DocLink> for more information.
 
-==== `username`
+<div id="`username`"></div>
 
-The basic authentication username for connecting to {es}.
+### `username`
 
-This user needs the privileges required to publish events to {es}.
-To create a user like this, see <<apm-privileges-to-publish-events>>.
+The basic authentication username for connecting to ((es)).
 
-==== `password`
+This user needs the privileges required to publish events to ((es)).
+To create a user like this, see <DocLink id="enObservabilityApmPrivilegesToPublishEvents">Grant privileges and roles needed for writing events</DocLink>.
 
-The basic authentication password for connecting to {es}.
+<div id="`password`"></div>
 
-==== `parameters`
+### `password`
+
+The basic authentication password for connecting to ((es)).
+
+<div id="`parameters`"></div>
+
+### `parameters`
 
 Dictionary of HTTP parameters to pass within the URL with index operations.
 
-[[apm-protocol-option]]
-==== `protocol`
+<div id="apm-protocol-option"></div>
 
-The name of the protocol {es} is reachable on. The options are:
+### `protocol`
+
+The name of the protocol ((es)) is reachable on. The options are:
 `http` or `https`. The default is `http`. However, if you specify a URL for
-<<apm-hosts-option,`hosts`>>, the value of `protocol` is overridden by whatever scheme you
+<DocLink id="enObservabilityApmElasticsearchOutput" section="hosts">`hosts`</DocLink>, the value of `protocol` is overridden by whatever scheme you
 specify in the URL.
 
-[[apm-path-option]]
-==== `path`
+<div id="apm-path-option"></div>
+
+### `path`
 
 An HTTP path prefix that is prepended to the HTTP API calls. This is useful for
-the cases where {es} listens behind an HTTP reverse proxy that exports
+the cases where ((es)) listens behind an HTTP reverse proxy that exports
 the API under a custom prefix.
 
-==== `headers`
+<div id="`headers`"></div>
 
-Custom HTTP headers to add to each request created by the {es} output.
+### `headers`
+
+Custom HTTP headers to add to each request created by the ((es)) output.
 Example:
 
-[source,yaml]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch.headers:
   X-My-Header: Header contents
-------------------------------------------------------------------------------
+```
 
 It is possible to specify multiple header values for the same header
 name by separating them with a comma.
 
-==== `proxy_url`
+<div id="`proxy_url`"></div>
 
-The URL of the proxy to use when connecting to the {es} servers. The
+### `proxy_url`
+
+The URL of the proxy to use when connecting to the ((es)) servers. The
 value may be either a complete URL or a "host[:port]", in which case the "http"
 scheme is assumed. If a value is not specified through the configuration file
 then proxy environment variables are used. See the
-https://golang.org/pkg/net/http/#ProxyFromEnvironment[Go documentation]
+[Go documentation](https://golang.org/pkg/net/http/#ProxyFromEnvironment)
 for more information about the environment variables.
 
-ifndef::no_ilm[]
-[[apm-ilm-es]]
-==== `ilm`
+export let no_ilm = false
 
-Configuration options for {ilm}.
+<DocIf condition={ no_ilm === false }>
+<div id="apm-ilm-es"></div>
 
-See <<ilm>> for more information.
-endif::no_ilm[]
+### `ilm`
 
-ifndef::no-pipeline[]
-[[apm-pipeline-option-es]]
-==== `pipeline`
+Configuration options for ((ilm)).
+
+See \<\<ilm>> for more information.
+</DocIf>
+
+export let no_pipeline = false
+
+<DocIf condition={ no_pipeline === false }>
+<div id="apm-pipeline-option-es"></div>
+
+### `pipeline`
 
 A format string value that specifies the ingest node pipeline to write events to.
 
-["source","yaml"]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch:
   hosts: ["http://localhost:9200"]
   pipeline: my_pipeline_id
-------------------------------------------------------------------------------
+```
 
-For more information, see <<apm-ingest-pipelines>>.
+For more information, see <DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink>.
 
 You can set the ingest node pipeline dynamically by using a format string to
 access any event field. For example, this configuration uses a custom field,
 `fields.log_type`, to set the pipeline for each event:
 
-["source","yaml",subs="attributes"]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch:
   hosts: ["http://localhost:9200"]
   pipeline: "%{[fields.log_type]}_pipeline"
-------------------------------------------------------------------------------
+```
 
 With this configuration, all events with `log_type: normal` are sent to a pipeline
 named `normal_pipeline`, and all events with `log_type: critical` are sent to a
 pipeline named `critical_pipeline`.
 
-TIP: To learn how to add custom fields to events, see the
-<<libbeat-configuration-fields,`fields`>> option.
+<DocCallOut title="Tip">
+To learn how to add custom fields to events, see the
+\<\<libbeat-configuration-fields,`fields`>> option.
+</DocCallOut>
 
-See the <<apm-pipelines-option-es,`pipelines`>> setting for other ways to set the
+See the <DocLink id="enObservabilityApmElasticsearchOutput" section="pipelines">`pipelines`</DocLink> setting for other ways to set the
 ingest node pipeline dynamically.
 
-[[apm-pipelines-option-es]]
-==== `pipelines`
+<div id="apm-pipelines-option-es"></div>
+
+### `pipelines`
 
 An array of pipeline selector rules. Each rule specifies the ingest node
 pipeline to use for events that match the rule. During publishing, APM Server
 uses the first matching rule in the array. Rules can contain conditionals,
 format string-based fields, and name mappings. If the `pipelines` setting is
-missing or no rule matches, the <<apm-pipeline-option-es,`pipeline`>> setting is
+missing or no rule matches, the <DocLink id="enObservabilityApmElasticsearchOutput" section="pipeline">`pipeline`</DocLink> setting is
 used.
 
 Rule settings:
 
-*`pipeline`*:: The pipeline format string to use. If this string contains field
-references, such as `%{[fields.name]}`, the fields must exist, or the rule
-fails.
+**`pipeline`**
+    : The pipeline format string to use. If this string contains field
+    references, such as `%{[fields.name]}`, the fields must exist, or the rule
+    fails.
 
-*`mappings`*:: A dictionary that takes the value returned by `pipeline` and maps
-it to a new name.
+**`mappings`**
+    : A dictionary that takes the value returned by `pipeline` and maps
+    it to a new name.
 
-*`default`*:: The default string value to use if `mappings` does not find a
-match.
+**`default`**
+    : The default string value to use if `mappings` does not find a
+    match.
 
-*`when`*:: A condition that must succeed in order to execute the current rule.
-ifndef::no-processors[]
+**`when`**
+  : A condition that must succeed in order to execute the current rule.
 
-All the <<conditions,conditions>> supported by processors are also supported
+export let no_processors = false
+
+<DocIf condition={ no_processors === false }>
+
+All the \<\<conditions,conditions>> supported by processors are also supported
 here.
-endif::no-processors[]
+</DocIf>
 
 The following example sends events to a specific pipeline based on whether the
 `message` field contains the specified string:
 
-["source","yaml"]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch:
   hosts: ["http://localhost:9200"]
   pipelines:
@@ -265,15 +303,13 @@ output.elasticsearch:
     - pipeline: "error_pipeline"
       when.contains:
         message: "ERR"
-------------------------------------------------------------------------------
-
+```
 
 The following example sets the pipeline by taking the name returned by the
 `pipeline` format string and mapping it to a new name that's used for the
 pipeline:
 
-["source","yaml"]
-------------------------------------------------------------------------------
+```yaml
 output.elasticsearch:
   hosts: ["http://localhost:9200"]
   pipelines:
@@ -282,25 +318,28 @@ output.elasticsearch:
         critical: "sev1_pipeline"
         normal: "sev2_pipeline"
       default: "sev3_pipeline"
-------------------------------------------------------------------------------
-
+```
 
 With this configuration, all events with `log_type: critical` are sent to
 `sev1_pipeline`, all events with `log_type: normal` are sent to a
 `sev2_pipeline`, and all other events are sent to `sev3_pipeline`.
 
 For more information about ingest node pipelines, see
-<<apm-ingest-pipelines>>.
+<DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink>.
 
-endif::[]
+</DocIf>
 
-==== `max_retries`
+<div id="`max_retries`"></div>
 
-ifdef::ignores_max_retries[]
+### `max_retries`
+
+export let ignores_max_retries = false
+
+<DocIf condition={ ignores_max_retries === true }>
 APM Server ignores the `max_retries` setting and retries indefinitely.
-endif::[]
+</DocIf>
 
-ifndef::ignores_max_retries[]
+<DocIf condition={ ignores_max_retries === false }>
 
 The number of times to retry publishing an event after a publishing failure.
 After the specified number of retries, the events are typically dropped.
@@ -308,44 +347,56 @@ After the specified number of retries, the events are typically dropped.
 Set `max_retries` to a value less than 0 to retry until all events are published.
 
 The default is 3.
-endif::[]
+</DocIf>
 
-==== `flush_bytes`
+<div id="`flush_bytes`"></div>
 
-The bulk request size threshold, in bytes, before flushing to {es}.
+### `flush_bytes`
+
+The bulk request size threshold, in bytes, before flushing to ((es)).
 The value must have a suffix, e.g. `"2MB"`. The default is `1MB`.
 
-==== `flush_interval`
+<div id="`flush_interval`"></div>
 
-The maximum duration to accumulate events for a bulk request before being flushed to {es}.
+### `flush_interval`
+
+The maximum duration to accumulate events for a bulk request before being flushed to ((es)).
 The value must have a duration suffix, e.g. `"5s"`. The default is `1s`.
 
-==== `backoff.init`
+<div id="`backoff.init`"></div>
 
-The number of seconds to wait before trying to reconnect to {es} after
+### `backoff.init`
+
+The number of seconds to wait before trying to reconnect to ((es)) after
 a network error. After waiting `backoff.init` seconds, APM Server tries to
 reconnect. If the attempt fails, the backoff timer is increased exponentially up
 to `backoff.max`. After a successful connection, the backoff timer is reset. The
 default is `1s`.
 
+<div id="`backoff.max`"></div>
 
-==== `backoff.max`
+### `backoff.max`
 
 The maximum number of seconds to wait before attempting to connect to
-{es} after a network error. The default is `60s`.
+((es)) after a network error. The default is `60s`.
 
-==== `timeout`
+<div id="`timeout`"></div>
 
-The HTTP request timeout in seconds for the {es} request. The default is 90.
+### `timeout`
 
-==== `ssl`
+The HTTP request timeout in seconds for the ((es)) request. The default is 90.
+
+<div id="`ssl`"></div>
+
+### `ssl`
 
 Configuration options for SSL parameters like the certificate authority to use
 for HTTPS-based connections. If the `ssl` section is missing, the host CAs are used for HTTPS connections to
-{es}.
+((es)).
 
-See the <<apm-securing-communication-elasticsearch,secure communication with {es}>> guide
-or <<apm-configuration-ssl,SSL configuration reference>> for more information.
+See the \<\<apm-securing-communication-elasticsearch,secure communication with ((es))>> guide
+or <DocLink id="enObservabilityApmConfigurationSsl">SSL configuration reference</DocLink> for more information.
 
-// Elasticsearch security
-include::{apm-server-dir}/https.asciidoc[]
+{/* Elasticsearch security */}
+
+<Https />

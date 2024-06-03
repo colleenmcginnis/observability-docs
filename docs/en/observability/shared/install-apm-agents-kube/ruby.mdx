@@ -1,0 +1,60 @@
+
+*Install the ((apm-agent))*
+
+Add the agent to your Gemfile.
+
+```ruby
+gem 'elastic-apm'
+```
+
+**Start the agent**
+
+Rails: APM will automatically start when your app boots.
+
+Rack: Include the middleware and start and stop Elastic APM:
+
+```ruby
+# config.ru
+
+app = lambda do |env|
+  [200, {'Content-Type' => 'text/plain'}, ['ok']]
+end
+
+# Wraps all requests in transactions and reports exceptions
+use ElasticAPM::Middleware
+
+# Start an instance of the Agent
+ElasticAPM.start()
+
+run app
+
+# Gracefully stop the agent when process exits.
+# Makes sure any pending transactions have already sent.
+at_exit { ElasticAPM.stop }
+```
+
+**Configure the agent**
+
+Configure the agent using environment variables:
+
+```yml
+        # ...
+        - name: ELASTIC_APM_SERVER_URL
+          value: "apm-server-url-goes-here"  [^1]
+        - name: ELASTIC_APM_SECRET_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: apm-secret
+              key: ELASTIC_APM_SECRET_TOKEN  [^2]
+        - name: ELASTIC_APM_SERVICE_NAME
+          value: "service-name-goes-here"  [^3]
+```
+[^1]: Defaults to `http://localhost:8200`
+[^2]: Pass in `ELASTIC_APM_SECRET_TOKEN` from the `apm-secret` keystore created previously
+[^3]: Allowed characters: a-z, A-Z, 0-9, -, _, and space
+
+**Learn more in the agent reference**
+
+* [Supported technologies](((apm-ruby-ref-v))/supported-technologies.html)
+* [Advanced configuration](((apm-ruby-ref-v))/configuration.html)
+

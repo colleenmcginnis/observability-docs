@@ -1,12 +1,20 @@
-[[profiling-probabilistic-profiling]]
-= Configure probabilistic profiling
+---
+id: enObservabilityProfilingProbabilisticProfiling
+slug: /en/observability/profiling-probabilistic-profiling
+title: Configure probabilistic profiling
+description: Description to be written
+tags: []
+---
+
+<div id="profiling-probabilistic-profiling"></div>
 
 Probabilistic profiling allows you to reduce storage costs by collecting a representative sample of profiling data. This method decreases storage costs with a visibility trade-off, as not all Profiling Host Agents will have profile collection enabled at all times. 
 
 Profiling Events linearly correlate with the probabilistic profiling value. The lower the value, the fewer events are collected. 
 
-[discrete]
-== Configure probabilistic profiling
+<div id="configure_probabilistic_profiling"></div>
+
+## Configure probabilistic profiling
 
 To configure probabilistic profiling,  set the `-probabilistic-threshold` and `probabilistic-interval` options.
 
@@ -17,12 +25,12 @@ number, the agent collects profiles from this system for the duration of the int
 Set the `-probabilistic-interval` option to a time duration to define the time interval for
 which probabilistic profiling is either enabled or disabled. The default value is 1 minute.
 
-[discrete]
-== Example
+<div id="example"></div>
+
+## Example
 
 The following example shows how to configure the Universal Profiling agent with a threshold of 50 and an interval of 2 minutes and 30 seconds:
 
-[source,bash]
-----
+```bash
 sudo pf-host-agent/pf-host-agent -probabilistic-threshold=50 -probabilistic-interval=2m30s
-----
+```

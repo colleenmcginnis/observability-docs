@@ -1,66 +1,71 @@
-[[apm-configuration-rum]]
-= Configure Real User Monitoring (RUM)
+---
+id: enObservabilityApmConfigurationRum
+slug: /en/observability/apm-configuration-rum
+title: Configure Real User Monitoring (RUM)
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Real User Monitoring (RUM)</titleabbrev>
-++++
+import ApmSupportOverview from '../components/support-overview.mdx'
+import RumConfigWidget from './tab-widgets/rum-config-widget.mdx'
 
-****
-image:./binary-yes-fm-yes.svg[supported deployment methods]
+<div id="apm-configuration-rum"></div>
 
-Most options in this section are supported by all APM Server deployment methods.
-****
+<ApmSupportOverview binary={true} fleet={true}>
+  Most options in this section are supported by all APM Server deployment methods.
+</ApmSupportOverview>
 
-The {apm-rum-ref-v}/index.html[Real User Monitoring (RUM) agent] captures user interactions with clients such as web browsers.
+The [Real User Monitoring (RUM) agent](((apm-rum-ref-v))/index.html) captures user interactions with clients such as web browsers.
 These interactions are sent as events to the APM Server.
 Because the RUM agent runs on the client side, the connection between agent and server is unauthenticated.
 As a security precaution, RUM is therefore disabled by default.
 
-include::./tab-widgets/rum-config-widget.asciidoc[]
+<RumConfigWidget />
 
 In addition, if APM Server is deployed in an origin different than the page’s origin,
-you will need to configure {apm-rum-ref-v}/configuring-cors.html[Cross-Origin Resource Sharing (CORS)] in the Agent.
+you will need to configure [Cross-Origin Resource Sharing (CORS)](((apm-rum-ref-v))/configuring-cors.html) in the Agent.
 
-[float]
-[[apm-enable-rum-support]]
-= Configuration reference
+<div id="apm-enable-rum-support"></div>
 
-[[apm-rum-enable]]
-[float]
-== Enable RUM
+## Configuration reference
+
+<div id="apm-rum-enable"></div>
+
+### Enable RUM
 To enable RUM support, set to `true`.
 By default this is disabled. (bool)
 
-|====
-| APM Server binary | `apm-server.rum.enabled`
-| Fleet-managed     | `Enable RUM`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.enabled` |
+| Fleet-managed     | `Enable RUM` |
 
-[NOTE]
-====
-If an <<apm-api-key,API key>> or <<apm-secret-token,secret token>> is configured,
-enabling RUM support will automatically enable <<apm-configuration-anonymous>>.
+<DocCallOut title="Note">
+
+If an <DocLink id="enObservabilityApmApiKey">API key</DocLink> or <DocLink id="enObservabilityApmSecretToken">secret token</DocLink> is configured,
+enabling RUM support will automatically enable <DocLink id="enObservabilityApmConfigurationAnonymous">Configure anonymous authentication</DocLink>.
 Anonymous authentication is required as the RUM agent runs in the browser.
-====
 
-[float]
-[[apm-rum-allow-origins]]
-== Allowed Origins
+</DocCallOut>
+
+<div id="apm-rum-allow-origins"></div>
+
+### Allowed Origins
 A list of permitted origins for RUM support.
 User-agents send an Origin header that will be validated against this list.
-This is done automatically by modern browsers as part of the https://www.w3.org/TR/cors/[CORS specification].
+This is done automatically by modern browsers as part of the [CORS specification](https://www.w3.org/TR/cors/).
 An origin is made of a protocol scheme, host and port, without the URL path.
 
 Default: `['*']` (allows everything). (text)
 
-|====
-| APM Server binary | `apm-server.rum.allow_origins`
-| Fleet-managed     | `Allowed Origins`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.allow_origins` |
+| Fleet-managed     | `Allowed Origins` |
 
-[float]
-[[apm-rum-allow-headers]]
-== Access-Control-Allow-Headers
+<div id="apm-rum-allow-headers"></div>
+
+### Access-Control-Allow-Headers
 HTTP requests made from the RUM agent to the APM Server are limited in the HTTP headers they are allowed to have.
 If any other headers are added, the request will be rejected by the browser due to Cross-Origin Resource Sharing (CORS) restrictions.
 Use this setting to allow additional headers.
@@ -69,14 +74,14 @@ custom values configured here are appended to the default list and used as the v
 
 Default: `[]`. (text)
 
-|====
-| APM Server binary | `apm-server.rum.allow_headers`
-| Fleet-managed     | `Access-Control-Allow-Headers`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.allow_headers` |
+| Fleet-managed     | `Access-Control-Allow-Headers` |
 
-[float]
-[[apm-rum-response-headers]]
-== Custom HTTP response headers
+<div id="apm-rum-response-headers"></div>
+
+### Custom HTTP response headers
 Custom HTTP headers to add to RUM responses.
 This can be useful for security policy compliance.
 
@@ -84,14 +89,14 @@ Values set for the same key will be concatenated.
 
 Default: none. (text)
 
-|====
-| APM Server binary | `apm-server.rum.response_headers`
-| Fleet-managed     | `Custom HTTP response headers`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.response_headers` |
+| Fleet-managed     | `Custom HTTP response headers` |
 
-[float]
-[[apm-rum-library-pattern]]
-== Library Frame Pattern
+<div id="apm-rum-library-pattern"></div>
+
+### Library Frame Pattern
 RegExp to be matched against a stack trace frame's `file_name` and `abs_path` attributes.
 If the RegExp matches, the stack trace frame is considered to be a library frame.
 When source mapping is applied, the `error.culprit` is set to reflect the _function_ and the _filename_
@@ -100,98 +105,104 @@ This aims to provide an entry point for identifying issues.
 
 Default: `"node_modules|bower_components|~"`. (text)
 
-|====
-| APM Server binary | `apm-server.rum.library_pattern`
-| Fleet-managed     | `Library Frame Pattern`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.library_pattern` |
+| Fleet-managed     | `Library Frame Pattern` |
 
-[float]
-== Exclude from grouping
+<div id="exclude_from_grouping"></div>
+
+### Exclude from grouping
 RegExp to be matched against a stack trace frame's `file_name`.
 If the RegExp matches, the stack trace frame is excluded from being used for calculating error groups.
 
 Default: `"^/webpack"` (excludes stack trace frames that have a filename starting with `/webpack`). (text)
 
-|====
-| APM Server binary | `apm-server.rum.exclude_from_grouping`
-| Fleet-managed     | `Exclude from grouping`
-|====
+|  |  |
+|---|---|
+| APM Server binary | `apm-server.rum.exclude_from_grouping` |
+| Fleet-managed     | `Exclude from grouping` |
 
+<div id="apm-rum-source-map"></div>
 
-[float]
-[[apm-rum-source-map]]
-= Source map configuration options
+## Source map configuration options
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<ApmSupportOverview binary={true} fleet={false}>
+  Source maps are supported by all APM Server deployment methods, however,
+  the options in this section are only supported by the APM Server binary.
+</ApmSupportOverview>
 
-Source maps are supported by all APM Server deployment methods, however,
-the options in this section are only supported by the APM Server binary.
-****
+<div id="apm-config-sourcemapping-enabled"></div>
 
-[[apm-config-sourcemapping-enabled]]
-[float]
-== `source_mapping.enabled`
-Used to enable/disable <<apm-source-map-how-to,source mapping>> for RUM events.
+### `source_mapping.enabled`
+Used to enable/disable <DocLink id="enObservabilityApmSourceMapHowTo">source mapping</DocLink> for RUM events.
 When enabled, the APM Server needs additional privileges to read source maps.
-See <<apm-privileges-rum-source-mapping>> for more details.
+See <DocLink id="enObservabilityApmPrivilegesRumSourceMap" section="apm-server-rum-source-mapping">APM Server RUM source mapping</DocLink> for more details.
 
 Default: `true`
 
-[[apm-config-sourcemapping-elasticsearch]]
-[float]
-== `source_mapping.elasticsearch`
-Configure the {es} source map retrieval location, taking the same options as <<apm-elasticsearch-output,output.elasticsearch>>.
-This must be set when using an output other than {es}, and that output is writing to {es}.
+<div id="apm-config-sourcemapping-elasticsearch"></div>
+
+### `source_mapping.elasticsearch`
+Configure the ((es)) source map retrieval location, taking the same options as <DocLink id="enObservabilityApmElasticsearchOutput">output.elasticsearch</DocLink>.
+This must be set when using an output other than ((es)), and that output is writing to ((es)).
 Otherwise leave this section empty.
 
-[[apm-rum-sourcemap-cache]]
-[float]
-== `source_mapping.cache.expiration`
+<div id="apm-rum-sourcemap-cache"></div>
+
+### `source_mapping.cache.expiration`
 If a source map has been uploaded to the APM Server,
-<<apm-source-map-how-to,source mapping>> is automatically applied to documents sent to the RUM endpoint.
-Source maps are fetched from {es} and then kept in an in-memory cache for the configured time.
+<DocLink id="enObservabilityApmSourceMapHowTo">source mapping</DocLink> is automatically applied to documents sent to the RUM endpoint.
+Source maps are fetched from ((es)) and then kept in an in-memory cache for the configured time.
 Values configured without a time unit are treated as seconds.
 
 Default: `5m` (5 minutes)
 
-[float]
-== `source_mapping.index_pattern`
+<div id="`source_mapping.index_pattern`"></div>
+
+### `source_mapping.index_pattern`
 Previous versions of APM Server stored source maps in `apm-%{[observer.version]}-sourcemap` indices.
 Search source maps stored in an older version with this setting.
 
 Default: `"apm-*-sourcemap*"`
 
-[float]
-[[apm-rum-deprecated]]
-= Deprecated configuration options
+<div id="apm-rum-deprecated"></div>
 
-[float]
-[[apm-event_rate.limit]]
-== `event_rate.limit`
+## Deprecated configuration options
 
-deprecated::[7.15.0, Replaced by <<apm-config-auth-anon-event-limit>>.]
+<div id="apm-event_rate.limit"></div>
+
+### `event_rate.limit`
+
+<DocCallOut title="Deprecated in 7.15.0" color="danger">
+Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink>.
+</DocCallOut>
 
 The maximum number of events allowed per second, per agent IP address.
 
 Default: `300`
 
-[float]
-== `event_rate.lru_size`
+<div id="`event_rate.lru_size`"></div>
 
-deprecated::[7.15.0, Replaced by <<apm-config-auth-anon-ip-limit>>.]
+### `event_rate.lru_size`
+
+<DocCallOut title="Deprecated in 7.15.0" color="danger">
+Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="ip-limit">IP limit</DocLink>.
+</DocCallOut>
 
 The number of unique IP addresses to track in an LRU cache.
-IP addresses in the cache will be rate limited according to the <<apm-config-auth-anon-event-limit>> setting.
+IP addresses in the cache will be rate limited according to the <DocLink id="enObservabilityApmConfigurationAnonymous" section="event-limit">Event limit</DocLink> setting.
 Consider increasing this default if your site has many concurrent clients.
 
 Default: `1000`
 
-[float]
-[[apm-rum-allow-service-names]]
-== `allow_service_names`
+<div id="apm-rum-allow-service-names"></div>
 
-deprecated::[7.15.0, Replaced by <<apm-config-auth-anon-allow-service>>.]
+### `allow_service_names`
+
+<DocCallOut title="Deprecated in 7.15.0" color="danger">
+Replaced by <DocLink id="enObservabilityApmConfigurationAnonymous" section="allowed-services">Allowed services</DocLink>.
+</DocCallOut>
 A list of permitted service names for RUM support.
 Names in this list must match the agent's `service.name`.
 This can be set to restrict RUM events to those with one of a set of known service names,
@@ -199,8 +210,9 @@ in order to limit the number of service-specific indices or data streams created
 
 Default: Not set (any service name is accepted)
 
-[float]
-= Ingest pipelines
+<div id="ingest_pipelines"></div>
 
-The default APM Server pipeline includes processors that enrich RUM data prior to indexing in {es}.
-See <<apm-ingest-pipelines>> for details on how to locate, edit, or disable this preprocessing.
+## Ingest pipelines
+
+The default APM Server pipeline includes processors that enrich RUM data prior to indexing in ((es)).
+See <DocLink id="enObservabilityApmIngestPipelines">Parse data using ingest pipelines</DocLink> for details on how to locate, edit, or disable this preprocessing.

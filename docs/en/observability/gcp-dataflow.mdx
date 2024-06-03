@@ -1,113 +1,132 @@
-[[gcp-dataflow]]
-=== GCP Dataflow templates 
+---
+id: enObservabilityGcpDataflow
+slug: /en/observability/gcp-dataflow
+title: GCP Dataflow templates
+description: Description to be written
+tags: []
+---
+
+import TransclusionGcpTopic from './gcp-topic.mdx'
+
+<div id="gcp-dataflow"></div>
 
 In this tutorial, you'll learn how to ship logs directly from the Google Cloud
-Console with the Dataflow template for analyzing GCP Audit Logs in the {stack}.
+Console with the Dataflow template for analyzing GCP Audit Logs in the ((stack)).
 
-[discrete]
-==== What you'll learn
+<div id="what_you'll_learn"></div>
+
+## What you'll learn
 
 You'll learn how to:
 
 - Export GCP audit logs through Pub/Sub topics and subscriptions.
-- Ingest logs using https://cloud.google.com/dataflow[Google Dataflow] and
-view those logs in {kib}.
+- Ingest logs using [Google Dataflow](https://cloud.google.com/dataflow) and
+view those logs in ((kib)).
 
-[discrete]
-==== Before you begin
+<div id="before_you_begin"></div>
 
-Create a deployment using our hosted {ess} on {ess-trial}[{ecloud}].
-The deployment includes an {es} cluster for storing and searching your data,
-and {kib} for visualizing and managing your data.
+## Before you begin
 
-[discrete]
-==== Step 1: Install the GCP integration 
+Create a deployment using our hosted ((ess)) on [((ecloud))](((ess-trial))).
+The deployment includes an ((es)) cluster for storing and searching your data,
+and ((kib)) for visualizing and managing your data.
+
+<div id="step_1:_install_the_gcp_integration_"></div>
+
+## Step 1: Install the GCP integration
 
 You’ll start with installing the Elastic GCP integration to add pre-built
 dashboards, ingest node configurations, and other assets that help you get
 the most of the GCP logs you ingest.
 
-. Go to *Integrations* in {kib} and search for `gcp`.
-+
-image::monitor-gcp-kibana-integrations.png[{kib} integrations]
+1. Go to **Integrations** in ((kib)) and search for `gcp`.
 
-. Click the Elastic Google Cloud Platform (GCP) integration to see more details about it, then click
-*Add Google Cloud Platform (GCP)*.
-+
-image::monitor-gcp-integration.png[GCP integration]
+    ![((kib)) integrations](images/monitor-gcp-kibana-integrations.png)
 
-. Click *Save integration*.
+1. Click the Elastic Google Cloud Platform (GCP) integration to see more details about it, then click
+    **Add Google Cloud Platform (GCP)**.
 
-****
+    ![GCP integration](images/monitor-gcp-integration.png)
+
+1. Click **Save integration**.
+
+<DocCallOut>
+
 This tutorial assumes the Elastic cluster is already running. To continue, you'll need
-your *Cloud ID* and an *API Key*.
+your **Cloud ID** and an **API Key**.
 
-To find the Cloud ID of your https://cloud.elastic.co/deployments[deployment],
-go to the deployment's *Overview* page.
+To find the Cloud ID of your [deployment](https://cloud.elastic.co/deployments),
+go to the deployment's **Overview** page.
 
-image:monitor-gcp-cloud-id.png[Cloud ID]
+![Cloud ID](images/monitor-gcp-cloud-id.png)
 
-Use {kibana-ref}/api-keys.html#create-api-key[{kib}] to create a
+Use [((kib))](((kibana-ref))/api-keys.html#create-api-key) to create a
 Base64-encoded API key to authenticate on your deployment.
 
-[IMPORTANT]
-====
+<DocCallOut title="Important" color="warning">
+
 You can optionally restrict the privileges of your API Key; otherwise they'll
 be a point in time snapshot of permissions of the authenticated user.
 For this tutorial the data is written to the `logs-gcp.audit-default` data streams.
-====
-****
-[discrete]
-==== Step 2: Create a Pub/Sub topic and subscription
+
+</DocCallOut>
+
+</DocCallOut>
+
+<div id="step_2:_create_a_pub/sub_topic_and_subscription"></div>
+
+## Step 2: Create a Pub/Sub topic and subscription
 
 Before configuring the Dataflow template, create a Pub/Sub
 topic and subscription from your Google Cloud Console where you can send your
 logs from Google Operations Suite.
-include::gcp-topic.asciidoc[]
 
-[discrete]
-==== Step 3: Configure the Google Dataflow template
+<TransclusionGcpTopic />
 
-After creating a Pub/Sub topic and subscription, go to the *Dataflow Jobs* page
+<div id="step_3:_configure_the_google_dataflow_template"></div>
+
+## Step 3: Configure the Google Dataflow template
+
+After creating a Pub/Sub topic and subscription, go to the **Dataflow Jobs** page
 and configure your template to use them. Use the search bar to find the page:
 
-image::monitor-gcp-dataflow-jobs.png[GCP Dataflow Jobs]
+![GCP Dataflow Jobs](images/monitor-gcp-dataflow-jobs.png)
 
-To create a job, click *Create Job From Template*.
-Set *Job name* as `auditlogs-stream` and select `Pub/Sub to Elasticsearch` from
-the *Dataflow template* dropdown menu:
+To create a job, click **Create Job From Template**.
+Set **Job name** as `auditlogs-stream` and select `Pub/Sub to Elasticsearch` from
+the **Dataflow template** dropdown menu:
 
-image::monitor-gcp-dataflow-pub-sub-elasticsearch.png[GCP Dataflow Pub/Sub to {es}]
+![GCP Dataflow Pub/Sub to ((es))](images/monitor-gcp-dataflow-pub-sub-elasticsearch.png)
 
 Before running the job, fill in required parameters:
 
-image::monitor-gcp-dataflow-required-parameters.png[GCP Dataflow Required Parameters]
+![GCP Dataflow Required Parameters](images/monitor-gcp-dataflow-required-parameters.png)
 
-[NOTE]
-====
-For *Cloud Pub/Sub subscription*, use the subscription you created in the previous step.
-For *Cloud ID* and *Base64-encoded API Key*, use the values you got earlier.
-If you don't have an *Error output topic*, create one like you did
+<DocCallOut title="Note">
+
+For **Cloud Pub/Sub subscription**, use the subscription you created in the previous step.
+For **Cloud ID** and **Base64-encoded API Key**, use the values you got earlier.
+If you don't have an **Error output topic**, create one like you did
 in the previous step.
-====
 
-After filling the required parameters, click *Show Optional Parameters* and add
+</DocCallOut>
+
+After filling the required parameters, click **Show Optional Parameters** and add
 `audit` as the log type parameter.
 
-image::monitor-gcp-dataflow-optional-parameters.png[GCP Dataflow Optional Parameters]
+![GCP Dataflow Optional Parameters](images/monitor-gcp-dataflow-optional-parameters.png)
 
-When you are all set, click *Run Job* and wait for Dataflow to execute the
+When you are all set, click **Run Job** and wait for Dataflow to execute the
 template, which takes a few minutes.
 
-Finally, navigate to {kib} to see your logs parsed and visualized in the
-*[Logs GCP] Audit* dashboard.
+Finally, navigate to ((kib)) to see your logs parsed and visualized in the
+**[Logs GCP] Audit** dashboard.
 
-image::monitor-gcp-dataflow-audit-dashboard.png[GCP audit overview dashboard]
+![GCP audit overview dashboard](images/monitor-gcp-dataflow-audit-dashboard.png)
 
 Besides collecting audit logs from your Google Cloud Platform, you can also use
 Dataflow integrations to ingest data directly into Elastic from
-https://www.elastic.co/blog/ingest-data-directly-from-google-bigquery-into-elastic-using-google-dataflow[Google BigQuery]
+[Google BigQuery](https://www.elastic.co/blog/ingest-data-directly-from-google-bigquery-into-elastic-using-google-dataflow)
 and
-https://www.elastic.co/blog/ingest-data-directly-from-google-cloud-storage-into-elastic-using-google-dataflow[Google Cloud Storage].
-
+[Google Cloud Storage](https://www.elastic.co/blog/ingest-data-directly-from-google-cloud-storage-into-elastic-using-google-dataflow).
 

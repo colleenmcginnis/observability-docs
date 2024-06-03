@@ -1,0 +1,62 @@
+
+import StartFilebeatDeb from '../shared/start/deb.mdx'
+import StartFilebeatRpm from '../shared/start/rpm.mdx'
+import StartFilebeatMac from '../shared/start/mac.mdx'
+import StartFilebeatLinux from '../shared/start/linux.mdx'
+import StartFilebeatWin from '../shared/start/win.mdx'
+
+export let beatname_uc = "Filebeat"
+
+export let beatname_lc = "filebeat"
+
+export let beatname_pkg = "filebeat"
+
+export let beatname_url = `((beats-ref-root))/${beatname_lc}/((branch))`
+
+<DocTabs hasBorder>
+	<DocTab name="DEB">
+		<StartFilebeatDeb
+      beatname_lc={beatname_lc}
+      beatname_pkg={beatname_pkg}
+      beatname_uc={beatname_uc}
+      beatname_url={beatname_url}
+      modulename={props.modulename}
+    />
+	</DocTab>
+	<DocTab name="RPM">
+		<StartFilebeatRpm
+      beatname_lc={beatname_lc}
+      beatname_pkg={beatname_pkg}
+      beatname_uc={beatname_uc}
+      beatname_url={beatname_url}
+      modulename={props.modulename}
+    />
+	</DocTab>
+	<DocTab name="MacOS">
+		<StartFilebeatMac
+      beatname_lc={beatname_lc}
+      beatname_pkg={beatname_pkg}
+      beatname_uc={beatname_uc}
+      beatname_url={beatname_url}
+      modulename={props.modulename}
+    />
+	</DocTab>
+	<DocTab name="Linux">
+		<StartFilebeatLinux
+      beatname_lc={beatname_lc}
+      beatname_pkg={beatname_pkg}
+      beatname_uc={beatname_uc}
+      beatname_url={beatname_url}
+      modulename={props.modulename}
+    />
+	</DocTab>
+	<DocTab name="Windows">
+		<StartFilebeatWin
+      beatname_lc={beatname_lc}
+      beatname_pkg={beatname_pkg}
+      beatname_uc={beatname_uc}
+      beatname_url={beatname_url}
+      modulename={props.modulename}
+    />
+	</DocTab>
+</DocTabs>

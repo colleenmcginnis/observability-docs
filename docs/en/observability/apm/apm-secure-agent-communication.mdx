@@ -1,28 +1,31 @@
-[[apm-secure-agent-communication]]
-== Secure communication with APM agents
+---
+id: enObservabilityApmSecureAgentCommunication
+slug: /en/observability/apm-secure-agent-communication
+title: Secure communication with APM agents
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>With APM agents</titleabbrev>
-++++
+<div id="apm-secure-agent-communication"></div>
 
-Communication between APM agents and {agent} can be both encrypted and authenticated.
+Communication between APM agents and ((agent)) can be both encrypted and authenticated.
 It is strongly recommended to use both TLS encryption and authentication as secrets are sent as plain text.
 
-* <<apm-agent-tls,TLS encryption>>
-* <<apm-api-key,API key authentication>>
-* <<apm-secret-token,Secret token authentication>>
+* <DocLink id="enObservabilityApmAgentTls">TLS encryption</DocLink>
+* <DocLink id="enObservabilityApmApiKey">API key authentication</DocLink>
+* <DocLink id="enObservabilityApmSecretToken">Secret token authentication</DocLink>
 
 As soon as an authenticated communication is enabled,
 requests without a valid token or API key will be denied.
 If both API keys and a secret token are enabled, APM agents can choose whichever mechanism they support.
 
-In some use-cases, like when an {apm-agent} is running on the client side,
-authentication is not possible. See <<apm-anonymous-auth>> for more information.
+In some use-cases, like when an ((apm-agent)) is running on the client side,
+authentication is not possible. See <DocLink id="enObservabilityApmAnonymousAuth">Anonymous authentication</DocLink> for more information.
 
-include::./tls-comms.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./api-keys.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./secret-token.asciidoc[]
+{/* The include that was here is another page */}
 
-include::./anonymous-auth.asciidoc[]
+{/* The include that was here is another page */}

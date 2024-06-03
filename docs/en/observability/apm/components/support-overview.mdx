@@ -1,0 +1,20 @@
+
+<DocCallOut title="Support overview">
+  <DocText color={props.binary ? "success" : "danger"} size="s">
+    <DocIcon
+      type={props.binary ? "checkInCircleFilled" : "minusInCircleFilled"}
+      title={props.binary ? "supported" : "not supported"}
+    /> APM Server binary
+  </DocText>
+  <DocText color={props.fleet ? "success" : "danger"} size="s">
+    <DocIcon
+      type={props.fleet ? "checkInCircleFilled" : "minusInCircleFilled"}
+      title={props.fleet ? "supported" : "not supported"}
+    /> Fleet-managed APM
+  </DocText>
+
+  <br />
+
+  {props.children}
+</DocCallOut>
+

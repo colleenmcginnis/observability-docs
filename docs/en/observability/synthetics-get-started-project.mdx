@@ -1,133 +1,141 @@
-[[synthetics-get-started-project]]
-= Create monitors with {project-monitors-cap}
+---
+id: enObservabilitySyntheticsGetStartedProject
+slug: /en/observability/synthetics-get-started-project
+title: Create monitors with ((project-monitors-cap))
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Use {project-monitors-cap}</titleabbrev>
-++++
+<div id="synthetics-get-started-project"></div>
 
-Projects are the most powerful and sophisticated way to configure synthetic monitors in the {stack}. Projects let you define your infrastructure as code, more commonly known as IaaC or Git-ops. With {project-monitors} you organize your YAML configuration and JavaScript- or TypeScript-defined monitors on the filesystem, use Git for version control, and deploy via a CLI tool, usually executed on a CI/CD platform.
+Projects are the most powerful and sophisticated way to configure synthetic monitors in the ((stack)). Projects let you define your infrastructure as code, more commonly known as IaaC or Git-ops. With ((project-monitors)) you organize your YAML configuration and JavaScript- or TypeScript-defined monitors on the filesystem, use Git for version control, and deploy via a CLI tool, usually executed on a CI/CD platform.
 
-image::images/synthetics-get-started-projects.png[]
-// add text description
+![](images/synthetics-get-started-projects.png)
+{/* add text description */}
 
-This is one of <<synthetics-get-started,two approaches>> you can use to set up a synthetic monitor.
+This is one of <DocLink id="enObservabilitySyntheticsGetStarted">two approaches</DocLink> you can use to set up a synthetic monitor.
 
-[discrete]
-= Prerequisites
+<div id="prerequisites"></div>
 
-You must be signed into {kib} as a user with at least <<synthetics-role-write,synthetics write permissions>>,
-and Monitor Management must be enabled by an administrator as described in <<synthetics-role-setup>>.
+## Prerequisites
+
+You must be signed into ((kib)) as a user with at least <DocLink id="enObservabilitySyntheticsRoleWrite">synthetics write permissions</DocLink>,
+and Monitor Management must be enabled by an administrator as described in <DocLink id="enObservabilitySyntheticsRoleSetup">Setup role</DocLink>.
 
 Working with projects requires working with the Elastic Synthetics CLI tool, which
 can be invoked via the `npx @elastic/synthetics` command. Before getting started
 you'll need to:
 
-. Install https://nodejs.dev/en/[Node.js]
-. Install the package:
-+
-[source,sh]
-----
-npm install -g @elastic/synthetics
-----
-. Confirm your system is setup correctly:
-+
-[source,sh]
-----
-npx @elastic/synthetics -h
-----
+1. Install [Node.js](https://nodejs.dev/en/)
+1. Install the package:
+
+    ```sh
+    npm install -g @elastic/synthetics
+    ```
+
+1. Confirm your system is setup correctly:
+
+    ```sh
+    npx @elastic/synthetics -h
+    ```
 
 You should also decide where you want to run the monitors before getting started.
-You can run {project-monitors} on one or both of the following:
+You can run ((project-monitors)) on one or both of the following:
 
-* *Elastic's global managed testing infrastructure*:
-  With Elastic's global managed testing infrastructure, you can create and run monitors in multiple
-  locations without having to manage your own infrastructure.
-  Elastic takes care of software updates and capacity planning for you.
-* *{private-location}s*: {private-location}s allow you to run monitors from your own premises.
-  To use {private-location}s you must create a {private-location} before continuing.
-  For step-by-step instructions, refer to <<synthetics-private-location>>.
+* **Elastic's global managed testing infrastructure**:
+    With Elastic's global managed testing infrastructure, you can create and run monitors in multiple
+    locations without having to manage your own infrastructure.
+    Elastic takes care of software updates and capacity planning for you.
 
-[NOTE]
-====
+* **((private-location))s**: ((private-location))s allow you to run monitors from your own premises.
+    To use ((private-location))s you must create a ((private-location)) before continuing.
+    For step-by-step instructions, refer to <DocLink id="enObservabilitySyntheticsPrivateLocation">Monitor resources on private networks</DocLink>.
+
+<DocCallOut title="Note">
+
 If you are setting up Synthetics for a deployment configured with
-{cloud}/ec-traffic-filtering-deployment-configuration.html[traffic filters],
-connections into {es} are restricted and results will not be able to be written
-back into {es} unless granted.
-For more details, refer to <<synthetics-traffic-filters>>.
-====
+[traffic filters](((cloud))/ec-traffic-filtering-deployment-configuration.html),
+connections into ((es)) are restricted and results will not be able to be written
+back into ((es)) unless granted.
+For more details, refer to <DocLink id="enObservabilitySyntheticsTrafficFilters">Use Synthetics with traffic filters</DocLink>.
 
-[discrete]
-[[synthetics-get-started-project-init]]
-= Create a project
+</DocCallOut>
+
+<div id="synthetics-get-started-project-init"></div>
+
+## Create a project
 
 Start by creating your first project. Run the command below to create a new
 project named `projects-test` in the current directory.
 
-[source,sh]
-----
+```sh
 npx @elastic/synthetics init projects-test
-----
+```
 
 Then, follow the prompts on screen to setup the correct default variables for your project.
 When complete, set the `SYNTHETICS_API_KEY` environment variable in your terminal, which is used
-for authentication with your {stack}:
+for authentication with your ((stack)):
 
-. To generate an API key:
-.. Go to **Synthetics** in {kib}.
-.. Click **Settings**.
-.. Switch to the **Project API Keys** tab.
-.. Click **Generate Project API key**.
-+
-[IMPORTANT]
-====
+1. To generate an API key:
+    1. Go to **Synthetics** in ((kib)).
+    1. Click **Settings**.
+    1. Switch to the **Project API Keys** tab.
+    1. Click **Generate Project API key**.
+
+<DocCallOut title="Important" color="warning">
+
 To generate a Project API key, you must be logged in as a user with the privileges
-described in <<synthetics-role-write>>.
-====
-+
-[role="screenshot"]
-image::images/synthetics-monitor-management-api-key.png[Project API Keys tab in Synthetics settings]
-+
-[NOTE]
-====
+described in <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink>.
+
+</DocCallOut>
+
+![Project API Keys tab in Synthetics settings](images/synthetics-monitor-management-api-key.png)
+
+<DocCallOut title="Note">
+
 To use an API key to push to Elastic's global managed testing infrastructure,
 the _Elastic managed locations enabled_ toggle must be on when generating the API key.
 If the _Elastic managed locations enabled_ toggle is disabled, an administrator has restricted
 access to Elastic's global managed testing infrastructure.
-Read more in the <<disable-managed-locations,writer role documentation>>.
-====
+Read more in the <DocLink id="enObservabilitySyntheticsRoleWrite" section="to-restrict-using-elastics-global-managed-infrastructure">writer role documentation</DocLink>.
 
-. Set the `SYNTHETICS_API_KEY` environment variable in your terminal.
-  You will most likely want to set this permanently.
-  This is done differently in https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.2#saving-changes-to-environment-variables[Powershell] and https://unix.stackexchange.com/a/117470[Bash].
+</DocCallOut>
 
-NOTE: If you are pushing to a <<synthetics-private-location,{private-location}>>, you must use an API key generated in 8.4 or higher.
+1. Set the `SYNTHETICS_API_KEY` environment variable in your terminal.
+    You will most likely want to set this permanently.
+    This is done differently in [Powershell](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.2#saving-changes-to-environment-variables) and [Bash](https://unix.stackexchange.com/a/117470).
+
+<DocCallOut title="Note">
+If you are pushing to a <DocLink id="enObservabilitySyntheticsPrivateLocation">((private-location))</DocLink>, you must use an API key generated in 8.4 or higher.
+</DocCallOut>
 
 Then, take a look at key files and directories inside your project:
 
 * `journeys` is where you'll add `.ts` and `.js` files defining your browser monitors. When you create a new project, this directory will contain files defining sample monitors.
 * `lightweight` is where you'll add `.yaml` files defining your lightweight monitors.  When you create a new project, this directory will contain a file defining sample monitors.
 * `synthetics.config.ts` contains settings for your project. When you create a new project, it will contain some basic configuration options that you can customize later.
-+
-[NOTE]
-====
+
+<DocCallOut title="Note">
+
 The `synthetics.config.ts` in the sample project uses a location on Elastic's global managed testing infrastructure.
 Administrators can restrict access to Elastic's global managed testing infrastructure.
-When you attempt to <<synthetics-get-started-project-push,`push` the sample monitors>>,
+When you attempt to <DocLink id="enObservabilitySyntheticsGetStartedProject" section="test-and-connect-to-the-((stack))">`push` the sample monitors</DocLink>,
 if you see an error stating that you don't have permission to use Elastic managed global locations,
-refer to the <<synthetics-troubleshooting-no-locations,troubleshooting guide>> for guidance.
-====
+refer to the <DocLink id="enObservabilitySyntheticsTroubleshooting" section="no-locations-are-available">troubleshooting guide</DocLink> for guidance.
 
-* `package.json` contains NPM settings for your project. Learn more in the https://docs.npmjs.com/about-packages-and-modules[NPM documentation].
+</DocCallOut>
+
+* `package.json` contains NPM settings for your project. Learn more in the [NPM documentation](https://docs.npmjs.com/about-packages-and-modules).
 * `.github` contains sample workflow files to use with GitHub Actions.
 
-[discrete]
-= Examine sample monitors
+<div id="examine_sample_monitors"></div>
+
+## Examine sample monitors
 
 Inside the `lightweight` directory you'll find sample lightweight monitors.
 Here's an example of a YAML file defining a lightweight monitor:
 
-[source,yml]
-----
+```yml
 # lightweight.yml
 heartbeat.monitors:
 - type: http
@@ -135,16 +143,15 @@ heartbeat.monitors:
   id: todos-lightweight
   urls: "https://elastic.github.io/synthetics-demo/"
   schedule: '@every 1m'
-----
+```
 
 For more details on lightweight monitor configuration options,
-refer to <<synthetics-lightweight>>.
+refer to <DocLink id="enObservabilitySyntheticsLightweight">Configure lightweight monitors</DocLink>.
 
 Inside the `journeys` directory you'll find sample browser monitors.
 Here's an example of a TypeScript file defining a browser monitor:
 
-[source,ts]
-----
+```ts
 // example.journey.ts
 import { journey, step, monitor, expect } from '@elastic/synthetics';
 journey('My Example Journey', ({ page, params }) => {
@@ -162,60 +169,64 @@ journey('My Example Journey', ({ page, params }) => {
     expect(await header.textContent()).toBe('todos');
   });
 });
-----
+```
 
 For more details on writing journeys and configuring browser monitors,
-refer to <<synthetics-journeys>>.
+refer to <DocLink id="enObservabilitySyntheticsJourneys">Scripting browser monitors</DocLink>.
 
-[discrete]
-[[synthetics-get-started-project-push]]
-= Test and connect to the {stack}
+<div id="synthetics-get-started-project-push"></div>
+
+## Test and connect to the ((stack))
 
 While inside the project directory you can do two things with the `npx @elastic/synthetics` command:
 
 * Test browser-based monitors locally. To run all journeys defined in `.ts` and `.js` files:
-+
-[source,sh]
-----
-npx @elastic/synthetics journeys
-----
+
+    ```sh
+    npx @elastic/synthetics journeys
+    ```
+
 * Push all monitor configurations to an Elastic deployment. Run the following command from inside your project:
-+
-[source,sh]
-----
-npx @elastic/synthetics push --auth $SYNTHETICS_API_KEY --url <kibana-url>
-----
 
-One monitor will appear in the {synthetics-app} for each journey or
+    ```sh
+    npx @elastic/synthetics push --auth $SYNTHETICS_API_KEY --url <kibana-url>
+    ```
+
+One monitor will appear in the ((synthetics-app)) for each journey or
 lightweight monitor, and you'll manage all monitors from your local environment.
-For more details on using the `push` command, refer to <<elastic-synthetics-push-command>>.
+For more details on using the `push` command, refer to <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`@elastic/synthetics push`</DocLink>.
 
-[NOTE]
-====
-If you've <<synthetics-private-location,added a {private-location}>>,
-you can `push` to that {private-location}.
+<DocCallOut title="Note">
 
-To list available {private-location}s,
-run the <<elastic-synthetics-locations-command,`elastic-synthetics locations` command>>
-with the {kib} URL for the deployment from which to fetch available locations.
-====
+If you've <DocLink id="enObservabilitySyntheticsPrivateLocation">added a ((private-location))</DocLink>,
+you can `push` to that ((private-location)).
 
-[discrete]
-= View in {kib}
+To list available ((private-location))s,
+run the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-locations">`elastic-synthetics locations` command</DocLink>
+with the ((kib)) URL for the deployment from which to fetch available locations.
 
-[NOTE]
-====
+</DocCallOut>
+
+<div id="view_in_((kib))"></div>
+
+## View in ((kib))
+
+<DocCallOut title="Note">
+
 When a monitor is created or updated, the first run might not occur immediately, but the time it takes for the first run to occur will be less than the monitor's configured frequency. For example, if you create a monitor and configure it to run every 10 minutes, the first run will occur within 10 minutes of being created. After the first run, the monitor will begin running regularly based on the configured frequency. You can run a manual test if you want to see the results more quickly.
-====
 
-Then, go to the {synthetics-app} in {kib}. You should see your newly pushed monitors running.
-You can also go to the *Management* tab to see the monitors' configuration settings.
+</DocCallOut>
 
-[discrete]
-= Next steps
+Then, go to the ((synthetics-app)) in ((kib)). You should see your newly pushed monitors running.
+You can also go to the **Management** tab to see the monitors' configuration settings.
+
+<div id="next_steps"></div>
+
+## Next steps
 
 Learn more about:
 
-* <<synthetics-lightweight,Configuring lightweight monitors>>
-* <<synthetics-create-test,Configuring browser monitors>>
-* <<synthetics-projects-best-practices,Implementing best practices for working with {project-monitors}>>
+* <DocLink id="enObservabilitySyntheticsLightweight">Configuring lightweight monitors</DocLink>
+* <DocLink id="enObservabilitySyntheticsCreateTest">Configuring browser monitors</DocLink>
+* <DocLink id="enObservabilitySyntheticsManageMonitors" section="implement-best-practices-for-projects">Implementing best practices for working with ((project-monitors))</DocLink>
+

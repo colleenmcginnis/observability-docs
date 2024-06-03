@@ -1,0 +1,91 @@
+---
+id: enObservabilityApmUpgrade8.0SelfStandalone
+slug: /en/observability/apm-upgrade-8.0-self-standalone
+title: Upgrade a self-installation of APM Server standalone to ((version))
+description: Description to be written
+tags: []
+---
+
+import WhyApmIntegration from './getting-started-apm-server/why-apm-integration.mdx'
+import InstallApmIntegration from './getting-started-apm-server/install-apm-integration.mdx'
+
+<div id="apm-upgrade-8.0-self-standalone"></div>
+
+This upgrade guide is for the standalone method of running APM Server.
+Only use this guide if both of the following are true:
+
+* You have a self-installation of the ((stack)), i.e. you're not using ((ecloud)).
+* You're running the APM Server binary, i.e. you haven't switched to the Elastic APM integration.
+
+<div id="prerequisites"></div>
+
+## Prerequisites
+
+1. Prior to upgrading to version ((version)), ((es)), ((kib)),
+    and APM Server must be upgraded to version 7.17.
+
+    * To upgrade ((es)) and ((kib)),
+        see the [((stack)) Installation and Upgrade Guide](https://www.elastic.co/guide/en/elastic-stack/7.17/upgrading-elastic-stack.html)
+
+    * To upgrade APM Server to version 7.17, see
+        [upgrade to version 7.17](((apm-guide-7x))/upgrading-to-717.html).
+
+1. Review the APM <DocLink id="enObservabilityApmReleaseNotes">release notes</DocLink>, <DocLink id="enObservabilityApmBreaking">breaking changes</DocLink>,
+    and ((observability)) [What's new](((observability-guide))/whats-new.html) content.
+
+<div id="upgrade_steps"></div>
+
+## Upgrade steps
+
+1. **Upgrade the ((stack)) to version ((version))**
+
+    The ((stack)) (((es)) and ((kib))) must be upgraded before APM Server.
+    See the [((stack)) Installation and Upgrade Guide](((stack-ref))/upgrading-elastic-stack.html) for guidance.
+
+1. **Install the APM integration via the ((fleet)) UI**
+
+    <WhyApmIntegration />
+
+    <InstallApmIntegration />
+
+1. **Install the ((version)) APM Server release**
+
+    See <DocLink id="enObservabilityApmInstalling">install</DocLink> to find the command that works with your system.
+
+    <DocCallOut title="Warning" color="warning">
+
+    If you install version ((version)) of APM Server before installing the APM integration, you will see error logs similar to the following. You must go back and install the APM integration before data can be ingested into ((es)).
+
+    ```json
+    ...
+    {"log.level":"error","@timestamp":"2022-01-19T10:45:34.923+0800","log.logger":"beater","log.origin":{"file.name":"beater/waitready.go","file.line":62},"message":"precondition 'apm integration installed' failed: error querying Elasticsearch for integration index templates: unexpected HTTP status: 404 Not Found ({\"error\":{\"root_cause\":[{\"type\":\"resource_not_found_exception\",\"reason\":\"index template matching [traces-apm.sampled] not found\"}],\"type\":\"resource_not_found_exception\",\"reason\":\"index template matching [traces-apm.sampled] not found\"},\"status\":404}): to remediate, please install the apm integration: https://ela.st/apm-integration-quickstart","service.name":"apm-server","ecs.version":"1.6.0"}
+    {"log.level":"error","@timestamp":"2022-01-19T10:45:37.461+0800","log.logger":"beater","log.origin":{"file.name":"beater/waitready.go","file.line":62},"message":"precondition 'apm integration installed' failed: error querying Elasticsearch for integration index templates: unexpected HTTP status: 404 Not Found ({\"error\":{\"root_cause\":[{\"type\":\"resource_not_found_exception\",\"reason\":\"index template matching [logs-apm.error] not found\"}],\"type\":\"resource_not_found_exception\",\"reason\":\"index template matching [logs-apm.error] not found\"},\"status\":404}): to remediate, please install the apm integration: https://ela.st/apm-integration-quickstart","service.name":"apm-server","ecs.version":"1.6.0"}
+    ...
+    ```
+
+    </DocCallOut>
+
+1. **Review your configuration file**
+
+    Some settings have been removed or changed. You may need to update your `apm-server.yml` configuration
+    file prior to starting the APM Server.
+    See <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> for help in locating this file,
+    and <DocLink id="enObservabilityApmConfiguringHowtoApmServer">Configure</DocLink> for a list of all available configuration options.
+
+1. **Start the APM Server**
+
+    To start the APM Server, run:
+
+    ```bash
+    ./apm-server -e
+    ```
+
+    Additional details are available in <DocLink id="enObservabilityApmServerStarting">start the APM Server</DocLink>.
+
+1. **(Optional) Upgrade to the APM integration**
+
+    Got time for one more upgrade?
+    See <DocLink id="enObservabilityApmUpgradeToApmIntegration">Switch to the Elastic APM integration</DocLink>.
+
+{/* ******************************************************** */}
+

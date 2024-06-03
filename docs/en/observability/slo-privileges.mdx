@@ -1,56 +1,59 @@
-[[slo-privileges]]
-= Configure service-level objective (SLO) access
+---
+id: enObservabilitySloPrivileges
+slug: /en/observability/slo-privileges
+title: Configure service-level objective (SLO) access
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Configure SLO access</titleabbrev>
-++++
+<div id="slo-privileges"></div>
 
-IMPORTANT: To create and manage SLOs, you need an {subscriptions}[appropriate license].
+<DocCallOut title="Important" color="warning">
+To create and manage SLOs, you need an [appropriate license](((subscriptions))).
+</DocCallOut>
 
 You can create the following roles for your SLOs:
 
-* <<slo-all-access,*SLO All*>> — Create, edit, and manage SLOs and their historical summaries.
-* <<slo-read-access,*SLO Read*>> — See SLOs and their historical summaries.
+* <DocLink id="enObservabilitySloPrivileges" section="create-an-slo-all-role">**SLO All**</DocLink> — Create, edit, and manage SLOs and their historical summaries.
+* <DocLink id="enObservabilitySloPrivileges" section="create-an-slo-read-role">**SLO Read**</DocLink> — See SLOs and their historical summaries.
 
 To create a role:
 
-. From the left navigation in {kib}, under *Management* select *Stack Management*.
-. Under *Security*, select *Roles*.
-. Click *Create role* in the upper-right corner of the page.
+1. From the left navigation in ((kib)), under **Management** select **Stack Management**.
+1. Under **Security**, select **Roles**.
+1. Click **Create role** in the upper-right corner of the page.
 
-[discrete]
-[[slo-all-access]]
-== Create an SLO All role
+<div id="slo-all-access"></div>
+
+## Create an SLO All role
 
 Set the following privileges for the SLO All role:
 
-. Under *Cluster privileges* in the *Elasticsearch* section, add `manage_transform` and `manage_ingest_pipelines`.
-. Under *Index privileges*, add `.slo-*` to the *Indices* field and `all` to the *Privileges* field.
-. Click *Add index privilege*
-. Add indices you plan to create SLOs for to the *Indices* field, and add *read* and *view_index_metadata* to to the *Privileges* field.
-+
-[role="screenshot"]
-image::images/slo-es-priv-all.png[Cluster and index privileges for SLO All role]
-. In the *Kibana* section, click *Add Kibana privilege*.
-. From the *Spaces* dropdown, either select any specific spaces you want the role to apply to, or select *All Spaces*.
-. Set *Observability → SLOs* to `All`.
-+
-[role="screenshot"]
-image::images/slo-kibana-priv-all.png[SLO Kibana all privileges,75%]
+1. Under **Cluster privileges** in the **Elasticsearch** section, add `manage_transform` and `manage_ingest_pipelines`.
+1. Under **Index privileges**, add `.slo-*` to the **Indices** field and `all` to the **Privileges** field.
+1. Click **Add index privilege**
+1. Add indices you plan to create SLOs for to the **Indices** field, and add **read** and **view_index_metadata** to to the **Privileges** field.
 
-[discrete]
-[[slo-read-access]]
-== Create an SLO Read role
+    ![Cluster and index privileges for SLO All role](images/slo-es-priv-all.png)
+
+1. In the **Kibana** section, click **Add Kibana privilege**.
+1. From the **Spaces** dropdown, either select any specific spaces you want the role to apply to, or select **All Spaces**.
+1. Set **Observability → SLOs** to `All`.
+
+    <DocImage size="xl" url="images/slo-kibana-priv-all.png" alt="SLO Kibana all privileges" />
+
+<div id="slo-read-access"></div>
+
+## Create an SLO Read role
 
 Set the following privileges for the SLO Read role:
 
-. Under *Index privileges* in the *Elasticsearch* section, add `.slo-*` to the *Indices* field and `read` to the *Privileges* field.
-+
-[role="screenshot"]
-image::images/slo-es-priv-read.png[Index privileges for SLO Read role]
-. In the *Kibana* section, click *Add Kibana privilege*.
-. From the *Spaces* dropdown, either select any specific spaces you want the role to apply to, or select *All Spaces*.
-. Set *Observability → SLOs* to `Read`.
-+
-[role="screenshot"]
-image::images/slo-kibana-priv-read.png[SLO Kibana read privileges,75%]
+1. Under **Index privileges** in the **Elasticsearch** section, add `.slo-*` to the **Indices** field and `read` to the **Privileges** field.
+
+    ![Index privileges for SLO Read role](images/slo-es-priv-read.png)
+
+1. In the **Kibana** section, click **Add Kibana privilege**.
+1. From the **Spaces** dropdown, either select any specific spaces you want the role to apply to, or select **All Spaces**.
+1. Set **Observability → SLOs** to `Read`.
+
+<DocImage size="xl" url="images/slo-kibana-priv-read.png" alt="SLO Kibana read privileges" />

@@ -1,0 +1,61 @@
+---
+id: enObservabilityApmReleaseNotes8.9
+slug: /en/observability/apm-release-notes-8.9
+title: APM version 8.9
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.9"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.9" section="apm-version-892">APM version 8.9.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.9" section="apm-version-891">APM version 8.9.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.9" section="apm-version-890">APM version 8.9.0</DocLink>
+
+<div id="apm-release-notes-8.9.2"></div>
+
+## APM version 8.9.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.9.1\...v8.9.2)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+- Add back handling of `queue.*` config for libbeat outputs, such as logstash and kafka [11534]({pull}11534)
+
+<div id="apm-release-notes-8.9.1"></div>
+
+## APM version 8.9.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.9.0\...v8.9.1)
+
+No significant changes.
+
+<div id="apm-release-notes-8.9.0"></div>
+
+## APM version 8.9.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.8.2\...v8.9.0)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Limit the amount of concurrent OTLP requests being processed in parallel [10987]({pull}10987).
+- Added CA certificates bundle to the Docker images [11015]({pull}11015)
+- Derivation of transaction and span type from OTLP spans is now deterministic [11036]({pull}11036)
+- Populate `span.id` and `transaction.id` for logs derived from OTLP spans [11038]({pull}11038)
+
+<div id="intake_api_changes"></div>
+
+### Intake API Changes
+- Span events now default to having a representative count of 1, if no `sample_rate` field is sent by the agent [10792]({pull}10792)
+
+<div id="added"></div>
+
+### Added
+- Span events now carry `host` and `service.version` attributes. [10697]({pull}10697)
+- Accept more options in agentcfg ES config; Reliably use `agent.config.elasticsearch` and `rum.source_mapping.elasticsearch` credentials when merging with `output.elasticsearch` credentials [10783]({pull}10783)
+- Emit service destination metrics when only `service.target.*` fields are set. [10922]({pull}10922)
+- apmpackage: Remove `timeseries.instance` in ingest pipeline for pre-8.6 compatibility [10973]({pull}10973)
+- apmpackage: Use "dynamic: runtime" instead of strict mapping for internal, TBS, and aggregation indices [10968]({pull}10968)
+- Corrected as of 5 July 2023 to align with the correct license text for Elastic License 2.0 [11120]({pull}11120)
+- Tail-based sampling: Migrate to protobuf codec for storage efficiency and performance [10994]({pull}10994)

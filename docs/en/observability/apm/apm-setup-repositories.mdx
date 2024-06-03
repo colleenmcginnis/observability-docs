@@ -1,67 +1,71 @@
-[[apm-setup-repositories]]
-==== Repositories for APT and YUM
+---
+id: enObservabilityApmSetupRepositories
+slug: /en/observability/apm-setup-repositories
+title: Repositories for APT and YUM
+description: Description to be written
+tags: []
+---
+
+<div id="apm-setup-repositories"></div>
 
 We have repositories available for APT and YUM-based distributions. Note that we
 provide binary packages, but no source packages.
 
-We use the PGP key https://pgp.mit.edu/pks/lookup?op=vindex&search=0xD27D666CD88E42B4[D88E42B4],
-{es} Signing Key, with fingerprint
+We use the PGP key [D88E42B4](https://pgp.mit.edu/pks/lookup?op=vindex&search=0xD27D666CD88E42B4),
+((es)) Signing Key, with fingerprint
 
     4609 5ACC 8548 582C 1A26 99A9 D27D 666C D88E 42B4
 
 to sign all our packages. It is available from https://pgp.mit.edu.
 
-[float]
-===== APT
+<div id="apt"></div>
 
-ifeval::["{release-state}"=="unreleased"]
+## APT
 
-Version {version} of apm-server has not yet been released.
+<DocIf condition={ "((release-state))" === "unreleased" }>
 
-endif::[]
+Version ((version)) of apm-server has not yet been released.
 
-ifeval::["{release-state}"!="unreleased"]
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
 
 To add the apm-server repository for APT:
 
-. Download and install the Public Signing Key:
-+
-[source,sh]
---------------------------------------------------
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
---------------------------------------------------
+1. Download and install the Public Signing Key:
 
-. You may need to install the `apt-transport-https` package on Debian before proceeding:
-+
-[source,sh]
---------------------------------------------------
-sudo apt-get install apt-transport-https
---------------------------------------------------
+    ```sh
+    wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+    ```
 
-ifeval::["{release-state}"=="prerelease"]
+2. You may need to install the `apt-transport-https` package on Debian before proceeding:
 
-. Save the repository definition to  `/etc/apt/sources.list.d/elastic-{major-version}-prerelease.list`:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
-echo "deb https://artifacts.elastic.co/packages/{major-version}-prerelease/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-{major-version}-prerelease.list
---------------------------------------------------
-+
-endif::[]
-+
-ifeval::["{release-state}"=="released"]
+    ```sh
+    sudo apt-get install apt-transport-https
+    ```
 
-. Save the repository definition to  `/etc/apt/sources.list.d/elastic-{major-version}.list`:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
-echo "deb https://artifacts.elastic.co/packages/{major-version}/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-{major-version}.list
---------------------------------------------------
-+
-endif::[]
-+
-[WARNING]
-==================================================
+<DocIf condition={ "((release-state))" === "prerelease" }>
+
+3. Save the repository definition to  `/etc/apt/sources.list.d/elastic-((major-version))-prerelease.list`:
+
+    ```sh
+    echo "deb https://artifacts.elastic.co/packages/((major-version))-prerelease/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-((major-version))-prerelease.list
+    ```
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" === "released" }>
+
+3. Save the repository definition to  `/etc/apt/sources.list.d/elastic-((major-version)).list`:
+
+    ```sh
+    echo "deb https://artifacts.elastic.co/packages/((major-version))/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-((major-version)).list
+    ```
+
+</DocIf>
+
+<DocCallOut title="Warning" color="warning">
+
 To add the Elastic repository, make sure that you use the `echo` method  shown
 in the example. Do not use `add-apt-repository` because it will add a `deb-src`
 entry, but we do not provide a source package.
@@ -69,97 +73,92 @@ entry, but we do not provide a source package.
 If you have added the `deb-src` entry by mistake, you will see an error like
 the following:
 
-["source","txt",subs="attributes"]
-----
+```txt
 Unable to find expected entry 'main/source/Sources' in Release file (Wrong sources.list entry or malformed file)
-----
+```
 
 Simply delete the `deb-src` entry from the `/etc/apt/sources.list` file, and the installation should work as expected.
-==================================================
 
-. Run `apt-get update`, and the repository is ready for use. For example, you can
-install APM Server by running:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
-sudo apt-get update && sudo apt-get install apm-server
---------------------------------------------------
+</DocCallOut>
 
-. To configure APM Server to start automatically during boot, run:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
-sudo systemctl enable apm-server
---------------------------------------------------
+4. Run `apt-get update`, and the repository is ready for use. For example, you can
+    install APM Server by running:
 
-endif::[]
+    ```sh
+    sudo apt-get update && sudo apt-get install apm-server
+    ```
 
-[float]
-===== YUM
+5. To configure APM Server to start automatically during boot, run:
 
-ifeval::["{release-state}"=="unreleased"]
+    ```sh
+    sudo systemctl enable apm-server
+    ```
 
-Version {version} of apm-server has not yet been released.
+</DocIf>
 
-endif::[]
+<div id="yum"></div>
 
-ifeval::["{release-state}"!="unreleased"]
+## YUM
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((version)) of apm-server has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
 
 To add the apm-server repository for YUM:
 
-. Download and install the public signing key:
-+
-[source,sh]
---------------------------------------------------
-sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
---------------------------------------------------
+1. Download and install the public signing key:
 
-. Create a file with a `.repo` extension (for example, `elastic.repo`) in
-your `/etc/yum.repos.d/` directory and add the following lines:
-+
-ifeval::["{release-state}"=="prerelease"]
+    ```sh
+    sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+    ```
 
-["source","sh",subs="attributes"]
---------------------------------------------------
-[elastic-{major-version}-prerelease]
-name=Elastic repository for {major-version} prerelease packages
-baseurl=https://artifacts.elastic.co/packages/{major-version}-prerelease/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
---------------------------------------------------
-endif::[]
-+
-ifeval::["{release-state}"=="released"]
+2. Create a file with a `.repo` extension (for example, `elastic.repo`) in
+    your `/etc/yum.repos.d/` directory and add the following lines:
 
-["source","sh",subs="attributes"]
---------------------------------------------------
-[elastic-{major-version}]
-name=Elastic repository for {major-version} packages
-baseurl=https://artifacts.elastic.co/packages/{major-version}/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
---------------------------------------------------
-endif::[]
-+
+    <DocIf condition={ "((release-state))" === "prerelease" }>
+
+    ```sh
+    [elastic-((major-version))-prerelease]
+    name=Elastic repository for ((major-version)) prerelease packages
+    baseurl=https://artifacts.elastic.co/packages/((major-version))-prerelease/yum
+    gpgcheck=1
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    autorefresh=1
+    type=rpm-md
+    ```
+
+    </DocIf>
+
+    <DocIf condition={ "((release-state))" === "released" }>
+
+    ```sh
+    [elastic-((major-version))]
+    name=Elastic repository for ((major-version)) packages
+    baseurl=https://artifacts.elastic.co/packages/((major-version))/yum
+    gpgcheck=1
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    autorefresh=1
+    type=rpm-md
+    ```
+    </DocIf>
+
 Your repository is ready to use. For example, you can install APM Server by
 running:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
+
+```sh
 sudo yum install apm-server
---------------------------------------------------
+```
 
-. To configure APM Server to start automatically during boot, run:
-+
-["source","sh",subs="attributes"]
---------------------------------------------------
-sudo systemctl enable apm-server
---------------------------------------------------
+3. To configure APM Server to start automatically during boot, run:
 
-endif::[]
+    ```sh
+    sudo systemctl enable apm-server
+    ```
+
+</DocIf>

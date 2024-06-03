@@ -1,401 +1,455 @@
-[[metrics-app-fields]]
-= {infrastructure-app} fields
+---
+id: enObservabilityMetricsAppFields
+slug: /en/observability/metrics-app-fields
+title: ((infrastructure-app)) fields
+description: Description to be written
+tags: []
+---
 
-This section lists the required fields the {infrastructure-app} uses to display data.
-Please note that some of the fields listed are not {ecs-ref}/ecs-reference.html#_what_is_ecs[ECS fields].
+<div id="metrics-app-fields"></div>
 
-[discrete]
-== Additional field details
+This section lists the required fields the ((infrastructure-app)) uses to display data.
+Please note that some of the fields listed are not [ECS fields](((ecs-ref))/ecs-reference.html#_what_is_ecs).
+
+<div id="additional_field_details"></div>
+
+## Additional field details
 
 The `event.dataset` field is required to display data properly in some views. This field
-is a combination of `metricset.module`, which is the {metricbeat} module name, and `metricset.name`,
+is a combination of `metricset.module`, which is the ((metricbeat)) module name, and `metricset.name`,
 which is the metricset name.
 
 To determine each metric's optimal time interval, all charts use `metricset.period`.
 If `metricset.period` is not available, then it falls back to 1 minute intervals.
 
-[discrete]
-[[base-fields]]
-== Base fields
+<div id="base-fields"></div>
+
+## Base fields
 
 The `base` field set contains all fields which are on the top level. These fields are common across all types of events.
 
-`@timestamp`::
-
-Date/time when the event originated.
-+
-This is the date/time extracted from the event, typically representing when the source generated the event.
-If the event source has no original timestamp, this value is typically populated by the first time the pipeline received the event.
-Required field for all events.
-+
-type: date
-+
-required: True
-+
-ECS field: True
-+
-example: `May 27, 2020 @ 15:22:27.982`
-
-`message`::
-
-For log events the message field contains the log message, optimized for viewing in a log viewer.
-+
-For structured logs without an original message field, other fields can be concatenated to form a human-readable summary of the event.
-+
-If multiple messages exist, they can be combined into one message.
-+
-type: text
-+
-required: True
-+
-ECS field: True
-+
-example: `Hello World`
-
-[discrete]
-[[host-fields]]
-== Hosts fields
-
-These fields must be mapped to display host data in the {infrastructure-app}.
-
-`host.name`::
-
-Name of the host.
-+
-It can contain what `hostname` returns on Unix systems, the fully qualified domain name, or a name specified by the user. The sender decides which value to use.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `MacBook-Elastic.local`
-
-`host.ip`::
-
-IP of the host that records the event.
-+
-type: `ip`
-+
-required: True
-+
-ECS field: True
-
-[discrete]
-[[docker-fields]]
-== Docker container fields
-
-These fields must be mapped to display Docker container data in the {infrastructure-app}.
-
-`container.id`::
-
-Unique container id.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `data`
-
-`container.name`::
-
-Container name.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-
-`container.ip_address`::
-
-IP of the container.
-+
-type: `ip`
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[kubernetes-fields]]
-== Kubernetes pod fields
-
-These fields must be mapped to display Kubernetes pod data in the {infrastructure-app}.
-
-`kubernetes.pod.uid`::
-
-Kubernetes Pod UID.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-+
-example: `8454328b-673d-11ea-7d80-21010a840123`
-
-`kubernetes.pod.name`::
-
-Kubernetes pod name.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-+
-example: `nginx-demo`
-
-`kubernetes.pod.ip`::
-
-IP of the Kubernetes pod.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[aws-ec2-fields]]
-== AWS EC2 instance fields
-
-These fields must be mapped to display EC2 instance data in the {infrastructure-app}.
-
-`cloud.instance.id`::
-
-Instance ID of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `i-1234567890abcdef0`
-
-`cloud.instance.name`::
-
-Instance name of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-
-`aws.ec2.instance.public.ip`::
-
-Instance public IP of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[aws-s3-fields]]
-== AWS S3 bucket fields
-
-These fields must be mapped to display S3 bucket data in the {infrastructure-app}.
-
-`aws.s3.bucket.name`::
-
-The name or ID of the AWS S3 bucket.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[aws-sqs-fields]]
-== AWS SQS queue fields
-
-These fields must be mapped to display SQS queue data in the {infrastructure-app}.
-
-`aws.sqs.queue.name`::
-
-The name or ID of the AWS SQS queue.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[aws-rds-fields]]
-== AWS RDS database fields
-
-These fields must be mapped to display RDS database data in the {infrastructure-app}.
-
-`aws.rds.db_instance.arn`::
-
-Amazon Resource Name (ARN) for each RDS.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-`aws.rds.db_instance.identifier`::
-
-Contains a user-supplied database identifier. This identifier is the unique key that identifies a DB instance.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-[discrete]
-[[group-inventory-fields]]
-== Additional grouping fields
-
-Depending on which entity you select in the *Inventory* view, these additional fields can be mapped to group entities by.
-
-`cloud.availability_zone`::
-
-Availability zone in which this host is running.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `us-east-1c`
-
-`cloud.machine.type`::
-
-Machine type of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `t2.medium`
-
-`cloud.region`::
-
-Region in which this host is running.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `us-east-1`
-
-`cloud.instance.id`::
-
-Instance ID of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `i-1234567890abcdef0`
-
-`cloud.provider`::
-
-Name of the cloud provider. Example values are `aws`, `azure`, `gcp`, or `digitalocean`.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `aws`
-
-`cloud.instance.name`::
-
-Instance name of the host machine.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-
-`cloud.project.id`::
-
-Name of the project in Google Cloud.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-
-`service.type`::
-
-The type of the service data is collected from.
-+
-The type can be used to group and correlate logs and metrics from one service type.
-+
-Example: If metrics are collected from {es}, service.type would be `elasticsearch`.
-+
-type: keyword
-+
-required: True
-+
-ECS field: False
-+
-example: `elasticsearch`
-
-`host.hostname`::
-
-Name of the host.
-+
-It normally contains what the `hostname` command returns on the host machine.
-+
-type: keyword
-+
-required: True, if you want to use the {ml-features}.
-+
-ECS field: True
-+
-example: `Elastic.local`
-
-`host.os.name`::
-
-Operating system name, without the version.
-+
-Multi-fields:
-+
-* os.name.text (type: text)
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `Mac OS X`
-
-`host.os.kernel`::
-
-Operating system kernel version as a raw string.
-+
-type: keyword
-+
-required: True
-+
-ECS field: True
-+
-example: `4.4.0-112-generic`
+<DocDefList>
+  <DocDefTerm>`@timestamp`</DocDefTerm>
+  <DocDefDescription>
+    Date/time when the event originated.
+
+    This is the date/time extracted from the event, typically representing when the source generated the event.
+    If the event source has no original timestamp, this value is typically populated by the first time the pipeline received the event.
+    Required field for all events.
+
+    type: date
+
+    required: True
+
+    ECS field: True
+
+    example: `May 27, 2020 @ 15:22:27.982`
+  </DocDefDescription>
+
+  <DocDefTerm>`message`</DocDefTerm>
+  <DocDefDescription>
+    For log events the message field contains the log message, optimized for viewing in a log viewer.
+
+    For structured logs without an original message field, other fields can be concatenated to form a human-readable summary of the event.
+
+    If multiple messages exist, they can be combined into one message.
+
+    type: text
+
+    required: True
+
+    ECS field: True
+
+    example: `Hello World`
+  </DocDefDescription>
+</DocDefList>
+
+<div id="host-fields"></div>
+
+## Hosts fields
+
+These fields must be mapped to display host data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`host.name`</DocDefTerm>
+  <DocDefDescription>
+    Name of the host.
+
+    It can contain what `hostname` returns on Unix systems, the fully qualified domain name, or a name specified by the user. The sender decides which value to use.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `MacBook-Elastic.local`
+  </DocDefDescription>
+
+  <DocDefTerm>`host.ip`</DocDefTerm>
+  <DocDefDescription>
+    IP of the host that records the event.
+
+    type: `ip`
+
+    required: True
+
+    ECS field: True
+  </DocDefDescription>
+</DocDefList>
+
+<div id="docker-fields"></div>
+
+## Docker container fields
+
+These fields must be mapped to display Docker container data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`container.id`</DocDefTerm>
+  <DocDefDescription>
+    Unique container id.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `data`
+  </DocDefDescription>
+
+  <DocDefTerm>`container.name`</DocDefTerm>
+  <DocDefDescription>
+    Container name.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+  </DocDefDescription>
+
+  <DocDefTerm>`container.ip_address`</DocDefTerm>
+  <DocDefDescription>
+    IP of the container.
+
+    type: `ip`
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="kubernetes-fields"></div>
+
+## Kubernetes pod fields
+
+These fields must be mapped to display Kubernetes pod data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`kubernetes.pod.uid`</DocDefTerm>
+  <DocDefDescription>
+    Kubernetes Pod UID.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+
+    example: `8454328b-673d-11ea-7d80-21010a840123`
+  </DocDefDescription>
+
+  <DocDefTerm>`kubernetes.pod.name`</DocDefTerm>
+  <DocDefDescription>
+    Kubernetes pod name.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+
+    example: `nginx-demo`
+  </DocDefDescription>
+
+  <DocDefTerm>`kubernetes.pod.ip`</DocDefTerm>
+  <DocDefDescription>
+    IP of the Kubernetes pod.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="aws-ec2-fields"></div>
+
+## AWS EC2 instance fields
+
+These fields must be mapped to display EC2 instance data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`cloud.instance.id`</DocDefTerm>
+  <DocDefDescription>
+    Instance ID of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `i-1234567890abcdef0`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.instance.name`</DocDefTerm>
+  <DocDefDescription>
+    Instance name of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+  </DocDefDescription>
+
+  <DocDefTerm>`aws.ec2.instance.public.ip`</DocDefTerm>
+  <DocDefDescription>
+    Instance public IP of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="aws-s3-fields"></div>
+
+## AWS S3 bucket fields
+
+These fields must be mapped to display S3 bucket data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`aws.s3.bucket.name`</DocDefTerm>
+  <DocDefDescription>
+    The name or ID of the AWS S3 bucket.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="aws-sqs-fields"></div>
+
+## AWS SQS queue fields
+
+These fields must be mapped to display SQS queue data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`aws.sqs.queue.name`</DocDefTerm>
+  <DocDefDescription>
+    The name or ID of the AWS SQS queue.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="aws-rds-fields"></div>
+
+## AWS RDS database fields
+
+These fields must be mapped to display RDS database data in the ((infrastructure-app)).
+
+<DocDefList>
+  <DocDefTerm>`aws.rds.db_instance.arn`</DocDefTerm>
+  <DocDefDescription>
+    Amazon Resource Name (ARN) for each RDS.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+
+  <DocDefTerm>`aws.rds.db_instance.identifier`</DocDefTerm>
+  <DocDefDescription>
+    Contains a user-supplied database identifier. This identifier is the unique key that identifies a DB instance.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+</DocDefList>
+
+<div id="group-inventory-fields"></div>
+
+## Additional grouping fields
+
+Depending on which entity you select in the **Inventory** view, these additional fields can be mapped to group entities by.
+
+<DocDefList>
+  <DocDefTerm>`cloud.availability_zone`</DocDefTerm>
+  <DocDefDescription>
+    Availability zone in which this host is running.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `us-east-1c`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.machine.type`</DocDefTerm>
+  <DocDefDescription>
+    Machine type of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `t2.medium`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.region`</DocDefTerm>
+  <DocDefDescription>
+    Region in which this host is running.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `us-east-1`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.instance.id`</DocDefTerm>
+  <DocDefDescription>
+    Instance ID of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `i-1234567890abcdef0`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.provider`</DocDefTerm>
+  <DocDefDescription>
+    Name of the cloud provider. Example values are `aws`, `azure`, `gcp`, or `digitalocean`.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `aws`
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.instance.name`</DocDefTerm>
+  <DocDefDescription>
+    Instance name of the host machine.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+  </DocDefDescription>
+
+  <DocDefTerm>`cloud.project.id`</DocDefTerm>
+  <DocDefDescription>
+    Name of the project in Google Cloud.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+  </DocDefDescription>
+
+  <DocDefTerm>`service.type`</DocDefTerm>
+  <DocDefDescription>
+    The type of the service data is collected from.
+
+    The type can be used to group and correlate logs and metrics from one service type.
+
+    Example: If metrics are collected from ((es)), service.type would be `elasticsearch`.
+
+    type: keyword
+
+    required: True
+
+    ECS field: False
+
+    example: `elasticsearch`
+  </DocDefDescription>
+
+  <DocDefTerm>`host.hostname`</DocDefTerm>
+  <DocDefDescription>
+    Name of the host.
+
+    It normally contains what the `hostname` command returns on the host machine.
+
+    type: keyword
+
+    required: True, if you want to use the ((ml-features)).
+
+    ECS field: True
+
+    example: `Elastic.local`
+  </DocDefDescription>
+
+  <DocDefTerm>`host.os.name`</DocDefTerm>
+  <DocDefDescription>
+    Operating system name, without the version.
+
+    Multi-fields:
+
+    * os.name.text (type: text)
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `Mac OS X`
+  </DocDefDescription>
+
+  <DocDefTerm>`host.os.kernel`</DocDefTerm>
+  <DocDefDescription>
+    Operating system kernel version as a raw string.
+
+    type: keyword
+
+    required: True
+
+    ECS field: True
+
+    example: `4.4.0-112-generic`
+  </DocDefDescription>
+</DocDefList>

@@ -1,366 +1,367 @@
-[[monitor-azure]]
-== Monitor Microsoft Azure with {beats}
+---
+id: enObservabilityMonitorAzure
+slug: /en/observability/monitor-azure
+title: Monitor Microsoft Azure with ((beats))
+description: Description to be written
+tags: []
+---
 
-****
-**Are you sure you want to use {beats}?**
+import SharedInstallConfigureMetricbeat from './shared/install-configure-metricbeat.mdx'
 
-{agent} is the recommended way to monitor Azure if you want to manage your
-agents centrally in {fleet}. To learn how to use {agent}, refer to
-<<monitor-azure-elastic-agent>>.
-****
+<div id="monitor-azure"></div>
+
+<DocCallOut>
+
+**Are you sure you want to use ((beats))?**
+
+((agent)) is the recommended way to monitor Azure if you want to manage your
+agents centrally in ((fleet)). To learn how to use ((agent)), refer to
+<DocLink id="enObservabilityMonitorAzureElasticAgent">Monitor Microsoft Azure with ((agent))</DocLink>.
+
+</DocCallOut>
 
 In this tutorial, you'll learn how to monitor your Microsoft Azure deployments
-using Elastic {observability}: Logs and Infrastructure metrics.
+using Elastic ((observability)): Logs and Infrastructure metrics.
 
-[discrete]
-[[azure-what-you-learn]]
-=== What you'll learn
+<div id="azure-what-you-learn"></div>
+
+## What you'll learn
 
 You'll learn how to:
 
-- Create an {es} resource in the Azure portal.
+- Create an ((es)) resource in the Azure portal.
 - Ingest Azure platform logs using the native integration and view those logs
-in {kib}.
+in ((kib)).
 - Ingest logs and metrics from your virtual machines and view those logs and
-infrastructure metrics in {kib}.
+infrastructure metrics in ((kib)).
 - Ingest other metrics (such as billing) using the
-{metricbeat-ref}/metricbeat-module-azure.html[{metricbeat} Azure module] and
-view those metrics in {kib}.
+[((metricbeat)) Azure module](((metricbeat-ref))/metricbeat-module-azure.html) and
+view those metrics in ((kib)).
 
-[discrete]
-[[azure-step-one]]
-=== Step 1: Create an {es} resource in the Azure portal
+<div id="azure-step-one"></div>
 
-Microsoft Azure allows you to find, deploy, and manage {es} from
+## Step 1: Create an ((es)) resource in the Azure portal
+
+Microsoft Azure allows you to find, deploy, and manage ((es)) from
 within the Azure portal.
 The Microsoft Azure portal integration makes it faster and easier for you to
 experience the value of Elastic in your Azure environment.
 Behind the scenes, this process will provision a marketplace subscription with
-{ecloud}.
+((ecloud)).
 
-[discrete]
-==== Create an {es} resource
+<div id="create_an_((es))_resource"></div>
 
-. Log in to the https://portal.azure.com/[Azure portal].
-+
-[NOTE]
-====
-Ensure your Azure account is configured with *Owner* access on the subscription
-you want to deploy {es}. To learn more about Azure
-subscriptions, see the https://docs.microsoft.com/en-us/azure/cost-management-billing/manage/add-change-subscription-administrator#assign-a-subscription-administrator[Microsoft Azure documentation].
-====
+### Create an ((es)) resource
 
-. In the search bar, enter *{es}* and then select it.
+1. Log in to the [Azure portal](https://portal.azure.com/).
 
-. Click *Create*.
+    <DocCallOut title="Note">
 
-. Enter the *Subscription*, *Resource group*, and the *Resource name*.
-. Select a region and then click *Review + create*.
-+
-[role="screenshot"]
-image:monitor-azure-create-elastic-resource.png[Create Elastic resource]
-+
-[NOTE]
-====
-We will cover *logs* and *infrastructure metrics* later in this tutorial.
-====
+    Ensure your Azure account is configured with **Owner** access on the subscription
+    you want to deploy ((es)). To learn more about Azure
+    subscriptions, see the [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/cost-management-billing/manage/add-change-subscription-administrator#assign-a-subscription-administrator).
 
-. To create the {es} deployment, click *Create*.
+    </DocCallOut>
 
-. After your deployment is complete, click *Go to resource*.
-Here you can see and configure your deployment details.
-To access the cluster, click *{kib}*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-deployment.png[Elastic resource]
+1. In the search bar, enter **((es))** and then select it.
 
-// lint ignore observability
-. To single sign-on directly
-into Elastic, select your Azure account.
-. To see if there is any available data, click *Observability*.
-There should be no data yet, but next, you will ingest logs.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-observability-page-empty.png[{kib} {observability}
-page (no data)]
+1. Click **Create**.
 
-[discrete]
-[[azure-step-two]]
-=== Step 2: Ingest logs using the native integration
+1. Enter the **Subscription**, **Resource group**, and the **Resource name**.
+1. Select a region and then click **Review + create**.
+
+    ![Create Elastic resource](images/monitor-azure-create-elastic-resource.png)
+
+    <DocCallOut title="Note">
+
+    We will cover **logs** and **infrastructure metrics** later in this tutorial.
+
+    </DocCallOut>
+
+1. To create the ((es)) deployment, click **Create**.
+
+1. After your deployment is complete, click **Go to resource**.
+    Here you can see and configure your deployment details.
+    To access the cluster, click **((kib))**.
+
+    ![Elastic resource](images/monitor-azure-elastic-deployment.png)
+
+{/* lint ignore observability */}
+1. To single sign-on directly
+    into Elastic, select your Azure account.
+
+1. To see if there is any available data, click **Observability**.
+    There should be no data yet, but next, you will ingest logs.
+
+    ![((kib)) ((observability)) page (no data)](images/monitor-azure-kibana-observability-page-empty.png)
+
+<div id="azure-step-two"></div>
+
+## Step 2: Ingest logs using the native integration
 
 To ingest Azure subscription and resource logs into Elastic
 using the Microsoft Azure native integration is straightforward.
 
-. On to the {es} resource page in Azure, click
-*Ingest logs and metrics from Azure Services*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-click-ingest-logs.png[Click on Ingest logs and
-metrics from Azure Services]
+1. On to the ((es)) resource page in Azure, click
+    **Ingest logs and metrics from Azure Services**.
 
-. Check both checkboxes and click *Save*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-config-logs-metrics.png[Elastic configure logs and
-metrics]
-+
-[NOTE]
-====
-This configuration can also be applied during the Elastic resource creation.
-To make the concepts clearer, this tutorial separates the two steps.
-====
-+
-[NOTE]
-====
-Native metrics collection is not fully supported yet and is discussed
-later.
-====
+    ![Click on Ingest logs and metrics from Azure Services](images/monitor-azure-elastic-click-ingest-logs.png)
 
-. Within {kib}, click *{observability}* until you
-see some data.
-This may take a few minutes.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-observability-page-data.png[{kib} {observability} page
-(with data)]
+1. Check both checkboxes and click **Save**.
 
-. To access the {logs-app} and analyze all your subscription
-and resource logs, click *View in app*.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-logs-app.png[{kib} {logs-app}]
+    ![Elastic configure logs and metrics](images/monitor-azure-elastic-config-logs-metrics.png)
 
-[discrete]
-[[azure-step-three]]
-=== Step 3: Ingest logs and metrics from your virtual machines.
+    <DocCallOut title="Note">
 
-. Go to your Elastic resource and click *Virtual machines*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-deployment.png[Elastic resource]
+    This configuration can also be applied during the Elastic resource creation.
+    To make the concepts clearer, this tutorial separates the two steps.
 
-. Select the VMs that you want to collect logs and metrics from, click
-*Install Extension*, and then click *OK*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-vms.png[Select VMs to collect logs and metrics from]
+    </DocCallOut>
 
-. Wait until it is installed and sending data (if the list
-does not update, click *Refresh* ).
-To see the logs from the VM in the {logs-app}, click  *Logs*.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-vms-logs.png[VMs logs in the {logs-app}]
-+
-To see the VM metrics dashboard, click *Infrastructure*.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-vms-metrics.png[VMs metrics dashboard]
-+
-[NOTE]
-====
-Both logs and metrics are filtered by the VM name that you selected.
-To view the data for all the monitored VMs, delete the filter.
-====
+    <DocCallOut title="Note">
 
-[discrete]
-[[azure-step-four]]
-=== Step 4: Ingest other Azure metrics using the {metricbeat} Azure module
+    Native metrics collection is not fully supported yet and is discussed
+    later.
+
+    </DocCallOut>
+
+1. Within ((kib)), click **((observability))** until you
+    see some data.
+    This may take a few minutes.
+
+    ![((kib)) ((observability)) page (with data)](images/monitor-azure-kibana-observability-page-data.png)
+
+1. To access the ((logs-app)) and analyze all your subscription
+    and resource logs, click **View in app**.
+
+    ![((kib)) ((logs-app))](images/monitor-azure-kibana-logs-app.png)
+
+<div id="azure-step-three"></div>
+
+## Step 3: Ingest logs and metrics from your virtual machines.
+
+1. Go to your Elastic resource and click **Virtual machines**.
+
+    ![Elastic resource](images/monitor-azure-elastic-deployment.png)
+
+1. Select the VMs that you want to collect logs and metrics from, click
+    **Install Extension**, and then click **OK**.
+
+    ![Select VMs to collect logs and metrics from](images/monitor-azure-elastic-vms.png)
+
+1. Wait until it is installed and sending data (if the list
+    does not update, click **Refresh** ).
+    To see the logs from the VM in the ((logs-app)), click  **Logs**.
+
+    ![VMs logs in the ((logs-app))](images/monitor-azure-kibana-vms-logs.png)
+
+    To see the VM metrics dashboard, click **Infrastructure**.
+
+    ![VMs metrics dashboard](images/monitor-azure-kibana-vms-metrics.png)
+
+    <DocCallOut title="Note">
+
+    Both logs and metrics are filtered by the VM name that you selected.
+    To view the data for all the monitored VMs, delete the filter.
+
+    </DocCallOut>
+
+<div id="azure-step-four"></div>
+
+## Step 4: Ingest other Azure metrics using the ((metricbeat)) Azure module
 
 Some Azure metrics are not available via the native integration.
 If you want to collect those metrics, you need to use the
-https://docs.microsoft.com/en-us/rest/api/monitor/[Azure Monitor REST API]
-and {metricbeat}.
+[Azure Monitor REST API](https://docs.microsoft.com/en-us/rest/api/monitor/)
+and ((metricbeat)).
 
 The Azure Monitor REST API allows you to get insights into your Azure
 resources using different operations.
 To access the Azure Monitor REST API you need to use the Azure Resource Manager
 authentication model. Therefore, you must authenticate all requests with Azure
 Active Directory (Azure AD).
-You can create the service principal using the https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal[Azure portal]
-or https://docs.microsoft.com/en-us/powershell/azure/create-azure-service-principal-azureps?view=azps-2.7.0[Azure PowerShell].
-Then, you need to grant access permission, which is detailed https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles[here].
+You can create the service principal using the [Azure portal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+or [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/create-azure-service-principal-azureps?view=azps-2.7.0).
+Then, you need to grant access permission, which is detailed [here](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
 This tutorial uses the Azure portal.
 
-[discrete]
-==== Create an Azure service principal
+<div id="create_an_azure_service_principal"></div>
 
-. Go to the https://portal.azure.com/[Azure Management Portal]. Search and click
-on *Azure Active Directory*.
-+
-image:monitor-azure-search-active-directory.png[Search and click on Azure
-Active Directory]
-+
-. Click on *App registrations* in the navigation pane of the selected Active
-Directory and then click on *New registration*.
-+
-image:monitor-azure-click-app-registration.png[Click on App registrations]
-+
-. Type the name of your application (this tutorial uses `monitor-azure`) and
-click on *Register* (leave all the other options with the default value).
-+
-image:monitor-azure-register-app.png[Register an application]
-+
-Copy the *Application (client) ID*, and save it for future reference.
-This id is required to configure {metricbeat} to connect to your Azure account.
-+
-. Click on *Certificates & secrets*. Then, click on *New client secret* to
-create a new security key.
-+
-image:monitor-azure-click-client-secret.png[Click on new client secret]
-+
-. Type a key description and select a key duration in the expire list.
-Click on *Add* to create a client secret. The next page will display the key
-value under the *Value* field. Copy the secret and save it (along with your
-Client ID) for future reference.
-+
-[IMPORTANT]
-====
-This is your only chance to copy this value. You can't retrieve the
-key value after you leave the page.
-====
+### Create an Azure service principal
 
-[discrete]
-==== Grant access permission for your service principal
+1. Go to the [Azure Management Portal](https://portal.azure.com/). Search and click
+    on **Azure Active Directory**.
+
+    ![Search and click on Azure Active Directory](images/monitor-azure-search-active-directory.png)
+
+1. Click on **App registrations** in the navigation pane of the selected Active
+    Directory and then click on **New registration**.
+
+    ![Click on App registrations](images/monitor-azure-click-app-registration.png)
+
+1. Type the name of your application (this tutorial uses `monitor-azure`) and
+    click on **Register** (leave all the other options with the default value).
+
+    ![Register an application](images/monitor-azure-register-app.png)
+
+    Copy the **Application (client) ID**, and save it for future reference.
+    This id is required to configure ((metricbeat)) to connect to your Azure account.
+
+1. Click on **Certificates & secrets**. Then, click on **New client secret** to
+    create a new security key.
+
+    ![Click on new client secret](images/monitor-azure-click-client-secret.png)
+
+1. Type a key description and select a key duration in the expire list.
+    Click on **Add** to create a client secret. The next page will display the key
+    value under the **Value** field. Copy the secret and save it (along with your
+    Client ID) for future reference.
+
+    <DocCallOut title="Important" color="warning">
+
+    This is your only chance to copy this value. You can't retrieve the
+    key value after you leave the page.
+
+    </DocCallOut>
+
+<div id="grant_access_permission_for_your_service_principal"></div>
+
+### Grant access permission for your service principal
 
 After creating the Azure service principal you need to grant it the correct
-permission. You need `Reader` permission to configure {metricbeat} to monitor
+permission. You need `Reader` permission to configure ((metricbeat)) to monitor
 your services.
 
-. On Azure Portal, search and click on *Subscriptions*.
-+
-image:monitor-azure-search-subscriptions.png[Search and click on Subscriptions]
-+
-. In the Subscriptions page, click on your subscription.
-. Click on *Access control (IAM)* in the subscription navigation pane.
-. Click on *Add* and select *Add role assignment*.
-. Select the *Reader* role.
-. In the *Select* field, type the description name of the configured service
-principal (`monitor-azure`).
-+
-image:monitor-azure-add-role-assignment.png[Add role assignment]
-+
-. Select the application and click on save to grant the service principal
-access to your subscription.
+1. On Azure Portal, search and click on **Subscriptions**.
 
-[discrete]
-==== Install and configure {metricbeat}
+    ![Search and click on Subscriptions](images/monitor-azure-search-subscriptions.png)
 
-To configure {metricbeat} you need the {es} cluster
+1. In the Subscriptions page, click on your subscription.
+1. Click on **Access control (IAM)** in the subscription navigation pane.
+1. Click on **Add** and select **Add role assignment**.
+1. Select the **Reader** role.
+1. In the **Select** field, type the description name of the configured service
+    principal (`monitor-azure`).
+
+    ![Add role assignment](images/monitor-azure-add-role-assignment.png)
+
+1. Select the application and click on save to grant the service principal
+    access to your subscription.
+
+<div id="install_and_configure_((metricbeat))"></div>
+
+### Install and configure ((metricbeat))
+
+To configure ((metricbeat)) you need the ((es)) cluster
 details.
 
-. On the {es} resource page, click *Manage changes in
-{ecloud}*.
-+
-[role="screenshot"]
-image:monitor-azure-elastic-deployment.png[Elastic resource]
+1. On the ((es)) resource page, click *Manage changes in
+    ((ecloud))*.
 
-. Copy the *Cloud ID* and keep it safe. You will use it later.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-deployment.png[{ecloud} deployment]
+    ![Elastic resource](images/monitor-azure-elastic-deployment.png)
 
-. Click *Security* and then click *Reset password*. Confirm, and copy the
-password. Keep it safe as you will use it later.
-+
-[role="screenshot"]
-image:monitor-azure-kibana-security.png[{ecloud} security]
+1. Copy the **Cloud ID** and keep it safe. You will use it later.
 
-You can run {metricbeat} on any machine. This tutorial uses a small
-Azure VM, *B2s* (2 vCPUs, 4 GB memory), with an Ubuntu distribution.
+    ![((ecloud)) deployment](images/monitor-azure-kibana-deployment.png)
 
-:leveloffset: +3
-include::{observability-docs-root}/docs/en/shared/install-configure-metricbeat.asciidoc[]
-:leveloffset: -3
+1. Click **Security** and then click **Reset password**. Confirm, and copy the
+    password. Keep it safe as you will use it later.
+
+    ![((ecloud)) security](images/monitor-azure-kibana-security.png)
+
+You can run ((metricbeat)) on any machine. This tutorial uses a small
+Azure VM, **B2s** (2 vCPUs, 4 GB memory), with an Ubuntu distribution.
+
+export let leveloffset = "+3"
+
+<SharedInstallConfigureMetricbeat />
+{leveloffset = "-3"}
 
 Now that the output is working, you are going to set up the input (Azure).
 
-[discrete]
-==== Configure {metricbeat} Azure module
+<div id="configure_((metricbeat))_azure_module"></div>
+
+### Configure ((metricbeat)) Azure module
 
 To collect metrics from Microsoft Azure, use the
-{metricbeat-ref}/metricbeat-module-azure.html[{metricbeat} Azure module].
+[((metricbeat)) Azure module](((metricbeat-ref))/metricbeat-module-azure.html).
 This module periodically fetches monitoring metrics from Microsoft Azure using
-the https://docs.microsoft.com/en-us/rest/api/monitor/[Azure Monitor REST API].
+the [Azure Monitor REST API](https://docs.microsoft.com/en-us/rest/api/monitor/).
 
-[WARNING]
-====
+<DocCallOut title="Warning" color="warning">
+
 Extra Azure charges on metric queries my be generated by this module.
-Please see {metricbeat-ref}/metricbeat-module-azure.html#azure-api-cost[additional
-notes about metrics and costs] for more details.
-====
+Please see [additional
+notes about metrics and costs](((metricbeat-ref))/metricbeat-module-azure.html#azure-api-cost) for more details.
 
-. The azure module configuration needs three ids and one secret. Use the
-commands below to store each one of them in the keystore.
-+
-[source,bash]
-----
-echo -n "<client_id>" | ./metricbeat keystore add AZURE_CLIENT_ID --stdin
-echo -n "<client_secret>" | ./metricbeat keystore add AZURE_CLIENT_SECRET --stdin
-echo -n "<tenant_id>" | ./metricbeat keystore add AZURE_TENANT_ID --stdin
-echo -n "<subscription_id>" | ./metricbeat keystore add AZURE_SUBSCRIPTION_ID --stdin
-----
-+
-[NOTE]
-====
-You can find the `tenant_id` in the main Azure Active Directory page.
-You can find the `subscription_id` in the main Subscriptions page.
-====
+</DocCallOut>
 
-. Enable the Azure module.
-+
-[source,bash]
-----
-./metricbeat modules enable azure
-----
+1. The azure module configuration needs three ids and one secret. Use the
+    commands below to store each one of them in the keystore.
 
-. Edit the `modules.d/azure.yml` file to collect `billing` metrics.
-+
-[source,yml]
-----
-- module: azure
-  metricsets:
-  - billing  <1>
-  enabled: true
-  period: 24h  <2>
-  client_id: '${AZURE_CLIENT_ID:""}'
-  client_secret: '${AZURE_CLIENT_SECRET:""}'
-  tenant_id: '${AZURE_TENANT_ID:""}'
-  subscription_id: '${AZURE_SUBSCRIPTION_ID:""}'
-  refresh_list_interval: 600s
-----
-+
-<1> The `billing` metricset is a predefined metricset that collects relevant
-usage data and forecast information of the subscription configured.
-<2> Collects metrics every 24 hours. The period for `billing` metricset
-should be `24h` or multiples of `24h`.
+    ```bash
+    echo -n "<client_id>" | ./metricbeat keystore add AZURE_CLIENT_ID --stdin
+    echo -n "<client_secret>" | ./metricbeat keystore add AZURE_CLIENT_SECRET --stdin
+    echo -n "<tenant_id>" | ./metricbeat keystore add AZURE_TENANT_ID --stdin
+    echo -n "<subscription_id>" | ./metricbeat keystore add AZURE_SUBSCRIPTION_ID --stdin
+    ```
 
-. To check if {metricbeat} can collect data, test the input by running the
-following command:
-+
-[source,bash]
-----
-./metricbeat test modules azure
-----
-+
-{metricbeat} will print `billing` metrics to the terminal, if the setup is
-correct.
-+
-[NOTE]
-====
-If it returns a timeout error, try again. The `test modules` timeout is short.
-====
+    <DocCallOut title="Note">
 
-. When the input and output are ready, start {metricbeat} to collect the data.
-+
-[source,bash]
-----
-./metricbeat -e
-----
+    You can find the `tenant_id` in the main Azure Active Directory page.
+    You can find the `subscription_id` in the main Subscriptions page.
 
-. Finally, log into {kib} and open the *[{metricbeat} Azure] Billing overview*
-dashboard. Keep in mind it collects data every 24 hours.
-+
-[role="screenshot"]
-image:monitor-azure-billing-overview-dashboard.png[{metricbeat} azure billing
-overview dashboard]
+    </DocCallOut>
+
+1. Enable the Azure module.
+
+    ```bash
+    ./metricbeat modules enable azure
+    ```
+
+1. Edit the `modules.d/azure.yml` file to collect `billing` metrics.
+
+    ```yml
+    - module: azure
+      metricsets:
+      - billing   [^1]
+      enabled: true
+      period: 24h   [^2]
+      client_id: '${AZURE_CLIENT_ID:""}'
+      client_secret: '${AZURE_CLIENT_SECRET:""}'
+      tenant_id: '${AZURE_TENANT_ID:""}'
+      subscription_id: '${AZURE_SUBSCRIPTION_ID:""}'
+      refresh_list_interval: 600s
+    ```
+    [^1]: The `billing` metricset is a predefined metricset that collects relevant
+    usage data and forecast information of the subscription configured.
+    [^2]: Collects metrics every 24 hours. The period for `billing` metricset
+    should be `24h` or multiples of `24h`.
+
+1. To check if ((metricbeat)) can collect data, test the input by running the
+    following command:
+
+    ```bash
+    ./metricbeat test modules azure
+    ```
+
+    ((metricbeat)) will print `billing` metrics to the terminal, if the setup is
+    correct.
+
+    <DocCallOut title="Note">
+
+    If it returns a timeout error, try again. The `test modules` timeout is short.
+
+    </DocCallOut>
+
+1. When the input and output are ready, start ((metricbeat)) to collect the data.
+
+    ```bash
+    ./metricbeat -e
+    ```
+
+1. Finally, log into ((kib)) and open the **[((metricbeat)) Azure] Billing overview**
+    dashboard. Keep in mind it collects data every 24 hours.
+
+    ![((metricbeat)) azure billing overview dashboard](images/monitor-azure-billing-overview-dashboard.png)
+

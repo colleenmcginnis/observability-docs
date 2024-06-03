@@ -1,31 +1,33 @@
-[[apm-monitor-apm]]
-== Monitor APM Server
+---
+id: enObservabilityApmMonitorApm
+slug: /en/observability/apm-monitor-apm
+title: Monitor APM Server
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Monitor</titleabbrev>
-++++
+<div id="apm-monitor-apm"></div>
 
-Use the {stack} {monitor-features} to gain insight into the real-time health and performance of APM Server.
+Use the ((stack)) ((monitor-features)) to gain insight into the real-time health and performance of APM Server.
 Stack monitoring exposes key metrics, like intake response count, intake error rate, output event rate,
 output failed event rate, and more.
 
 Select your deployment method to get started:
 
-* <<apm-monitor-apm-cloud>>
-* <<apm-monitor-apm-self-install>>
-* <<apm-monitoring>>
+* <DocLink id="enObservabilityApmMonitorApm" section="((ecloud))">((ecloud))</DocLink>
+* <DocLink id="enObservabilityApmMonitorApmSelfInstall">Monitor a Fleet-managed APM Server</DocLink>
+* <DocLink id="enObservabilityApmMonitoring">Monitor the APM Server binary</DocLink>
 
-[float]
-[[apm-monitor-apm-cloud]]
-=== {ecloud}
+<div id="apm-monitor-apm-cloud"></div>
 
-{ecloud} manages the installation and configuration of a monitoring agent for you -- so
+## ((ecloud))
+
+((ecloud)) manages the installation and configuration of a monitoring agent for you -- so
 all you have to do is flip a switch and watch the data pour in.
 
-* **{ess}** user? See {cloud}/ec-enable-logging-and-monitoring.html[ESS: Enable logging and monitoring].
-* **{ece}** user? See {ece-ref}/ece-enable-logging-and-monitoring.html[ECE: Enable logging and monitoring].
+* **((ess))** user? See [ESS: Enable logging and monitoring](((cloud))/ec-enable-logging-and-monitoring.html).
+* **((ece))** user? See [ECE: Enable logging and monitoring](((ece-ref))/ece-enable-logging-and-monitoring.html).
 
+{/* The include that was here is another page */}
 
-include::./monitor.asciidoc[]
-
-include::{observability-docs-root}/docs/en/observability/apm/monitoring/monitoring-beats.asciidoc[leveloffset=+2]
+{/* The include that was here is another page */}

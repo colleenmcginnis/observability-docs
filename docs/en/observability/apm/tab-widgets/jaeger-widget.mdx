@@ -1,40 +1,12 @@
-++++
-<div class="tabs" data-tab-group="jaeger">
-  <div role="tablist" aria-label="jaeger instructions">
-    <button role="tab"
-            aria-selected="true"
-            aria-controls="jaeger-cloud-tab"
-            id="jaeger-cloud">
-      Elasticsearch Service
-    </button>
-    <button role="tab"
-            aria-selected="false"
-            aria-controls="jaeger-self-managed-tab"
-            id="jaeger-self-managed"
-            tabindex="-1">
-      Self-managed
-    </button>
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="jaeger-cloud-tab"
-       aria-labelledby="jaeger-cloud">
-++++
 
-include::jaeger.asciidoc[tag=ess]
+import Ess from './jaeger/ess.mdx'
+import SelfManaged from './jaeger/self-managed.mdx'
 
-++++
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="jaeger-self-managed-tab"
-       aria-labelledby="jaeger-self-managed"
-       hidden="">
-++++
-
-include::jaeger.asciidoc[tag=self-managed]
-
-++++
-  </div>
-</div>
-++++
+<DocTabs hasBorder>
+	<DocTab name="Elasticsearch Service">
+		<Ess />  
+	</DocTab>
+	<DocTab name="Self-managed">
+		<SelfManaged />  
+	</DocTab>
+</DocTabs>

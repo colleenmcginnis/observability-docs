@@ -1,20 +1,22 @@
-[[docker-container-metrics]]
-= Docker container metrics
+---
+id: enObservabilityDockerContainerMetrics
+slug: /en/observability/docker-container-metrics
+title: Docker container metrics
+description: Description to be written
+tags: []
+---
 
-To help you analyze the Docker container metrics listed on the *Inventory* page, you can select
-view filters based on the following predefined metrics or you can add <<custom-metrics,custom metrics>>.
+<div id="docker-container-metrics"></div>
 
-|=== 
+To help you analyze the Docker container metrics listed on the **Inventory** page, you can select
+view filters based on the following predefined metrics or you can add <DocLink id="enObservabilityViewInfrastructureMetrics" section="add-custom-metrics">custom metrics</DocLink>.
 
-| *CPU Usage* | Average of `docker.cpu.total.pct`. 
+|  |  |
+|---|---|
+| **CPU Usage** | Average of `docker.cpu.total.pct`.  |
+| **Memory Usage** | Average of `docker.memory.usage.pct`. |
+| **Inbound Traffic** | Derivative of the maximum of `docker.network.in.bytes` scaled to a 1 second rate. |
+| **Outbound Traffic** | Derivative of the maximum of `docker.network.out.bytes` scaled to a 1 second rate. | 
 
-| *Memory Usage* | Average of `docker.memory.usage.pct`.
-
-| *Inbound Traffic* | Derivative of the maximum of `docker.network.in.bytes` scaled to a 1 second rate.
-
-| *Outbound Traffic* | Derivative of the maximum of `docker.network.out.bytes` scaled to a 1 second rate.
-
-|=== 
-
-For information about which required fields the {infrastructure-app} uses to display Docker container metrics, see the
-<<metrics-app-fields,{infrastructure-app} field reference>>.
+For information about which required fields the ((infrastructure-app)) uses to display Docker container metrics, see the
+<DocLink id="enObservabilityMetricsAppFields">((infrastructure-app)) field reference</DocLink>.

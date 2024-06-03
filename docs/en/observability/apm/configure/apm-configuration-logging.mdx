@@ -1,18 +1,20 @@
-[[apm-configuration-logging]]
-= Configure logging
+---
+id: enObservabilityApmConfigurationLogging
+slug: /en/observability/apm-configuration-logging
+title: Configure logging
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Logging</titleabbrev>
-++++
+import ApmSupportOverview from '../components/support-overview.mdx'
 
-****
+<div id="apm-configuration-logging"></div>
 
-image:./binary-yes-fm-no.svg[supported deployment methods]
-
-These configuration options are only relevant to APM Server binary users.
-Fleet-managed users should see {fleet-guide}/monitor-elastic-agent.html[View {agent} logs]
-to learn how to view logs and change the logging level of {agent}.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  These configuration options are only relevant to APM Server binary users.
+  Fleet-managed users should see [View ((agent)) logs](((fleet-guide))/monitor-elastic-agent.html)
+  to learn how to view logs and change the logging level of ((agent)).
+</ApmSupportOverview>
 
 The `logging` section of the `apm-server.yml` config file contains options
 for configuring the logging output.
@@ -20,8 +22,7 @@ for configuring the logging output.
 The logging system can write logs to the syslog or rotate log files. If logging
 is not explicitly configured the file output is used.
 
-["source","yaml",subs="attributes"]
-----
+```yaml
 logging.level: info
 logging.to_files: true
 logging.files:
@@ -29,110 +30,140 @@ logging.files:
   name: apm-server
   keepfiles: 7
   permissions: 0640
-----
+```
 
-
-
-TIP: In addition to setting logging options in the config file, you can modify
+<DocCallOut title="Tip">
+In addition to setting logging options in the config file, you can modify
 the logging output configuration from the command line. See
-<<apm-command-line-options>>.
+<DocLink id="enObservabilityApmCommandLineOptions">APM Server command reference</DocLink>.
+</DocCallOut>
 
-WARNING: When APM Server is running on a Linux system with systemd, it uses
+<DocCallOut title="Warning" color="warning">
+When APM Server is running on a Linux system with systemd, it uses
 by default the `-e` command line option, that makes it write all the logging output
 to stderr so it can be captured by journald. Other outputs are disabled. See
-<<apm-running-with-systemd>> to know more and learn how to change this.
+<DocLink id="enObservabilityApmRunningWithSystemd">APM Server and systemd</DocLink> to know more and learn how to change this.
+</DocCallOut>
 
-[float]
-== Configuration options
+<div id="configuration_options"></div>
+
+## Configuration options
 
 You can specify the following options in the `logging` section of the
 `apm-server.yml` config file:
 
-ifndef::serverless[]
+export let serverless = false
 
-[float]
-=== `logging.to_stderr`
+<DocIf condition={ serverless === false }>
+
+<div id="`logging.to_stderr`"></div>
+
+### `logging.to_stderr`
 
 When true, writes all logging output to standard error output. This is
 equivalent to using the `-e` command line option.
 
-[float]
-=== `logging.to_syslog`
+<div id="`logging.to_syslog`"></div>
+
+### `logging.to_syslog`
 
 When true, writes all logging output to the syslog.
 
-NOTE: This option is not supported on Windows.
+<DocCallOut title="Note">
+This option is not supported on Windows.
+</DocCallOut>
 
-[float]
-=== `logging.to_eventlog`
+<div id="`logging.to_eventlog`"></div>
+
+### `logging.to_eventlog`
 
 When true, writes all logging output to the Windows Event Log.
 
-[float]
-=== `logging.to_files`
+<div id="`logging.to_files`"></div>
+
+### `logging.to_files`
 
 When true, writes all logging output to files. The log files are automatically
 rotated when the log file size limit is reached.
 
-NOTE: APM Server only creates a log file if there is logging output. For
-example, if you set the log <<apm-level,`level`>> to `error` and there are no
+<DocCallOut title="Note">
+APM Server only creates a log file if there is logging output. For
+example, if you set the log <DocLink id="enObservabilityApmConfigurationLogging" section="logginglevel">`level`</DocLink> to `error` and there are no
 errors, there will be no log file in the directory specified for logs.
+</DocCallOut>
 
-endif::serverless[]
+</DocIf>
 
-[float]
-[[apm-level]]
-=== `logging.level`
+<div id="apm-level"></div>
+
+### `logging.level`
 
 Minimum log level. One of `debug`, `info`, `warning`, or `error`. The default
 log level is `info`.
 
-`debug`:: Logs debug messages, including a detailed printout of all events
-flushed. Also logs informational messages, warnings, errors, and
-critical errors. When the log level is `debug`, you can specify a list of
-<<apm-selectors,`selectors`>> to display debug messages for specific components. If
-no selectors are specified, the `*` selector is used to display debug messages
-for all components.
+<DocDefList>
+  <DocDefTerm>`debug`</DocDefTerm>
+  <DocDefDescription>
+    Logs debug messages, including a detailed printout of all events
+    flushed. Also logs informational messages, warnings, errors, and
+    critical errors. When the log level is `debug`, you can specify a list of
+    <DocLink id="enObservabilityApmConfigurationLogging" section="loggingselectors">`selectors`</DocLink> to display debug messages for specific components. If
+    no selectors are specified, the `*` selector is used to display debug messages
+    for all components.
+  </DocDefDescription>
 
-`info`:: Logs informational messages, including the number of events that are
-published. Also logs any warnings, errors, or critical errors.
+  <DocDefTerm>`info`</DocDefTerm>
+  <DocDefDescription>
+    Logs informational messages, including the number of events that are
+    published. Also logs any warnings, errors, or critical errors.
+  </DocDefDescription>
 
-`warning`:: Logs warnings, errors, and critical errors.
+  <DocDefTerm>`warning`</DocDefTerm>
+  <DocDefDescription>
+    Logs warnings, errors, and critical errors.
+  </DocDefDescription>
 
-`error`:: Logs errors and critical errors.
+  <DocDefTerm>`error`</DocDefTerm>
+  <DocDefDescription>
+    Logs errors and critical errors.
+  </DocDefDescription>
+</DocDefList>
 
-[float]
-[[apm-selectors]]
-=== `logging.selectors`
+<div id="apm-selectors"></div>
+
+### `logging.selectors`
 
 The list of debugging-only selector tags used by different APM Server components.
 Use `*` to enable debug output for all components. Use `publisher` to display
 debug messages related to event publishing.
 
-[TIP]
-=====
+<DocCallOut title="Tip">
+
 The list of available selectors may change between releases, so avoid creating
 tests that depend on specific selectors.
 
 To see which selectors are available, run APM Server in debug mode
 (set `logging.level: debug` in the configuration). The selector name appears
 after the log level and is enclosed in brackets.
-=====
 
-To configure multiple selectors, use the following {beats-ref}/config-file-format.html[YAML list syntax]:
-["source","yaml",subs="attributes"]
-----
+</DocCallOut>
+
+To configure multiple selectors, use the following [YAML list syntax](((beats-ref))/config-file-format.html):
+
+```yaml
 logging.selectors: [ harvester, input ]
-----
+```
 
-ifndef::serverless[]
+<DocIf condition={ serverless === false }>
 
 To override selectors at the command line, use the `-d` global flag (`-d` also
-sets the debug log level). For more information, see <<apm-command-line-options>>.
-endif::serverless[]
+sets the debug log level). For more information, see <DocLink id="enObservabilityApmCommandLineOptions">APM Server command reference</DocLink>.
 
-[float]
-=== `logging.metrics.enabled`
+</DocIf>
+
+<div id="`logging.metrics.enabled`"></div>
+
+### `logging.metrics.enabled`
 
 By default, APM Server periodically logs its internal metrics that have
 changed in the last period. For each metric that changed, the delta from the
@@ -142,52 +173,57 @@ this behavior. The default is true.
 
 Here is an example log line:
 
-[source,shell]
-----
+```shell
 2017-12-17T19:17:42.667-0500    INFO    [metrics]       log/log.go:110  Non-zero metrics in the last 30s: beat.info.uptime.ms=30004 beat.memstats.gc_next=5046416
-----
+```
 
 Note that we currently offer no backwards compatible guarantees for the internal
 metrics and for this reason they are also not documented.
 
-[float]
-=== `logging.metrics.period`
+<div id="`logging.metrics.period`"></div>
+
+### `logging.metrics.period`
 
 The period after which to log the internal metrics. The default is `30s`.
 
-ifndef::serverless[]
+<DocIf condition={ serverless === false }>
 
-[float]
-=== `logging.files.path`
+<div id="`logging.files.path`"></div>
+
+### `logging.files.path`
 
 The directory that log files are written to. The default is the logs path. See
-the <<apm-directory-layout>> section for details.
+the <DocLink id="enObservabilityApmDirectoryLayout">Installation layout</DocLink> section for details.
 
-[float]
-=== `logging.files.name`
+<div id="`logging.files.name`"></div>
+
+### `logging.files.name`
 
 The name of the file that logs are written to. The default is 'apm-server'.
 
-[float]
-=== `logging.files.rotateeverybytes`
+<div id="`logging.files.rotateeverybytes`"></div>
+
+### `logging.files.rotateeverybytes`
 
 The maximum size of a log file. If the limit is reached, a new log file is
 generated. The default size limit is 10485760 (10 MB).
 
-[float]
-=== `logging.files.keepfiles`
+<div id="`logging.files.keepfiles`"></div>
+
+### `logging.files.keepfiles`
 
 The number of most recent rotated log files to keep on disk. Older files are
 deleted during log rotation. The default value is 7. The `keepfiles` options has
 to be in the range of 2 to 1024 files.
 
-[float]
-=== `logging.files.permissions`
+<div id="`logging.files.permissions`"></div>
+
+### `logging.files.permissions`
 
 The permissions mask to apply when rotating log files. The default value is
-0600. The `permissions` option must be a valid Unix-style file permissions mask
-expressed in octal notation. In Go, numbers in octal notation must start with
-'0'.
+1. The `permissions` option must be a valid Unix-style file permissions mask
+    expressed in octal notation. In Go, numbers in octal notation must start with
+    '0'.
 
 The most permissive mask allowed is 0640. If a higher permissions mask is
 specified via this setting, it will be subject to an umask of 0027.
@@ -197,27 +233,30 @@ Examples:
 * 0640: give read and write access to the file owner, and read access to members of the group associated with the file.
 * 0600: give read and write access to the file owner, and no access to all others.
 
-[float]
-=== `logging.files.interval`
+<div id="`logging.files.interval`"></div>
+
+### `logging.files.interval`
 
 Enable log file rotation on time intervals in addition to size-based rotation.
 Intervals must be at least `1s`. Values of `1m`, `1h`, `24h`, `7*24h`, `30*24h`, and `365*24h`
 are boundary-aligned with minutes, hours, days, weeks, months, and years as
 reported by the local system clock. All other intervals are calculated from the
 Unix epoch. Defaults to disabled.
-endif::serverless[]
+</DocIf>
 
-[float]
-=== `logging.files.rotateonstartup`
+<div id="`logging.files.rotateonstartup`"></div>
+
+### `logging.files.rotateonstartup`
 
 If the log file already exists on startup, immediately rotate it and start
 writing to a new file instead of appending to the existing one. Defaults to
 true.
 
-ifndef::serverless[]
+<DocIf condition={ serverless === false }>
 
-[float]
-=== `logging.files.redirect_stderr` experimental[]
+<div id="`logging.files.redirect_stderr`_<DocBadge template="></div>
+
+### `logging.files.redirect_stderr` experimental[]
 
 When true, diagnostic messages printed to APM Server's standard error output
 will also be logged to the log file. This can be helpful in situations were
@@ -225,10 +264,11 @@ APM Server terminates unexpectedly because an error has been detected by
 Go's runtime but diagnostic information is not present in the log file.
 This feature is only available when logging to files (`logging.to_files` is true).
 Disabled by default.
-endif::serverless[]
+</DocIf>
 
-[float]
-== Logging format
+<div id="logging_format"></div>
+
+## Logging format
 
 The logging format is generally the same for each logging output. The one
 exception is with the syslog output where the timestamp is not included in the

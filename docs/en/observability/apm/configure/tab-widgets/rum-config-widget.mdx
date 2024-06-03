@@ -1,40 +1,12 @@
-++++
-<div class="tabs" data-tab-group="config-apm">
-  <div role="tablist" aria-label="RUM">
-    <button role="tab"
-            aria-selected="true"
-            aria-controls="binary-tab"
-            id="binary">
-      APM Server binary
-    </button>
-    <button role="tab"
-            aria-selected="false"
-            aria-controls="fleet-managed-tab"
-            id="fleet-managed"
-            tabindex="-1">
-      Fleet-managed
-    </button>
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="binary-tab"
-       aria-labelledby="binary">
-++++
 
-include::rum-config.asciidoc[tag=binary]
+import RumConfigBinary from './rum-config/binary.mdx'
+import RumConfigFleetManaged from './rum-config/fleet-managed.mdx'
 
-++++
-  </div>
-  <div tabindex="0"
-       role="tabpanel"
-       id="fleet-managed-tab"
-       aria-labelledby="fleet-managed"
-       hidden="">
-++++
-
-include::rum-config.asciidoc[tag=fleet-managed]
-
-++++
-  </div>
-</div>
-++++
+<DocTabs hasBorder>
+	<DocTab name="APM Server binary">
+		<RumConfigBinary />  
+	</DocTab>
+	<DocTab name="Fleet-managed">
+		<RumConfigFleetManaged />  
+	</DocTab>
+</DocTabs>

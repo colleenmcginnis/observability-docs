@@ -1,16 +1,22 @@
-[[apm-api-metricset]]
-==== Metrics
+---
+id: enObservabilityApmApiMetricset
+slug: /en/observability/apm-api-metricset
+title: Metrics
+description: Description to be written
+tags: []
+---
 
-Metrics contain application metric data captured by an {apm-agent}.
+<div id="apm-api-metricset"></div>
 
-[[apm-api-metricset-schema]]
-[float]
-==== Metric Schema
+Metrics contain application metric data captured by an ((apm-agent)).
+
+<div id="apm-api-metricset-schema"></div>
+
+## Metric Schema
 
 APM Server uses JSON Schema to validate requests. The specification for metrics is defined on
-https://github.com/elastic/apm-server/blob/{minor-version}/docs/spec/v2/metricset.json[GitHub] and included below:
+[GitHub](https://github.com/elastic/apm-server/blob/((minor-version))/docs/spec/v2/metricset.json) and included below:
 
-[source,json]
-----
-include::{apm-server-root}/docs/spec/v2/metricset.json[]
-----
+```json
+include::\(\(apm-server-root))/docs/spec/v2/metricset.json[]
+```

@@ -1,0 +1,16 @@
+
+
+<DocIf condition={ "((release-state))" === "unreleased" }>
+
+Version ((version)) of {props.beatname_uc} has not yet been released.
+
+</DocIf>
+
+<DocIf condition={ "((release-state))" !== "unreleased" }>
+
+```sh
+curl -L -O https://artifacts.elastic.co/downloads/beats/{props.beatname_lc}/{props.beatname_lc}-((version))-x86_64.rpm
+sudo rpm -vi {props.beatname_lc}-((version))-x86_64.rpm
+```
+
+</DocIf>

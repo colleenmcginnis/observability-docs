@@ -1,22 +1,26 @@
-[[synthetics-configuration]]
-= Configure Synthetics projects
+---
+id: enObservabilitySyntheticsConfiguration
+slug: /en/observability/synthetics-configuration
+title: Configure Synthetics projects
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Configure projects</titleabbrev>
-++++
+import MonitorConfigOptions from './shared/synthetics-configuration/monitor-config-options.mdx'
+
+<div id="synthetics-configuration"></div>
 
 Synthetic tests support the configuration of dynamic parameters that can be
 used in projects. In addition, the Synthetics agent, which is built on top
 of Playwright, supports configuring browser and context options that are available
 in Playwright-specific methods, for example, `ignoreHTTPSErrors`, `extraHTTPHeaders`, and `viewport`.
 
-[[synthetics-config-file]]
+<div id="synthetics-config-file"></div>
 
 Create a `synthetics.config.js` or `synthetics.config.ts` file in the root of the
 synthetics project and specify the options. For example:
 
-[source,ts]
-----
+```ts
 import type { SyntheticsConfig } from '@elastic/synthetics';
 
 export default env => {
@@ -51,95 +55,98 @@ export default env => {
   }
   return config;
 };
-----
+```
 
-[NOTE]
-=====
+<DocCallOut title="Note">
+
 `env` in the example above is the environment you are pushing from
 _not_ the environment where monitors will run. In other words, `env`
 corresponds to the configured `NODE_ENV`.
-=====
+
+</DocCallOut>
 
 The configuration file can either export an object, or a function that when
 called should return the generated configuration. To know more about configuring
-the tests based on environments, look at the <<synthetics-dynamic-configs, dynamic configuration>> documentation.
+the tests based on environments, look at the <DocLink id="enObservabilitySyntheticsParamsSecrets" section="project-config-file">dynamic configuration</DocLink> documentation.
 
-[discrete]
-[[synthetics-configuration-params]]
-= `params`
+<div id="synthetics-configuration-params"></div>
+
+## `params`
 
 A JSON object that defines any variables your tests require.
-Read more in <<synthetics-params-secrets>>.
+Read more in <DocLink id="enObservabilitySyntheticsParamsSecrets">Work with params and secrets</DocLink>.
 
-[discrete]
-[[synthetics-configuration-playwright-options]]
-= `playwrightOptions`
+<div id="synthetics-configuration-playwright-options"></div>
 
-For all available options, refer to the https://playwright.dev/docs/test-configuration[Playwright documentation].
+## `playwrightOptions`
 
-[NOTE]
-====
+For all available options, refer to the [Playwright documentation](https://playwright.dev/docs/test-configuration).
+
+<DocCallOut title="Note">
+
 Do not attempt to run in headful mode (using `headless:false`) when running through Elastic's global managed testing infrastructure or Private Locations as this is not supported.
-====
+
+</DocCallOut>
 
 Below are details on a few Playwright options that are particularly relevant to Elastic Synthetics including timeouts, timezones, and device emulation.
 
-[discrete]
-[[synthetics-configuration-playwright-options-timeouts]]
-== Timeouts
+<div id="synthetics-configuration-playwright-options-timeouts"></div>
+
+### Timeouts
 
 Playwright has two types of timeouts that are used in Elastic Synthetics:
-https://playwright.dev/docs/test-timeouts#action-and-navigation-timeouts[action and navigation timeouts].
+[action and navigation timeouts](https://playwright.dev/docs/test-timeouts#action-and-navigation-timeouts).
 
 Elastic Synthetics uses a default action and navigation timeout of 50 seconds.
-You can override this default using https://playwright.dev/docs/api/class-testoptions#test-options-action-timeout[`actionTimeout`] and https://playwright.dev/docs/api/class-testoptions#test-options-navigation-timeout[`navigationTimeout`]
+You can override this default using [`actionTimeout`](https://playwright.dev/docs/api/class-testoptions#test-options-action-timeout) and [`navigationTimeout`](https://playwright.dev/docs/api/class-testoptions#test-options-navigation-timeout)
 in `playwrightOptions`.
 
-[discrete]
-[[synthetics-configuration-playwright-options-timezones]]
-== Timezones and locales
+<div id="synthetics-configuration-playwright-options-timezones"></div>
+
+### Timezones and locales
 
 The Elastic global managed testing infrastructure does not currently set the timezone.
-For {private-location}s, the monitors will use the timezone of the host machine running
-the {agent}. This is not always desirable if you want to test how a web application
+For ((private-location))s, the monitors will use the timezone of the host machine running
+the ((agent)). This is not always desirable if you want to test how a web application
 behaves across different timezones. To specify what timezone to use when the monitor runs,
 you can use `playwrightOptions` on a per monitor or global basis.
 
 To use a timezone and/or locale for all monitors in the project, set
-https://playwright.dev/docs/emulation#locale%2D%2Dtimezone[`locale` and/or `timezoneId`]
+[`locale` and/or `timezoneId`](https://playwright.dev/docs/emulation#locale%2D%2Dtimezone)
 in the configuration file:
 
-[source,js]
-----
+```js
 playwrightOptions: {
   locale: 'en-AU',
   timezoneId: 'Australia/Brisbane',
 }
-----
+```
 
 To use a timezone and/or locale for a _specific_ monitor, add these options to a
-journey using <<synthetics-monitor-use,`monitor.use`>>.
+journey using <DocLink id="enObservabilitySyntheticsMonitorUse">`monitor.use`</DocLink>.
 
-// Uncomment note when this is added to the Synthetics Service
+{/* Uncomment note when this is added to the Synthetics Service */}
 
-//////
-[NOTE]
-=====
-The timezone can also be set using the {synthetics-app}.
+{/*
+
+<DocCallOut title="Note">
+
+The timezone can also be set using the ((synthetics-app)).
 If you specify a timezone in the configuration file or using `monitor.use` in the journey code,
-that timezone with take precedence over the timezone set in the {synthetics-app}.
-=====
-//////
+that timezone with take precedence over the timezone set in the ((synthetics-app)).
 
-[discrete]
-[[synthetics-config-device-emulation]]
-== Device emulation
+</DocCallOut>
+
+*/}
+
+<div id="synthetics-config-device-emulation"></div>
+
+### Device emulation
 
 Users can emulate a mobile device using the configuration file.
 The example configuration below runs tests in "Pixel 5" emulation mode.
 
-[source,js]
-----
+```js
 import { SyntheticsConfig } from "@elastic/synthetics"
 import { devices } from "playwright-chromium"
 
@@ -150,84 +157,52 @@ const config: SyntheticsConfig = {
 }
 
 export default config;
-----
+```
 
-[discrete]
-[[synthetics-configuration-project]]
-= `project`
+<div id="synthetics-configuration-project"></div>
+
+## `project`
 
 Information about the project.
 
-id (`string`)::
-A unique id associated with your project.
-It will be used for logically grouping monitors.
-+
-If you used <<elastic-synthetics-init-command, `init` to create a project>>, this is the `<name-of-project>` you specified.
+<DocDefList>
+  <DocDefTerm>
+    id (`string`)
+  </DocDefTerm>
+  <DocDefDescription>
+    A unique id associated with your project.
+    It will be used for logically grouping monitors.
 
-url (`string`)::
-The {kib} URL for the deployment to which you want to upload the monitors.
+    If you used <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-init">`init` to create a project</DocLink>, this is the `<name-of-project>` you specified.
+  </DocDefDescription>
 
-space (`string`)::
-The identifier of the target {kibana-ref}/xpack-spaces.html[{kib} space] for the pushed monitors.
-Spaces help you organize pushed monitors.
-Pushes to the "default" space if not specified.
+  <DocDefTerm>
+    url (`string`)
+  </DocDefTerm>
+  <DocDefDescription>
+    The ((kib)) URL for the deployment to which you want to upload the monitors.
+  </DocDefDescription>
 
-[discrete]
-[[synthetics-configuration-monitor]]
-= `monitor`
+  <DocDefTerm>
+    space (`string`)
+  </DocDefTerm>
+  <DocDefDescription>
+    The identifier of the target [((kib)) space](((kibana-ref))/xpack-spaces.html) for the pushed monitors.
+    Spaces help you organize pushed monitors.
+    Pushes to the "default" space if not specified.
+  </DocDefDescription>
+</DocDefList>
 
-Default values to be applied to _all_ monitors when using the <<elastic-synthetics-push-command, `@elastic/synthetics` `push` command>>.
+<div id="synthetics-configuration-monitor"></div>
 
-// tag::monitor-config-options[]
+## `monitor`
 
-`id` (`string`)::
-A unique identifier for this monitor.
-`name` (`string`)::
-A human readable name for the monitor.
-`tags` (`Array<string>`)::
-A list of tags that will be sent with the monitor event. Tags are displayed in the {synthetics-app} and allow you to search monitors by tag.
-`schedule` (`number`)::
-The interval (in minutes) at which the monitor should run.
-`enabled` (`boolean`)::
-Enable or disable the monitor from running without deleting and recreating it.
-`locations` (https://github.com/elastic/synthetics/blob/{synthetics_version}/src/locations/public-locations.ts#L28-L37[`Array<SyntheticsLocationsType>`])::
-Where to deploy the monitor. Monitors can be deployed in multiple locations so that you can detect differences in availability and response times across those locations.
-+
-To list available locations you can:
-+
-* Run the <<elastic-synthetics-locations-command,`elastic-synthetics locations` command>>.
-* Go to *Synthetics* -> *Management* and click *Create monitor*.
-Locations will be listed in _Locations_.
+Default values to be applied to _all_ monitors when using the <DocLink id="enObservabilitySyntheticsCommandReference" section="elasticsynthetics-push">`@elastic/synthetics` `push` command</DocLink>.
 
-`privateLocations` (`Array<string>`)::
-The <<synthetics-private-location,{private-location}s>> to which the monitors will be deployed. These {private-location}s refer to locations hosted and managed by you, whereas
-`locations` are hosted by Elastic. You can specify a {private-location} using the location's name.
-+
-To list available {private-location}s you can:
-+
-* Run the <<elastic-synthetics-locations-command,`elastic-synthetics locations` command>>
-with the {kib} URL for the deployment from which to fetch available locations.
-* Go to *Synthetics* -> *Management* and click *Create monitor*.
-{private-location}s will be listed in _Locations_.
-
-`throttling` (`boolean` | https://github.com/elastic/synthetics/blob/{synthetics_version}/src/common_types.ts#L194-L198[`ThrottlingOptions`])::
-Control the monitor's download speeds, upload speeds, and latency to simulate your application's behavior on slower or laggier networks. Set to `false` to disable throttling altogether.
-`screenshot` (https://github.com/elastic/synthetics/blob/{synthetics_version}/src/common_types.ts#L192[`ScreenshotOptions`])::
-Control whether or not to capture screenshots. Options include `'on'`, `'off'`, or `'only-on-failure'`.
-
-`alert.status.enabled` (`boolean`)::
-Enable or disable monitor status alerts. Read more about alerts in <<synthetics-settings-alerting>>.
-
-`retestOnFailure` (`boolean`)::
-Enable or disable retesting when a monitor fails. Default is `true`.
-+
-By default, monitors are automatically retested if the monitor goes from "up" to "down".
-If the result of the retest is also "down", an error will be created, and if configured, an alert sent.
-Then the monitor will resume running according to the defined schedule.
-Using `retestOnFailure` can reduce noise related to transient problems.
-// end::monitor-config-options[]
+<MonitorConfigOptions />
 
 For information on configuring monitors individually, refer to:
 
-* <<synthetics-monitor-use>> for browser monitors
-* <<synthetics-lightweight>> for lightweight monitors
+* <DocLink id="enObservabilitySyntheticsMonitorUse">Configure individual browser monitors</DocLink> for browser monitors
+* <DocLink id="enObservabilitySyntheticsLightweight">Configure lightweight monitors</DocLink> for lightweight monitors
+

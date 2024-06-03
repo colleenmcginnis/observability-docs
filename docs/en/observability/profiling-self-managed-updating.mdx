@@ -1,0 +1,45 @@
+---
+id: enObservabilityProfilingSelfManagedUpdating
+slug: /en/observability/profiling-self-managed-updating
+title: "Step 1: Update the stack"
+description: Description to be written
+tags: []
+---
+
+<div id="profiling-self-managed-updating"></div>
+
+To install the Universal Profiling backend, you need to be running the minimum supported version of the Elastic stack.
+Refer to the following instructions to update the stack on your platform:
+
+* <DocLink id="enObservabilityProfilingSelfManagedUpdating" section="ece">ECE</DocLink>
+* <DocLink id="enObservabilityProfilingSelfManagedUpdating" section="self-managed-elastic-stack">Self-managed Elastic stack</DocLink>
+* <DocLink id="enObservabilityProfilingSelfManagedUpdating" section="kubernetes">Kubernetes</DocLink>
+
+<div id="profiling-self-managed-updating-ece"></div>
+
+## ECE
+
+Update ECE to version 3.7.0 or higher, following the [installations instructions](https://www.elastic.co/downloads/enterprise).
+
+<div id="profiling-self-managed-updating-self-managed"></div>
+
+## Self-managed Elastic stack
+
+<DocCallOut title="Warning" color="warning">
+We don't currently support running the backend applications through Elastic Agent.
+</DocCallOut>
+
+1. Deploy a minimum version 8.12.0 of the Elastic stack (Elasticsearch, Kibana).
+1. Ensure the machines hosting the Universal Profiling backend run a Linux kernel version 4.x or higher.
+
+<div id="profiling-self-managed-updating-k8s"></div>
+
+## Kubernetes
+
+We don't currently support running the _backend_ applications through ECK, but, if you're running an Elastic stack through ECK, you can still connect the Universal Profiling backend applications to it.
+
+1. Update the ECK deployment you want to enable Universal Profiling to 8.12.0 or higher.
+1. If you're not using ECK, ensure your deployments of Elasticsearch and Kibana are configured to use the minimum supported version (8.12.0 or higher).
+
+Continue to <DocLink id="enObservabilityProfilingSelfManagedEnableKibana">Step 2: Enable Universal Profiling in Kibana</DocLink>.
+

@@ -1,68 +1,55 @@
-[[synthetics-role-setup]]
-= Setup role
+---
+id: enObservabilitySyntheticsRoleSetup
+slug: /en/observability/synthetics-role-setup
+title: Setup role
+description: Description to be written
+tags: []
+---
+
+<div id="synthetics-role-setup"></div>
 
 Administrators who set up Synthetics typically need to enable Monitor Management.
 
 Monitor Management will be enabled automatically when a user with the required permissions
 loads the Synthetics UI. This must be completed just once by an admin before any users with
-the <<synthetics-role-write>> can create synthetic monitors. This applies to monitors created
-via both <<synthetics-get-started-project,projects>> and <<synthetics-get-started-ui,the UI>>.
+the <DocLink id="enObservabilitySyntheticsRoleWrite">Writer role</DocLink> can create synthetic monitors. This applies to monitors created
+via both <DocLink id="enObservabilitySyntheticsGetStartedProject">projects</DocLink> and <DocLink id="enObservabilitySyntheticsGetStartedUi">the UI</DocLink>.
 
-As a best practice, *grant the setup role to administrators only*, and use a more restrictive
+As a best practice, **grant the setup role to administrators only**, and use a more restrictive
 role for event publishing.
 
-Create a *setup role*, called something like `synthetics_setup`:
+Create a **setup role**, called something like `synthetics_setup`:
 
-. Start with the `editor` {ref}/built-in-roles.html[built-in role].
-This role grants full access to all features in {kib} (including the {observability} solution)
-and read-only access to data indices.
-+
-[NOTE]
-====
-The `editor` {ref}/built-in-roles.html[built-in role] will grant write access
-to _all_ {kib} apps. If you want to limit write access to the {synthetics-app} only,
-refer to <<synthetics-write-privileges-limited>>.
+1. Start with the `editor` [built-in role](((ref))/built-in-roles.html).
+    This role grants full access to all features in ((kib)) (including the ((observability)) solution)
+    and read-only access to data indices.
+
+<DocCallOut title="Note">
+
+The `editor` [built-in role](((ref))/built-in-roles.html) will grant write access
+to _all_ ((kib)) apps. If you want to limit write access to the ((synthetics-app)) only,
+refer to <DocLink id="enObservabilitySyntheticsRoleWrite" section="limited-write-access">Limited write access</DocLink>.
 
 If you choose this approach, you will still need to grant the privileges in the next step.
-====
 
-. Grant the role additional privileges that are required to enable Monitor Management:
-+
-.. Grant all of the following privileges:
-+
-[options="header"]
-|====
-| Type | Privilege | Purpose
+</DocCallOut>
 
-| {ref}/security-privileges.html#privileges-list-cluster[Cluster]
-| `monitor`
-| Allows the user to retrieve cluster details.
+1. Grant the role additional privileges that are required to enable Monitor Management:
 
-| {ref}/security-privileges.html#privileges-list-cluster[Cluster]
-| `manage_ilm`
-| Allows the user access to all index lifecycle management operations related to managing policies.
+    1. Grant all of the following privileges:
 
-| {ref}/security-privileges.html#privileges-list-cluster[Cluster]
-| `read_pipeline`
-| Gives the user read-only access to the ingest pipline.
+        | Type | Privilege | Purpose |
+        |---|---|---|
+        | [Cluster](((ref))/security-privileges.html#privileges-list-cluster) | `monitor` | Allows the user to retrieve cluster details. |
+        | [Cluster](((ref))/security-privileges.html#privileges-list-cluster) | `manage_ilm` | Allows the user access to all index lifecycle management operations related to managing policies. |
+        | [Cluster](((ref))/security-privileges.html#privileges-list-cluster) | `read_pipeline` | Gives the user read-only access to the ingest pipline. |
+        | [Index](((ref))/security-privileges.html#privileges-list-indices) | `synthetics-*`: `view_index_metadata` | Gives the user read-only access to index and data stream metadata. |
+        | [Index](((ref))/security-privileges.html#privileges-list-indices) | `synthetics-*`: `create_doc` | Allows the user to index documents. |
+        | [Index](((ref))/security-privileges.html#privileges-list-indices) | `synthetics-*`: `auto_configure` | Permits auto-creation of indices and data streams. |
+        | [Index](((ref))/security-privileges.html#privileges-list-indices) | `synthetics-*`: `monitor` | Gives access to all actions that are required for monitoring (recovery, segments info, index stats, and status). |
 
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `synthetics-*`: `view_index_metadata`
-| Gives the user read-only access to index and data stream metadata.
+<DocCallOut title="Note">
+If users with the setup role also need to create, modify, and delete monitors,
+add the privileges defined in the <DocLink id="enObservabilitySyntheticsRoleWrite">writer role</DocLink>.
+</DocCallOut>
 
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `synthetics-*`: `create_doc`
-| Allows the user to index documents.
-
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `synthetics-*`: `auto_configure`
-| Permits auto-creation of indices and data streams.
-
-| {ref}/security-privileges.html#privileges-list-indices[Index]
-| `synthetics-*`: `monitor`
-| Gives access to all actions that are required for monitoring (recovery, segments info, index stats, and status).
-
-|====
-
-NOTE: If users with the setup role also need to create, modify, and delete monitors,
-add the privileges defined in the <<synthetics-role-write,writer role>>.

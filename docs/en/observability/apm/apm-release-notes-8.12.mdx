@@ -1,0 +1,73 @@
+---
+id: enObservabilityApmReleaseNotes8.12
+slug: /en/observability/apm-release-notes-8.12
+title: APM version 8.12
+description: Description to be written
+tags: []
+---
+
+<div id="apm-release-notes-8.12"></div>
+
+* <DocLink id="enObservabilityApmReleaseNotes8.12" section="apm-version-8122">APM version 8.12.2</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.12" section="apm-version-8121">APM version 8.12.1</DocLink>
+* <DocLink id="enObservabilityApmReleaseNotes8.12" section="apm-version-8120">APM version 8.12.0</DocLink>
+
+<div id="apm-release-notes-8.12.2"></div>
+
+## APM version 8.12.2
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.12.1\...v8.12.2)
+
+<div id="bug_fixes"></div>
+
+### Bug fixes
+- Tail-based sampling: do not stop sampling processor when failing to delete trace events [12509]({pull}12509)
+- Define value for all constant_keyword fields in apmpackage to fix integration upgrade issues in rare cases [12219]({pull}12219)
+
+<div id="apm-release-notes-8.12.1"></div>
+
+## APM version 8.12.1
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.12.0\...v8.12.1)
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Tail-based sampling: Fix missing entry TTL in badger.ErrTxnTooBig handling [12453]({pull}12453)
+- Tail-based sampling: Compute entry size before writing and flush to avoid losing events silently due to storage limit [12120]({pull}12120)
+- APM instrumentation: Use UpDownCounter for docsActive and availableBulkIndexer [12179]({pull}12179)
+- Remove field preview in error reason returned by Elasticsearch from logs. [Please see our security advisory for more details](https://discuss.elastic.co/t/apm-server-8-12-1-security-update-esa-2024-03/352688). [12179]({pull}12179)
+
+<div id="added"></div>
+
+### Added
+- Disable default instrumentation metrics sending to batch processor by removing local exporter [12228]({pull}12228)
+- Log a single consolidated line per unique error instead of per each failed document [12179]({pull}12179)
+
+<div id="apm-release-notes-8.12.0"></div>
+
+## APM version 8.12.0
+
+[View commits](https://github.com/elastic/apm-server/compare/v8.11.4\...v8.12.0)
+
+<div id="breaking_changes"></div>
+
+### Breaking Changes
+- The unsupported apm_data_stream_migration ingest pipeline has been removed [12102]({pull}12102).
+- "publish_ready" is always false in the "GET /" response until events are received by apm-server [12150]({pull}12150)
+- Reverts a breaking change that ignored the beat name. This is visible in Stack Monitoring [12176]({pull}12176)
+- A bug has been introduced, so that `traces-apm@custom` ingest pipeline is now additionally applied to data streams `traces-apm.sampled-*` and `traces-apm.rum-*` and applied twice for `traces-apm-*`. See more details and information around a fix in the Known Issues section.
+
+<div id="bug_fixes"></div>
+### Bug fixes
+- Switch built-in ILM rollover policies from max_size to max_primary_shard_size [11729]({pull}11729).
+- Handle empty request bodies gracefully [12242]({pull}12242).
+- Wrap processor errors to provide more details [12242]({pull}12242).
+- Require only one of exception.\{type,message} for log exceptions [12242]({pull}12242).
+
+<div id="added"></div>
+### Added
+- Update container base image to Ubuntu 22.04 [11778]({pull}11778)
+- Add support for returning partial success response in OTLP input [11883]({pull}11883)
+- Setting event timestamp from OTel observed timestamp when needed [11935]({pull}11935)
+- Field mappings have been added for various formerly unindexed fields [12102]({pull}12102)
+- We now assert that index templates are installed by attempting to create data streams [12150]({pull}12150)

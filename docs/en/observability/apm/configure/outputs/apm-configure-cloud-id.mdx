@@ -1,57 +1,63 @@
-[[apm-configure-cloud-id]]
-== Configure the output for {ess} on {ecloud}
+---
+id: enObservabilityApmConfigureCloudId
+slug: /en/observability/apm-configure-cloud-id
+title: Configure the output for ((ess)) on ((ecloud))
+description: Description to be written
+tags: []
+---
 
-[subs="attributes"]
-++++
-<titleabbrev>{ess}</titleabbrev>
-++++
+import ApmSupportOverview from '../../components/support-overview.mdx'
 
-****
-image:./binary-yes-fm-no.svg[supported deployment methods]
+<div id="apm-configure-cloud-id"></div>
 
-This documentation only applies to APM Server binary users.
-****
+<ApmSupportOverview binary={true} fleet={false}>
+  This documentation only applies to APM Server binary users.
+</ApmSupportOverview>
 
-ifdef::apm-server[]
+export let apm_server = false
 
-NOTE: This page refers to using a separate instance of APM Server with an existing
-{ess-product}[{ess} deployment].
-If you want to use APM on {ess}, see:
-{cloud}/ec-create-deployment.html[Create your deployment] and
-{cloud}/ec-manage-apm-settings.html[Add APM user settings].
+<DocIf condition={ apm_server === true }>
 
-endif::apm-server[]
+<DocCallOut title="Note">
+This page refers to using a separate instance of APM Server with an existing
+[((ess)) deployment](((ess-product))).
+If you want to use APM on ((ess)), see:
+[Create your deployment](((cloud))/ec-create-deployment.html) and
+[Add APM user settings](((cloud))/ec-manage-apm-settings.html).
+</DocCallOut>
+
+</DocIf>
 
 APM Server comes with two settings that simplify the output configuration
-when used together with {ess-product}[{ess}]. When defined,
+when used together with [((ess))](((ess-product))). When defined,
 these setting overwrite settings from other parts in the configuration.
 
 Example:
 
-["source","yaml",subs="attributes"]
-------------------------------------------------------------------------------
+```yaml
 cloud.id: "staging:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyRjZWM2ZjI2MWE3NGJmMjRjZTMzYmI4ODExYjg0Mjk0ZiRjNmMyY2E2ZDA0MjI0OWFmMGNjN2Q3YTllOTYyNTc0Mw=="
-cloud.auth: "elastic:{pwd}"
-------------------------------------------------------------------------------
+cloud.auth: "elastic:((pwd))"
+```
 
 These settings can be also specified at the command line, like this:
 
-
-["source","sh",subs="attributes"]
-------------------------------------------------------------------------------
+```sh
 apm-server -e -E cloud.id="<cloud-id>" -E cloud.auth="<cloud.auth>"
-------------------------------------------------------------------------------
+```
 
+<div id="`cloud.id`"></div>
 
-=== `cloud.id`
+## `cloud.id`
 
-The Cloud ID, which can be found in the {ess} web console, is used by
-APM Server to resolve the {es} and {kib} URLs. This setting
+The Cloud ID, which can be found in the ((ess)) web console, is used by
+APM Server to resolve the ((es)) and ((kib)) URLs. This setting
 overwrites the `output.elasticsearch.hosts` and `setup.kibana.host` settings.
 
-=== `cloud.auth`
+<div id="`cloud.auth`"></div>
+
+## `cloud.auth`
 
 When specified, the `cloud.auth` overwrites the `output.elasticsearch.username` and
-`output.elasticsearch.password` settings. Because the {kib} settings inherit
-the username and password from the {es} output, this can also be used
+`output.elasticsearch.password` settings. Because the ((kib)) settings inherit
+the username and password from the ((es)) output, this can also be used
 to set the `setup.kibana.username` and `setup.kibana.password` options.

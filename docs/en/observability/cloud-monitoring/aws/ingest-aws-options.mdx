@@ -1,56 +1,28 @@
-[[ingest-aws-options]]
-==  Ingestion options
+---
+id: enObservabilityIngestAwsOptions
+slug: /en/observability/ingest-aws-options
+title:  Ingestion options
+description: Description to be written
+tags: []
+---
 
-++++
-<titleabbrev>Ingestion options</titleabbrev>
-++++
+<div id="ingest-aws-options"></div>
 
 You have a number of options for ingesting data with AWS. The following table helps you identify which option best fits your needs:
 
-[cols="1,1,1,1,1",options="header"]
-|===
-|
-|Amazon Data Firehose
-|ESF
-|Elastic Agent
-|Beats
+{/* [cols="1,1,1,1,1",options="header"] */}
+|  | Amazon Data Firehose | ESF | Elastic Agent | Beats   |
+|---|---|---|---|---|
+| **logs** | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" />  |
+| **metrics** | <DocIcon type="cross" title="No" /> | <DocIcon type="cross" title="No" /> | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" />  |
+| **PrivateLink support / VPC** | <DocIcon type="cross" title="No" /> | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" /> | <DocIcon type="check" title="Yes" />  |
+| **pros** | Managed service, auto-scale | Auto-scale, built-in support for SQS | Supports all integrations, manages multiple agents using Fleet | Large configuration options  |
+| **cons** | Few configuration options | Partial integrations support | Not a managed service, no auto-scale | Not a managed service, no auto-scale  |
 
-| *logs*
-| {yes-icon}
-| {yes-icon}
-| {yes-icon}
-| {yes-icon} 
+<div id="overview_of_the_ingest_process"></div>
 
-| *metrics*
-| {no-icon}
-| {no-icon}
-| {yes-icon}
-| {yes-icon} 
-
-| *PrivateLink support / VPC*
-| {no-icon}
-| {yes-icon}
-| {yes-icon}
-| {yes-icon} 
-
-| *pros*
-| Managed service, auto-scale
-| Auto-scale, built-in support for SQS
-| Supports all integrations, manages multiple agents using Fleet
-| Large configuration options 
-
-| *cons*
-| Few configuration options
-| Partial integrations support
-| Not a managed service, no auto-scale
-| Not a managed service, no auto-scale 
-
-|===
-
-[discrete]
-=== Overview of the ingest process
+## Overview of the ingest process
 
 The high-level architecture is shown below.
 
-[role="screenshot"]
-image::images/ingest-options-overview.png[Ingest options]
+![Ingest options](images/ingest-options-overview.png)

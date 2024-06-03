@@ -1,0 +1,16 @@
+
+
+```sh
+PS C:((backslash))Program Files((backslash)){props.beatname_lc}> Start-Service {props.beatname_lc}
+```
+
+By default, Windows log files are stored in `C:((backslash))ProgramData((backslash)){props.beatname_lc}\Logs`.
+
+<DocIf condition={ "{props.beatname_lc}" === "metricbeat" }>
+
+<DocCallOut title="Note">
+On Windows, statistics about system load and swap usage are currently
+not captured
+</DocCallOut>
+
+</DocIf>

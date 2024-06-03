@@ -1,0 +1,34 @@
+
+
+The `modules.d/beat-xpack.yml` file contains the following settings:
+
+```yaml
+- module: beat
+  metricsets:
+    - stats
+    - state
+  period: 10s
+  hosts: ["http://localhost:5066"]
+  #username: "user"
+  #password: "secret"
+  xpack.enabled: true
+```
+
+Set the `hosts`, `username`, and `password` settings as required by your
+environment. For other module settings, it's recommended that you accept the
+defaults.
+
+By default, the module collects APM Server monitoring data from
+`localhost:5066`. If you exposed the metrics on a different host or port when
+you enabled the HTTP endpoint, update the `hosts` setting.
+
+export let apm_server = false
+
+To monitor multiple <DocIf condition={ apm_server === false }>((beats)) agents,</DocIf><DocIf condition={ apm_server === true }>APM Server instances,</DocIf> specify a list of hosts, for example:
+
+```yaml
+hosts: ["http://localhost:5066","http://localhost:5067","http://localhost:5068"]
+```
+
+If you configured APM Server to use encrypted communications, you must access
+it via HTTPS. For example, use a `hosts` setting like `https://localhost:5066`.
