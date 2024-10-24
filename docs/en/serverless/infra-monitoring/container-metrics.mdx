@@ -1,186 +1,119 @@
----
-slug: /serverless/observability/container-metrics
-title: Container metrics
-description: Learn about key container metrics used for container monitoring.
-tags: [ 'serverless', 'observability', 'reference' ]
----
+[[container-metrics]]
+= Container metrics
 
-<p><DocBadge template="technical preview" /></p>
-
-<div id="container-metrics"></div>
+preview:[]
 
 Learn about key container metrics displayed in the Infrastructure UI:
 
-* <DocLink slug="/serverless/observability/container-metrics" section="key-metrics-docker">Docker</DocLink>
-* <DocLink slug="/serverless/observability/container-metrics" section="key-metrics-kubernetes">Kubernetes</DocLink>
+* <<container-metrics-docker-container-metrics,Docker>>
+* <<container-metrics-kubernetes-container-metrics,Kubernetes>>
 
-
-<div id="key-metrics-docker"></div>
-
-## Docker container metrics
+[discrete]
+[[container-metrics-docker-container-metrics]]
+== Docker container metrics
 
 These are the key metrics displayed for Docker containers.
 
-<div id="key-metrics-docker-cpu"></div>
+[[container-metrics-key-metrics-docker-cpu]]
 
-### CPU usage metrics
+[discrete]
+[[container-metrics-cpu-usage-metrics]]
+=== CPU usage metrics
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**CPU Usage (%)**</DocCell>
-    <DocCell>
-      Average CPU for the container.
+|===
+| Metric | Description
 
-      **Field Calculation:** `average(docker.cpu.total.pct)`
-    </DocCell>
-  </DocRow>
-</DocTable>
+| **CPU Usage (%)**
+a| Average CPU for the container.
 
-<div id="key-metrics-docker-memory"></div>
+**Field Calculation:** `average(docker.cpu.total.pct)`
+|===
 
-### Memory metrics
+[[container-metrics-key-metrics-docker-memory]]
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**Memory Usage (%)**</DocCell>
-    <DocCell>
-      Average memory usage for the container.
+[discrete]
+[[container-metrics-memory-metrics-1]]
+=== Memory metrics
 
-      **Field Calculation:** `average(docker.memory.usage.pct)`
-    </DocCell>
-  </DocRow>
-</DocTable>
+|===
+| Metric | Description
 
-<div id="key-metrics-docker-network"></div>
+| **Memory Usage (%)**
+a| Average memory usage for the container.
 
-### Network metrics
+**Field Calculation:** `average(docker.memory.usage.pct)`
+|===
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**Inbound Traffic (RX)**</DocCell>
-    <DocCell>
-      Derivative of the maximum of `docker.network.in.bytes` scaled to a 1 second rate.
+[[container-metrics-key-metrics-docker-network]]
 
-      **Field Calculation:** `average(docker.network.inbound.bytes) * 8 / (max(metricset.period, kql='docker.network.inbound.bytes: *') / 1000)`
-    </DocCell>
-  </DocRow>
-  <DocRow>
-    <DocCell>**Outbound Traffic (TX)**</DocCell>
-    <DocCell>
-      Derivative of the maximum of `docker.network.out.bytes` scaled to a 1 second rate.
+[discrete]
+[[container-metrics-network-metrics]]
+=== Network metrics
 
-      **Field Calculation:** `average(docker.network.outbound.bytes) * 8 / (max(metricset.period, kql='docker.network.outbound.bytes: *') / 1000)`
-    </DocCell>
-  </DocRow>
-</DocTable>
+|===
+| Metric | Description
 
-### Disk metrics
+| **Inbound Traffic (RX)**
+a| Derivative of the maximum of `docker.network.in.bytes` scaled to a 1 second rate.
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**Disk Read IOPS**</DocCell>
-    <DocCell>
-      Average count of read operations from the device per second.
+**Field Calculation:** `average(docker.network.inbound.bytes) * 8 / (max(metricset.period, kql='docker.network.inbound.bytes: *') / 1000)`
 
-      **Field Calculation:**  `counter_rate(max(docker.diskio.read.ops), kql='docker.diskio.read.ops: *')`
-    </DocCell>
-  </DocRow>
-  <DocRow>
-    <DocCell>**Disk Write IOPS**</DocCell>
-    <DocCell>
-      Average count of write operations from the device per second.
+| **Outbound Traffic (TX)**
+a| Derivative of the maximum of `docker.network.out.bytes` scaled to a 1 second rate.
 
-      **Field Calculation:**  `counter_rate(max(docker.diskio.write.ops), kql='docker.diskio.write.ops: *')`
-    </DocCell>
-  </DocRow>
-</DocTable>
+**Field Calculation:** `average(docker.network.outbound.bytes) * 8 / (max(metricset.period, kql='docker.network.outbound.bytes: *') / 1000)`
+|===
 
-<div id="key-metrics-kubernetes"></div>
+[discrete]
+[[container-metrics-disk-metrics]]
+=== Disk metrics
 
-## Kubernetes container metrics
+|===
+| Metric | Description
+
+| **Disk Read IOPS**
+a| Average count of read operations from the device per second.
+
+**Field Calculation:**  `counter_rate(max(docker.diskio.read.ops), kql='docker.diskio.read.ops: *')`
+
+| **Disk Write IOPS**
+a| Average count of write operations from the device per second.
+
+**Field Calculation:**  `counter_rate(max(docker.diskio.write.ops), kql='docker.diskio.write.ops: *')`
+|===
+
+[discrete]
+[[container-metrics-kubernetes-container-metrics]]
+== Kubernetes container metrics
 
 These are the key metrics displayed for Kubernetes (containerd) containers.
 
-<div id="key-metrics-kubernetes-cpu"></div>
+[[container-metrics-key-metrics-kubernetes-cpu]]
 
-### CPU usage metrics
+[discrete]
+[[container-metrics-cpu-usage-metrics-2]]
+=== CPU usage metrics
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**CPU Usage (%)**</DocCell>
-    <DocCell>
-      Average CPU for the container.
+|===
+| Metric | Description
 
-      **Field Calculation:** `average(kubernetes.container.cpu.usage.limit.pct)`
-    </DocCell>
-  </DocRow>
-</DocTable>
+| **CPU Usage (%)**
+a| Average CPU for the container.
 
-<div id="key-metrics-kubernetes-memory"></div>
+**Field Calculation:** `average(kubernetes.container.cpu.usage.limit.pct)`
+|===
 
-### Memory metrics
+[[container-metrics-key-metrics-kubernetes-memory]]
 
-<DocTable columns={[
-  {
-    "title": "Metric",
-    "width": "30%"
-  },
-  {
-    "title": "Description",
-    "width": "70%"
-  }
-]}>
-  <DocRow>
-    <DocCell>**Memory Usage (%)**</DocCell>
-    <DocCell>
-      Average memory usage for the container.
+[discrete]
+[[container-metrics-memory-metrics-3]]
+=== Memory metrics
 
-      **Field Calculation:** `average(kubernetes.container.memory.usage.limit.pct)`
-    </DocCell>
-  </DocRow>
-</DocTable>
+|===
+| Metric | Description
+
+| **Memory Usage (%)**
+a| Average memory usage for the container.
+
+**Field Calculation:** `average(kubernetes.container.memory.usage.limit.pct)`
+|===

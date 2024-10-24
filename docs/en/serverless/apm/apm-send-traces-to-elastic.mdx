@@ -1,25 +1,25 @@
----
-slug: /serverless/observability/apm-send-data-to-elastic
-title: Send APM data to Elastic
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'overview' ]
----
+[[apm-send-data-to-elastic]]
+= Send APM data to Elastic
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
-import Roles from '../partials/roles.mdx'
+:role: Admin
+:goal: send APM data to Elastic
+include::../partials/roles.asciidoc[]
+:role!:
 
-<Roles role="Admin" goal="send APM data to Elastic" />
+:goal!:
 
-<DocCallOut>
-<DocIcon type="documentation" title="documentation icon" /> Want to get started quickly? See <DocLink slug="/serverless/observability/apm-get-started">Get started with traces and APM</DocLink>.
-</DocCallOut>
+[NOTE]
+====
+image:images/icons/documentation.svg[documentation icon] Want to get started quickly? See <<apm-get-started,Get started with traces and APM>>.
+====
 
 Send APM data to Elastic with:
 
-* **<DocLink slug="/serverless/observability/apm-agents-elastic-apm-agents" text="Elastic APM agents"/>:** Elastic APM agents are lightweight libraries you install in your applications and services. They automatically instrument supported technologies, and offer APIs for custom code instrumentation.
-* **<DocLink slug="/serverless/observability/apm-agents-opentelemetry" text="OpenTelemetry"/>:** OpenTelemetry is a set of APIs, SDKs, tooling, and integrations that enable the capture and management of telemetry data from your services and applications.
+* **<<apm-agents-elastic-apm-agents,Elastic APM agents>>:** Elastic APM agents are lightweight libraries you install in your applications and services. They automatically instrument supported technologies, and offer APIs for custom code instrumentation.
+* **<<apm-agents-opentelemetry,OpenTelemetry>>:** OpenTelemetry is a set of APIs, SDKs, tooling, and integrations that enable the capture and management of telemetry data from your services and applications.
 
-Elastic also supports instrumentation of <DocLink slug="/serverless/observability/apm-agents-aws-lambda-functions" text="AWS Lambda functions"/>.
+Elastic also supports instrumentation of <<apm-agents-aws-lambda-functions,AWS Lambda functions>>.
 
-{/* To do: We should put a diagram here showing how high-level arch */}
+// To do: We should put a diagram here showing how high-level arch

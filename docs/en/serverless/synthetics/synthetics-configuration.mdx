@@ -1,27 +1,20 @@
----
-slug: /serverless/observability/synthetics-configuration
-title: Configure a Synthetics project
-# description: Description to be written
-tags: []
----
+[[synthetics-configuration]]
+= Configure a Synthetics project
 
-<p><DocBadge template="technical preview" /></p>
-
-import Snippet1 from '../transclusion/synthetics/configuration/monitor-config-options.mdx'
-
-<div id="synthetics-configuration"></div>
+preview:[]
 
 Synthetic tests support the configuration of dynamic parameters that can be
 used in Synthetics projects. In addition, the Synthetics agent, which is built on top
 of Playwright, supports configuring browser and context options that are available
 in Playwright-specific methods, for example, `ignoreHTTPSErrors`, `extraHTTPHeaders`, and `viewport`.
 
-<div id="synthetics-config-file"></div>
+[[synthetics-configuration-synthetics-config-file]]
 
 Create a `synthetics.config.js` or `synthetics.config.ts` file in the root of the
 Synthetics project and specify the options. For example:
 
-```ts
+[source,ts]
+----
 import type { SyntheticsConfig } from '@elastic/synthetics';
 
 export default env => {
@@ -55,47 +48,58 @@ export default env => {
   }
   return config;
 };
-```
+----
 
-<DocCallOut title="Note">
-  `env` in the example above is the environment you are pushing from
-  _not_ the environment where monitors will run. In other words, `env`
-  corresponds to the configured `NODE_ENV`.
-</DocCallOut>
+[NOTE]
+====
+`env` in the example above is the environment you are pushing from
+*not* the environment where monitors will run. In other words, `env`
+corresponds to the configured `NODE_ENV`.
+====
 
 The configuration file can either export an object, or a function that when
 called should return the generated configuration. To know more about configuring
-the tests based on environments, look at the <DocLink slug="/serverless/observability/synthetics-params-secrets" section="synthetics-project-config-file">dynamic configuration</DocLink> documentation.
+the tests based on environments, look at the <<synthetics-params-secrets-synthetics-project-config-file,dynamic configuration>> documentation.
 
-<div id="synthetics-configuration-params"></div>
+[[synthetics-configuration-synthetics-configuration-params]]
 
-## `params`
+[discrete]
+[[synthetics-configuration-params]]
+== `params`
 
 A JSON object that defines any variables your tests require.
-Read more in <DocLink slug="/serverless/observability/synthetics-params-secrets">Work with params and secrets</DocLink>.
+Read more in <<synthetics-params-secrets,Work with params and secrets>>.
 
-<div id="synthetics-configuration-playwright-options"></div>
+[[synthetics-configuration-synthetics-configuration-playwright-options]]
 
-## `playwrightOptions`
+[discrete]
+[[synthetics-configuration-playwrightoptions]]
+== `playwrightOptions`
 
-For all available options, refer to the [Playwright documentation](https://playwright.dev/docs/test-configuration).
+For all available options, refer to the https://playwright.dev/docs/test-configuration[Playwright documentation].
 
-<DocCallOut title="Note">
-  Do not attempt to run in headful mode (using `headless:false`) when running through Elastic's global managed testing infrastructure or Private Locations as this is not supported.
-</DocCallOut>
+[NOTE]
+====
+Do not attempt to run in headful mode (using `headless:false`) when running through Elastic's global managed testing infrastructure or Private Locations as this is not supported.
+====
 
 Below are details on a few Playwright options that are particularly relevant to Elastic Synthetics including TLS client authentication, timeouts, timezones, and device emulation.
 
-<div id="synthetics-configuration-playwright-options-client-certificates"></div>
+[[synthetics-configuration-synthetics-configuration-playwright-options-client-certificates]]
 
-### TLS client authentication
-To enable TLS client authentication, set the [`clientCertificates`](https://playwright.dev/docs/api/class-testoptions#test-options-client-certificates) option in the configuration file:
+[discrete]
+[[synthetics-configuration-tls-client-authentication]]
+=== TLS client authentication
 
-<DocCallOut title="Note">
-  Path-based options `{certPath, keyPath, pfxPath}` are only supported on Private Locations, defer to in-memory alternatives `{cert, key, pfx}` when running on locations hosted by Elastic.
-</DocCallOut>
+To enable TLS client authentication, set the https://playwright.dev/docs/api/class-testoptions#test-options-client-certificates[`clientCertificates`] option in the configuration file:
 
-```js
+[NOTE]
+====
+Path-based options `{certPath, keyPath, pfxPath}` are only supported on Private Locations, defer to in-memory alternatives `{cert, key, pfx}` when running on locations hosted by Elastic.
+====
+
+[source,js]
+----
 playwrightOptions: {
   clientCertificates: [
     {
@@ -106,69 +110,80 @@ playwrightOptions: {
     },
     {
       origin: 'https://example.com',
-      cert: Buffer.from("-----BEGIN CERTIFICATE-----\n..."),
-      key: Buffer.from("-----BEGIN RSA PRIVATE KEY-----\n..."),
+      cert: Buffer.from("-----BEGIN CERTIFICATE-----...."),
+      key: Buffer.from("-----BEGIN RSA PRIVATE KEY-----...."),
       passphrase: 'mysecretpassword',
     }
   ],
 }
-```
+----
 
-<DocCallOut title="Tip">
-  When using Synthetics monitor UI, `cert`, `key` and `pfx` can simply be specified using a string literal:
-  ```js
-  clientCertificates: [
-    {
-      cert: "-----BEGIN CERTIFICATE-----\n...",
-      // Not cert: Buffer.from("-----BEGIN CERTIFICATE-----\n..."),
-    }
-  ],
-  ```
-</DocCallOut>
+[TIP]
+====
+When using Synthetics monitor UI, `cert`, `key` and `pfx` can simply be specified using a string literal:
 
-<div id="synthetics-configuration-playwright-options-timeouts"></div>
+[source,js]
+----
+clientCertificates: [
+  {
+    cert: "-----BEGIN CERTIFICATE-----....",
+    // Not cert: Buffer.from("-----BEGIN CERTIFICATE-----...."),
+  }
+],
+----
+====
 
-### Timeouts
+[[synthetics-configuration-synthetics-configuration-playwright-options-timeouts]]
+
+[discrete]
+[[synthetics-configuration-timeouts]]
+=== Timeouts
 
 Playwright has two types of timeouts that are used in Elastic Synthetics:
-[action and navigation timeouts](https://playwright.dev/docs/test-timeouts#action-and-navigation-timeouts).
+https://playwright.dev/docs/test-timeouts#action-and-navigation-timeouts[action and navigation timeouts].
 
 Elastic Synthetics uses a default action and navigation timeout of 50 seconds.
-You can override this default using [`actionTimeout`](https://playwright.dev/docs/api/class-testoptions#test-options-action-timeout) and [`navigationTimeout`](https://playwright.dev/docs/api/class-testoptions#test-options-navigation-timeout)
+You can override this default using https://playwright.dev/docs/api/class-testoptions#test-options-action-timeout[`actionTimeout`] and https://playwright.dev/docs/api/class-testoptions#test-options-navigation-timeout[`navigationTimeout`]
 in `playwrightOptions`.
 
-<div id="synthetics-configuration-playwright-options-timezones"></div>
+[[synthetics-configuration-synthetics-configuration-playwright-options-timezones]]
 
-### Timezones and locales
+[discrete]
+[[synthetics-configuration-timezones-and-locales]]
+=== Timezones and locales
 
 The Elastic global managed testing infrastructure does not currently set the timezone.
-For ((private-location))s, the monitors will use the timezone of the host machine running
-the ((agent)). This is not always desirable if you want to test how a web application
+For {private-location}s, the monitors will use the timezone of the host machine running
+the {agent}. This is not always desirable if you want to test how a web application
 behaves across different timezones. To specify what timezone to use when the monitor runs,
 you can use `playwrightOptions` on a per monitor or global basis.
 
 To use a timezone and/or locale for all monitors in the Synthetics project, set
-[`locale` and/or `timezoneId`](https://playwright.dev/docs/emulation#locale%2D%2Dtimezone)
+https://playwright.dev/docs/emulation#locale%2D%2Dtimezone[`locale` and/or `timezoneId`]
 in the configuration file:
 
-```js
+[source,js]
+----
 playwrightOptions: {
   locale: 'en-AU',
   timezoneId: 'Australia/Brisbane',
 }
-```
+----
 
-To use a timezone and/or locale for a _specific_ monitor, add these options to a
-journey using <DocLink slug="/serverless/observability/synthetics-monitor-use">`monitor.use`</DocLink>.
+To use a timezone and/or locale for a *specific* monitor, add these options to a
+journey using <<synthetics-monitor-use,`monitor.use`>>.
 
-<div id="synthetics-config-device-emulation"></div>
+[[synthetics-configuration-synthetics-config-device-emulation]]
 
-### Device emulation
+[discrete]
+[[synthetics-configuration-device-emulation]]
+=== Device emulation
 
 Users can emulate a mobile device using the configuration file.
 The example configuration below runs tests in "Pixel 5" emulation mode.
 
-```js
+[source,js]
+----
 import { SyntheticsConfig } from "@elastic/synthetics"
 import { devices } from "playwright-chromium"
 
@@ -179,39 +194,36 @@ const config: SyntheticsConfig = {
 }
 
 export default config;
-```
+----
 
-<div id="synthetics-configuration-project"></div>
+[[synthetics-configuration-synthetics-configuration-project]]
 
-## `project`
+[discrete]
+[[synthetics-configuration-project]]
+== `project`
 
 Information about the Synthetics project.
 
-<DocDefList>
-  <DocDefTerm>`id` (`string`)</DocDefTerm>
-  <DocDefDescription>
-    A unique id associated with your Synthetics project.
-    It will be used for logically grouping monitors.
+`id` (`string`)::
+A unique id associated with your Synthetics project.
+It will be used for logically grouping monitors.
++
+If you used <<synthetics-command-reference-elasticsynthetics-init,`init` to create a Synthetics project>>, this is the `<name-of-synthetics-project>` you specified.
 
-    If you used <DocLink slug="/serverless/observability/synthetics-command-reference" section="elasticsynthetics-init">`init` to create a Synthetics project</DocLink>, this is the `<name-of-synthetics-project>` you specified.
-  </DocDefDescription>
+`url` (`string`)::
+The URL for the Observability project to which you want to upload the monitors.
 
-  <DocDefTerm>`url` (`string`)</DocDefTerm>
-  <DocDefDescription>
-    The URL for the Observability project to which you want to upload the monitors.
-  </DocDefDescription>
-</DocDefList>
+[[synthetics-configuration-synthetics-configuration-monitor]]
 
-<div id="synthetics-configuration-monitor"></div>
+[discrete]
+[[synthetics-configuration-monitor]]
+== `monitor`
 
-## `monitor`
+Default values to be applied to *all* monitors when using the <<synthetics-command-reference-elasticsynthetics-push,`@elastic/synthetics` `push` command>>.
 
-Default values to be applied to _all_ monitors when using the <DocLink slug="/serverless/observability/synthetics-command-reference" section="elasticsynthetics-push">`@elastic/synthetics` `push` command</DocLink>.
-
-<Snippet1 />
+include::../transclusion/synthetics/configuration/monitor-config-options.asciidoc[]
 
 For information on configuring monitors individually, refer to:
 
-* <DocLink slug="/serverless/observability/synthetics-monitor-use">Configure individual browser monitors</DocLink> for browser monitors
-* <DocLink slug="/serverless/observability/synthetics-lightweight">Configure lightweight monitors</DocLink> for lightweight monitors
-
+* <<synthetics-monitor-use,Configure individual browser monitors>> for browser monitors
+* <<synthetics-lightweight,Configure lightweight monitors>> for lightweight monitors

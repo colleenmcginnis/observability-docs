@@ -1,24 +1,53 @@
 
-import Deb from './stop/deb.mdx'
-import Linux from './stop/linux.mdx'
-import Mac from './stop/mac.mdx'
-import Rpm from './stop/rpm.mdx'
-import Win from './stop/win.mdx'
 
-<DocTabs hasBorder>
-	<DocTab name="macOS">
-		<Mac />  
-	</DocTab>
-	<DocTab name="Linux">
-		<Linux />  
-	</DocTab>
-	<DocTab name="Windows">
-		<Win />  
-	</DocTab>
-	<DocTab name="DEB">
-		<Deb />  
-	</DocTab>
-	<DocTab name="RPM">
-		<Rpm />  
-	</DocTab>
-</DocTabs>
+++++
+<div class="tabs" data-tab-group="transclusion-fleet-tab-widgets-stop-widget">
+  <div role="tablist" aria-label="transclusion-fleet-tab-widgets-stop-widget">
+    <button role="tab" aria-selected="true" aria-controls="transclusion-fleet-tab-widgets-stop-widget-macos-panel" id="transclusion-fleet-tab-widgets-stop-widget-macos-button">
+      macOS
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-fleet-tab-widgets-stop-widget-linux-panel" id="transclusion-fleet-tab-widgets-stop-widget-linux-button" tabindex="-1">
+      Linux
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-fleet-tab-widgets-stop-widget-windows-panel" id="transclusion-fleet-tab-widgets-stop-widget-windows-button" tabindex="-1">
+      Windows
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-fleet-tab-widgets-stop-widget-deb-panel" id="transclusion-fleet-tab-widgets-stop-widget-deb-button" tabindex="-1">
+      DEB
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-fleet-tab-widgets-stop-widget-rpm-panel" id="transclusion-fleet-tab-widgets-stop-widget-rpm-button" tabindex="-1">
+      RPM
+    </button>
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-fleet-tab-widgets-stop-widget-macos-panel" aria-labelledby="transclusion-fleet-tab-widgets-stop-widget-macos-button">
+++++
+include::./stop/mac.asciidoc[]
+
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-fleet-tab-widgets-stop-widget-linux-panel" aria-labelledby="transclusion-fleet-tab-widgets-stop-widget-linux-button" hidden="">
+++++
+include::./stop/linux.asciidoc[]
+
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-fleet-tab-widgets-stop-widget-windows-panel" aria-labelledby="transclusion-fleet-tab-widgets-stop-widget-windows-button" hidden="">
+++++
+include::./stop/win.asciidoc[]
+
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-fleet-tab-widgets-stop-widget-deb-panel" aria-labelledby="transclusion-fleet-tab-widgets-stop-widget-deb-button" hidden="">
+++++
+include::./stop/deb.asciidoc[]
+
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-fleet-tab-widgets-stop-widget-rpm-panel" aria-labelledby="transclusion-fleet-tab-widgets-stop-widget-rpm-button" hidden="">
+++++
+include::./stop/rpm.asciidoc[]
+
+++++
+  </div>
+</div>
+++++

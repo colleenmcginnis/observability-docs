@@ -1,13 +1,12 @@
+[[api-events]]
 
-
-<div id="api-events"></div>
-
-<DocCallOut title="Note">
+[NOTE]
+====
 Most users do not need to interact directly with the events intake API.
-</DocCallOut>
+====
 
 The events intake API is what we call the internal protocol that APM agents use to talk to the managed intake service.
-Agents communicate with the Server by sending events &mdash; captured pieces of information &mdash; in an HTTP request.
+Agents communicate with the Server by sending events — captured pieces of information — in an HTTP request.
 Events can be:
 
 * Transactions
@@ -16,72 +15,90 @@ Events can be:
 * Metrics
 
 Each event is sent as its own line in the HTTP request body.
-This is known as [newline delimited JSON (NDJSON)](https://github.com/ndjson/ndjson-spec).
+This is known as https://github.com/ndjson/ndjson-spec[newline delimited JSON (NDJSON)].
 
 With NDJSON, agents can open an HTTP POST request and use chunked encoding to stream events to the managed intake service
 as soon as they are recorded in the agent.
 This makes it simple for agents to serialize each event to a stream of newline delimited JSON.
 The managed intake service also treats the HTTP body as a compressed stream and thus reads and handles each event independently.
 
-Refer to <DocLink slug="/serverless/observability/apm-data-types" /> to learn more about the different types of events.
+Refer to <<apm-data-types>> to learn more about the different types of events.
 
-<div id="api-events-endpoint"></div>
+[[api-events-endpoint]]
 
-### Endpoints
+[discrete]
+[[endpoints]]
+=== Endpoints
 
 The managed intake service exposes the following endpoints for Elastic APM agent data intake:
 
-| Name | Endpoint |
-|---|---|
-| APM agent event intake | `/intake/v2/events` |
+|===
+| Name| Endpoint
 
-{/* | RUM event intake (v2) | `/intake/v2/rum/events` |
-| RUM event intake (v3) | `/intake/v3/rum/events` | */}
+| APM agent event intake
+| `/intake/v2/events`
+|===
 
-<div id="api-events-example"></div>
+////
+/* | RUM event intake (v2) | ./intake/v2/rum/events. |
+| RUM event intake (v3) | ./intake/v3/rum/events. | */
+////
 
-### Request
+[[api-events-example]]
+
+[discrete]
+[[request]]
+=== Request
 
 Send an `HTTP POST` request to the managed intake service `intake/v2/events` endpoint:
 
-```bash
+[source,bash]
+----
 https://{hostname}:{port}/intake/v2/events
-```
+----
 
 The managed intake service supports asynchronous processing of batches.
 To request asynchronous processing the `async` query parameter can be set in the POST request
 to the `intake/v2/events` endpoint:
 
-```bash
+[source,bash]
+----
 https://{hostname}:{port}/intake/v2/events?async=true
-```
+----
 
-<DocCallOut title="Note">
+[NOTE]
+====
 Since asynchronous processing defers some of the event processing to the
 background and takes place after the client has closed the request, some errors
 can't be communicated back to the client and are logged by the managed intake service.
 Furthermore, asynchronous processing requests will only be scheduled if the managed intake service can
 service the incoming request, requests that cannot be serviced will receive an internal error
 `503` "queue is full" error.
-</DocCallOut>
+====
 
-{/* For <DocLink id="enApmGuideApmRum">RUM</DocLink> send an `HTTP POST` request to the managed intake service `intake/v3/rum/events` endpoint instead:
+////
+/* For <DocLink id="enApmGuideApmRum">RUM</DocLink> send an .HTTP POST. request to the managed intake service .intake/v3/rum/events. endpoint instead:
 
-```bash
+...bash
 http(s)://{hostname}:{port}/intake/v3/rum/events
-``` */}
+... */
+////
 
-<div id="api-events-response"></div>
+[[api-events-response]]
 
-### Response
+[discrete]
+[[response]]
+=== Response
 
 On success, the server will respond with a 202 Accepted status code and no body.
 
 Keep in mind that events can succeed and fail independently of each other. Only if all events succeed does the server respond with a 202.
 
-<div id="api-events-errors"></div>
+[[api-events-errors]]
 
-### API Errors
+[discrete]
+[[api-errors]]
+=== API Errors
 
 There are two types of errors that the managed intake service may return to an agent:
 
@@ -105,12 +122,13 @@ it is added to the internal array and immediately returned.
 
 An example error response might look something like this:
 
-```json
+[source,json]
+----
 {
   "errors": [
     {
-      "message": "<json-schema-err>",  [^1]
-      "document": "<ndjson-obj>"  [^2]
+      "message": "<json-schema-err>",   <1>
+      "document": "<ndjson-obj>"   <2>
     },{
       "message": "<json-schema-err>",
       "document": "<ndjson-obj>"
@@ -118,21 +136,27 @@ An example error response might look something like this:
       "message": "<json-decoding-err>",
       "document": "<ndjson-obj>"
     },{
-      "message": "too many requests"  [^3]
+      "message": "too many requests"   <3>
     },
   ],
-  "accepted": 2320  [^4]
+  "accepted": 2320   <4>
 }
-```
-[^1]: An event related error
-[^2]: The document causing the error
-[^3]: An immediately returning non-event related error
-[^4]: The number of accepted events
+----
+
+<1> An event related error
+
+<2> The document causing the error
+
+<3> An immediately returning non-event related error
+
+<4> The number of accepted events
 
 If you're developing an agent, these errors can be useful for debugging.
 
-<div id="api-events-schema-definition"></div>
+[[api-events-schema-definition]]
 
-### Event API Schemas
+[discrete]
+[[event-api-schemas]]
+=== Event API Schemas
 
 The managed intake service uses a collection of JSON Schemas for validating requests to the intake API.

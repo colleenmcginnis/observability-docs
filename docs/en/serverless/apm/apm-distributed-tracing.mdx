@@ -1,24 +1,19 @@
----
-slug: /serverless/observability/apm-distributed-tracing
-title: Distributed tracing
-description: Understand how a single request that travels through multiple services impacts your application.
-tags: [ 'serverless', 'observability', 'how-to' ]
----
+[[apm-distributed-tracing]]
+= Distributed tracing
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
-import TabWidgetsDistributedTraceSendWidget from '../transclusion/apm/guide/tab-widgets/distributed-trace-send-widget.mdx'
-import TabWidgetsDistributedTraceReceiveWidget from '../transclusion/apm/guide/tab-widgets/distributed-trace-receive-widget.mdx'
-
-A `trace` is a group of <DocLink slug="/serverless/observability/apm-data-types">transactions</DocLink> and <DocLink slug="/serverless/observability/apm-data-types">spans</DocLink> with a common root.
+A `trace` is a group of <<apm-data-types,transactions>> and <<apm-data-types,spans>> with a common root.
 Each `trace` tracks the entirety of a single request.
 When a `trace` travels through multiple services, as is common in a microservice architecture,
 it is known as a distributed trace.
 
-## Why is distributed tracing important?
+[discrete]
+[[apm-distributed-tracing-why-is-distributed-tracing-important]]
+== Why is distributed tracing important?
 
 Distributed tracing enables you to analyze performance throughout your microservice architecture
-by tracing the entirety of a request &mdash; from the initial web request on your front-end service
+by tracing the entirety of a request — from the initial web request on your front-end service
 all the way to database queries made on your back-end services.
 
 Tracking requests as they propagate through your services provides an end-to-end picture of
@@ -28,7 +23,9 @@ service borders.
 
 For supported technologies, distributed tracing works out-of-the-box, with no additional configuration required.
 
-## How distributed tracing works
+[discrete]
+[[apm-distributed-tracing-how-distributed-tracing-works]]
+== How distributed tracing works
 
 Distributed tracing works by injecting a custom `traceparent` HTTP header into outgoing requests.
 This header includes information, like `trace-id`, which is used to identify the current trace,
@@ -40,67 +37,99 @@ If it's missing, the service starts a new trace.
 If it exists, the service ensures the current action is added as a child of the existing trace,
 and continues to propagate the trace.
 
-### Trace propagation examples
+[discrete]
+[[apm-distributed-tracing-trace-propagation-examples]]
+=== Trace propagation examples
 
 In this example, Elastic's Ruby agent communicates with Elastic's Java agent.
 Both support the `traceparent` header, and trace data is successfully propagated.
 
-![How traceparent propagation works](images/distributed-tracing/dt-trace-ex1.png)
+[role="screenshot"]
+image::images/distributed-tracing/dt-trace-ex1.png[How traceparent propagation works]
 
 In this example, Elastic's Ruby agent communicates with OpenTelemetry's Java agent.
 Both support the `traceparent` header, and trace data is successfully propagated.
 
-![How traceparent propagation works](images/distributed-tracing/dt-trace-ex2.png)
+[role="screenshot"]
+image::images/distributed-tracing/dt-trace-ex2.png[How traceparent propagation works]
 
 In this example, the trace meets a piece of middleware that doesn't propagate the `traceparent` header.
 The distributed trace ends and any further communication will result in a new trace.
 
-![How traceparent propagation works](images/distributed-tracing/dt-trace-ex3.png)
+[role="screenshot"]
+image::images/distributed-tracing/dt-trace-ex3.png[How traceparent propagation works]
 
-### W3C Trace Context specification
+[discrete]
+[[apm-distributed-tracing-w3c-trace-context-specification]]
+=== W3C Trace Context specification
 
 All Elastic agents now support the official W3C Trace Context specification and `traceparent` header.
 See the table below for the minimum required agent version:
 
-| Agent name | Agent Version |
-|---|---|
-| **Go Agent** | ≥`1.6` |
-| **Java Agent** | ≥`1.14` |
-| **.NET Agent** | ≥`1.3` |
-| **Node.js Agent** | ≥`3.4` |
-| **PHP Agent** | ≥`1.0` |
-| **Python Agent** | ≥`5.4` |
-| **Ruby Agent** | ≥`3.5` |
+|===
+| Agent name| Agent Version
 
-<DocCallOut title="Note">
+| **Go Agent**
+| ≥`1.6`
+
+| **Java Agent**
+| ≥`1.14`
+
+| **.NET Agent**
+| ≥`1.3`
+
+| **Node.js Agent**
+| ≥`3.4`
+
+| **PHP Agent**
+| ≥`1.0`
+
+| **Python Agent**
+| ≥`5.4`
+
+| **Ruby Agent**
+| ≥`3.5`
+|===
+
+[NOTE]
+====
 Older Elastic agents use a unique `elastic-apm-traceparent` header.
 For backward-compatibility purposes, new versions of Elastic agents still support this header.
-</DocCallOut>
+====
 
-## Visualize distributed tracing
+[discrete]
+[[apm-distributed-tracing-visualize-distributed-tracing]]
+== Visualize distributed tracing
 
 APM's timeline visualization provides a visual deep-dive into each of your application's traces:
 
-![Example view of the distributed tracing in Elastic APM](images/spans/apm-distributed-tracing.png)
+[role="screenshot"]
+image::images/spans/apm-distributed-tracing.png[Example view of the distributed tracing in Elastic APM]
 
-## Manual distributed tracing
+[discrete]
+[[apm-distributed-tracing-manual-distributed-tracing]]
+== Manual distributed tracing
 
 Elastic agents automatically propagate distributed tracing context for supported technologies.
 If your service communicates over a different, unsupported protocol,
 you can manually propagate distributed tracing context from a sending service to a receiving service
 with each agent's API.
 
-### Add the `traceparent` header to outgoing requests
+[discrete]
+[[apm-distributed-tracing-add-the-traceparent-header-to-outgoing-requests]]
+=== Add the `traceparent` header to outgoing requests
 
 Sending services must add the `traceparent` header to outgoing requests.
 
-<TabWidgetsDistributedTraceSendWidget />
+include::../transclusion/apm/guide/tab-widgets/distributed-trace-send-widget.asciidoc[]
 
-<div id="distributed-tracing-incoming"></div>
+[[apm-distributed-tracing-distributed-tracing-incoming]]
 
-### Parse the `traceparent` header on incoming requests
+[discrete]
+[[apm-distributed-tracing-parse-the-traceparent-header-on-incoming-requests]]
+=== Parse the `traceparent` header on incoming requests
 
 Receiving services must parse the incoming `traceparent` header,
 and start a new transaction or span as a child of the received context.
 
-<TabWidgetsDistributedTraceReceiveWidget />
+include::../transclusion/apm/guide/tab-widgets/distributed-trace-receive-widget.asciidoc[]

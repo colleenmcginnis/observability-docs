@@ -1,18 +1,20 @@
 
 
-import V2Error from '../../transclusion/apm/guide/spec/v2/error.mdx'
-
-<div id="api-error"></div>
+[[api-error]]
 
 An error or a logged error message captured by an agent occurring in a monitored service.
 
-<div id="api-error-schema"></div>
+[[api-error-schema]]
 
-#### Error Schema
+[discrete]
+[[error-schema]]
+==== Error Schema
 
 The managed intake service uses a JSON Schema to validate requests. The specification for errors is defined on
-[GitHub](https://github.com/elastic/apm-server/blob/main/docs/spec/v2/error.json) and included below.
+https://github.com/elastic/apm-server/blob/main/docs/spec/v2/error.json[GitHub] and included below.
 
-<DocAccordion buttonContent="Click to expand the schema">
-  <V2Error />
-</DocAccordion>
+[%collapsible]
+.Click to expand the schema
+=====
+include::../../transclusion/apm/guide/spec/v2/error.asciidoc[]
+=====

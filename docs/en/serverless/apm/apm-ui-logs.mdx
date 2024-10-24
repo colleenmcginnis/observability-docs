@@ -1,21 +1,16 @@
----
-slug: /serverless/observability/apm-logs
-title: Logs
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'reference' ]
----
+[[apm-logs]]
+= Logs
 
-<p><DocBadge template="technical preview" /></p>
-
-import LogOverview from '../transclusion/kibana/logs/log-overview.mdx'
+preview:[]
 
 The **Logs** tab shows contextual logs for the selected service.
 
-<LogOverview />
+include::../transclusion/kibana/logs/log-overview.asciidoc[]
 
-![Example view of the Logs tab in the Applications UI](images/logs/logs.png)
+[role="screenshot"]
+image::images/logs/logs.png[Example view of the Logs tab in the Applications UI]
 
-<DocCallOut title="Tip">
+[TIP]
+====
 Logs displayed on this page are filtered on `service.name`
-</DocCallOut>
-
+====

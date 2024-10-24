@@ -1,12 +1,10 @@
-
-
-Use ((filebeat)) to parse and ingest raw, plain-text application logs.
+Use {filebeat} to parse and ingest raw, plain-text application logs.
 
 **Requirements**
 
 * (Optional) Elastic APM agent for your programming language (for log correlation)
 * Raw, plain-text application logs stored on the file system
-* ((filebeat)) configured to monitor and capture application logs
+* {filebeat} configured to monitor and capture application logs
 
 **Pros**
 
@@ -19,4 +17,3 @@ Use ((filebeat)) to parse and ingest raw, plain-text application logs.
 * Must parse application logs to be useful—meaning writing and maintaining Grok patterns and spending CPU cycles on parsing
 * Parsing is tied to the application log format, meaning it can differ per application and needs to be maintained over time
 * Log correlation requires modifying the application log format and inject IDs in log messages
-

@@ -1,11 +1,7 @@
----
-slug: /serverless/observability/apm-find-transaction-latency-and-failure-correlations
-title: Find transaction latency and failure correlations
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'how-to' ]
----
+[[apm-find-transaction-latency-and-failure-correlations]]
+= Find transaction latency and failure correlations
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
 Correlations surface attributes of your data that are potentially correlated
 with high-latency or erroneous transactions. For example, if you are a site
@@ -18,21 +14,25 @@ address or region, is facing increased latency due to local data center issues.
 
 To find correlations:
 
-1. In your ((observability)) project, go to **Applications** → **Services**.
-1. Select a service.
-1. Select the **Transactions** tab.
-1. Select a transaction group in the **Transactions** table.
+. In your {observability} project, go to **Applications** → **Services**.
+. Select a service.
+. Select the **Transactions** tab.
+. Select a transaction group in the **Transactions** table.
 
-<DocCallOut title="Note">
-Active queries _are_ applied to correlations.
-</DocCallOut>
+[NOTE]
+====
+Active queries *are* applied to correlations.
+====
 
-## Find high transaction latency correlations
+[discrete]
+[[apm-find-transaction-latency-and-failure-correlations-find-high-transaction-latency-correlations]]
+== Find high transaction latency correlations
 
 The correlations on the **Latency correlations** tab help you discover which
 attributes are contributing to increased transaction latency.
 
-![APM latency correlations](images/transactions/correlations-hover.png)
+[role="screenshot"]
+image::images/transactions/correlations-hover.png[APM latency correlations]
 
 The progress bar indicates the status of the asynchronous analysis, which
 performs statistical searches across a large number of attributes. For large
@@ -51,10 +51,9 @@ for other attributes, select their row in the table.
 If a correlated attribute seems noteworthy, use the **Filter** quick links:
 
 * `+` creates a new query in the Applications UI for filtering transactions containing
-    the selected value.
-
+the selected value.
 * `-` creates a new query in the Applications UI to filter out transactions containing
-    the selected value.
+the selected value.
 
 You can also click the icon beside the field name to view and filter its most
 popular values.
@@ -65,14 +64,16 @@ the `+` filter in the appropriate row of the table, it creates a new query in
 the Applications UI for transactions with this attribute. With the "noise" now
 filtered out, you can begin viewing sample traces to continue your investigation.
 
-<div id="correlations-error-rate"></div>
+[[apm-find-transaction-latency-and-failure-correlations-correlations-error-rate]]
 
-## Find failed transaction correlations
+[discrete]
+[[apm-find-transaction-latency-and-failure-correlations-find-failed-transaction-correlations]]
+== Find failed transaction correlations
 
 The correlations on the **Failed transaction correlations** tab help you discover
 which attributes are most influential in distinguishing between transaction
 failures and successes. In this context, the success or failure of a transaction
-is determined by its [event.outcome](((ecs-ref))/ecs-event.html#field-event-outcome)
+is determined by its {ecs-ref}/ecs-event.html#field-event-outcome[event.outcome]
 value. For example, APM agents set the `event.outcome` to `failure` when an HTTP
 transaction returns a `5xx` status code.
 
@@ -88,11 +89,11 @@ table.
 For example, in the screenshot below, there are attributes such as a specific
 node and pod name that have medium impact on the failed transactions.
 
-![Failed transaction correlations](images/correlations/correlations-failed-transactions.png)
+[role="screenshot"]
+image::images/correlations/correlations-failed-transactions.png[Failed transaction correlations]
 
 Select the `+` filter to create a new query in the Applications UI for transactions
 with one or more of these attributes. If you are unfamiliar with a field, click
 the icon beside its name to view its most popular values and optionally filter
 on those values too. Each time that you add another attribute, it is filtering
 out more and more noise and bringing you closer to a diagnosis.
-

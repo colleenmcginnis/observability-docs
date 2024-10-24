@@ -1,79 +1,96 @@
-{/* Comes from sandbox.elastic.dev/test-books/apm/guide/transclusion/tab-widgets/install-agents/ruby.mdx */}
+// Comes from sandbox.elastic.dev/test-books/apm/guide/transclusion/tab-widgets/install-agents/ruby.mdx
 
-**1. Install the ((apm-agent))**
+**1. Install the {apm-agent}**
 
 Add the agent to your Gemfile.
 
-```ruby
+[source,ruby]
+----
 gem 'elastic-apm'
-```
+----
 
 **2. Configure the agent**
 
-<DocTabs>
-  <DocTab name="Ruby on Rails">
-    APM is automatically started when your app boots.
-    Configure the agent by creating the config file `config/elastic_apm.yml`:
+++++
+<div class="tabs" data-tab-group="transclusion-apm-guide-install-agents-ruby">
+  <div role="tablist" aria-label="transclusion-apm-guide-install-agents-ruby">
+    <button role="tab" aria-selected="true" aria-controls="transclusion-apm-guide-install-agents-ruby-ruby-on-rails-panel" id="transclusion-apm-guide-install-agents-ruby-ruby-on-rails-button">
+      Ruby on Rails
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-apm-guide-install-agents-ruby-rack-panel" id="transclusion-apm-guide-install-agents-ruby-rack-button" tabindex="-1">
+      Rack
+    </button>
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-apm-guide-install-agents-ruby-ruby-on-rails-panel" aria-labelledby="transclusion-apm-guide-install-agents-ruby-ruby-on-rails-button">
+++++
+APM is automatically started when your app boots.
+Configure the agent by creating the config file `config/elastic_apm.yml`:
 
-    ```ruby
-    # config/elastic_apm.yml:
+[source,ruby]
+----
+. config/elastic_apm.yml:
 
-    # Set service name - allowed characters: a-z, A-Z, 0-9, -, _ and space
-    # Defaults to the name of your Rails app
-    service_name: 'my-service'
+. Set service name - allowed characters: a-z, A-Z, 0-9, -, _ and space
+. Defaults to the name of your Rails app
+service_name: 'my-service'
 
-    # Use if APM integration requires a token
-    secret_token: ''
+. Use if APM integration requires a token
+secret_token: ''
 
-    # Set custom APM integration host and port (default: http://localhost:8200)
-    server_url: 'http://localhost:8200'
-    ```
+. Set custom APM integration host and port (default: http://localhost:8200)
+server_url: 'http://localhost:8200'
+----
 
-  </DocTab>
-  <DocTab name="Rack">
-    For Rack or a compatible framework, like Sinatra, include the middleware in your app and start the agent.
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-apm-guide-install-agents-ruby-rack-panel" aria-labelledby="transclusion-apm-guide-install-agents-ruby-rack-button" hidden="">
+++++
+For Rack or a compatible framework, like Sinatra, include the middleware in your app and start the agent.
 
-    ```ruby
-    # config.ru
+[source,ruby]
+----
+. config.ru
 
-    app = lambda do |env|
-      [200, {'Content-Type' => 'text/plain'}, ['ok']]
-    end
+app = lambda do |env|
+  [200, {'Content-Type' => 'text/plain'}, ['ok']]
+end
 
-    # Wraps all requests in transactions and reports exceptions
-    use ElasticAPM::Middleware
+. Wraps all requests in transactions and reports exceptions
+use ElasticAPM::Middleware
 
-    # Start an instance of the Agent
-    ElasticAPM.start(service_name: 'NothingButRack')
+. Start an instance of the Agent
+ElasticAPM.start(service_name: 'NothingButRack')
 
-    run app
+run app
 
-    # Gracefully stop the agent when process exits.
-    # Makes sure any pending transactions are sent.
-    at_exit { ElasticAPM.stop }
-    ```
+. Gracefully stop the agent when process exits.
+. Makes sure any pending transactions are sent.
+at_exit { ElasticAPM.stop }
+----
 
-    Create a config file `config/elastic_apm.yml`:
+Create a config file `config/elastic_apm.yml`:
 
-    ```ruby
-    # config/elastic_apm.yml:
+[source,ruby]
+----
+. config/elastic_apm.yml:
 
-    # Set service name - allowed characters: a-z, A-Z, 0-9, -, _ and space
-    # Defaults to the name of your Rack app's class.
-    service_name: 'my-service'
+. Set service name - allowed characters: a-z, A-Z, 0-9, -, _ and space
+. Defaults to the name of your Rack app's class.
+service_name: 'my-service'
 
-    # Use if APM integration requires a token
-    secret_token: ''
+. Use if APM integration requires a token
+secret_token: ''
 
-    # Set custom APM integration host and port (default: http://localhost:8200)
-    server_url: 'http://localhost:8200'
-    ```
+. Set custom APM integration host and port (default: http://localhost:8200)
+server_url: 'http://localhost:8200'
+----
 
-  </DocTab>
-</DocTabs>
+++++
+  </div>
+</div>
+++++
 
+**Learn more in the {apm-agent} reference**
 
-**Learn more in the ((apm-agent)) reference**
-
-* [Supported technologies](((apm-ruby-ref))/supported-technologies.html)
-* [Advanced configuration](((apm-ruby-ref))/configuration.html)
+* {apm-ruby-ref}/supported-technologies.html[Supported technologies]
+* {apm-ruby-ref}/configuration.html[Advanced configuration]

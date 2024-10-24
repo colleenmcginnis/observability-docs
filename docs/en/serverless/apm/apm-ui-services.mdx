@@ -1,54 +1,61 @@
----
-slug: /serverless/observability/apm-services
-title: Services
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'reference' ]
----
+[[apm-services]]
+= Services
 
-<p><DocBadge template="technical preview" /></p>
-
-import FeatureBeta from '../partials/feature-beta.mdx'
+preview:[]
 
 The **Services** inventory provides a quick, high-level overview of the health and general
 performance of all instrumented services.
 
 To help surface potential issues, services are sorted by their health status:
 **critical** → **warning** → **healthy** → **unknown**.
-Health status is powered by <DocLink slug="/serverless/observability/apm-integrate-with-machine-learning">machine learning</DocLink>
+Health status is powered by <<apm-integrate-with-machine-learning,machine learning>>
 and requires anomaly detection to be enabled.
 
 In addition to health status, active alerts for each service are prominently displayed in the service inventory table. Selecting an active alert badge brings you to the **Alerts** tab where you can learn more about the active alert and take action.
 
-![Example view of services table the Applications UI](images/services/apm-services-overview.png)
+[role="screenshot"]
+image::images/services/apm-services-overview.png[Example view of services table the Applications UI]
 
-## Service groups
+[discrete]
+[[apm-services-service-groups]]
+== Service groups
 
-import Roles from '../partials/roles.mdx'
+:role: Editor
+:goal: create and manage service groups
+include::../partials/roles.asciidoc[]
+:role!:
 
-<Roles role="Editor" goal="create and manage service groups" />
+:goal!:
 
-<FeatureBeta feature="Service grouping" />
+:feature: Service grouping
+include::../partials/feature-beta.asciidoc[]
+:feature!:
 
 Group services together to build meaningful views that remove noise, simplify investigations across services,
 and combine related alerts.
 
-{/* This screenshot is reused in the alerts docs */}
-{/* Ensure it has an active alert showing */}
-![Example view of service group in the Applications UI](images/services/apm-service-group.png)
+// This screenshot is reused in the alerts docs
+
+// Ensure it has an active alert showing
+
+[role="screenshot"]
+image::images/services/apm-service-group.png[Example view of service group in the Applications UI]
 
 To create a service group:
 
-1. In your ((observability)) project, go to **Applications** → **Services**.
-1. Switch to **Service groups**.
-1. Click **Create group**.
-1. Specify a name, color, and description.
-1. Click **Select services**.
-1. Specify a [Kibana Query Language (KQL)](((kibana-ref))/kuery-query.html) query to filter services
-  by one or more of the following dimensions: `agent.name`, `service.name`, `service.language.name`,
-  `service.environment`, `labels.<xyz>`. Services that match the query within the last 24 hours will
-  be assigned to the group.
+. In your {observability} project, go to **Applications** → **Services**.
+. Switch to **Service groups**.
+. Click **Create group**.
+. Specify a name, color, and description.
+. Click **Select services**.
+. Specify a {kibana-ref}/kuery-query.html[Kibana Query Language (KQL)] query to filter services
+by one or more of the following dimensions: `agent.name`, `service.name`, `service.language.name`,
+`service.environment`, `labels.<xyz>`. Services that match the query within the last 24 hours will
+be assigned to the group.
 
-### Examples
+[discrete]
+[[apm-services-examples]]
+=== Examples
 
 Not sure where to get started? Here are some sample queries you can build from:
 

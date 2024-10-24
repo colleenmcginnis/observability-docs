@@ -1,20 +1,17 @@
----
-slug: /serverless/observability/apm-infrastructure
-title: Infrastructure
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'reference' ]
----
+[[apm-infrastructure]]
+= Infrastructure
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
-import FeatureBeta from '../partials/feature-beta.mdx'
-
-<FeatureBeta feature="Applications UI Infrastructure" />
+:feature: Applications UI Infrastructure
+include::../partials/feature-beta.asciidoc[]
+:feature!:
 
 The **Infrastructure** tab provides information about the containers, pods, and hosts
 that the selected service is linked to.
 
-![Example view of the Infrastructure tab in the Applications UI](images/infrastructure/infra.png)
+[role="screenshot"]
+image::images/infrastructure/infra.png[Example view of the Infrastructure tab in the Applications UI]
 
 IT ops and software reliability engineers (SREs) can use this tab
 to quickly find a service's underlying infrastructure resources when debugging a problem.

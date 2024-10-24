@@ -1,32 +1,34 @@
----
-slug: /serverless/observability/filter-and-aggregate-logs
-title: Filter and aggregate logs
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'how-to' ]
----
+[[filter-and-aggregate-logs]]
+= Filter and aggregate logs
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
 Filter and aggregate your log data to find specific information, gain insight, and monitor your systems more efficiently. You can filter and aggregate based on structured fields like timestamps, log levels, and IP addresses that you've extracted from your log data.
 
 This guide shows you how to:
 
-* <DocLink slug="/serverless/observability/filter-and-aggregate-logs" section="filter-logs">Filter logs</DocLink>: Narrow down your log data by applying specific criteria.
-* <DocLink slug="/serverless/observability/filter-and-aggregate-logs" section="aggregate-logs">Aggregate logs</DocLink>: Analyze and summarize data to find patterns and gain insight.
+* <<filter-and-aggregate-logs-filter-logs,Filter logs>>: Narrow down your log data by applying specific criteria.
+* <<filter-and-aggregate-logs-aggregate-logs,Aggregate logs>>: Analyze and summarize data to find patterns and gain insight.
 
-<div id="logs-filter-and-aggregate-prereq"></div>
+[[filter-and-aggregate-logs-logs-filter-and-aggregate-prereq]]
 
-## Before you get started
+[discrete]
+[[filter-and-aggregate-logs-before-you-get-started]]
+== Before you get started
 
-import Roles from '../partials/roles.mdx'
+:role: Admin
+:goal: create ingest pipelines and set the index template
+include::../partials/roles.asciidoc[]
+:role!:
 
-<Roles role="Admin" goal="create ingest pipelines and set the index template" />
+:goal!:
 
-The examples on this page use the following ingest pipeline and index template, which you can set in **Developer Tools**. If you haven't used ingest pipelines and index templates to parse your log data and extract structured fields yet, start with the <DocLink slug="/serverless/observability/parse-log-data">Parse and organize logs</DocLink> documentation.
+The examples on this page use the following ingest pipeline and index template, which you can set in **Developer Tools**. If you haven't used ingest pipelines and index templates to parse your log data and extract structured fields yet, start with the <<parse-log-data,Parse and organize logs>> documentation.
 
 Set the ingest pipeline with the following command:
 
-```console
+[source,console]
+----
 PUT _ingest/pipeline/logs-example-default
 {
   "description": "Extracts the timestamp log level and host ip",
@@ -39,11 +41,12 @@ PUT _ingest/pipeline/logs-example-default
     }
   ]
 }
-```
+----
 
 Set the index template with the following command:
 
-```console
+[source,console]
+----
 PUT _index_template/logs-example-default-template
 {
   "index_patterns": [ "logs-example-*" ],
@@ -57,37 +60,42 @@ PUT _index_template/logs-example-default-template
   "composed_of": [
     "logs-mappings",
     "logs-settings",
-    "logs@custom",
-    "ecs@dynamic_templates"
+    "logs.custom",
+    "ecs.dynamic_templates"
   ],
-  "ignore_missing_component_templates": ["logs@custom"]
+  "ignore_missing_component_templates": ["logs.custom"]
 }
-```
+----
 
-<div id="logs-filter"></div>
+[[filter-and-aggregate-logs-logs-filter]]
 
-## Filter logs
+[discrete]
+[[filter-and-aggregate-logs-filter-logs]]
+== Filter logs
 
 Filter your data using the fields you've extracted so you can focus on log data with specific log levels, timestamp ranges, or host IPs. You can filter your log data in different ways:
 
-- <DocLink slug="/serverless/observability/filter-and-aggregate-logs" section="filter-logs-in-logs-explorer">Filter logs in Logs Explorer</DocLink>: Filter and visualize log data in Logs Explorer.
-- <DocLink slug="/serverless/observability/filter-and-aggregate-logs" section="filter-logs-with-query-dsl">Filter logs with Query DSL</DocLink>: Filter log data from Developer Tools using Query DSL.
+* <<filter-and-aggregate-logs-filter-logs-in-logs-explorer,Filter logs in Logs Explorer>>: Filter and visualize log data in Logs Explorer.
+* <<filter-and-aggregate-logs-filter-logs-with-query-dsl,Filter logs with Query DSL>>: Filter log data from Developer Tools using Query DSL.
 
-<div id="logs-filter-logs-explorer"></div>
+[[filter-and-aggregate-logs-logs-filter-logs-explorer]]
 
-### Filter logs in Logs Explorer
+[discrete]
+[[filter-and-aggregate-logs-filter-logs-in-logs-explorer]]
+=== Filter logs in Logs Explorer
 
 Logs Explorer is a tool that automatically provides views of your log data based on integrations and data streams. To open Logs Explorer, go to **Discover** and select the **Logs Explorer** tab.
 
-From Logs Explorer, you can use the [((kib)) Query Language (KQL)](((kibana-ref))/kuery-query.html) in the search bar to narrow down the log data that's displayed.
+From Logs Explorer, you can use the {kibana-ref}/kuery-query.html[{kib} Query Language (KQL)] in the search bar to narrow down the log data that's displayed.
 For example, you might want to look into an event that occurred within a specific time range.
 
 Add some logs with varying timestamps and log levels to your data stream:
 
-1. In your Observability project, go to **Developer Tools**.
-1. In the **Console** tab, run the following command:
+. In your Observability project, go to **Developer Tools**.
+. In the **Console** tab, run the following command:
 
-```console
+[source,console]
+----
 POST logs-example-default/_bulk
 { "create": {} }
 { "message": "2023-09-15T08:15:20.234Z WARN 192.168.1.101 Disk usage exceeds 90%." }
@@ -97,41 +105,46 @@ POST logs-example-default/_bulk
 { "message": "2023-09-10T14:20:45.789Z ERROR 192.168.1.105 Database connection lost." }
 { "create": {} }
 { "message": "2023-09-20T09:40:32.345Z INFO 192.168.1.106 User logout initiated." }
-```
+----
 
 For this example, let's look for logs with a `WARN` or `ERROR` log level that occurred on September 14th or 15th. From Logs Explorer:
 
-1. Add the following KQL query in the search bar to filter for logs with log levels of `WARN` or `ERROR`:
-
-    ```text
-    log.level: ("ERROR" or "WARN")
-    ```
-
-1. Click the current time range, select **Absolute**, and set the **Start date** to `Sep 14, 2023 @ 00:00:00.000`.
-
-    <DocImage size="l" url="../images/logs-start-date.png" alt="Set the time range start date" />
-
-1. Click the end of the current time range, select **Absolute**, and set the **End date** to `Sep 15, 2023 @ 23:59:59.999`.
-
-    <DocImage size="l" url="../images/logs-end-date.png" alt="Set the time range end date" />
+. Add the following KQL query in the search bar to filter for logs with log levels of `WARN` or `ERROR`:
++
+[source,text]
+----
+log.level: ("ERROR" or "WARN")
+----
+. Click the current time range, select **Absolute**, and set the **Start date** to `Sep 14, 2023 @ 00:00:00.000`.
++
+[role="screenshot"]
+image:images/logs-start-date.png[Set the time range start date]
+. Click the end of the current time range, select **Absolute**, and set the **End date** to `Sep 15, 2023 @ 23:59:59.999`.
++
+[role="screenshot"]
+image:images/logs-end-date.png[Set the time range end date]
 
 Under the **Documents** tab, you'll see the filtered log data matching your query.
 
-![](../images/logs-kql-filter.png)
+[role="screenshot"]
+image::images/logs-kql-filter.png[]
 
-For more on using Logs Explorer, refer to the [Discover](((kibana-ref))/discover.html) documentation.
+For more on using Logs Explorer, refer to the {kibana-ref}/discover.html[Discover] documentation.
 
-<div id="logs-filter-qdsl"></div>
+[[filter-and-aggregate-logs-logs-filter-qdsl]]
 
-### Filter logs with Query DSL
+[discrete]
+[[filter-and-aggregate-logs-filter-logs-with-query-dsl]]
+=== Filter logs with Query DSL
 
-[Query DSL](((ref))/query-dsl.html) is a JSON-based language that sends requests and retrieves data from indices and data streams. You can filter your log data using Query DSL from **Developer Tools**.
+{ref}/query-dsl.html[Query DSL] is a JSON-based language that sends requests and retrieves data from indices and data streams. You can filter your log data using Query DSL from **Developer Tools**.
 
-For example, you might want to troubleshoot an issue that happened on a specific date or at a specific time. To do this, use a boolean query with a [range query](((ref))/query-dsl-range-query.html) to filter for the specific timestamp range and a [term query](((ref))/query-dsl-term-query.html) to filter for `WARN` and `ERROR` log levels.
+For example, you might want to troubleshoot an issue that happened on a specific date or at a specific time. To do this, use a boolean query with a {ref}/query-dsl-range-query.html[range query] to filter for the specific timestamp range and a {ref}/query-dsl-term-query.html[term query] to filter for `WARN` and `ERROR` log levels.
 
 First, from **Developer Tools**, add some logs with varying timestamps and log levels to your data stream with the following command:
 
-```console
+[source,console]
+----
 POST logs-example-default/_bulk
 { "create": {} }
 { "message": "2023-09-15T08:15:20.234Z WARN 192.168.1.101 Disk usage exceeds 90%." }
@@ -141,11 +154,12 @@ POST logs-example-default/_bulk
 { "message": "2023-09-10T14:20:45.789Z ERROR 192.168.1.105 Database connection lost." }
 { "create": {} }
 { "message": "2023-09-20T09:40:32.345Z INFO 192.168.1.106 User logout initiated." }
-```
+----
 
 Let's say you want to look into an event that occurred between September 14th and 15th. The following boolean query filters for logs with timestamps during those days that also have a log level of `ERROR` or `WARN`.
 
-```console
+[source,console]
+----
 POST /logs-example-default/_search
 {
   "query": {
@@ -168,11 +182,12 @@ POST /logs-example-default/_search
     }
   }
 }
-```
+----
 
 The filtered results should show `WARN` and `ERROR` logs that occurred within the timestamp range:
 
-```JSON
+[source,JSON]
+----
 {
   ...
   "hits": {
@@ -205,18 +220,22 @@ The filtered results should show `WARN` and `ERROR` logs that occurred within th
     ]
   }
 }
-```
+----
 
-<div id="logs-aggregate"></div>
+[[filter-and-aggregate-logs-logs-aggregate]]
 
-## Aggregate logs
-Use aggregation to analyze and summarize your log data to find patterns and gain insight. [Bucket aggregations](((ref))/search-aggregations-bucket.html) organize log data into meaningful groups making it easier to identify patterns, trends, and anomalies within your logs.
+[discrete]
+[[filter-and-aggregate-logs-aggregate-logs]]
+== Aggregate logs
+
+Use aggregation to analyze and summarize your log data to find patterns and gain insight. {ref}/search-aggregations-bucket.html[Bucket aggregations] organize log data into meaningful groups making it easier to identify patterns, trends, and anomalies within your logs.
 
 For example, you might want to understand error distribution by analyzing the count of logs per log level.
 
 First, from **Developer Tools**, add some logs with varying log levels to your data stream using the following command:
 
-```console
+[source,console]
+----
 POST logs-example-default/_bulk
 { "create": {} }
 { "message": "2023-09-15T08:15:20.234Z WARN 192.168.1.101 Disk usage exceeds 90%." }
@@ -232,14 +251,15 @@ POST logs-example-default/_bulk
 { "message": "2023-09-20T09:40:32.345Z INFO 192.168.1.106 User logout initiated." }
 { "create": {} }
 { "message": "2023-09-21T15:20:55.678Z DEBUG 192.168.1.102 Database connection established." }
-```
+----
 
 Next, run this command to aggregate your log data using the `log.level` field:
 
-```console
-POST logs-example-default/_search?size=0&filter_path=aggregations
+[source,console]
+----
+POST logs-example-default/_search?size=0.filter_path=aggregations
 {
-"size": 0, [^1]
+"size": 0,  <1>
 "aggs": {
     "log_level_distribution": {
       "terms": {
@@ -248,12 +268,14 @@ POST logs-example-default/_search?size=0&filter_path=aggregations
     }
   }
 }
-```
-[^1]: Searches with an aggregation return both the query results and the aggregation, so you would see the logs matching the data and the aggregation. Setting `size` to `0` limits the results to aggregations.
+----
+
+<1> Searches with an aggregation return both the query results and the aggregation, so you would see the logs matching the data and the aggregation. Setting `size` to `0` limits the results to aggregations.
 
 The results should show the number of logs in each log level:
 
-```JSON
+[source,JSON]
+----
 {
   "aggregations": {
     "error_distribution": {
@@ -280,11 +302,12 @@ The results should show the number of logs in each log level:
     }
   }
 }
-```
+----
 
 You can also combine aggregations and queries. For example, you might want to limit the scope of the previous aggregation by adding a range query:
 
-```console
+[source,console]
+----
 GET /logs-example-default/_search
 {
   "size": 0,
@@ -304,11 +327,12 @@ GET /logs-example-default/_search
     }
   }
 }
-```
+----
 
 The results should show an aggregate of logs that occurred within your timestamp range:
 
-```JSON
+[source,JSON]
+----
 {
   ...
   "hits": {
@@ -336,6 +360,6 @@ The results should show an aggregate of logs that occurred within your timestamp
     }
   }
 }
-```
+----
 
-For more on aggregation types and available aggregations, refer to the [Aggregations](((ref))/search-aggregations.html) documentation.
+For more on aggregation types and available aggregations, refer to the {ref}/search-aggregations.html[Aggregations] documentation.

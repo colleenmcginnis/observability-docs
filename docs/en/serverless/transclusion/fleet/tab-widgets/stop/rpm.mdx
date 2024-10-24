@@ -1,23 +1,25 @@
-
-
 The RPM package includes a service unit for Linux systems with systemd. On these
-systems, you can manage ((agent)) by using the usual systemd commands.
+systems, you can manage {agent} by using the usual systemd commands.
 
-{/* tag::stop-command[] */}
+// tag::stop-command[]
+
 Use `systemctl` to stop the agent:
 
-```shell
+[source,shell]
+----
 sudo systemctl stop elastic-agent
-```
+----
 
 Otherwise, use:
 
-```shell
+[source,shell]
+----
 sudo service elastic-agent stop
-```
+----
 
-<DocCallOut title="Note">
-((agent)) will restart automatically if the system is rebooted.
-</DocCallOut>
+[NOTE]
+====
+{agent} will restart automatically if the system is rebooted.
+====
 
-{/* end::stop-command[] */}
+// end::stop-command[]

@@ -1,5 +1,3 @@
-
-
 Elastic Common Schema (ECS) loggers format your logs into ECS-compatible JSON,
 removing the need to manually parse logs.
 
@@ -7,12 +5,12 @@ removing the need to manually parse logs.
 
 * (Optional) Elastic APM agent for your programming language (for log correlation)
 * The Elastic ECS logger for your language or framework
-* ((filebeat)) configured to monitor and capture application logs
+* {filebeat} configured to monitor and capture application logs
 
 **Pros**
 
 * Popular logging frameworks supported
-* Simplicity: no manual parsing with ((filebeat)), and a configuration can be reused across applications
+* Simplicity: no manual parsing with {filebeat}, and a configuration can be reused across applications
 * Decently human-readable JSON structure
 * APM log correlation
 * Resilient in case of outages
@@ -21,4 +19,3 @@ removing the need to manually parse logs.
 
 * Not all frameworks are supported
 * Requires modification of the application and its log configuration
-

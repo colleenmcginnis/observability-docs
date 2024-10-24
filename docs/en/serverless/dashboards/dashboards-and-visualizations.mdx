@@ -1,21 +1,18 @@
----
-slug: /serverless/observability/dashboards
-title: Dashboards
-description: Visualize your observability data using pre-built dashboards or create your own.
-tags: [ 'serverless', 'observability', 'overview' ]
----
+[[dashboards]]
+= Dashboards
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
 Elastic provides a wide range of pre-built dashboards for visualizing observability data from a variety of sources.
-These dashboards are loaded automatically when you install [Elastic integrations](https://docs.elastic.co/integrations).
+These dashboards are loaded automatically when you install https://docs.elastic.co/integrations[Elastic integrations].
 
 You can also create new dashboards and visualizations based on your data views to get a full picture of your data.
 
 In your Observability project, go to **Dashboards** to see installed dashboards or create your own.
 This example shows dashboards loaded by the System integration:
 
-![Screenshot showing list of System dashboards](../images/dashboards.png)
+[role="screenshot"]
+image::images/dashboards.png[Screenshot showing list of System dashboards]
 
 Notice you can filter the list of dashboards:
 
@@ -23,7 +20,9 @@ Notice you can filter the list of dashboards:
 * Use the **Tags** menu to filter by tag. To create a new tag or edit existing tags, click **Manage tags**.
 * Click a dashboard's tags to toggle filtering for each tag.
 
-## Create new dashboards
+[discrete]
+[[dashboards-create-new-dashboards]]
+== Create new dashboards
 
 To create a new dashboard, click **Create Dashboard** and begin adding visualizations.
 You can create charts, graphs, maps, tables, and other types of visualizations from your data,
@@ -33,12 +32,12 @@ You can also add other types of panels — such as filters, links, and text — 
 controls like time sliders.
 
 For more information about creating dashboards,
-refer to [Create your first dashboard](((kibana-ref))/create-a-dashboard-of-panels-with-web-server-data.html).
+refer to {kibana-ref}/create-a-dashboard-of-panels-with-web-server-data.html[Create your first dashboard].
 
-<DocCallOut title="Note">
-    The tutorial about creating your first dashboard is written for ((kib)) users,
-    but the steps for serverless are very similar.
-    To load the sample data in serverless, go to **Project Settings** → **Integrations** in the navigation pane,
-    then search for "sample data".
-</DocCallOut>
-
+[NOTE]
+====
+The tutorial about creating your first dashboard is written for {kib} users,
+but the steps for serverless are very similar.
+To load the sample data in serverless, go to **Project Settings** → **Integrations** in the navigation pane,
+then search for "sample data".
+====

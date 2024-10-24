@@ -1,11 +1,7 @@
----
-slug: /serverless/observability/apm-agents-opentelemetry-resource-attributes
-title: Resource attributes
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'how-to' ]
----
+[[apm-agents-opentelemetry-resource-attributes]]
+= Resource attributes
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
 A resource attribute is a key/value pair containing information about the entity producing telemetry.
 Resource attributes are mapped to Elastic Common Schema (ECS) fields like `service.*`, `cloud.*`, `process.*`, etc.
@@ -19,15 +15,17 @@ the ECS `service.environment` field on ingestion.
 
 Use the `OTEL_RESOURCE_ATTRIBUTES` environment variable to pass resource attributes at process invocation.
 
-```bash
+[source,bash]
+----
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=production
-```
+----
 
 **OpenTelemetry collector**
 
-Use the [resource processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourceprocessor) to set or apply changes to resource attributes.
+Use the https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourceprocessor[resource processor] to set or apply changes to resource attributes.
 
-```yaml
+[source,yaml]
+----
 ...
 processors:
   resource:
@@ -36,13 +34,11 @@ processors:
       action: insert
       value: production
 ...
-```
+----
 
-<DocCallOut title="Tip">
-
+[TIP]
+====
 Need to add event attributes instead?
 Use attributes—not to be confused with resource attributes—to add data to span, log, or metric events.
-Attributes can be added as a part of the OpenTelemetry instrumentation process or with the [attributes processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor).
-
-</DocCallOut>
-
+Attributes can be added as a part of the OpenTelemetry instrumentation process or with the https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor[attributes processor].
+====

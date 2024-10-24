@@ -1,9 +1,11 @@
-```shell
+[source,shell]
+----
 sudo service filebeat start
-```
+----
 
-<DocCallOut title="Note">
-If you use an init.d script to start ((filebeat)), you can't specify command line flags (refer to [Command reference](((filebeat-ref))/command-line-options.html)). To specify flags, start ((filebeat)) in the foreground.
-</DocCallOut>
+[NOTE]
+====
+If you use an init.d script to start {filebeat}, you can't specify command line flags (refer to {filebeat-ref}/command-line-options.html[Command reference]). To specify flags, start {filebeat} in the foreground.
+====
 
-Also, refer to [((filebeat)) and systemd](((filebeat-ref))/running-with-systemd.html).
+Also, refer to {filebeat-ref}/running-with-systemd.html[{filebeat} and systemd].

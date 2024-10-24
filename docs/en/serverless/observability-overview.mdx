@@ -1,49 +1,50 @@
----
-slug: /serverless/observability/serverless-observability-overview
-title: Observability overview
-description: Learn how to accelerate problem resolution with open, flexible, and unified observability powered by advanced machine learning and analytics.
-tags: [ 'serverless', 'observability', 'overview' ]
----
+[[serverless-observability-overview]]
+= Observability overview
 
-<p><DocBadge template="technical preview" /></p> 
+preview:[]
 
-<div id="observability-introduction"></div>
+[[serverless-observability-overview-observability-introduction]]
 
-((observability)) provides granular insights and context into the behavior of applications running in your environments.
-It's an important part of any system that you build and want to monitor. 
+{observability} provides granular insights and context into the behavior of applications running in your environments.
+It's an important part of any system that you build and want to monitor.
 Being able to detect and fix root cause events quickly within an observable system is a minimum requirement for any analyst.
 
-Elastic ((observability)) provides a single stack to unify your logs, metrics, and application traces.
+Elastic {observability} provides a single stack to unify your logs, metrics, and application traces.
 Ingest your data directly to your Observability project, where you can further process and enhance the data,
 before visualizing it and adding alerts.
 
-<DocImage size="xl" flatImage url="./images/serverless-capabilities.svg" alt="Elastic ((observability)) overview diagram"/>
+image::images/serverless-capabilities.svg[Elastic {observability} overview diagram]
 
-<div id="apm-overview"></div>
+[[serverless-observability-overview-apm-overview]]
 
-## Log monitoring
+[discrete]
+[[serverless-observability-overview-log-monitoring]]
+== Log monitoring
 
 Analyze log data from your hosts, services, Kubernetes, Apache, and many more.
 
 In **Logs Explorer** (powered by Discover), you can quickly search and filter your log data,
 get information about the structure of the fields, and display your findings in a visualization.
 
-![Logs Explorer showing log events](images/log-explorer-overview.png)
+[role="screenshot"]
+image::images/log-explorer-overview.png[Logs Explorer showing log events]
 
-<DocLink slug="/serverless/observability/log-monitoring">Learn more about log monitoring →</DocLink>
+<<log-monitoring,Learn more about log monitoring →>>
 
-<div id="synthetic-monitoring-overview"></div>
+[[serverless-observability-overview-synthetic-monitoring-overview]]
 
-{/* RUM is not supported for this release. */}
+// RUM is not supported for this release.
 
-{/* Synthetic monitoring is not supported for this release. */}
+// Synthetic monitoring is not supported for this release.
 
-{/* Universal Profiling is not supported for this release. */}
+// Universal Profiling is not supported for this release.
 
-## Application performance monitoring (APM)
+[discrete]
+[[serverless-observability-overview-application-performance-monitoring-apm]]
+== Application performance monitoring (APM)
 
 Instrument your code and collect performance data and errors at runtime by installing APM agents like Java, Go, .NET, and many more.
-Then use ((observability)) to monitor your software services and applications in real time:
+Then use {observability} to monitor your software services and applications in real time:
 
 * Visualize detailed performance information on your services.
 * Identify and analyze errors.
@@ -51,13 +52,16 @@ Then use ((observability)) to monitor your software services and applications in
 
 The **Service** inventory provides a quick, high-level overview of the health and general performance of all instrumented services.
 
-![Service inventory showing health and performance of instrumented services](images/services-inventory.png)
+[role="screenshot"]
+image::images/services-inventory.png[Service inventory showing health and performance of instrumented services]
 
-<DocLink slug="/serverless/observability/apm">Learn more about Application performance monitoring (APM) →</DocLink>
+<<apm,Learn more about Application performance monitoring (APM) →>>
 
-<div id="metrics-overview"></div>
+[[serverless-observability-overview-metrics-overview]]
 
-## Infrastructure monitoring
+[discrete]
+[[serverless-observability-overview-infrastructure-monitoring]]
+== Infrastructure monitoring
 
 Monitor system and service metrics from your servers, Docker, Kubernetes, Prometheus, and other services and applications.
 
@@ -65,39 +69,48 @@ The **Infrastructure** UI provides a couple ways to view and analyze metrics acr
 
 The **Inventory** page provides a view of your infrastructure grouped by resource type.
 
-![((infrastructure-app)) in ((kib))](images/metrics-app.png)
+[role="screenshot"]
+image::images/metrics-app.png[{infrastructure-app} in {kib}]
 
 The **Hosts** page provides a dashboard-like view of your infrastructure and is backed by an easy-to-use interface called Lens.
 
-![Screenshot of the Hosts page](images/hosts.png)
+[role="screenshot"]
+image::images/hosts.png[Screenshot of the Hosts page]
 
 From either page, you can view health and performance metrics to get visibility into the overall health of your infrastructure.
 You can also drill down into details about a specific host, including performance metrics, host metadata, running processes,
 and logs.
 
-<DocLink slug="/serverless/observability/infrastructure-monitoring">Learn more about infrastructure monitoring → </DocLink>
+<<infrastructure-monitoring,Learn more about infrastructure monitoring → >>
 
-## Synthetic monitoring
+[discrete]
+[[serverless-observability-overview-synthetic-monitoring]]
+== Synthetic monitoring
 
 Simulate actions and requests that an end user would perform on your site at predefined intervals and in a controlled environment.
 The end result is rich, consistent, and repeatable data that you can trend and alert on.
 
-For more information, see <DocLink slug="/serverless/observability/monitor-synthetics">Synthetic monitoring</DocLink>.
+For more information, see <<monitor-synthetics,Synthetic monitoring>>.
 
-## Alerting
+[discrete]
+[[serverless-observability-overview-alerting]]
+== Alerting
 
-Stay aware of potential issues in your environments with ((observability))’s alerting
+Stay aware of potential issues in your environments with {observability}’s alerting
 and actions feature that integrates with log monitoring and APM.
 It provides a set of built-in actions and specific threshold rules
 and enables central management of all rules.
 
 On the **Alerts** page, the **Alerts** table provides a snapshot of alerts occurring within the specified time frame. The table includes the alert status, when it was last updated, the reason for the alert, and more.
 
-![Summary of Alerts on the ((observability)) overview page](images/observability-alerts-overview.png)
+[role="screenshot"]
+image::images/observability-alerts-overview.png[Summary of Alerts on the {observability} overview page]
 
-<DocLink slug="/serverless/observability/alerting">Learn more about alerting → </DocLink>
+<<alerting,Learn more about alerting → >>
 
-## Service-level objectives (SLOs)
+[discrete]
+[[serverless-observability-overview-service-level-objectives-slos]]
+== Service-level objectives (SLOs)
 
 Set clear, measurable targets for your service performance,
 based on factors like availability, response times, error rates, and other key metrics.
@@ -106,11 +119,14 @@ using detailed dashboards and alerts that help you quickly identify and troubles
 
 From the SLO overview list, you can see all of your SLOs and a quick summary of what’s happening in each one:
 
-![Dashboard showing list of SLOs](images/slo-dashboard.png)
+[role="screenshot"]
+image::images/slo-dashboard.png[Dashboard showing list of SLOs]
 
-<DocLink slug="/serverless/observability/slos">Learn more about SLOs → </DocLink>
+<<slos,Learn more about SLOs → >>
 
-## Cases
+[discrete]
+[[serverless-observability-overview-cases]]
+== Cases
 
 Collect and share information about observability issues by creating cases.
 Cases allow you to track key investigation details,
@@ -118,11 +134,14 @@ add assignees and tags to your cases, set their severity and status, and add ale
 comments, and visualizations. You can also send cases to third-party systems,
 such as ServiceNow and Jira.
 
-![Screenshot showing list of cases](images/cases.png)
+[role="screenshot"]
+image::images/cases.png[Screenshot showing list of cases]
 
-<DocLink slug="/serverless/observability/cases">Learn more about cases → </DocLink>
+<<cases,Learn more about cases → >>
 
-## AIOps
+[discrete]
+[[serverless-observability-overview-aiops]]
+== AIOps
 
 Reduce the time and effort required to detect, understand, investigate, and resolve incidents at scale
 by leveraging predictive analytics and machine learning:
@@ -131,6 +150,7 @@ by leveraging predictive analytics and machine learning:
 * Find and investigate the causes of unusual spikes or drops in log rates.
 * Detect distribution changes, trend changes, and other statistically significant change points in a metric of your time series data.
 
-![Log rate analysis page showing log rate spike ](images/log-rate-analysis.png)
+[role="screenshot"]
+image::images/log-rate-analysis.png[Log rate analysis page showing log rate spike ]
 
-<DocLink slug="/serverless/observability/aiops">Learn more about AIOps →</DocLink>
+<<aiops,Learn more about AIOps →>>

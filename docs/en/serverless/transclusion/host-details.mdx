@@ -1,7 +1,8 @@
-{/* This is collapsed by default */}
+// This is collapsed by default
 
-<DocAccordion buttonContent="Overview">
-
+[%collapsible]
+.Overview
+=====
 The **Overview** tab displays key metrics about the selected host, such as CPU usage,
 normalized load, memory usage, and max disk usage.
 
@@ -14,32 +15,35 @@ Hover over a specific time period on a chart to compare the various metrics at t
 
 Click **Show all** to drill down into related data.
 
-![Host overview](../images/overview-overlay.png)
+[role="screenshot"]
+image::images/overview-overlay.png[Host overview]
+=====
 
-</DocAccordion>
-
-<DocAccordion buttonContent="Metadata">
-
+[%collapsible]
+.Metadata
+=====
 The **Metadata** tab lists all the meta information relating to the host,
 including host, cloud, and agent information.
 
 This information can help when investigating events—for example,
 when filtering by operating system or architecture.
 
-![Host metadata](../images/metadata-overlay.png)
+[role="screenshot"]
+image::images/metadata-overlay.png[Host metadata]
+=====
 
-</DocAccordion>
-
-<DocAccordion buttonContent="Metrics">
-
+[%collapsible]
+.Metrics
+=====
 The **Metrics** tab shows host metrics organized by type and is more complete than the view available in the *Overview* tab.
 
-![Metrics](../images/metrics-overlay.png)
+[role="screenshot"]
+image::images/metrics-overlay.png[Metrics]
+=====
 
-</DocAccordion>
-
-<DocAccordion buttonContent="Processes">
-
+[%collapsible]
+.Processes
+=====
 The **Processes** tab lists the total number of processes (`system.process.summary.total`) running on the host,
 along with the total number of processes in these various states:
 
@@ -54,38 +58,60 @@ along with the total number of processes in these various states:
 The processes listed in the **Top processes** table are based on an aggregation of the top CPU and the top memory consuming processes.
 The number of top processes is controlled by `process.include_top_n.by_cpu` and `process.include_top_n.by_memory`.
 
-|  |  |
-|---|---|
-| **Command** | Full command line that started the process, including the absolute path to the executable, and all the arguments (`system.process.cmdline`). |
-| **PID** | Process id (`process.pid`). |
-| **User** | User name (`user.name`). |
-| **CPU** | The percentage of CPU time spent by the process since the last event (`system.process.cpu.total.pct`). |
-| **Time** | The time the process started (`system.process.cpu.start_time`).  |
-| **Memory** | The percentage of memory (`system.process.memory.rss.pct`) the process occupied in main memory (RAM).  |
-| **State** | The current state of the process and the total number of processes (`system.process.state`). Expected values are: `running`, `sleeping`, `dead`, `stopped`, `idle`, `zombie`, and `unknown`. |
+|===
+| |
 
-![Host processes](../images/processes-overlay.png)
+| **Command**
+| Full command line that started the process, including the absolute path to the executable, and all the arguments (`system.process.cmdline`).
 
-</DocAccordion>
+| **PID**
+| Process id (`process.pid`).
 
-<DocAccordion buttonContent="Logs">
+| **User**
+| User name (`user.name`).
 
+| **CPU**
+| The percentage of CPU time spent by the process since the last event (`system.process.cpu.total.pct`).
+
+| **Time**
+| The time the process started (`system.process.cpu.start_time`).
+
+| **Memory**
+| The percentage of memory (`system.process.memory.rss.pct`) the process occupied in main memory (RAM).
+
+| **State**
+| The current state of the process and the total number of processes (`system.process.state`). Expected values are: `running`, `sleeping`, `dead`, `stopped`, `idle`, `zombie`, and `unknown`.
+|===
+
+[role="screenshot"]
+image::images/processes-overlay.png[Host processes]
+=====
+
+[%collapsible]
+.Logs
+=====
 The **Logs** tab displays logs relating to the host that you have selected. By default, the logs tab displays the following columns.
 
-|  |  |
-|---|---|
-| **Timestamp** | The timestamp of the log entry from the `timestamp` field.  |
-| **Message** | The message extracted from the document. The content of this field depends on the type of log message. If no special log message type is detected, the [Elastic Common Schema (ECS)](((ecs-ref))/ecs-base.html) base field, `message`, is used. |
+|===
+| |
 
-To view the logs in the ((logs-app)) for a detailed analysis, click **Open in Logs**.
+| **Timestamp**
+| The timestamp of the log entry from the `timestamp` field.
 
-![Host logs](../images/logs-overlay.png)
+| **Message**
+| The message extracted from the document. The content of this field depends on the type of log message. If no special log message type is detected, the {ecs-ref}/ecs-base.html[Elastic Common Schema (ECS)] base field, `message`, is used.
+|===
 
-</DocAccordion>
+To view the logs in the {logs-app} for a detailed analysis, click **Open in Logs**.
 
-<DocAccordion buttonContent="Anomalies">
+[role="screenshot"]
+image::images/logs-overlay.png[Host logs]
+=====
 
-The **Anomalies** tab displays a list of each single metric ((anomaly-detect)) job for the specific host. By default, anomaly
+[%collapsible]
+.Anomalies
+=====
+The **Anomalies** tab displays a list of each single metric {anomaly-detect} job for the specific host. By default, anomaly
 jobs are sorted by time, showing the most recent jobs first.
 
 Along with the name of each anomaly job, detected anomalies with a severity score equal to 50 or higher are listed. These
@@ -95,9 +121,8 @@ the actual value and the expected ("typical") value of the host metric in the an
 To drill down and analyze the metric anomaly, select **Actions** → **Open in Anomaly Explorer**.
 You can also select **Actions** → **Show in Inventory** to view the host Inventory page, filtered by the specific metric.
 
-![Anomalies](../images/anomalies-overlay.png)
+[role="screenshot"]
+image::images/anomalies-overlay.png[Anomalies]
+=====
 
-</DocAccordion>
-
-{/* TODO: Find out if OSQuery tab will be included in serverless. It does not currently appear in serverless builds */}
-
+// TODO: Find out if OSQuery tab will be included in serverless. It does not currently appear in serverless builds

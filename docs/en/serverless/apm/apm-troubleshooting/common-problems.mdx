@@ -1,24 +1,28 @@
 
 
-import NoDataIndexed from '../../transclusion/apm/guide/tab-widgets/no-data-indexed/fleet-managed.mdx'
-
 This section describes common problems you might encounter.
 
-{/* * <DocLink slug="/serverless/observability/apm-troubleshooting" section="no-data-is-indexed">No data is indexed</DocLink>
+////
+/* * <DocLink slug="/serverless/observability/apm-troubleshooting" section="no-data-is-indexed">No data is indexed</DocLink>
 * <DocLink slug="/serverless/observability/apm-troubleshooting">APM Server response codes</DocLink>
 * <DocLink slug="/serverless/observability/apm-troubleshooting" section="common-ssl-related-problems">Common SSL-related problems</DocLink>
 * <DocLink slug="/serverless/observability/apm-troubleshooting" section="io-timeout">I/O Timeout</DocLink>
-* <DocLink slug="/serverless/observability/apm-troubleshooting" section="field-limit-exceeded">Field limit exceeded</DocLink> */}
+* <DocLink slug="/serverless/observability/apm-troubleshooting" section="field-limit-exceeded">Field limit exceeded</DocLink> */
+////
 
-### No data is indexed
+[discrete]
+[[no-data-is-indexed]]
+=== No data is indexed
 
 If no data shows up, first make sure that your APM components are properly connected.
 
-<NoDataIndexed />
+include::../../transclusion/apm/guide/tab-widgets/no-data-indexed/fleet-managed.asciidoc[]
 
-<div id="data-indexed-no-apm-legacy"></div>
+[[data-indexed-no-apm-legacy]]
 
-### Data is indexed but doesn't appear in the Applications UI
+[discrete]
+[[data-is-indexed-but-doesnt-appear-in-the-applications-ui]]
+=== Data is indexed but doesn't appear in the Applications UI
 
 Elastic APM relies on default index mappings, data streams, and pipelines to query and display data.
 If your APM data isn't showing up in the Applications UI, but is elsewhere in Elastic, like Discover,
@@ -26,19 +30,20 @@ you've likely made a change that overwrote a default.
 If you've manually changed a data stream, index template, or index pipeline,
 please verify you are not interfering with the default APM setup.
 
-{/* ### I/O Timeout
+////
+/* ### I/O Timeout
 
 I/O Timeouts can occur when your timeout settings across the stack are not configured correctly,
 especially when using a load balancer.
 
-You may see an error like the one below in the ((apm-agent)) logs, and/or a similar error on the intake side:
+You may see an error like the one below in the {apm-agent} logs, and/or a similar error on the intake side:
 
-```logs
+...logs
 [ElasticAPM] APM Server responded with an error:
 "read tcp 123.34.22.313:8200->123.34.22.40:41602: i/o timeout"
-```
+...
 
-To fix this error, ensure timeouts are incrementing from the ((apm-agent)),
+To fix this error, ensure timeouts are incrementing from the {apm-agent},
 through your load balancer, to the Elastic APM intake.
 
 By default, Elastic APM agent timeouts are set at 10 seconds, and the Elastic intake timeout is set at 60 seconds.
@@ -46,17 +51,20 @@ Your load balancer should be set somewhere between these numbers.
 
 For example:
 
-```txt
+...txt
 APM agent --> Load Balancer  --> Elastic APM intake
-   10s            15s                 60s
-``` */}
+ 10s            15s                 60s
+... */
+////
 
-<div id="field-limit-exceeded-legacy"></div>
+[[field-limit-exceeded-legacy]]
 
-### Field limit exceeded
+[discrete]
+[[field-limit-exceeded]]
+=== Field limit exceeded
 
 When adding too many distinct tag keys on a transaction or span,
-you risk creating a [mapping explosion](((ref))/mapping.html#mapping-limit-settings).
+you risk creating a {ref}/mapping.html#mapping-limit-settings[mapping explosion].
 
 For example, you should avoid that user-specified data,
 like URL parameters, is used as a tag key.

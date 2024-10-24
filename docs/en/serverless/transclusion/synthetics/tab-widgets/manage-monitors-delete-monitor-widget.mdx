@@ -1,12 +1,26 @@
 
-import ManageMonitorsDeleteMonitorContentProject from './manage-monitors-delete-monitor-content/project.mdx'
-import ManageMonitorsDeleteMonitorContentUi from './manage-monitors-delete-monitor-content/ui.mdx'
 
-<DocTabs hasBorder>
-	<DocTab name="Synthetics project">
-		<ManageMonitorsDeleteMonitorContentProject />
-	</DocTab>
-	<DocTab name="Synthetics UI">
-		<ManageMonitorsDeleteMonitorContentUi />
-	</DocTab>
-</DocTabs>
+++++
+<div class="tabs" data-tab-group="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget">
+  <div role="tablist" aria-label="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget">
+    <button role="tab" aria-selected="true" aria-controls="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-project-panel" id="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-project-button">
+      Synthetics project
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-ui-panel" id="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-ui-button" tabindex="-1">
+      Synthetics UI
+    </button>
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-project-panel" aria-labelledby="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-project-button">
+++++
+include::./manage-monitors-delete-monitor-content/project.asciidoc[]
+
+++++
+  </div>
+  <div tabindex="0" role="tabpanel" id="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-ui-panel" aria-labelledby="transclusion-synthetics-tab-widgets-manage-monitors-delete-monitor-widget-synthetics-ui-button" hidden="">
+++++
+include::./manage-monitors-delete-monitor-content/ui.asciidoc[]
+
+++++
+  </div>
+</div>
+++++

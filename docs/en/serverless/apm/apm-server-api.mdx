@@ -1,58 +1,59 @@
----
-slug: /serverless/observability/apm-server-api
-title: Managed intake service event API
-# description: Description to be written
-tags: [ 'serverless', 'observability', 'reference' ]
----
+[[apm-server-api]]
+= Managed intake service event API
 
-<p><DocBadge template="technical preview" /></p>
+preview:[]
 
-import Api from './apm-server-api/api.mdx'
-import ApiError from './apm-server-api/api-error.mdx'
-import ApiEvents from './apm-server-api/api-events.mdx'
-import ApiInfo from './apm-server-api/api-info.mdx'
-import ApiMetadata from './apm-server-api/api-metadata.mdx'
-import ApiMetricset from './apm-server-api/api-metricset.mdx'
-import ApiSpan from './apm-server-api/api-span.mdx'
-import ApiTransaction from './apm-server-api/api-transaction.mdx'
-import OtelAPI from './apm-server-api/otel-api.mdx'
+[WARNING]
+====
+This API is exclusively for APM agent developers. The vast majority of users should have no reason to interact with this API.
+====
 
+include::./apm-server-api/api.asciidoc[]
 
-<DocCallOut color="warning" title="Warning">
-  This API is exclusively for APM agent developers. The vast majority of users should have no reason to interact with this API.
-</DocCallOut>
+[discrete]
+[[apm-server-api-server-information-api]]
+== Server information API
 
-<Api />
+include::./apm-server-api/api-info.asciidoc[]
 
-## Server information API
+[discrete]
+[[apm-server-api-events-intake-api]]
+== Events intake API
 
-<ApiInfo />
+include::./apm-server-api/api-events.asciidoc[]
 
-## Events intake API
+[discrete]
+[[apm-server-api-metadata]]
+=== Metadata
 
-<ApiEvents />
+include::./apm-server-api/api-metadata.asciidoc[]
 
-### Metadata
+[discrete]
+[[apm-server-api-transactions]]
+=== Transactions
 
-<ApiMetadata />
+include::./apm-server-api/api-transaction.asciidoc[]
 
-### Transactions
+[discrete]
+[[apm-server-api-spans]]
+=== Spans
 
-<ApiTransaction />
+include::./apm-server-api/api-span.asciidoc[]
 
-### Spans
+[discrete]
+[[apm-server-api-errors]]
+=== Errors
 
-<ApiSpan />
+include::./apm-server-api/api-error.asciidoc[]
 
-### Errors
+[discrete]
+[[apm-server-api-metrics]]
+=== Metrics
 
-<ApiError />
+include::./apm-server-api/api-metricset.asciidoc[]
 
-### Metrics
+[discrete]
+[[apm-server-api-opentelemetry-api]]
+== OpenTelemetry API
 
-<ApiMetricset />
-
-## OpenTelemetry API
-
-<OtelAPI />
-
+include::./apm-server-api/otel-api.asciidoc[]
